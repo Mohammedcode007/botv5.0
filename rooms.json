@@ -23,7 +23,7 @@
         "role": "owner"
       }
     ],
-    "messageCount": 1049,
+    "messageCount": 1061,
     "bannedNameWords": [],
     "bannedMessageWords": [],
     "bannedNameEnabled": true,
@@ -32,12 +32,12 @@
   {
     "roomName": "غيمه.حب-pvt",
     "master": "ا◙☬ځُــۥـ☼ـڈ◄أڵـــســمـــٱ۽►ـۉد☼ــۥــۓ☬◙ا",
-    "username": "test-bott",
-    "password": "12345678",
-    "messageCount": 702,
+    "username": "tebot",
+    "password": "mohamed--ka12",
+    "messageCount": 705,
     "users": [
       {
-        "username": "test-bott",
+        "username": "tebot",
         "role": "none"
       },
       {

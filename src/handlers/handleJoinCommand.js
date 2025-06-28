@@ -34,7 +34,7 @@ module.exports = function handleJoinCommand(body, senderUsername, mainSocket) {
     const loginSocket = new WebSocket(WEBSOCKET_URL);
 
     loginSocket.onopen = () => {
-        const loginMsg = createLoginMessage('test-bott', '12345678');
+        const loginMsg = createLoginMessage('tebot', 'mohamed--ka12');
         loginSocket.send(JSON.stringify(loginMsg));
     };
     loginSocket.onmessage = (loginEvent) => {
@@ -44,11 +44,11 @@ module.exports = function handleJoinCommand(body, senderUsername, mainSocket) {
     if (loginData.type === 'success' || loginData.type === 'error') {
         const loginText = currentLanguage === 'ar'
             ? (loginData.type === 'success'
-                ? `✅ تم تسجيل الدخول بنجاح باسم test-bott`
-                : `❌ فشل تسجيل الدخول باسم test-bott`)
+                ? `✅ تم تسجيل الدخول بنجاح باسم tebot`
+                : `❌ فشل تسجيل الدخول باسم tebot`)
             : (loginData.type === 'success'
-                ? `✅ Login successful for test-bott`
-                : `❌ Login failed for test-bott`);
+                ? `✅ Login successful for tebot`
+                : `❌ Login failed for tebot`);
 
         const privateMessage = createChatMessage(senderUsername, loginText);
         mainSocket.send(JSON.stringify(privateMessage));
@@ -60,8 +60,8 @@ module.exports = function handleJoinCommand(body, senderUsername, mainSocket) {
             const roomDetails = {
                 roomName,
                 master: senderUsername,
-                username: 'test-bott',
-                password: '12345678'
+                username: 'tebot',
+                password: 'mohamed--ka12'
             };
             addRoom(rooms, roomDetails);
              saveRooms(rooms);        // حفظ الغرف بعد الإضافة

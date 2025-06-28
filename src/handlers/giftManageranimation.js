@@ -277,10 +277,21 @@ async function handleGiftSelectionAnimation(data, senderName, ioSockets) {
 
         const lang = getUserLanguage(senderName) || 'ar';
         const detailText = lang === 'ar'
-        ? `🎁 ANIMATION GIFT 🎁\n\n${gift.name}\n← ${senderName}\n← ${recipient}\n\n🖱️ اضغط علي الصوره`
-        : `🎁 ANIMATION GIFT 🎁\n\n${gift.name}\n→ ${senderName}\n→ ${recipient}\n\n🖱️ Click the image .`;
-    
-
+        ? `## 🎁✨ **هدية متحركة** ✨🎁
+      
+      - **📦 الاسم:**  ${gift.name}
+      - **👤 من:**  ${senderName}
+      - **🎯 إلى:**  ${recipient}
+      
+      > 🖱️ **اضغط على الصورة للاستلام 🔗**`
+        : `## 🎁✨ **ANIMATION GIFT** ✨🎁
+      
+      - **📦 Name:**  ${gift.name}
+      - **👤 From:**  ${senderName}
+      - **🎯 To:**  ${recipient}
+      
+      > 🖱️ **Click the image to claim 🔗**`;
+      
         const rooms = loadRooms();
         console.log('🏠 الغرف:', rooms);
 

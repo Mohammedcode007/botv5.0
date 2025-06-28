@@ -111,8 +111,22 @@ if (data.handler === 'room_event') {
                     socket.send(JSON.stringify(joinRoomMessage));
                     console.log(`🚪 Sent join request to room: ${room.roomName}`);
 
-                    const statusText = `<p style="color: #2196F3; font-family: 'Arial', sans-serif; font-size: 16px; font-weight: bold;">[Master: ${room.master}] - [Room: ${room.roomName}]</p>`;
-
+                    const statusText = `
+                    <div style="color: #2196F3; font-family: 'Arial', sans-serif; font-size: 15px; font-weight: bold;">
+                      <p>🤖 <span style="color:#4CAF50;">This bot version:</span> <b>v5.0</b></p>
+                      <p>🔗 [<b>Master:</b> ${room.master}] — [<b>Room:</b> ${room.roomName}]</p>
+                      <hr style="border: none; border-top: 1px solid #ccc;">
+                      <p>❓ <b>For Help:</b> Send <code>info</code> in private chat with the @tebot.</p>
+                      <p>🚪 <b>To Login to Your Room:</b> Send <code>join@roomname</code> to the bot.</p>
+                      <p>👤 <b>To Login With Username:</b> Send</p>
+                      <p><code>login#username#password#room</code></p>
+                      <p>📌 <b>Example:</b></p>
+                      <p><code>login#ahmed#12345#myroom</code></p>
+                      <hr style="border: none; border-top: 1px solid #ccc;">
+                      <p style="color: #FF5722;">⚙️ Powered by Tebot v5.0</p>
+                    </div>
+                  `;
+                  
                     const updateStatusMessage = {
                         handler: 'profile_update',
                         id: 'iQGlQEghwwsXRhvVqCND',
@@ -315,8 +329,8 @@ if (data.handler === 'room_event' && data.body && data.body.startsWith('removema
                 }
             
                 fetchUserProfile({
-                    username: 'test-bott',
-                    password: '12345678',
+                    username: 'tebot',
+                    password: 'mohamed--ka12',
                     targetId: "ztPMLHZkxwfqDJdJeCvX",
                     targetType: targetId
                 })

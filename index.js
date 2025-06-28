@@ -6,8 +6,8 @@ const {processImageAndUpload} = require('./src/handlers/processImageAndUpload');
 const { fetchUserProfile } = require('./src/handlers/profileFetcher');
 
 loginToSocket({
-    username: 'test-bott',
-    password: '12345678'
+    username: 'tebot',
+    password: 'mohamed--ka12'
 });
 
 // تشغيل joinRooms مباشرة بعد تسجيل الدخول أو عند الحاجة
@@ -28,7 +28,7 @@ socket.on('error', (error) => {
 
 
 // fetchUserProfile({
-//     username: 'test-bott',
+//     username: 'tebot',
 //     password: '12345678',
 //     targetId: 'ztPMLHZkxwfqDJdJeCvX'
 // })
