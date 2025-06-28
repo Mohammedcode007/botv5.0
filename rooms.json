@@ -23,48 +23,27 @@
         "role": "owner"
       }
     ],
-    "messageCount": 1018
+    "messageCount": 1049,
+    "bannedNameWords": [],
+    "bannedMessageWords": [],
+    "bannedNameEnabled": true,
+    "bannedMessageEnabled": true
   },
   {
     "roomName": "غيمه.حب-pvt",
     "master": "ا◙☬ځُــۥـ☼ـڈ◄أڵـــســمـــٱ۽►ـۉد☼ــۥــۓ☬◙ا",
     "username": "test-bott",
     "password": "12345678",
-    "messageCount": 689,
+    "messageCount": 702,
     "users": [
       {
         "username": "test-bott",
-        "role": "owner"
+        "role": "none"
       },
       {
         "username": "ا◙☬ځُــۥـ☼ـڈ◄أڵـــســمـــٱ۽►ـۉد☼ــۥــۓ☬◙ا",
         "role": "creator"
       }
     ]
-  },
-  {
-    "roomName": "𝕋𝕙𝕖_𝕆𝕣𝕚𝕘𝕚𝕟𝕒𝕝𝕤_✨",
-    "master": "ا◙☬ځُــۥـ☼ـڈ◄أڵـــســمـــٱ۽►ـۉد☼ــۥــۓ☬◙ا",
-    "username": "test-bott",
-    "password": "12345678",
-    "users": [
-      {
-        "username": "شـــــــيرين",
-        "role": "owner"
-      },
-      {
-        "username": "-coleslaw-",
-        "role": "owner"
-      },
-      {
-        "username": "❙ﻣﺷﻋـ𖦙ـوذ❙",
-        "role": "owner"
-      },
-      {
-        "username": "ii-.-sniper-_-hearts-.-ii",
-        "role": "member"
-      }
-    ],
-    "messageCount": 31
   }
 ]

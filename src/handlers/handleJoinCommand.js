@@ -71,33 +71,6 @@ module.exports = function handleJoinCommand(body, senderUsername, mainSocket) {
 };
 
 
-    // loginSocket.onmessage = (loginEvent) => {
-    //     const loginData = JSON.parse(loginEvent.data);
-
-    //     const loginText = currentLanguage === 'ar'
-    //         ? (loginData.type === 'success'
-    //             ? `✅ تم تسجيل الدخول بنجاح باسم test-bott`
-    //             : `❌ فشل تسجيل الدخول باسم test-bott`)
-    //         : (loginData.type === 'success'
-    //             ? `✅ Login successful for test-bott`
-    //             : `❌ Login failed for test-bott`);
-
-    //     const privateMessage = createChatMessage(senderUsername, loginText);
-    //     mainSocket.send(JSON.stringify(privateMessage));
-
-    //     if (loginData.type === 'success') {
-    //         const joinRoomMessage = createJoinRoomMessage(roomName);
-    //         loginSocket.send(JSON.stringify(joinRoomMessage));
-
-    //         const roomDetails = {
-    //             roomName,
-    //             master: senderUsername,
-    //             username: 'test-bott',
-    //             password: '12345678'
-    //         };
-    //         addRoom(rooms, roomDetails);
-    //     }
-    // };
 
     loginSocket.onerror = (error) => {
         console.error('⚠️ WebSocket error during login:', error);
