@@ -1,0 +1,169 @@
+{
+    "countries": [
+      {
+        "name": "مصر",
+        "flag": "🇪🇬",
+        "president": "عبد الفتاح السيسي",
+        "image": "https://upload.wikimedia.org/wikipedia/commons/6/6d/AbdelFattah_el-Sisi_official_photo.jpg"
+      },
+      {
+        "name": "الولايات المتحدة",
+        "flag": "🇺🇸",
+        "president": "جو بايدن",
+        "image": "https://upload.wikimedia.org/wikipedia/commons/6/68/Joe_Biden_presidential_portrait.jpg"
+      },
+      {
+        "name": "اليابان",
+        "flag": "🇯🇵",
+        "president": "فوميو كيشيدا",
+        "image": "https://upload.wikimedia.org/wikipedia/commons/2/24/Fumio_Kishida_2021.jpg"
+      },
+      {
+        "name": "ألمانيا",
+        "flag": "🇩🇪",
+        "president": "أولاف شولتس",
+        "image": "https://upload.wikimedia.org/wikipedia/commons/2/26/Olaf_Scholz_MSC_2022.jpg"
+      },
+      {
+        "name": "روسيا",
+        "flag": "🇷🇺",
+        "president": "فلاديمير بوتين",
+        "image": "https://upload.wikimedia.org/wikipedia/commons/e/e5/Vladimir_Putin_2021.jpg"
+      },
+      {
+        "name": "الصين",
+        "flag": "🇨🇳",
+        "president": "شي جين بينغ",
+        "image": "https://upload.wikimedia.org/wikipedia/commons/0/0d/Xi_Jinping_2019.jpg"
+      },
+      {
+        "name": "المملكة المتحدة",
+        "flag": "🇬🇧",
+        "president": "ريشي سوناك",
+        "image": "https://upload.wikimedia.org/wikipedia/commons/5/5e/Rishi_Sunak_MP.jpg"
+      },
+      {
+        "name": "فرنسا",
+        "flag": "🇫🇷",
+        "president": "إيمانويل ماكرون",
+        "image": "https://upload.wikimedia.org/wikipedia/commons/6/6d/Emmanuel_Macron_in_2023.jpg"
+      },
+      {
+        "name": "البرازيل",
+        "flag": "🇧🇷",
+        "president": "لويز إيناسيو لولا دا سيلفا",
+        "image": "https://upload.wikimedia.org/wikipedia/commons/2/2e/Lula_-_foto_oficial_-_2023.jpg"
+      },
+      {
+        "name": "السعودية",
+        "flag": "🇸🇦",
+        "president": "محمد بن سلمان آل سعود",
+        "image": "https://upload.wikimedia.org/wikipedia/commons/1/1f/Mohammed_bin_Salman_2022.jpg"
+      }
+    ],
+    "titles": [
+      "🪖 القائد",
+      "💣 المحارب",
+      "🤑 التاجر",
+      "🎯 القناص",
+      "🛡️ المدافع",
+      "🏴‍☠️ القرصان",
+      "🧠 الاستراتيجي",
+      "🚀 الغزاة",
+      "⚔️ المبارز",
+      "🦾 الجنرال الحديدي",
+      "👑 الملك",
+      "🦅 الصقر الجارح"
+    ],
+    "weapons": [
+      {
+        "name": "🔫 جلوك 17",
+        "power": 15,
+        "durability": 120,
+        "description": "مسدس نصف آلي خفيف وسريع."
+      },
+      {
+        "name": "🔫 ديزرت إيجل",
+        "power": 30,
+        "durability": 80,
+        "description": "مسدس قوي بضرر عالي لكن بطيء نسبياً."
+      },
+      {
+        "name": "🪖 كلاشينكوف AK-47",
+        "power": 35,
+        "durability": 150,
+        "description": "بندقية هجومية شهيرة بقوة عالية."
+      },
+      {
+        "name": "🪖 إم 4 إيه 1 M4A1",
+        "power": 32,
+        "durability": 170,
+        "description": "بندقية هجومية دقيقة وسريعة."
+      },
+      {
+        "name": "🎯 قناصة AWM",
+        "power": 90,
+        "durability": 50,
+        "description": "بندقية قنص بعيدة المدى وضرر قاتل."
+      },
+      {
+        "name": "💣 قنبلة M67",
+        "power": 60,
+        "durability": 5,
+        "description": "قنبلة يدوية تقضي على مجموعات صغيرة."
+      },
+      {
+        "name": "🚀 صاروخ جافلين FGM-148",
+        "power": 120,
+        "durability": 2,
+        "description": "صاروخ موجه ضد الأهداف الثقيلة."
+      },
+      {
+        "name": "🔫 رشاش M249",
+        "power": 50,
+        "durability": 200,
+        "description": "مدفع رشاش خفيف مع قوة نارية عالية."
+      },
+      {
+        "name": "🛡️ الدرع الباليستي",
+        "power": 0,
+        "durability": 300,
+        "description": "درع مضاد للرصاص يقلل 50% من الضرر."
+      },
+      {
+        "name": "☢️ قنبلة نووية تكتيكية",
+        "power": 500,
+        "durability": 1,
+        "description": "سلاح دمار شامل، يدمر جميع الأعداء في جولة واحدة."
+      },
+      {
+        "name": "☢️ صاروخ نووي عابر للقارات",
+        "power": 800,
+        "durability": 1,
+        "description": "أقوى سلاح نووي في اللعبة، يدمر مدينة بأكملها."
+      }
+    ],
+    "gameSettings": {
+      "roundDuration": 60,
+      "warInterval": 900,
+      "maxPoints": 5000,
+      "minPoints": 0
+    },
+    "media": {
+      "startWarImages": [
+        "https://i.imgur.com/3P1gXya.png",
+        "https://i.imgur.com/4YhzYZ8.png",
+        "https://i.imgur.com/LsfX2HZ.png"
+      ],
+      "explosionImages": [
+        "https://i.imgur.com/MrCXM0A.png",
+        "https://i.imgur.com/B2mMWbg.png",
+        "https://i.imgur.com/SsfPcZG.png"
+      ],
+      "victoryImages": [
+        "https://i.imgur.com/s0x1tFg.png",
+        "https://i.imgur.com/U7STj8H.png"
+      ]
+    }
+  }
+  

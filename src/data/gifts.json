@@ -1,0 +1,158 @@
+[
+  { "id": 1, "name": "🐶", "urls": [
+    "https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExYjRnandtcGluYWhvM2YyZnl4MzZleTRzcmg1cjhqdG02N280MTJweiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/k2Da0Uzaxo9xe/giphy.gif",
+    "https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExYW5wY2x3bWlpemZpd2VpNWNkamRqc2ZlNGhub3lxcDF2Y3lzMWNzbyZlcD12MV9naWZzX3NlYXJjaCZjdD1n/QvBoMEcQ7DQXK/giphy.webp",
+    "https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExYjRnandtcGluYWhvM2YyZnl4MzZleTRzcmg1cjhqdG02N280MTJweiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/k2Da0Uzaxo9xe/giphy.gif"
+  ] },
+  { "id": 2, "name": "🐱", "urls": [
+     "https://i.pinimg.com/736x/2c/e4/3b/2ce43be02eac68dd06cf0f5028535a3a.jpg",
+    "https://png.pngtree.com/png-clipart/20240317/original/pngtree-fox-logo-vector-design-png-image_14609907.png",
+    "https://png.pngtree.com/png-clipart/20240614/original/pngtree-golden-fox-head-digital-art-png-image_15320620.png"
+  ] },
+  { "id": 3, "name": "🦁", "urls": [
+    "https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExOTN2b3QxOTNwaDZiM3pqMzd3cTYzM2V5YXJwOHpwa2x3eHhtYnRvaCZlcD12MV9naWZzX3NlYXJjaCZjdD1n/OqFpgF7bet1sRoCmpb/200.webp",
+    "https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExOTN2b3QxOTNwaDZiM3pqMzd3cTYzM2V5YXJwOHpwa2x3eHhtYnRvaCZlcD12MV9naWZzX3NlYXJjaCZjdD1n/3o6wrrNFa9OH9FFRpS/200.webp",
+    "https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExOTN2b3QxOTNwaDZiM3pqMzd3cTYzM2V5YXJwOHpwa2x3eHhtYnRvaCZlcD12MV9naWZzX3NlYXJjaCZjdD1n/3o6wrrNFa9OH9FFRpS/200.webp"
+  ] },
+  { "id": 4, "name": "🐰", "urls": [
+    "https://png.pngtree.com/png-clipart/20210311/original/pngtree-rabbit-mascot-logo-design-png-image_6004160.jpg",
+    "https://png.pngtree.com/png-clipart/20210311/original/pngtree-rabbit-mascot-logo-design-png-image_6004160.jpg",
+    "https://png.pngtree.com/png-clipart/20210311/original/pngtree-rabbit-mascot-logo-design-png-image_6004160.jpg"
+  ] },
+  { "id": 5, "name": "🐼", "urls": [
+    "https://png.pngtree.com/png-clipart/20240215/original/pngtree-cute-happy-panda-cartoon-character-in-valentines-day-png-image_14322061.png",
+    "https://png.pngtree.com/png-clipart/20240215/original/pngtree-cute-happy-panda-cartoon-character-in-valentines-day-png-image_14322061.png",
+    "https://png.pngtree.com/png-clipart/20240215/original/pngtree-cute-happy-panda-cartoon-character-in-valentines-day-png-image_14322061.png"
+  ] },
+  { "id": 6, "name": "🍕", "urls": [
+    "https://i.pinimg.com/736x/c3/15/f2/c315f238994440a1342f971546a2ce71.jpg",
+    "https://i.pinimg.com/736x/ab/e6/57/abe65721a6d06545c99230151aab0177.jpg",
+    "https://i.pinimg.com/736x/4b/6b/17/4b6b177b133679bf9f5b234d00f19f88.jpg"
+  ] },
+  { "id": 7, "name": "🍔", "urls": [
+    "https://i.pinimg.com/736x/86/b7/c6/86b7c6c6d48f132df21c7109119c12ac.jpg",
+    "https://i.pinimg.com/736x/a2/c5/12/a2c512045f58ef85ed8447f9c574cd90.jpg",
+    "https://i.pinimg.com/736x/a2/c5/12/a2c512045f58ef85ed8447f9c574cd90.jpg"
+  ] },
+  { "id": 8, "name": "🍦", "urls": [
+    "https://i.pinimg.com/736x/a5/b8/b6/a5b8b63abd55926acc4f99931197708d.jpg",
+    "https://i.pinimg.com/736x/f2/ae/70/f2ae70dc52332f4150ee644f7b391b4c.jpg",
+    "https://i.pinimg.com/736x/13/4f/7c/134f7c47e1b978180cacebf0bd3dbbe9.jpg"
+  ] },
+  { "id": 9, "name": "☕", "urls": [
+    "https://i.pinimg.com/736x/0c/42/b4/0c42b4194866dbf38483df30d41753be.jpg",
+    "https://i.pinimg.com/736x/f3/72/4c/f3724c27b280d2460da005d002b8c906.jpg",
+    "https://i.pinimg.com/736x/1d/9e/8e/1d9e8e5fc7e09449ecefdd0a15000025.jpg"
+  ] },
+  { "id": 10, "name": "🥤", "urls": [
+    "https://i.pinimg.com/736x/ad/c1/9f/adc19f37c38aa183b50735ee68a5c978.jpg",
+    "https://i.pinimg.com/736x/c6/92/9c/c6929caadd73e31b63b0f153a7266515.jpg",
+    "https://i.pinimg.com/736x/78/56/be/7856be5ac30ea85c502da17bebac15c7.jpg"
+  ] },
+  { "id": 11, "name": "❤️", "urls": [
+    "https://i.pinimg.com/736x/bf/8e/7d/bf8e7d6e9cf8be388ade6eef56eafae7.jpg",
+    "https://i.pinimg.com/736x/fe/3d/97/fe3d97c868c0e9948d6f071b31a7f2d3.jpg",
+    "https://i.pinimg.com/736x/8c/92/2e/8c922e7badae5f0ab88e8e2fe5b92df2.jpg"
+  ] },
+  { "id": 12, "name": "💵", "urls": [
+    "https://i.pinimg.com/736x/61/c0/e5/61c0e587849948baa3d5d3734704e43a.jpg",
+    "https://i.pinimg.com/736x/8d/ab/29/8dab2931a59c30c1f0ec88ee08fe1b7e.jpg",
+    "https://i.pinimg.com/736x/bd/c5/f9/bdc5f9aca6d40793078d330a0e082943.jpg"
+  ] },
+  { "id": 13, "name": "💑", "urls": [
+    "https://i.pinimg.com/736x/e6/9b/b3/e69bb30018ea0ea1c49d7774540f383c.jpg",
+    "https://i.pinimg.com/736x/73/0a/08/730a08fcb5cc145d4a2f140031dcf855.jpg",
+    "https://i.pinimg.com/736x/ab/e3/ba/abe3ba87e2600b4e890913b50f4f7b7a.jpg"
+  ] },
+  { "id": 14, "name": "🐱", "urls": [
+    "https://i.pinimg.com/736x/29/41/b0/2941b0a266c0fc1cb388429315b9ccf9.jpg",
+    "https://i.pinimg.com/736x/3d/93/a3/3d93a3b7428f703b6307dc19f24e9429.jpg",
+    "https://i.pinimg.com/736x/b4/5a/ef/b45aef47bc08da5f97c0f1a1e342ba68.jpg"
+  ] },
+  { "id": 15, "name": "KISS", "urls": [
+    "https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExNnQ5Z2k1YmlhaXZzcG4wOHRobXpzM3JyOW9hcXVvbmRnOTB4YndrYyZlcD12MV9naWZzX3NlYXJjaCZjdD1n/PFjXmKuwQsS9q/200.webp",
+    "https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExYXE5bHFzN2FidHNvMGl4bXp5cWplbnJ2NTNzaG4xYTZscTFtbTJlYiZlcD12MV9naWZzX3NlYXJjaCZjdD1n/xT39Dnp5O6fWoVIp1K/200.webp",
+    "https://media4.giphy.com/media/v1.Y2lkPWVjZjA1ZTQ3YnJnaTRpMG0wZnFodW9tODVqNHFqa2Z5aHZwem84d3hubml1NjhnZSZlcD12MV9naWZzX3NlYXJjaCZjdD1n/D4hiJ8Oo1xOwUDOzyJ/giphy.webp"
+  ] },
+  { "id": 16, "name": "BOXING", "urls": [
+    "https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExNmwyYzFyMGp3YnF5NnF1dGpnMHVmbTVuYnhvOGUyb3V2bzF6cmZmeCZlcD12MV9naWZzX3NlYXJjaCZjdD1n/26tn97J59sw9QzW8w/200.webp",
+    "https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExeGR2am8xbmlsbm5mZXB4OGNyNjFqZHh2eG1ja2I0OWM4a2JoYjlyaCZlcD12MV9naWZzX3NlYXJjaCZjdD1n/Tabtn8Ua43vgEd5XQt/200.webp",
+    "https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExeGR2am8xbmlsbm5mZXB4OGNyNjFqZHh2eG1ja2I0OWM4a2JoYjlyaCZlcD12MV9naWZzX3NlYXJjaCZjdD1n/Tabtn8Ua43vgEd5XQt/200.webp"
+  ] },
+  {
+    "id": 17,
+    "name": "HEART ❤️",
+    "urls": [
+      "https://media1.tenor.com/m/0wFx9B1qFq0AAAAC/passion-love.gif",
+      "https://media1.tenor.com/m/DOeb-wMd8kEAAAAC/i-love-you-thu.gif"
+    ]
+  },
+  {
+    "id": 18,
+    "name": "CLAP 👏",
+    "urls": [
+      "https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExdWY3d3dkYXRuaWVnbmZoZDY5M3BsbGZkcWszeTl2Z3BiZjlyZnN5ciZlcD12MV9naWZzX3NlYXJjaCZjdD1n/qIXVd1RoKGqlO/giphy.webp"
+
+    ]
+  },
+ 
+  {
+    "id": 19,
+    "name": "PARTY 🎉",
+    "urls": [
+      "https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExa25oNWo2NmphaGVyM3FndDIwenEzcWlvbGFwYTU5dWx2dmZzNWd1ZiZlcD12MV9naWZzX3NlYXJjaCZjdD1n/zINs6k7lwfawSbLOIc/giphy.webp",
+      "https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExa25oNWo2NmphaGVyM3FndDIwenEzcWlvbGFwYTU5dWx2dmZzNWd1ZiZlcD12MV9naWZzX3NlYXJjaCZjdD1n/26n6R5HOYPbekK0YE/200.webp",
+      "https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExa25oNWo2NmphaGVyM3FndDIwenEzcWlvbGFwYTU5dWx2dmZzNWd1ZiZlcD12MV9naWZzX3NlYXJjaCZjdD1n/dWWOqRx6YifHG/200.webp"
+    ]
+  },
+  
+  
+  {
+    "id": 20,
+    "name": "HUG 🤗",
+    "urls": [
+      "https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExc2Q2eGxrdzBrY3Fvc20xcDhvbzJhd2ZkM252Zmg1enVucTNkaXl6ayZlcD12MV9naWZzX3NlYXJjaCZjdD1n/KG5oq4vesf9r8JbBEN/200.webp",
+      "https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExc2Q2eGxrdzBrY3Fvc20xcDhvbzJhd2ZkM252Zmg1enVucTNkaXl6ayZlcD12MV9naWZzX3NlYXJjaCZjdD1n/EvYHHSntaIl5m/giphy.webp"
+    ]
+  }
+  ,
+  
+  
+  {
+    "id": 21,
+    "name": "Slap 👋",
+    "urls": [
+      "https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExbmI0ZDNndW8wZjU5M3c2dzIzdG0ybDljNmpwZ3NhYXhmeHBqeDBzZiZlcD12MV9naWZzX3NlYXJjaCZjdD1n/htiVRuP7N0XK/200.webp",
+      "https://media4.giphy.com/media/v1.Y2lkPWVjZjA1ZTQ3bWh1NWV1MTdscWpkOGh3ZHNoNnhrcnZ0M21oODY1c3BkOWV0dm0yZyZlcD12MV9naWZzX3NlYXJjaCZjdD1n/12LjisUEAp8bx6/200.webp"
+    ]
+  },
+  {
+    "id": 22,
+    "name": "🦅 Eagle",
+    "urls": [
+      "https://i.ibb.co/NdJZfkQB/479bd426c51a740d206c9c1c37dc7035-720w.gif",
+      "https://i.ibb.co/NdJZfkQB/479bd426c51a740d206c9c1c37dc7035-720w.gif"
+    ]
+  }
+  ,
+  {
+    "id": 23,
+    "name": "🦅 Phonix",
+    "urls": [
+      "https://i.ibb.co/x8rZCtJT/548e39ade9e9df7ddb24fc1bb4b51d8e-720w.gif",
+      "https://i.ibb.co/x8rZCtJT/548e39ade9e9df7ddb24fc1bb4b51d8e-720w.gif"
+    ]
+  }
+
+  ,
+  {
+    "id": 24,
+    "name": "🦅 WOMAN POWER",
+    "urls": [
+      "https://i.ibb.co/3YVF5Hhh/woman.gif",
+      "https://i.ibb.co/3YVF5Hhh/woman.gif"
+    ]
+  }
+]
+
+
