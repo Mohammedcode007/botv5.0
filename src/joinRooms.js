@@ -29,7 +29,12 @@ const { handleWarGameCommand } = require('./handlers/handleWarGameCommand');
 const { handleTopRoomsCommand } = require('./handlers/handleTopRoomsCommand');
 const { startPikachuEvent, handleFireCommand, startQuranBroadcast } = require('./handlers/pikachuEvent');
 const { handleGiftListRequestAnimation, handleGiftSelectionAnimation } = require('./handlers/giftManageranimation');
-
+const {
+    handleBannedWordCommand,
+  checkNameOnJoin,
+  checkMessageContent,
+  isUserMasterOrInMasterList
+} = require('./handlers/bannedWordsManager');
 const keywords = [
     'بورصة', 'تداول', 'شراء', 'بيع', 'تحليل', 'مضاربة', 'هبوط', 'صعود',
     'اشاعة', 'توصية', 'استثمار', 'حظ', 'سوق', 'مخاطرة', 'أرباح',
@@ -125,77 +130,133 @@ if (data.handler === 'room_event') {
                 if (data.handler === 'room_event' && data.body && ['دفاع', 'هجوم', 'تحالف'].includes(data.body.trim())) {
                     handleWarGameCommand(data, socket, ioSockets);
                 }
- // التعامل مع أوامر إضافية مثل addmas@
-            if (data.handler === 'room_event' && data.body && data.body.startsWith('addmas@')) {
-                const targetUsername = data.body.split('@')[1];  // الحصول على اسم المستخدم بعد addmas@
-                if (master === senderName) {
-                    console.log(`🔄 Adding ${targetUsername} to master list in room: ${data.room}`);
-                    const targetRoomIndex = rooms.findIndex(room => room.roomName === data.room);
-                    if (targetRoomIndex !== -1) {
-                        const targetRoom = rooms[targetRoomIndex];
-                        if (!targetRoom.masterList) {
-                            targetRoom.masterList = [];
-                        }
-                        if (!targetRoom.masterList.includes(targetUsername)) {
-                            targetRoom.masterList.push(targetUsername);
-                            console.log(`✅ Added ${targetUsername} to masterList in room "${data.room}"`);
-                            const message = currentLanguage === 'ar'
-                                ? `✅ تم إضافة ${targetUsername} إلى قائمة الماستر في الغرفة "${data.room}".`
-                                : `✅ ${targetUsername} has been added to the master list in room "${data.room}".`;
-                            const confirmationMessage = createRoomMessage(data.room, message);
-                            socket.send(JSON.stringify(confirmationMessage));
-                        } else {
-                            const warningMessage = currentLanguage === 'ar'
-                                ? `❌ ${targetUsername} موجود بالفعل في قائمة الماستر.`
-                                : `❌ ${targetUsername} is already in the master list.`;
-                            const errorMessage = createRoomMessage(data.room, warningMessage);
-                            socket.send(JSON.stringify(errorMessage));
-                        }
+                // التحقق عند دخول المستخدم
+if (data.handler === 'room_event' && data.type === 'user_joined') {
+    checkNameOnJoin(data, socket, roomName, rooms, currentLanguage);
+}
+
+// التحقق من محتوى الرسائل النصية
+if (data.handler === 'room_message') {
+    checkMessageContent(data, socket, roomName, rooms, currentLanguage);
+}
+
+// أوامر الكلمات المحظورة على الأسماء
+if (data.body?.startsWith('bwname@add@')) {
+    handleBannedWordCommand('name', 'add', data.body.split('@')[2], senderName, roomName, rooms, currentLanguage, socket);
+} else if (data.body?.startsWith('bwname@rm@')) {
+    handleBannedWordCommand('name', 'rm', data.body.split('@')[2], senderName, roomName, rooms, currentLanguage, socket);
+} else if (data.body === 'bwname@list') {
+    handleBannedWordCommand('name', 'list', '', senderName, roomName, rooms, currentLanguage, socket);
+} else if (data.body === 'bwname@on') {
+    handleBannedWordCommand('name', 'on', '', senderName, roomName, rooms, currentLanguage, socket);
+} else if (data.body === 'bwname@off') {
+    handleBannedWordCommand('name', 'off', '', senderName, roomName, rooms, currentLanguage, socket);
+}
+
+// أوامر الكلمات المحظورة على الرسائل
+else if (data.body?.startsWith('bwmsg@add@')) {
+    handleBannedWordCommand('message', 'add', data.body.split('@')[2], senderName, roomName, rooms, currentLanguage, socket);
+} else if (data.body?.startsWith('bwmsg@rm@')) {
+    handleBannedWordCommand('message', 'rm', data.body.split('@')[2], senderName, roomName, rooms, currentLanguage, socket);
+} else if (data.body === 'bwmsg@list') {
+    handleBannedWordCommand('message', 'list', '', senderName, roomName, rooms, currentLanguage, socket);
+} else if (data.body === 'bwmsg@on') {
+    handleBannedWordCommand('message', 'on', '', senderName, roomName, rooms, currentLanguage, socket);
+} else if (data.body === 'bwmsg@off') {
+    handleBannedWordCommand('message', 'off', '', senderName, roomName, rooms, currentLanguage, socket);
+}
+if (data.handler === 'room_event' && data.body && data.body.startsWith('removemas@')) {
+    const targetUsername = data.body.split('@')[1]?.trim();
+    const roomName = data.room;
+
+    if (isUserMasterOrInMasterList(senderName, roomName)) {
+        console.log(`🔄 Removing ${targetUsername} from master list in room: ${roomName}`);
+
+        const updatedRooms = rooms.map(r => {
+            if (r.roomName === roomName) {
+                if (Array.isArray(r.masterList)) {
+                    if (r.masterList.includes(targetUsername)) {
+                        r.masterList = r.masterList.filter(user => user !== targetUsername);
+                        console.log(`✅ Removed ${targetUsername} from masterList in room "${roomName}"`);
+
+                        const message = currentLanguage === 'ar'
+                            ? `✅ تم إزالة ${targetUsername} من قائمة الماستر في الغرفة "${roomName}".`
+                            : `✅ ${targetUsername} has been removed from the master list in room "${roomName}".`;
+
+                        const confirmationMessage = createRoomMessage(roomName, message);
+                        socket.send(JSON.stringify(confirmationMessage));
+                    } else {
+                        const warningMessage = currentLanguage === 'ar'
+                            ? `❌ ${targetUsername} غير موجود في قائمة الماستر.`
+                            : `❌ ${targetUsername} is not in the master list.`;
+
+                        const errorMessage = createRoomMessage(roomName, warningMessage);
+                        socket.send(JSON.stringify(errorMessage));
                     }
-                    saveRooms(rooms);
-                } else {
-                    const warningMessage = currentLanguage === 'ar'
-                        ? '❌ أنت لست ماستر الغرفة ولا يمكنك إضافة المستخدمين إلى قائمة الماستر.'
-                        : '❌ You are not the master of the room and cannot add users to the master list.';
-                    const errorMessage = createRoomMessage(data.room, warningMessage);
-                    socket.send(JSON.stringify(errorMessage));
                 }
             }
-            if (data.handler === 'room_event' && data.body && data.body.startsWith('removemas@')) {
-                const targetUsername = data.body.split('@')[1];
-                if (master === senderName) {
-                    console.log(`🔄 Removing ${targetUsername} from master list in room: ${roomName}`);
-                    const updatedRooms = rooms.map(r => {
-                        if (r.roomName === roomName) {
-                            if (r.masterList) {
-                                if (r.masterList.includes(targetUsername)) {
-                                    r.masterList = r.masterList.filter(user => user !== targetUsername);
-                                    console.log(`✅ Removed ${targetUsername} from masterList in room "${roomName}"`);
-                                    const message = currentLanguage === 'ar'
-                                        ? `✅ تم إزالة ${targetUsername} من قائمة الماستر في الغرفة "${roomName}".`
-                                        : `✅ ${targetUsername} has been removed from the master list in room "${roomName}".`;
-                                    const confirmationMessage = createRoomMessage(roomName, message);
-                                    socket.send(JSON.stringify(confirmationMessage));
-                                } else {
-                                    const warningMessage = currentLanguage === 'ar'
-                                        ? `❌ ${targetUsername} غير موجود في قائمة الماستر.`
-                                        : `❌ ${targetUsername} is not in the master list.`;
-                                    const errorMessage = createRoomMessage(roomName, warningMessage);
-                                    socket.send(JSON.stringify(errorMessage));
-                                }
-                            }
-                        }
-                        return r;
-                    });
-                    saveRooms(updatedRooms);
-                } else {
-                    const warningMessage = currentLanguage === 'ar'
-                        ? '❌ أنت لست ماستر الغرفة ولا يمكنك إزالة المستخدمين من قائمة الماستر.'
-                        : '❌ You are not the master of the room and cannot remove users from the master list.';
-                    const errorMessage = createRoomMessage(roomName, warningMessage);
-                    socket.send(JSON.stringify(errorMessage));
-                }
+            return r;
+        });
+
+        saveRooms(updatedRooms);
+
+    } else {
+        const warningMessage = currentLanguage === 'ar'
+            ? '❌ أنت لست ماستر الغرفة أو في قائمة الماستر، لا يمكنك إزالة أحد.'
+            : '❌ You are not the master or in the master list. You cannot remove anyone.';
+
+        const errorMessage = createRoomMessage(roomName, warningMessage);
+        socket.send(JSON.stringify(errorMessage));
+    }
+}
+
+ // التعامل مع أوامر إضافية مثل addmas@
+ if (data.handler === 'room_event' && data.body && data.body.startsWith('addmas@')) {
+    const targetUsername = data.body.split('@')[1]?.trim(); // اسم المستخدم المستهدف
+    const roomName = data.room;
+
+    if (isUserMasterOrInMasterList(senderName, roomName)) {
+        console.log(`🔄 Adding ${targetUsername} to master list in room: ${roomName}`);
+
+        const targetRoomIndex = rooms.findIndex(room => room.roomName === roomName);
+        if (targetRoomIndex !== -1) {
+            const targetRoom = rooms[targetRoomIndex];
+
+            if (!Array.isArray(targetRoom.masterList)) {
+                targetRoom.masterList = [];
             }
+
+            if (!targetRoom.masterList.includes(targetUsername)) {
+                targetRoom.masterList.push(targetUsername);
+                console.log(`✅ Added ${targetUsername} to masterList in room "${roomName}"`);
+
+                const message = currentLanguage === 'ar'
+                    ? `✅ تم إضافة ${targetUsername} إلى قائمة الماستر في الغرفة "${roomName}".`
+                    : `✅ ${targetUsername} has been added to the master list in room "${roomName}".`;
+
+                const confirmationMessage = createRoomMessage(roomName, message);
+                socket.send(JSON.stringify(confirmationMessage));
+            } else {
+                const warningMessage = currentLanguage === 'ar'
+                    ? `❌ ${targetUsername} موجود بالفعل في قائمة الماستر.`
+                    : `❌ ${targetUsername} is already in the master list.`;
+
+                const errorMessage = createRoomMessage(roomName, warningMessage);
+                socket.send(JSON.stringify(errorMessage));
+            }
+
+            saveRooms(rooms);
+        }
+    } else {
+        const warningMessage = currentLanguage === 'ar'
+            ? '❌ أنت لست ماستر الغرفة أو في قائمة الماستر ولا يمكنك إضافة أحد.'
+            : '❌ You are not the master of the room or in the master list. You cannot add anyone.';
+
+        const errorMessage = createRoomMessage(roomName, warningMessage);
+        socket.send(JSON.stringify(errorMessage));
+    }
+}
+
 
             if (
                 data.handler === 'room_event' &&
