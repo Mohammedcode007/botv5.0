@@ -101,39 +101,25 @@
       "https://i.ibb.co/gLcHmDKM/elsa1.gif"]
    
   },
+ 
   {
     "id": 14,
-    "name": "🌊 Moana",
-    "urls": [
-      "https://i.ibb.co/KcjcbnFV/moana.gif"
-
-    ]
-  },
-  {
-    "id": 15,
     "name": "🃏 Joker",
     "urls": [
       "https://i.ibb.co/HLzfqVKx/joker.gif"
     ]
   },
   {
-    "id": 16,
+    "id": 15,
     "name": "🦁 Lion Woman",
     "urls": [
       "https://i.ibb.co/tMdgjFf8/lion-and-woman.gif"
   
     ]
   },
+ 
   {
-    "id": 17,
-    "name": "🐍 Medusa",
-    "urls": [
-      "https://i.ibb.co/NkLpCvq/meddosa.gif"
-     
-    ]
-  },
-  {
-    "id": 18,
+    "id": 16,
     "name": "🌸 Rapunzel",
     "urls": [
       "https://i.ibb.co/gLrskvQz/repunzel.gif"
@@ -141,14 +127,14 @@
     ]
   },
   {
-    "id": 19,
+    "id": 17,
     "name": "🕷️ Spider-Man",
     "urls": [
       "https://i.ibb.co/4wHrJ0y4/spiderman.gif"
     ]
   },
   {
-    "id": 20,
+    "id": 18,
     "name": "🐺 Wolf",
     "urls": [
       "https://i.ibb.co/Y7b8XWJS/wolf.gif"
@@ -156,7 +142,7 @@
     ]
   },
   {
-    "id": 21,
+    "id": 19,
     "name": "👬 friends",
     "urls": [
       "https://i.ibb.co/mCrpXz3v/friends-mp4.gif"

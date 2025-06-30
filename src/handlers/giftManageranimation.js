@@ -212,7 +212,7 @@ async function handleGiftSelectionAnimation(data, senderName, ioSockets) {
     const parts = body.split('@');
     console.log('🧠 أمر الإدخال:', parts);
 
-    if (parts.length < 3 || parts[0] !== 'gf') {
+    if (parts.length < 3 || parts[0] !== 'vg') {
         console.log('❌ الأمر غير صحيح أو عدد العناصر أقل من 3');
         return;
     }
@@ -276,22 +276,17 @@ async function handleGiftSelectionAnimation(data, senderName, ioSockets) {
         console.log('📊 عدادات المستلم:', receivedCount);
 
         const lang = getUserLanguage(senderName) || 'ar';
-        const detailText = lang === 'ar'
-        ? `## 🎁✨ **هدية متحركة** ✨🎁
-      
-      - **📦 الاسم:**  ${gift.name}
-      - **👤 من:**  ${senderName}
-      - **🎯 إلى:**  ${recipient}
-      
-      > 🖱️ **اضغط على الصورة للاستلام 🔗**`
-        : `## 🎁✨ **ANIMATION GIFT** ✨🎁
-      
-      - **📦 Name:**  ${gift.name}
-      - **👤 From:**  ${senderName}
-      - **🎯 To:**  ${recipient}
-      
-      > 🖱️ **Click the image to claim 🔗**`;
-      
+const detailText = `
+🎁✨ Animation Gift ✨🎁
+
+➡️ Name: ${gift.name}  
+⬅️ From: ${senderName}  
+➡️ To: ${recipient}  
+
+🖱️ Please click to open the gift 🔗`;
+
+
+
         const rooms = loadRooms();
         console.log('🏠 الغرف:', rooms);
 

@@ -66,7 +66,6 @@ function joinRooms() {
                 id: 'xOEVOVDfdSwVCjYqzmTT'
             };
             socket.send(JSON.stringify(loginMessage));
-            console.log(`🔐 Login sent for ${room.username}`);
         });
 
         socket.on('message', (event) => {
@@ -75,7 +74,6 @@ function joinRooms() {
                 let senderName = data.from;
                 let roomName = data.room || socket.roomInfo.roomName;
                 const currentLanguage = getUserLanguage(senderName) || 'en';
-console.log(data,'444444444');
 
 if (data.handler === 'room_event') {
     const senderName = data.from;
@@ -88,12 +86,10 @@ if (data.handler === 'room_event') {
       // ✅ تحديث الصورة فقط إذا اختلفت عن الحالية
       if (allUsers[userIndex].profileUrl !== avatarUrl) {
         allUsers[userIndex].profileUrl = avatarUrl;
-        console.log(`🔄 تم تحديث صورة المستخدم "${senderName}"`);
         saveUsers(allUsers);
       }
     } else {
       // ❌ لا يتم الإضافة
-      console.log(`ℹ️ المستخدم "${senderName}" غير موجود في users.json – لم يتم التحديث.`);
     }
   }
   
@@ -301,10 +297,10 @@ if (data.handler === 'room_event' && data.body && data.body.startsWith('removema
                 
                 handleGiftSelection(data, senderName, ioSockets);
             } 
-            else if (data.body && data.body === 'gf') { // إضافة شرط للتحقق من أمر gfg
+            else if (data.body && data.body === 'vg') { // إضافة شرط للتحقق من أمر gfg
 
                 handleGiftListRequestAnimation(data, socket, senderName);  // دالة جديدة لإرسال قائمة الهدايا
-            } else if (data.body && data.body.startsWith('gf@')) {
+            } else if (data.body && data.body.startsWith('vg@')) {
                 
                 handleGiftSelectionAnimation(data, senderName, ioSockets);
             }
@@ -596,7 +592,6 @@ if (
                 });
 
                 saveRooms(updatedRooms);
-                console.log(`🛑 User "${usernameLeft}" removed from room "${roomName}"`);
             }
              else if (data.handler === 'room_event' && data.type === 'user_joined') {
                 const roomName = data.name; // إضافة هذا السطر إذا كنت بحاجة إلى تعريف roomName
