@@ -276,14 +276,15 @@ async function handleGiftSelectionAnimation(data, senderName, ioSockets) {
         console.log('📊 عدادات المستلم:', receivedCount);
 
         const lang = getUserLanguage(senderName) || 'ar';
-const detailText = `
-🎁✨ Animation Gift ✨🎁
-
-➡️ Name: ${gift.name}  
-⬅️ From: ${senderName}  
-➡️ To: ${recipient}  
-
-🖱️ Please click to open the gift 🔗`;
+        const detailText = `
+𝐀𝐧𝐢𝐦𝐚𝐭𝐢𝐨𝐧 𝐆𝐢𝐟𝐭
+        
+𝙉𝙖𝙢𝙚 ⫸ ${gift.name}  
+𝙁𝙧𝙤𝙢 ⫷ ${senderName}  
+𝙏𝙤 ⫸ ${recipient}  
+        
+🖱️ ⌯ Click to open the gift ⌯ 🔗`;
+        
 
 
 
