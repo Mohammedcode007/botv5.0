@@ -1,96 +1,19 @@
 [
   {
-    "roomName": "𝕋𝕙𝕖_𝕆𝕣𝕚𝕘𝕚𝕟𝕒𝕝𝕤_✨",
-    "master": "˹𔘓°ℓуℓу𝆟˼",
-    "username": "هيبہَ‘َ_ٍّـهہ",
-    "password": "lelo_124",
-    "masterList": [],
+    "roomName": "غيمه.حب-pvt",
+    "master": "ا◙☬ځُــۥـ☼ـڈ◄أڵـــســمـــٱ۽►ـۉد☼ــۥــۓ☬◙ا",
+    "username": "tebot",
+    "password": "mohamed--ka12",
+    "messageCount": 109,
     "users": [
       {
-        "username": "0radio_bot0",
-        "role": "member"
-      },
-      {
-        "username": "<٠٠٠>",
-        "role": "member"
-      },
-      {
-        "username": "cgames",
-        "role": "admin"
-      },
-      {
-        "username": "selga",
-        "role": "member"
-      },
-      {
-        "username": "the_originals",
-        "role": "admin"
-      },
-      {
-        "username": "vampire_lovers",
-        "role": "member"
-      },
-      {
-        "username": "˹𔘓°ℓуℓу𝆟˼",
+        "username": "tebot",
         "role": "owner"
       },
       {
         "username": "ا◙☬ځُــۥـ☼ـڈ◄أڵـــســمـــٱ۽►ـۉد☼ــۥــۓ☬◙ا",
-        "role": "owner"
-      },
-      {
-        "username": "مُستـ͢ـبدهٖہۦ",
-        "role": "owner"
-      },
-      {
-        "username": "هيبہَ‘َ_ٍّـهہ",
-        "role": "owner"
-      },
-      {
-        "username": "ᅠིઇالـــــــــــــبدࢪଓྀᅠ",
-        "role": "owner"
-      },
-      {
-        "username": "឵឵឵឵឵឵឵឵឵឵឵឵឵឵",
-        "role": "admin"
-      },
-      {
-        "username": "™رٍۆبـﹻۛٓ۬ﹻـابـَيَګـ❞ـياツ",
-        "role": "owner"
-      },
-      {
-        "username": "⎀",
-        "role": "admin"
-      },
-      {
-        "username": "𒀭𐏓꯭ْ𝑴𝒆𝒅𝒖֟𝒔𝒂֟፝",
-        "role": "owner"
-      },
-      {
-        "username": "𝁜๎𝆯ᏰᎾᏬᏁᎿᎽ𝇄𝆺𝅥⃝🥥",
-        "role": "admin"
-      },
-      {
-        "username": "🍃َ",
-        "role": "owner"
-      },
-      {
-        "username": "🦅𝔸𝕙𝕝𝕪𝟙𝟡𝟘𝟟",
-        "role": "owner"
-      },
-      {
-        "username": "🦉ّ",
-        "role": "member"
-      },
-      {
-        "username": "🫧𓂃⃪ֶᮀᮀحُـۆتيَہ",
-        "role": "owner"
+        "role": "creator"
       }
-    ],
-    "messageCount": 47,
-    "bannedNameWords": [],
-    "bannedMessageWords": [],
-    "bannedNameEnabled": true,
-    "bannedMessageEnabled": true
+    ]
   }
 ]

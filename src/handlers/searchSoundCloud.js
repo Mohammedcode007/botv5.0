@@ -461,7 +461,6 @@ async function handlePlaySongInAllRooms(data, socket, senderName, ioSockets) {
       return;
     }
 
-    console.log(song,'song');
 
     // توليد معرف فريد للأغنية
     let songId;

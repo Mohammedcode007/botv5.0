@@ -7,7 +7,6 @@ function updateUserProfile({ username, password, targetId, updateType, updateVal
         const socket = new WebSocket(WEBSOCKET_URL);
 
         socket.onopen = () => {
-            console.log('✅ Connected to WebSocket for updating profile');
 
             const loginMessage = {
                 handler: 'login',
@@ -26,7 +25,6 @@ function updateUserProfile({ username, password, targetId, updateType, updateVal
             const data = JSON.parse(event.data);
 
             // ✅ التحقق من تسجيل الدخول
-                console.log('🔐 Logged in successfully, sending profile update...');
 
                 const updateRequest = {
                     handler: 'profile_update',
@@ -40,7 +38,6 @@ function updateUserProfile({ username, password, targetId, updateType, updateVal
 
             // ✅ استقبال تأكيد التحديث
             if (data.handler === 'profile_update') {
-                console.log('✅ Profile updated successfully:', data);
                 resolve(data);
 
                 // إغلاق الاتصال

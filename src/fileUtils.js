@@ -2,30 +2,77 @@
 const fs = require('fs');
 const path = require('path');
 
-const roomsFilePath = './rooms.json';
+const roomsFilePath = path.join(__dirname, '..', 'rooms.json');
 const usersLangFilePath = './usersLang.json';
 const usersFilePath = './usersLang.json'; // مسار ملف المستخدمين
 const { masterListPath, adminListPath, blockedUsersPath, blockedRoomsPath, userVerifyListPath } = require('./constants');
 const USERS_FILE = path.join(__dirname, './data/verifiedUsers.json');
 const { createRoomMessage } = require('./messageUtils');
 
+
+
+
 function loadRooms() {
-    if (fs.existsSync(roomsFilePath)) {
-        const data = fs.readFileSync(roomsFilePath);
-        return JSON.parse(data);
+    try {
+        if (!fs.existsSync(roomsFilePath)) {
+            fs.writeFileSync(roomsFilePath, JSON.stringify([]));
+        }
+
+        const data = fs.readFileSync(roomsFilePath, 'utf-8');
+        const rooms = JSON.parse(data);
+
+
+        return rooms;
+    } catch (error) {
+        console.error('❌ خطأ أثناء تحميل الغرف:', error);
+        return [];
     }
-    return [];
 }
 
 function saveRooms(rooms) {
-    fs.writeFileSync(roomsFilePath, JSON.stringify(rooms, null, 2));
+    if (!Array.isArray(rooms)) {
+        console.error('❌ محاولة حفظ rooms لكن القيمة ليست Array:', rooms);
+        return;
+    }
+
+    if (rooms.length === 0) {
+        console.warn('⚠️ تحذير: محاولة حفظ قائمة غرف فارغة! لن يتم الحفظ لتجنب المسح.');
+        return;
+    }
+
+    try {
+        fs.writeFileSync(roomsFilePath, JSON.stringify(rooms, null, 2));
+      
+    } catch (error) {
+        console.error('❌ خطأ أثناء حفظ الغرف:', error);
+    }
 }
+
+
+function addRoom(rooms, newRoom) {
+    const exists = rooms.some(room => room.roomName === newRoom.roomName);
+    if (exists) {
+        return;
+    }
+
+    rooms.push(newRoom);
+}
+
+function roomExists(rooms, roomName) {
+    const exists = rooms.some(room => room.roomName === roomName);
+    return exists;
+}
+
+
 
 function roomExists(rooms, roomName) {
     return rooms.some(room => room.roomName === roomName);
 }
+
+
+
+
 function deleteRoom(roomName) {
-    console.log(roomName,'45454545');
     
     const rooms = loadRooms(); // تحميل الغرف من الملف
 
@@ -36,16 +83,14 @@ function deleteRoom(roomName) {
         // إذا كانت الغرفة موجودة، نقوم بحذفها من المصفوفة
         rooms.splice(roomIndex, 1);
         saveRooms(rooms); // حفظ التعديلات على الملف
-        console.log(`تم حذف الغرفة: ${roomName}`);
     } else {
-        console.log(`لم يتم العثور على الغرفة: ${roomName}`);
     }
 }
 
-function addRoom(rooms, newRoom) {
-    rooms.push(newRoom);
-    saveRooms(rooms);
-}
+// function addRoom(rooms, newRoom) {
+//     rooms.push(newRoom);
+//     saveRooms(rooms);
+// }
 
 function loadUserLanguage() {
     if (fs.existsSync(usersLangFilePath)) {
@@ -107,10 +152,8 @@ function saveAdminList(adminList) {
 
 
 function updateUserPoints(username, addedPoints) {
-    console.log("7878787878");
     
     if (!fs.existsSync(USERS_FILE)) {
-        console.log('❌ ملف المستخدمين غير موجود.');
         return;
     }
 
@@ -120,13 +163,11 @@ function updateUserPoints(username, addedPoints) {
     try {
         users = JSON.parse(data);
     } catch (error) {
-        console.log('❌ خطأ في قراءة verifiedUsers.json:', error.message);
         return;
     }
 
     // تأكد أن users مصفوفة
     if (!Array.isArray(users)) {
-        console.log('❌ verifiedUsers.json لا يحتوي على مصفوفة.');
         return;
     }
 
@@ -135,7 +176,6 @@ function updateUserPoints(username, addedPoints) {
     if (user) {
         if (typeof user.points !== 'number') user.points = 0;
         user.points += addedPoints;
-        console.log(`✅ تم إضافة ${addedPoints} نقطة إلى ${username}. المجموع الآن: ${user.points}`);
     } else {
         // إضافة مستخدم جديد إذا لم يكن موجودًا
         users.push({
@@ -143,7 +183,6 @@ function updateUserPoints(username, addedPoints) {
             points: addedPoints,
             vip: false
         });
-        console.log(`✅ تم إضافة مستخدم جديد ${username} مع ${addedPoints} نقطة.`);
     }
 
     fs.writeFileSync(USERS_FILE, JSON.stringify(users, null, 4), 'utf8');
@@ -272,7 +311,6 @@ function incrementUserGiftCount(username, type) {
 }
 // زيادة النقاط للمستخدم
 function addPoints(username, amount = 1000) {
-    console.log(username,'username2');
     
     const users = loadUsers();
     const user = users.find(u => u.username === username);
@@ -325,7 +363,6 @@ function checkUserExistsOrNotify(username, roomName, socket) {
         const msg = createRoomMessage(roomName, notifyMessage);
         if (socket && socket.readyState === 1) {
             socket.send(JSON.stringify(msg));
-            console.log(`[🔒 Unverified] User ${username} not found. Notified in room ${roomName}`);
         }
         return false;
     }
@@ -530,7 +567,6 @@ function formatNumberShort(n) {
 
 function setNotifyOnSearch(username, value) {
     const users = loadUsers();
-  console.log(users);
   
     const user = users.find(u => u.username === username);
     if (!user) return false;

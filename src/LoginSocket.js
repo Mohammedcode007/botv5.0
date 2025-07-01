@@ -177,7 +177,6 @@ const loginToSocket = ({ username, password, joinRoom }) => {
 
         socket.onmessage = (event) => {
             const data = JSON.parse(event.data);
-            console.log('📩 Message received:', data);
 
             if (data.handler === 'chat_message' && data.body) {
                 const body = data.body.trim();

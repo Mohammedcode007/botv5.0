@@ -213,7 +213,6 @@ function handleDrugKeywords(data, socket) {
 
         socket.send(JSON.stringify(createRoomMessage(roomName, resultMessage)));
 
-        console.log(`[📊 KEYWORD] ${sender} used '${body}' → ${percentChange}% (${pointsChange} points)`);
     }, 2000);
 }
 

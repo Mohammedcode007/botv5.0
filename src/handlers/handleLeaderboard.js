@@ -3,11 +3,8 @@ const path = require('path');
 const { getUserPoints } = require('../fileUtils');
 const { createRoomMessage } = require('../messageUtils');
 
-<<<<<<< HEAD
-const USERS_FILE = '../'; // تأكد من المسار الصحيح لملف المستخدمين
-=======
+
 const USERS_FILE = path.join(__dirname, '../data/verifiedUsers.json');
->>>>>>> 480ce5f1f3ca613968739ccf0758b8628b283eaa
 
 function handleLeaderboard(data, socket) {
     const sender = data.from;

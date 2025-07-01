@@ -2,6 +2,8 @@
 
 const WebSocket = require('ws');
 const path = require('path');
+const fs = require('fs');
+
 const { loadRooms, saveRooms, incrementRoomMessageCount, getUserLanguage,loadUsers,saveUsers } = require('./fileUtils'); 
 const { addToList, removeFromList, blockUser, blockRoom, addVerifiedUser, removeVerifiedUser, unblockUser, unblockRoom } = require('./handlers/manageLists');
 const { disableWelcomeMessage, enableWelcomeMessage, setWelcomeMessage } = require('./handlers/handleWelocome');
@@ -26,6 +28,7 @@ const { startWarAuto,startWar } = require('./handlers/handleWarGameCommand');
 
 const { handleWarGameCommand } = require('./handlers/handleWarGameCommand');
 const { handleLeaderboard } = require('./handlers/handleLeaderboard');
+const chokidar = require('chokidar');
 
 
 const { handleTopRoomsCommand } = require('./handlers/handleTopRoomsCommand');
@@ -47,9 +50,32 @@ const keywords = [
 ];
 
 function joinRooms() {
-    const rooms = loadRooms(path.join(__dirname, 'rooms.json'));
-    const ioSockets = {}; 
+    let rooms = loadRooms();
 
+    // const rooms = loadRooms(path.join(__dirname, 'rooms.json'));
+    const ioSockets = {}; 
+// مراقبة ملف rooms.json
+const watcher = chokidar.watch('./rooms.json', {
+    persistent: true
+});
+
+watcher.on('change', (path) => {
+    console.log(`📄 rooms.json file has changed, reloading rooms...`);
+
+    try {
+        const data = fs.readFileSync('rooms.json', 'utf8');
+        const updatedRooms = JSON.parse(data);
+
+        updatedRooms.forEach(room => {
+            if (!ioSockets[room.roomName]) {
+                console.log(`🚀 Connecting to new room: ${room.roomName}`);
+                createSocketForRoom(room);
+            }
+        });
+    } catch (error) {
+        console.error('❌ Error reading updated rooms.json:', error);
+    }
+});
     // دالة لإنشاء وإعداد WebSocket مع إعادة الاتصال
     function createSocketForRoom(room) {
         let socket = new WebSocket('wss://chatp.net:5333/server');
@@ -107,7 +133,6 @@ if (data.handler === 'room_event') {
                         name: room.roomName
                     };
                     socket.send(JSON.stringify(joinRoomMessage));
-                    console.log(`🚪 Sent join request to room: ${room.roomName}`);
 
                     const statusText = `
                     <div style="color: #2196F3; font-family: 'Arial', sans-serif; font-size: 15px; font-weight: bold;">
@@ -582,7 +607,6 @@ if (
                 });
 
                 saveRooms(updatedRooms);
-                console.log(`✅ Users updated in room "${roomName}" in rooms.json`);
             } else if (data.handler === 'room_event' && data.type === 'user_left') {
                 const roomName = data.name; // إضافة هذا السطر إذا كنت بحاجة إلى تعريف roomName
 

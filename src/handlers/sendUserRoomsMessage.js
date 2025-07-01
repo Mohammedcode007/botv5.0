@@ -4,7 +4,6 @@ const { createRoomMessage, createChatMessage } = require('../messageUtils');
 
 
 function sendUserRoomsMessage(targetUsername, senderRoom, ioSockets, senderUsername,socket) {
-    console.log(targetUsername,'targetUsername');
 
   const senderSocket = ioSockets[senderRoom];
   const lang = getUserLanguage(senderUsername) || 'ar';
