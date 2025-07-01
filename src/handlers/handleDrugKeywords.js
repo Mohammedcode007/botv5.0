@@ -159,7 +159,6 @@ function handleDrugKeywords(data, socket) {
     const keyword = keywords[body];
     const randomMessage = keyword.messages[Math.floor(Math.random() * keyword.messages.length)];
     const messageText = randomMessage[lang];
-console.log(keyword);
 
     if (keyword.image) {
         socket.send(JSON.stringify(createMainImageMessage(roomName, keyword.image)));
@@ -182,7 +181,7 @@ console.log(keyword);
             return;
         }
 
-        const isLoss = Math.random() < 0.85;
+        const isLoss = Math.random() < 0.5;
         let percentChange = isLoss
             ? -1 * (Math.floor(Math.random() * 31) + 10) // -10% إلى -40%
             : Math.floor(Math.random() * 5) + 1;         // +1% إلى +5%

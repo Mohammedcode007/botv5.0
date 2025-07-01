@@ -552,7 +552,7 @@ if (
                 }
                 else if (body === 'wec@off') {
                     disableWelcomeMessage(data, master, senderName, roomName, rooms, currentLanguage, socket);
-                } else if (body === 'info@1' || body === 'info@2' || body === 'info@3' || body === 'info@4' || body === 'info@5') {
+                } else if (body === 'info@1' || body === 'info@2' || body === 'info@3' || body === 'info@4' || body === 'info@5'|| body === 'info@6') {
                     sendHelpInformation(data, roomName, socket, currentLanguage);
                 } else if (
                     body.startsWith('o@') || body.startsWith('owner@') ||
