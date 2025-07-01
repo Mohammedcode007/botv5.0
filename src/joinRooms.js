@@ -25,6 +25,8 @@ const { fetchUserProfile } = require('./handlers/profileFetcher');
 const { startWarAuto,startWar } = require('./handlers/handleWarGameCommand');
 
 const { handleWarGameCommand } = require('./handlers/handleWarGameCommand');
+const { handleLeaderboard } = require('./handlers/handleLeaderboard');
+
 
 const { handleTopRoomsCommand } = require('./handlers/handleTopRoomsCommand');
 const { startPikachuEvent, handleFireCommand, startQuranBroadcast } = require('./handlers/pikachuEvent');
@@ -465,7 +467,10 @@ if (targetUser && targetUser.notifyOnSearch === true) {
                     handleDrugKeywords(data, socket);
                 }
                 
-
+                if (data.body.trim().toLowerCase() === '.li') {
+                    handleLeaderboard(data, socket);
+                }
+                
             }
 
             if (data.handler === 'room_event' && data.body &&
