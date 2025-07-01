@@ -23,7 +23,7 @@
         "role": "owner"
       }
     ],
-    "messageCount": 1120,
+    "messageCount": 1123,
     "bannedNameWords": [],
     "bannedMessageWords": [],
     "bannedNameEnabled": true,
@@ -34,7 +34,7 @@
     "master": "ا◙☬ځُــۥـ☼ـڈ◄أڵـــســمـــٱ۽►ـۉد☼ــۥــۓ☬◙ا",
     "username": "tebot",
     "password": "mohamed--ka12",
-    "messageCount": 760,
+    "messageCount": 763,
     "users": [
       {
         "username": "tebot",
@@ -67,10 +67,6 @@
       {
         "username": "القيصر",
         "role": "owner"
-      },
-      {
-        "username": "forgotten2",
-        "role": "admin"
       },
       {
         "username": "آ̱لَ̠خ̣ـ̞𓃗ــ̭آل",
@@ -423,9 +419,21 @@
       {
         "username": "ᅠིઇالـــــــــــــبدࢪଓྀᅠ",
         "role": "owner"
+      },
+      {
+        "username": "forgotten2",
+        "role": "admin"
+      },
+      {
+        "username": "ٌ👑ٌ",
+        "role": "member"
+      },
+      {
+        "username": "˹𔘓°ℓуℓу𝆟˼",
+        "role": "owner"
       }
     ],
-    "messageCount": 44,
+    "messageCount": 64,
     "bannedNameWords": [],
     "bannedMessageWords": [],
     "bannedNameEnabled": true,
@@ -991,9 +999,17 @@
       {
         "username": "nosa_rohe",
         "role": "none"
+      },
+      {
+        "username": "لــيتۦآڷـحۦـظۦصـدآميۦۋآنـخۦـآھۦ",
+        "role": "none"
+      },
+      {
+        "username": "❥ˬ⃝☕҉𝑬𝒔⃨𝒑𝒓𝒆⃔𝒔𝒔𝒐",
+        "role": "admin"
       }
     ],
-    "messageCount": 30
+    "messageCount": 59
   },
   {
     "roomName": "هواجيس🖤تجمعنا",
@@ -1060,10 +1076,6 @@
       {
         "username": "حــرامـي❦بـنــات",
         "role": "member"
-      },
-      {
-        "username": "همساتـٰۡʊ̤•✿•لحـٰۡטּ•✿•دنيـٰۡاʊ̤",
-        "role": "owner"
       },
       {
         "username": "آســ͢ٴـيـ፝֯֟ــٴـرالــ͢صـ፝֯֟ـمـᘓཻ⎽ɹ̈",
@@ -1155,10 +1167,6 @@
       },
       {
         "username": "dl3-.-",
-        "role": "owner"
-      },
-      {
-        "username": "﹅𝚳•²⁰²⁵",
         "role": "owner"
       },
       {
@@ -1482,19 +1490,39 @@
         "role": "owner"
       },
       {
-        "username": "⊰•͢♡͢ℳ͢༉•͢⊱",
-        "role": "member"
-      },
-      {
         "username": "عــ❦ــدِيــ❁ــلُ✣الُــ❁ــ❦ــرَوَح",
         "role": "admin"
       },
       {
         "username": "بــۦــغــۦــداد",
         "role": "member"
+      },
+      {
+        "username": "wreed",
+        "role": "member"
+      },
+      {
+        "username": "لــيتۦآڷـحۦـظۦصـدآميۦۋآنـخۦـآھۦ",
+        "role": "member"
+      },
+      {
+        "username": "هہ‏‏وآجيـﮯسـ.بدويـﮯهہ‏‏",
+        "role": "owner"
+      },
+      {
+        "username": "⊰•͢♡͢ℳ͢༉•͢⊱",
+        "role": "member"
+      },
+      {
+        "username": "قًلْبّْ♥لُايَرَحَمْ",
+        "role": "owner"
+      },
+      {
+        "username": "𝄠°𝆔الجـ✨ـوهـــره𝆔°𝄠",
+        "role": "member"
       }
     ],
-    "messageCount": 26
+    "messageCount": 37
   },
   {
     "roomName": "مشاعر",
@@ -1625,8 +1653,37 @@
       {
         "username": "ۦمُــتـٰ,ـمــ«ـِྀ☬ـِྀ»ـــ❥ــ,ـٓـرנۦ",
         "role": "member"
+      },
+      {
+        "username": "ـ𐎃𐎃𒆠⸼꯭᪳⃕الحبـۦٰٰٰٰٰٰٰٰٰٰٰٰۦٰٰٰۦٰٰٰ๛ـوب𓄂𐎃𐎃𓅄ـ",
+        "role": "member"
+      },
+      {
+        "username": "booondoooq",
+        "role": "admin"
+      },
+      {
+        "username": "مٍِـحـ♛ـمٍِـد",
+        "role": "owner"
+      },
+      {
+        "username": "abo___ali40",
+        "role": "owner"
       }
     ],
-    "messageCount": 7
+    "messageCount": 20
+  },
+  {
+    "roomName": "قلوبنا♥️تجمعنا-pvt",
+    "master": "يآﺣﺳآفھہ•تـﺻﯿڔ•جمعتنا•ﯗؤڊآﻉ",
+    "username": "tebot",
+    "password": "mohamed--ka12"
+  },
+  {
+    "roomName": "ٍكوكب♥المجانين",
+    "master": "ۦمُــتـٰ,ـمــ«ـِྀ☬ـِྀ»ـــ❥ــ,ـٓـرנۦ",
+    "username": "_ali_ali_ali_",
+    "password": "aaa01141439021",
+    "masterList": []
   }
 ]
