@@ -150,6 +150,7 @@ function updateUserPoints(username, addedPoints) {
 }
 
 
+
 function loadUserVerifyList() {
     if (fs.existsSync(USERS_FILE)) {
         const data = fs.readFileSync(USERS_FILE);
