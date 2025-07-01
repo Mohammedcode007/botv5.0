@@ -2,7 +2,7 @@ const fs = require('fs');
 const { getUserPoints } = require('../fileUtils');
 const { createRoomMessage } = require('../messageUtils');
 
-const USERS_FILE = './verifiedUsers.json'; // تأكد من المسار الصحيح لملف المستخدمين
+const USERS_FILE = '../'; // تأكد من المسار الصحيح لملف المستخدمين
 
 function handleLeaderboard(data, socket) {
     const sender = data.from;
