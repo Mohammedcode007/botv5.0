@@ -129,7 +129,50 @@ Please replace \`username\` with the targeted username.
 - image <image_url> or صورة <image_url>: Show an image in the room.
             `;
         }
+    }    else if (data.body.startsWith('info@6')) {
+        if (currentLanguage === 'ar') {
+            helpMessage = `
+🚫 أوامر الكلمات المحظورة:
+
+🔹 حظر الكلمات في أسماء المستخدمين:
+- bwname@add@كلمة: لإضافة كلمة ممنوعة في أسماء المستخدمين.
+- bwname@rm@كلمة: لإزالة كلمة من قائمة الحظر.
+- bwname@list: عرض قائمة الكلمات المحظورة.
+- bwname@on: تفعيل نظام الحظر للأسماء.
+- bwname@off: تعطيل نظام الحظر للأسماء.
+
+🔹 حظر الكلمات في الرسائل:
+- bwmsg@add@كلمة: لإضافة كلمة ممنوعة في الرسائل.
+- bwmsg@rm@كلمة: لإزالة كلمة من قائمة الحظر.
+- bwmsg@list: عرض قائمة الكلمات المحظورة.
+- bwmsg@on: تفعيل نظام الحظر للرسائل.
+- bwmsg@off: تعطيل نظام الحظر للرسائل.
+
+⚠️ سيتم اتخاذ إجراءات عند استخدام كلمات ممنوعة بحسب إعدادات الغرفة.
+            `;
+        } else {
+            helpMessage = `
+🚫 Banned words commands:
+
+🔹 Ban words in usernames:
+- bwname@add@word: Add a banned word for usernames.
+- bwname@rm@word: Remove a banned word.
+- bwname@list: Show banned words list.
+- bwname@on: Enable banned words filter for usernames.
+- bwname@off: Disable banned words filter for usernames.
+
+🔹 Ban words in messages:
+- bwmsg@add@word: Add a banned word for messages.
+- bwmsg@rm@word: Remove a banned word.
+- bwmsg@list: Show banned words list.
+- bwmsg@on: Enable banned words filter for messages.
+- bwmsg@off: Disable banned words filter for messages.
+
+⚠️ Actions will be taken if banned words are used, based on the room's configuration.
+            `;
+        }
     }
+
 
     if (helpMessage) {
         const helpMessageObject = createRoomMessage(roomName, helpMessage);
