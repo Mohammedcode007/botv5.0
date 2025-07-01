@@ -82,7 +82,7 @@
     "points": 389427,
     "profileUrl": "https://cdn.chatp.net/p/565485655288/t000431778762107.png",
     "sentGifts": 69,
-    "receivedGifts": 41,
+    "receivedGifts": 42,
     "pikachuKills": 3,
     "trades": {
       "win": 2,
@@ -372,7 +372,7 @@
     "vip": false,
     "points": 10,
     "profileUrl": "https://cdn.chatp.net/p/131182559940/t996123439300429.png",
-    "sentGifts": 5,
+    "sentGifts": 6,
     "receivedGifts": 5
   },
   {
@@ -406,12 +406,30 @@
   {
     "username": "ۦمُــتـٰ,ـمــ«ـِྀ☬ـِྀ»ـــ❥ــ,ـٓـرנۦ",
     "vip": false,
-    "points": 10,
-    "profileUrl": "https://cdn.chatp.net/p/666623266018/t108014802617263.png"
+    "points": 1010,
+    "profileUrl": "https://cdn.chatp.net/p/666623266018/t108014802617263.png",
+    "pikachuKills": 1
   },
   {
     "username": "ํํํํํํํํํํํํํํํํํํํํํํํํํํํํํ",
     "vip": false,
     "points": 10
+  },
+  {
+    "username": "falcon-eye",
+    "vip": false,
+    "points": 10,
+    "profileUrl": "https://cdn.chatp.net/p/98427355054/t974864553112402.png"
+  },
+  {
+    "username": "h__a__n__a__n",
+    "vip": false,
+    "points": 10
+  },
+  {
+    "username": "7aawa..",
+    "vip": false,
+    "points": 10,
+    "profileUrl": "https://cdn.chatp.net/p/546590559006/t560697837623242.png"
   }
 ]

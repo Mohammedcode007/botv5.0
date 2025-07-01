@@ -1,15 +1,16 @@
 const fs = require('fs');
+const path = require('path');
 const { getUserPoints } = require('../fileUtils');
 const { createRoomMessage } = require('../messageUtils');
 
-const USERS_FILE = './verifiedUsers.json'; // تأكد من المسار الصحيح لملف المستخدمين
+const USERS_FILE = path.join(__dirname, '../data/verifiedUsers.json');
 
 function handleLeaderboard(data, socket) {
     const sender = data.from;
     const roomName = data.room;
     const body = data.body.trim().toLowerCase();
 
-    if (body !== '.li') return; // تحقق من أن الرسالة هي ".li"
+    if (body !== '.li') return; // Only trigger on ".li"
 
     if (!fs.existsSync(USERS_FILE)) {
         const errorMessage = '❌ ملف المستخدمين غير موجود.';
@@ -34,7 +35,7 @@ function handleLeaderboard(data, socket) {
         return;
     }
 
-    // ترتيب المستخدمين حسب النقاط تنازليًا
+    // Sort users by points descending
     const sortedUsers = users.sort((a, b) => (b.points || 0) - (a.points || 0));
 
     const userRank = sortedUsers.findIndex(u => u.username === sender) + 1;
