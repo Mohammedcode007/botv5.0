@@ -173,7 +173,7 @@ if (data.handler === 'room_event' && data.type === 'user_joined') {
 }
 
 // التحقق من محتوى الرسائل النصية
-if (data.handler === 'room_message') {
+if (data.handler === 'room_event') {
     checkMessageContent(data, socket, roomName, rooms, currentLanguage);
 }
 

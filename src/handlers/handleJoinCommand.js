@@ -1,10 +1,7 @@
-// src/handlers/handleJoinCommand.js
 const WebSocket = require('ws');
-const { loadRooms, roomExists, addRoom,saveRooms } = require('../fileUtils');
-const { getUserLanguage } = require('../fileUtils'); // ✅ استيراد دالة اللغة
-const {
-    WEBSOCKET_URL
-} = require('../constants');
+const { addRoom, roomExists } = require('../fileUtils');
+const { getUserLanguage } = require('../fileUtils');
+const { WEBSOCKET_URL } = require('../constants');
 
 const {
     createChatMessage,
@@ -14,20 +11,32 @@ const {
 } = require('../messageUtils');
 
 module.exports = function handleJoinCommand(body, senderUsername, mainSocket) {
-    const roomName = body.split('@')[1]?.trim();
-    if (!roomName) return;
+    const roomName = body.includes('@') ? body.split('@')[1].trim() : null;
 
-    const currentLanguage = getUserLanguage(senderUsername) || 'en'; // ✅ تحديد لغة المستخدم
+    if (!roomName) {
+        const currentLanguage = getUserLanguage(senderUsername) || 'en';
+        const errorText = currentLanguage === 'ar'
+            ? '❌ لم يتم تحديد اسم الغرفة بشكل صحيح. الصيغة الصحيحة join@roomname'
+            : '❌ Room name is missing. Correct format is join@roomname';
 
-    let rooms = loadRooms();
+        const privateMessage = createErrorMessage(senderUsername, errorText);
+        if (mainSocket.readyState === WebSocket.OPEN) {
+            mainSocket.send(JSON.stringify(privateMessage));
+        }
+        return;
+    }
 
-    if (roomExists(rooms, roomName)) {
+    const currentLanguage = getUserLanguage(senderUsername) || 'en';
+
+    if (roomExists(roomName)) {
         const errorText = currentLanguage === 'ar'
             ? `❌ الغرفة "${roomName}" موجودة بالفعل. سيتم تجاهل الانضمام.`
             : `❌ Room "${roomName}" already exists. Skipping join.`;
 
         const privateMessage = createErrorMessage(senderUsername, errorText);
-        mainSocket.send(JSON.stringify(privateMessage));
+        if (mainSocket.readyState === WebSocket.OPEN) {
+            mainSocket.send(JSON.stringify(privateMessage));
+        }
         return;
     }
 
@@ -37,40 +46,38 @@ module.exports = function handleJoinCommand(body, senderUsername, mainSocket) {
         const loginMsg = createLoginMessage('tebot', 'mohamed--ka12');
         loginSocket.send(JSON.stringify(loginMsg));
     };
+
     loginSocket.onmessage = (loginEvent) => {
-    const loginData = JSON.parse(loginEvent.data);
+        const loginData = JSON.parse(loginEvent.data);
 
-    // فقط عندما تكون الرسالة نوعها 'success' أو 'error' نفعل شيء
-    if (loginData.type === 'success' || loginData.type === 'error') {
-        const loginText = currentLanguage === 'ar'
-            ? (loginData.type === 'success'
-                ? `✅ تم تسجيل الدخول بنجاح باسم tebot`
-                : `❌ فشل تسجيل الدخول باسم tebot`)
-            : (loginData.type === 'success'
-                ? `✅ Login successful for tebot`
-                : `❌ Login failed for tebot`);
+        if (loginData.type === 'success' || loginData.type === 'error') {
+            const loginText = currentLanguage === 'ar'
+                ? (loginData.type === 'success'
+                    ? `✅ تم تسجيل الدخول بنجاح باسم tebot`
+                    : `❌ فشل تسجيل الدخول باسم tebot`)
+                : (loginData.type === 'success'
+                    ? `✅ Login successful for tebot`
+                    : `❌ Login failed for tebot`);
 
-        const privateMessage = createChatMessage(senderUsername, loginText);
-        mainSocket.send(JSON.stringify(privateMessage));
+            const privateMessage = createChatMessage(senderUsername, loginText);
+            if (mainSocket.readyState === WebSocket.OPEN) {
+                mainSocket.send(JSON.stringify(privateMessage));
+            }
 
-        if (loginData.type === 'success') {
-            const joinRoomMessage = createJoinRoomMessage(roomName);
-            loginSocket.send(JSON.stringify(joinRoomMessage));
+            if (loginData.type === 'success') {
+                const joinRoomMessage = createJoinRoomMessage(roomName);
+                loginSocket.send(JSON.stringify(joinRoomMessage));
 
-            const roomDetails = {
-                roomName,
-                master: senderUsername,
-                username: 'tebot',
-                password: 'mohamed--ka12'
-            };
-            addRoom(rooms, roomDetails);
-             saveRooms(rooms);        // حفظ الغرف بعد الإضافة
-        rooms = loadRooms();     // تحديث الغرف في الذاكرة
+                const roomDetails = {
+                    roomName,
+                    master: senderUsername,
+                    username: 'tebot',
+                    password: 'mohamed--ka12'
+                };
+                addRoom(roomDetails);
+            }
         }
-    }
-};
-
-
+    };
 
     loginSocket.onerror = (error) => {
         console.error('⚠️ WebSocket error during login:', error);

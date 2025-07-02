@@ -12,24 +12,38 @@ const { createRoomMessage } = require('./messageUtils');
 
 
 
+
+
+// ✅ تحميل الغرف
 function loadRooms() {
-    try {
-        if (!fs.existsSync(roomsFilePath)) {
-            fs.writeFileSync(roomsFilePath, JSON.stringify([]));
+    console.log('📥 جاري تحميل ملف الغرف...');
+    if (fs.existsSync(roomsFilePath)) {
+        try {
+            const data = fs.readFileSync(roomsFilePath, 'utf-8');
+            const parsed = JSON.parse(data);
+
+            console.log(`📄 محتوى ملف الغرف:`, parsed);
+
+            if (Array.isArray(parsed)) {
+                console.log(`✅ تم تحميل الغرف بنجاح. عدد الغرف: ${parsed.length}`);
+                return parsed;
+            } else {
+                console.error('❌ rooms.json لا يحتوي على مصفوفة. سيتم إرجاع مصفوفة فارغة.');
+                return [];
+            }
+        } catch (error) {
+            console.error('❌ خطأ أثناء قراءة rooms.json:', error);
+            return [];
         }
-
-        const data = fs.readFileSync(roomsFilePath, 'utf-8');
-        const rooms = JSON.parse(data);
-
-
-        return rooms;
-    } catch (error) {
-        console.error('❌ خطأ أثناء تحميل الغرف:', error);
+    } else {
+        console.warn('⚠️ ملف rooms.json غير موجود، سيتم إنشاء ملف جديد.');
         return [];
     }
 }
 
+// ✅ حفظ الغرف
 function saveRooms(rooms) {
+    console.log('💾 محاولة حفظ ملف الغرف...');
     if (!Array.isArray(rooms)) {
         console.error('❌ محاولة حفظ rooms لكن القيمة ليست Array:', rooms);
         return;
@@ -40,34 +54,75 @@ function saveRooms(rooms) {
         return;
     }
 
+    const currentData = loadRooms();
+    const isSame = JSON.stringify(currentData) === JSON.stringify(rooms);
+
+    if (isSame) {
+        console.log('✅ لم يتم التغيير في الغرف. لم يتم الحفظ.');
+        return;
+    }
+
     try {
         fs.writeFileSync(roomsFilePath, JSON.stringify(rooms, null, 2));
-      
+        console.log(`✅ تم حفظ الغرف بنجاح. عدد الغرف الحالي: ${rooms.length}`);
     } catch (error) {
         console.error('❌ خطأ أثناء حفظ الغرف:', error);
     }
 }
 
+// ✅ إضافة غرفة جديدة
+function addRoom(room) {
+    console.log('➕ محاولة إضافة غرفة:', room);
 
-function addRoom(rooms, newRoom) {
-    const exists = rooms.some(room => room.roomName === newRoom.roomName);
-    if (exists) {
+    if (!room.roomName) {
+        console.error('❌ لا يمكن إضافة غرفة بدون اسم.');
         return;
     }
 
-    rooms.push(newRoom);
+    const rooms = loadRooms();
+
+    if (!Array.isArray(rooms)) {
+        console.error('❌ خطأ: rooms ليست مصفوفة:', rooms);
+        return;
+    }
+
+    const exists = rooms.some(r => r.roomName === room.roomName);
+
+    if (exists) {
+        console.warn(`⚠️ الغرفة "${room.roomName}" موجودة بالفعل. لن تتم الإضافة.`);
+        return;
+    }
+
+    rooms.push(room);
+    saveRooms(rooms);
+    console.log(`✅ تم إضافة الغرفة "${room.roomName}" بنجاح.`);
 }
 
-function roomExists(rooms, roomName) {
+// ✅ التحقق من وجود غرفة
+function roomExists(roomName) {
+    console.log(`🔍 التحقق مما إذا كانت الغرفة "${roomName}" موجودة...`);
+
+    const rooms = loadRooms();
+
+    if (!Array.isArray(rooms)) {
+        console.error('❌ خطأ: rooms ليست مصفوفة عند التحقق من وجود الغرفة.');
+        return false;
+    }
+
     const exists = rooms.some(room => room.roomName === roomName);
+
+    if (exists) {
+        console.log(`✅ الغرفة "${roomName}" موجودة.`);
+    } else {
+        console.log(`❌ الغرفة "${roomName}" غير موجودة.`);
+    }
+
     return exists;
 }
 
 
 
-function roomExists(rooms, roomName) {
-    return rooms.some(room => room.roomName === roomName);
-}
+
 
 
 
@@ -136,6 +191,18 @@ function loadMasterList() {
 function saveMasterList(masterList) {
     fs.writeFileSync(masterListPath, JSON.stringify(masterList, null, 2));
 }
+function formatNumber(num) {
+    const units = ['', 'K', 'M', 'B', 'T', 'Q', 'Qi', 'Sx', 'Sp', 'Oc', 'No', 'Dc']; 
+    let unitIndex = 0;
+
+    while (Math.abs(num) >= 1000 && unitIndex < units.length - 1) {
+        num /= 1000;
+        unitIndex++;
+    }
+
+    return num.toFixed(1).replace(/\.0$/, '') + units[unitIndex];
+}
+
 
 function loadAdminList() {
     if (fs.existsSync(adminListPath)) {
@@ -591,6 +658,7 @@ module.exports = {
     updateTradeHistory,   // ✅ هنا
     getTradeStats  ,
     getUserRooms   ,
+    formatNumber,
     getUserProfileUrl,
     setNotifyOnSearch    // ✅ وهنا
 };

@@ -167,10 +167,10 @@ function checkMessageContent(data, socket, roomName, rooms, currentLanguage) {
 
     if (!room.bannedMessageEnabled) return;
 
-    const wordsInMessage = message.split(/[\s,.!?،؛_\-]+/);
+    const wordsInMessage = message?.split(/[\s,.!?،؛_\-]+/);
 
     const found = room.bannedMessageWords.find(bannedWord =>
-        wordsInMessage.some(msgWord => msgWord.toLowerCase() === bannedWord.toLowerCase())
+        wordsInMessage?.some(msgWord => msgWord.toLowerCase() === bannedWord.toLowerCase())
     );
 
     if (found) {
