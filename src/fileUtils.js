@@ -13,9 +13,113 @@ const silentRoomsFilePath = path.join(__dirname, 'silentRooms.json');
 
 
 
-// ✅ متغير يحتفظ بالبيانات في الذاكرة
+
+
+// ✅ دالة تطبيع الاسم لتجنب مشاكل الفراغات والحروف
+function normalizeName(name) {
+    return name.trim().toLowerCase().replace(/\s+/g, '');
+}
+
+
+// ✅ تحميل الغرف وتحديث الكاش
+function loadRooms() {
+    if (fs.existsSync(roomsFilePath)) {
+        try {
+            const data = fs.readFileSync(roomsFilePath, 'utf-8');
+            const parsed = JSON.parse(data);
+            if (Array.isArray(parsed)) {
+                return parsed;
+            }
+        } catch (error) {
+            console.error('❌ Error reading rooms.json:', error);
+        }
+    }
+    return [];
+}
+
+
+// ✅ حفظ الغرف
+function saveRooms(rooms = roomsCache) {
+    try {
+        fs.writeFileSync(roomsFilePath, JSON.stringify(rooms, null, 2), 'utf-8');
+        console.log('💾 Rooms saved successfully');
+    } catch (error) {
+        console.error('❌ Error saving rooms.json:', error);
+    }
+}
+
+
+// ✅ متغير كاش للغرف
 let roomsCache = loadRooms();
 
+
+// ✅ جلب الكاش الحالي
+function getRooms() {
+    return roomsCache;
+}
+
+
+// ✅ تحديث الكاش والحفظ
+function updateRooms(newRooms) {
+    roomsCache = newRooms;
+    saveRooms();
+}
+
+
+// ✅ إضافة مستخدم إلى الغرفة
+function addUserToRoom(roomName, username, role = 'member') {
+    const rooms = getRooms();
+    const targetRoom = rooms.find(r => normalizeName(r.roomName) === normalizeName(roomName));
+
+    if (!targetRoom) {
+        console.warn(`❌ Room "${roomName}" not found.`);
+        return false;
+    }
+
+    const userExists = targetRoom.users?.some(
+        u => normalizeName(u.username) === normalizeName(username)
+    );
+
+    if (userExists) {
+        console.log(`⚠️ User "${username}" already exists in room "${roomName}".`);
+        return false;
+    }
+
+    const newUser = { username, role };
+    targetRoom.users = [...(targetRoom.users || []), newUser];
+
+    updateRooms(rooms);
+    console.log(`✅ Added user "${username}" to room "${roomName}".`);
+    return true;
+}
+
+
+// ✅ حذف مستخدم من الغرفة
+function removeUserFromRoom(roomName, username) {
+    const rooms = getRooms();
+    const targetRoom = rooms.find(r => normalizeName(r.roomName) === normalizeName(roomName));
+
+    if (!targetRoom) {
+        console.warn(`❌ Room "${roomName}" not found.`);
+        return false;
+    }
+
+    const beforeCount = targetRoom.users?.length || 0;
+    targetRoom.users = targetRoom.users?.filter(
+        u => normalizeName(u.username) !== normalizeName(username)
+    ) || [];
+
+    const afterCount = targetRoom.users.length;
+
+    if (beforeCount === afterCount) {
+        console.warn(`⚠️ User "${username}" not found in room "${roomName}".`);
+        return false;
+    }
+
+    updateRooms(rooms);
+    console.log(`❌ Removed user "${username}" from room "${roomName}".`);
+    return true;
+}
 
 
 // ✅ تحميل الغرف الصامتة
@@ -32,7 +136,6 @@ function loadSilentRooms() {
     }
     return [];
 }
-
 
 
 // ✅ حفظ الغرف الصامتة
@@ -71,8 +174,7 @@ function addSilentRoom(room) {
 }
 
 
-
-// ✅ حذف غرفة من الغرف الصامتة
+// ✅ حذف غرفة صامتة
 function removeSilentRoom(username, roomName, master) {
     const rooms = loadSilentRooms();
     const updatedRooms = rooms.filter(
@@ -86,23 +188,6 @@ function removeSilentRoom(username, roomName, master) {
         console.log(`✅ تم حذف الغرفة "${roomName}" للمستخدم "${username}" بواسطة "${master}".`);
     } else {
         console.warn(`⚠️ لا توجد غرفة "${roomName}" للمستخدم "${username}" محفوظة بواسطة "${master}".`);
-    }
-
-    return deletedCount;
-}
-function removeAllSilentRooms(username, master) {
-    const rooms = loadSilentRooms();
-    const updatedRooms = rooms.filter(
-        r => !(r.username === username && r.master === master)
-    );
-
-    const deletedCount = rooms.length - updatedRooms.length;
-
-    if (deletedCount > 0) {
-        saveSilentRooms(updatedRooms);
-        console.log(`✅ تم حذف ${deletedCount} غرفة/غرف للمستخدم "${username}" بواسطة "${master}".`);
-    } else {
-        console.warn(`⚠️ لا توجد غرف محفوظة للمستخدم "${username}" بواسطة "${master}".`);
     }
 
     return deletedCount;
@@ -122,133 +207,72 @@ function isSilentRoom(username, roomName) {
 
     return exists;
 }
+// ✅ حذف جميع الغرف الصامتة للمستخدم بواسطة مالك محدد
+function removeAllSilentRooms(username, master) {
+    const rooms = loadSilentRooms();
+    const updatedRooms = rooms.filter(
+        r => !(normalizeName(r.username) === normalizeName(username) && normalizeName(r.master) === normalizeName(master))
+    );
 
+    const deletedCount = rooms.length - updatedRooms.length;
 
-
-// ✅ تحميل الغرف
-function loadRooms() {
-    if (fs.existsSync(roomsFilePath)) {
-        try {
-            const data = fs.readFileSync(roomsFilePath, 'utf-8');
-            const parsed = JSON.parse(data);
-
-            if (Array.isArray(parsed)) {
-                return parsed;
-            } else {
-                return [];
-            }
-        } catch (error) {
-            return [];
-        }
+    if (deletedCount > 0) {
+        saveSilentRooms(updatedRooms);
+        console.log(`✅ تم حذف ${deletedCount} غرفة/غرف صامتة للمستخدم "${username}" بواسطة "${master}".`);
     } else {
-        return [];
+        console.warn(`⚠️ لا توجد غرف صامتة للمستخدم "${username}" محفوظة بواسطة "${master}".`);
     }
+
+    return deletedCount;
 }
-
-// ✅ حفظ الغرف
-function saveRooms() {
-    try {
-        fs.writeFileSync(roomsFilePath, JSON.stringify(roomsCache, null, 2), 'utf-8');
-    } catch (error) {
-    }
-}
-
-function addRoom(room) {
-    if (!room.roomName || !room.username) {
-        console.warn('❌ يجب إدخال اسم الغرفة واسم المستخدم.');
-        return;
-    }
-
-    const silentRooms = loadSilentRooms();
-    const usernameExistsInSilentRooms = silentRooms.some(r => r.username === room.username);
-
-    if (usernameExistsInSilentRooms) {
-        console.warn(`❌ لا يمكن إضافة الغرفة "${room.roomName}" للمستخدم "${room.username}" لأنه موجود في silentRooms.json.`);
-        return;
-    }
-
-    const exists = roomsCache.some(r => r.roomName === room.roomName && r.username === room.username);
-
-    if (exists) {
-        console.warn(`⚠️ الغرفة "${room.roomName}" موجودة بالفعل للمستخدم "${room.username}".`);
-        return;
-    }
-
-    const newRoom = {
-        ...room,
-        messageCount: 0,
-        users: [],
-        bannedNameWords: [],
-        bannedMessageWords: [],
-        bannedNameEnabled: true,
-        bannedMessageEnabled: true
-    };
-
-    roomsCache.push(newRoom);
-    saveRooms();
-    console.log(`✅ تم إضافة الغرفة "${room.roomName}" للمستخدم "${room.username}".`);
-}
-
-// ✅ إضافة غرفة جديدة
-// function addRoom(room) {
-//     if (!room.roomName) {
-//         return;
-//     }
-
-//     const exists = roomsCache.some(r => r.roomName === room.roomName);
-
-//     if (exists) {
-//         console.warn(`⚠️ الغرفة "${room.roomName}" موجودة بالفعل. لن تتم الإضافة.`);
-//         return;
-//     }
-
-//     const newRoom = {
-//         ...room,
-//         messageCount: 0,
-//         users: [],
-//         bannedNameWords: [],
-//         bannedMessageWords: [],
-//         bannedNameEnabled: true,
-//         bannedMessageEnabled: true
-//     };
-
-//     roomsCache.push(newRoom);
-//     saveRooms();
-// }
 
 // ✅ التحقق من وجود غرفة
 function roomExists(roomName) {
-    const exists = roomsCache.some(room => room.roomName === roomName);
+    const exists = roomsCache.some(
+        room => normalizeName(room.roomName) === normalizeName(roomName)
+    );
 
     if (exists) {
+        console.log(`✅ الغرفة "${roomName}" موجودة.`);
     } else {
+        console.warn(`❌ الغرفة "${roomName}" غير موجودة.`);
     }
 
     return exists;
 }
-
-// ✅ دالة لجلب جميع الغرف
-function getRooms() {
-    return roomsCache;
-}
-
-// ✅ دالة لحذف غرفة
-function deleteRoom(roomName) {
-    const index = roomsCache.findIndex(room => room.roomName === roomName);
-
-    if (index !== -1) {
-        roomsCache.splice(index, 1);
-        saveRooms();
-        console.log(`✅ تم حذف الغرفة "${roomName}" بنجاح.`);
-    } else {
-        console.warn(`⚠️ الغرفة "${roomName}" غير موجودة. لا يمكن حذفها.`);
+// ✅ إضافة غرفة جديدة
+function addRoom(room) {
+    if (!room.roomName || !room.username) {
+        console.warn('❌ يجب تحديد اسم الغرفة واسم المستخدم.');
+        return false;
     }
+
+    // تحقق هل الغرفة موجودة بالفعل
+    const exists = roomsCache.some(
+        r => normalizeName(r.roomName) === normalizeName(room.roomName) &&
+             normalizeName(r.username) === normalizeName(room.username)
+    );
+
+    if (exists) {
+        console.warn(`⚠️ الغرفة "${room.roomName}" للمستخدم "${room.username}" موجودة بالفعل.`);
+        return false;
+    }
+
+    const newRoom = {
+        ...room,
+        messageCount: room.messageCount || 0,
+        users: room.users || [],
+        bannedNameWords: room.bannedNameWords || [],
+        bannedMessageWords: room.bannedMessageWords || [],
+        bannedNameEnabled: room.bannedNameEnabled ?? true,
+        bannedMessageEnabled: room.bannedMessageEnabled ?? true
+    };
+
+    roomsCache.push(newRoom);
+    saveRooms();
+    console.log(`✅ تمت إضافة الغرفة "${room.roomName}" بنجاح للمستخدم "${room.username}".`);
+    return true;
 }
-
-
-
-
-
 
 function deleteRoom(roomName) {
 
@@ -788,6 +812,23 @@ module.exports = {
     saveSilentRooms,
     addSilentRoom,
     removeSilentRoom,
-    isSilentRoom   // ✅ وهنا
+    isSilentRoom  ,
+        loadRooms,
+        saveRooms,
+        getRooms,
+        updateRooms,
+        addRoom,           // ✅ أضفناها هنا
+        roomExists,
+        addUserToRoom,
+        removeUserFromRoom,
+        normalizeName,
+        loadSilentRooms,
+        saveSilentRooms,
+        addSilentRoom,
+        removeSilentRoom,
+        removeAllSilentRooms,
+        isSilentRoom
+ 
+     // ✅ وهنا
 };
 

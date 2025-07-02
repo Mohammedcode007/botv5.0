@@ -4,7 +4,7 @@ const WebSocket = require('ws');
 const path = require('path');
 const fs = require('fs');
 
-const { loadRooms, saveRooms, incrementRoomMessageCount, getUserLanguage,loadUsers,saveUsers } = require('./fileUtils'); 
+const { loadRooms, saveRooms, incrementRoomMessageCount, getUserLanguage,loadUsers,addUserToRoom,removeUserFromRoom,saveUsers,getRooms,normalizeName } = require('./fileUtils'); 
 const { addToList, removeFromList, blockUser, blockRoom, addVerifiedUser, removeVerifiedUser, unblockUser, unblockRoom,autoVerifyUser } = require('./handlers/manageLists');
 const { disableWelcomeMessage, enableWelcomeMessage, setWelcomeMessage } = require('./handlers/handleWelocome');
 const { sendHelpInformation } = require('./handlers/sendHelpInformation');
@@ -601,101 +601,61 @@ if (
                 }
             }
             if (data.handler === 'room_event' && data.type === 'you_joined') {
-                const roomName = data.name; // إضافة هذا السطر إذا كنت بحاجة إلى تعريف roomName
-
+                const roomName = data.name.trim();
                 const usersList = data.users || [];
+            
                 const updatedUsers = usersList.map(user => ({
-                    username: user.username,
-                    role: user.role
+                    username: user.username.trim(),
+                    role: user.role || 'member'
                 }));
-
-                const updatedRooms = rooms.map(room => {
-                    if (room.roomName === roomName) {
-                        return { ...room, users: updatedUsers };
-                    }
-                    return room;
-                });
-
-                saveRooms(updatedRooms);
-            } else if (data.handler === 'room_event' && data.type === 'user_left') {
-    console.log('📤 Event: user_left');
-    console.log('👉 Received Data:', data);
-
-    const roomName = data.name;
-    const usernameLeft = data.username;
-
-    console.log(`🏠 Target Room Name: ${roomName}`);
-    console.log(`🚶‍♂️ User Left: ${usernameLeft}`);
-
-    const targetRoom = rooms.find(room => room.roomName === roomName);
-    if (targetRoom) {
-        const userExists = targetRoom.users?.some(user => user.username === usernameLeft);
-        if (userExists) {
-            targetRoom.users = targetRoom.users.filter(user => user.username !== usernameLeft);
-            console.log(`❌ Removed user ${usernameLeft} from room ${roomName}`);
-        } else {
-            console.log(`⚠️ User ${usernameLeft} not found in room ${roomName}`);
-        }
-
-        saveRooms(rooms);
-        console.log('💾 Rooms saved successfully after user left');
-    } else {
-        console.log(`❌ Room "${roomName}" not found in rooms list`);
-    }
-}
-
-           else if (data.handler === 'room_event' && data.type === 'user_joined') {
-    console.log('📥 Event: user_joined');
-    console.log('👉 Received Data:', data);
-
-    const roomName = data.name;
-    console.log(`🏠 Target Room Name: ${roomName}`);
-
-    const newUser = { username: data.username, role: data.role };
-    console.log(`🧑‍💻 New User: ${JSON.stringify(newUser)}`);
-
-    const targetRoom = rooms.find(room => room.roomName === roomName);
-    if (targetRoom) {
-        console.log('✅ Room found:', targetRoom.roomName);
-
-        const userExists = targetRoom.users?.some(user => user.username === data.username);
-        console.log(`🔍 User Exists: ${userExists}`);
-
-        if (!userExists) {
-            targetRoom.users = [...(targetRoom.users || []), newUser];
-            console.log(`➕ Added user ${data.username} to room ${roomName}`);
-        } else {
-            console.log(`⚠️ User ${data.username} already exists in room ${roomName}`);
-        }
-
-        if (targetRoom.welcomeEnabled) {
-            console.log('💌 Welcome Message is Enabled');
-            if (targetRoom.welcomeMessage) {
-                console.log('📝 Welcome Message Template:', targetRoom.welcomeMessage);
-
-                let welcomeMessage = targetRoom.welcomeMessage;
-                if (welcomeMessage.includes('$')) {
-                    welcomeMessage = welcomeMessage.replace(/\$/g, data.username);
+            
+                const rooms = getRooms();
+                const targetRoom = rooms.find(r => normalizeName(r.roomName) === normalizeName(roomName));
+            
+                if (!targetRoom) {
+                    console.warn(`❌ Room "${roomName}" not found for updating users.`);
+                    return;
                 }
-
-                const welcomeMessageObject = createRoomMessage(roomName, welcomeMessage);
-                console.log('🚀 Sending Welcome Message:', welcomeMessageObject);
-
-                socket.send(JSON.stringify(welcomeMessageObject));
-                console.log(`🎉 Sent welcome message to ${data.username} in room "${roomName}"`);
-            } else {
-                console.log('⚠️ Welcome message template is empty');
+            
+                targetRoom.users = updatedUsers;
+            
+                saveRooms();
+                console.log(`🔄 Updated users list for room "${roomName}".`);
             }
-        } else {
-            console.log('❌ Welcome message is disabled for this room');
-        }
-
-        saveRooms(rooms);
-        console.log('💾 Rooms saved successfully');
-    } else {
-        console.log(`❌ Room "${roomName}" not found in rooms list`);
-    }
-}
+            
+            else if (data.handler === 'room_event' && data.type === 'user_joined') {
+                const roomName = data.name.trim();
+                const username = data.username.trim();
+                const role = data.role || 'member';
+            
+                console.log(`📥 User Joined: ${username} -> ${roomName}`);
+            
+                const success = addUserToRoom(roomName, username, role);
+            
+                if (success) {
+                    console.log(`✅ Added user ${username} to room ${roomName}`);
+                } else {
+                    console.log(`⚠️ Failed to add user ${username} to room ${roomName}`);
+                }
+            }
+            
+            
+            
+            else if (data.handler === 'room_event' && data.type === 'user_left') {
+                const roomName = data.name.trim();
+                const username = data.username.trim();
+            
+                console.log(`📤 User Left: ${username} -> ${roomName}`);
+            
+                const success = removeUserFromRoom(roomName, username);
+            
+                if (success) {
+                    console.log(`❌ Removed user ${username} from room ${roomName}`);
+                } else {
+                    console.log(`⚠️ Failed to remove user ${username} from room ${roomName}`);
+                }
+            }
+            
 
          
             
