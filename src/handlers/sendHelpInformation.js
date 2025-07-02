@@ -171,7 +171,58 @@ Please replace \`username\` with the targeted username.
 ⚠️ Actions will be taken if banned words are used, based on the room's configuration.
             `;
         }
+    }else if (data.body.startsWith('info@7')) {
+    if (currentLanguage === 'ar') {
+        helpMessage = `
+🤖 أوامر البوت الصامت:
+
+🔹 إدخال بوت صامت إلى غرفة:
+- SB@username@password@room
+➡️ مثال: SB@tebot@pass123@myroom
+▪️ يقوم بإدخال البوت باسم (username) إلى الغرفة (room) بكلمة المرور (password).
+▪️ يتم حفظ الغرفة باسمك كمالك للغرفة الصامتة، ولا يمكن لأي شخص إخراجها إلا أنت.
+
+🔹 حذف غرفة معينة من الغرف الصامتة:
+- RSB@username@room
+➡️ مثال: RSB@tebot@myroom
+▪️ يقوم بحذف البوت (username) من الغرفة (room) إذا كنت أنت من أدخلته.
+
+🔹 حذف جميع الغرف المسجلة لهذا البوت:
+- RSB@username
+➡️ مثال: RSB@tebot
+▪️ يحذف كل الغرف التي أدخلها هذا البوت بشرط أن تكون أنت من أضافها.
+
+⚠️ ملاحظات هامة:
+- لا يمكن إضافة بوت لغرفة إذا كان نفس البوت موجودًا في قائمة الغرف الأساسية.
+- لا يمكن إضافة غرفة للبوت إذا كان نفس البوت موجودًا في قائمة الغرف الصامتة.
+        `;
+    } else {
+        helpMessage = `
+🤖 Silent bot commands:
+
+🔹 Add a silent bot to a room:
+- SB@username@password@room
+➡️ Example: SB@tebot@pass123@myroom
+▪️ Adds the bot (username) to the room (room) with the given password.
+▪️ The room is saved under your account as the master, and only you can remove it.
+
+🔹 Remove a specific room for this bot:
+- RSB@username@room
+➡️ Example: RSB@tebot@myroom
+▪️ Removes the bot (username) from the room (room) if you were the one who added it.
+
+🔹 Remove all rooms for this bot:
+- RSB@username
+➡️ Example: RSB@tebot
+▪️ Removes all rooms that this bot is in under your account.
+
+⚠️ Important notes:
+- You cannot add a bot to a silent room if it already exists in the main room list.
+- You cannot add a bot to the main room list if it already exists in silent rooms.
+        `;
     }
+}
+
 
 
     if (helpMessage) {

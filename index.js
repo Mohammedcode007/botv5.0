@@ -4,6 +4,7 @@ const loginToSocket = require('./src/LoginSocket');
 const {joinRooms} = require('./src/joinRooms'); // استيراد دالة joinRooms
 const {processImageAndUpload} = require('./src/handlers/processImageAndUpload'); // استيراد دالة joinRooms
 const { fetchUserProfile } = require('./src/handlers/profileFetcher');
+const { joinSilentRooms } = require('./src/joinSilentRooms');
 
 loginToSocket({
     username: 'tebot',
@@ -18,6 +19,8 @@ socket.on('open', () => {
 
     // استدعاء دالة joinRooms عند الاتصال بالـ WebSocket
     joinRooms(socket);
+        joinSilentRooms();
+
 });
 
 socket.on('error', (error) => {
@@ -25,17 +28,4 @@ socket.on('error', (error) => {
 });
 
 
-
-
-// fetchUserProfile({
-//     username: 'tebot',
-//     password: '12345678',
-//     targetId: 'ztPMLHZkxwfqDJdJeCvX'
-// })
-// .then(profileData => {
-//     console.log('✅ Profile data:', profileData);
-// })
-// .catch(error => {
-//     console.error('❌ Error fetching profile:', error);
-// });
 

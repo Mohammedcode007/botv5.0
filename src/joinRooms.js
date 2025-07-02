@@ -317,7 +317,6 @@ if (data.handler === 'room_event' && data.body && data.body.startsWith('removema
             } else if (data.type === 'image') {
                 handleImageGift(data, senderName, ioSockets);
             } else if (data.body && data.body === 'gfg') { // إضافة شرط للتحقق من أمر gfg
-                console.log('1222222222222');
 
                 handleGiftListRequest(data, socket, senderName);  // دالة جديدة لإرسال قائمة الهدايا
             } else if (data.body && data.body.startsWith('gfg@')) {

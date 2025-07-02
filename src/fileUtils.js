@@ -8,119 +8,242 @@ const usersFilePath = './usersLang.json'; // مسار ملف المستخدمي�
 const { masterListPath, adminListPath, blockedUsersPath, blockedRoomsPath, userVerifyListPath } = require('./constants');
 const USERS_FILE = path.join(__dirname, './data/verifiedUsers.json');
 const { createRoomMessage } = require('./messageUtils');
+const silentRoomsFilePath = path.join(__dirname, 'silentRooms.json');
 
 
 
 
+// ✅ متغير يحتفظ بالبيانات في الذاكرة
+let roomsCache = loadRooms();
 
 
-// ✅ تحميل الغرف
-function loadRooms() {
-    console.log('📥 جاري تحميل ملف الغرف...');
-    if (fs.existsSync(roomsFilePath)) {
+
+// ✅ تحميل الغرف الصامتة
+function loadSilentRooms() {
+    if (fs.existsSync(silentRoomsFilePath)) {
         try {
-            const data = fs.readFileSync(roomsFilePath, 'utf-8');
+            const data = fs.readFileSync(silentRoomsFilePath, 'utf-8');
             const parsed = JSON.parse(data);
-
-            console.log(`📄 محتوى ملف الغرف:`, parsed);
-
-            if (Array.isArray(parsed)) {
-                console.log(`✅ تم تحميل الغرف بنجاح. عدد الغرف: ${parsed.length}`);
-                return parsed;
-            } else {
-                console.error('❌ rooms.json لا يحتوي على مصفوفة. سيتم إرجاع مصفوفة فارغة.');
-                return [];
-            }
+            return Array.isArray(parsed) ? parsed : [];
         } catch (error) {
-            console.error('❌ خطأ أثناء قراءة rooms.json:', error);
+            console.error('❌ Error reading silentRooms.json:', error);
             return [];
         }
-    } else {
-        console.warn('⚠️ ملف rooms.json غير موجود، سيتم إنشاء ملف جديد.');
-        return [];
     }
+    return [];
 }
 
-// ✅ حفظ الغرف
-function saveRooms(rooms) {
-    console.log('💾 محاولة حفظ ملف الغرف...');
-    if (!Array.isArray(rooms)) {
-        console.error('❌ محاولة حفظ rooms لكن القيمة ليست Array:', rooms);
-        return;
-    }
 
-    if (rooms.length === 0) {
-        console.warn('⚠️ تحذير: محاولة حفظ قائمة غرف فارغة! لن يتم الحفظ لتجنب المسح.');
-        return;
-    }
 
-    const currentData = loadRooms();
-    const isSame = JSON.stringify(currentData) === JSON.stringify(rooms);
-
-    if (isSame) {
-        console.log('✅ لم يتم التغيير في الغرف. لم يتم الحفظ.');
-        return;
-    }
-
+// ✅ حفظ الغرف الصامتة
+function saveSilentRooms(rooms) {
     try {
-        fs.writeFileSync(roomsFilePath, JSON.stringify(rooms, null, 2));
-        console.log(`✅ تم حفظ الغرف بنجاح. عدد الغرف الحالي: ${rooms.length}`);
+        fs.writeFileSync(silentRoomsFilePath, JSON.stringify(rooms, null, 2), 'utf-8');
+        console.log(`✅ تم حفظ الغرف الصامتة. عدد الغرف: ${rooms.length}`);
     } catch (error) {
-        console.error('❌ خطأ أثناء حفظ الغرف:', error);
+        console.error('❌ خطأ أثناء حفظ الغرف الصامتة:', error);
     }
 }
 
-// ✅ إضافة غرفة جديدة
-function addRoom(room) {
-    console.log('➕ محاولة إضافة غرفة:', room);
 
-    if (!room.roomName) {
-        console.error('❌ لا يمكن إضافة غرفة بدون اسم.');
+// ✅ إضافة غرفة صامتة
+function addSilentRoom(room) {
+    const rooms = loadSilentRooms();
+    const mainRooms = loadRooms();
+
+    const usernameExistsInMainRooms = mainRooms.some(r => r.username === room.username);
+
+    if (usernameExistsInMainRooms) {
+        console.warn(`❌ لا يمكن إضافة الغرفة "${room.roomName}" للمستخدم "${room.username}" لأنه موجود في rooms.json.`);
         return;
     }
 
-    const rooms = loadRooms();
-
-    if (!Array.isArray(rooms)) {
-        console.error('❌ خطأ: rooms ليست مصفوفة:', rooms);
-        return;
-    }
-
-    const exists = rooms.some(r => r.roomName === room.roomName);
+    const exists = rooms.find(r => r.roomName === room.roomName && r.username === room.username);
 
     if (exists) {
-        console.warn(`⚠️ الغرفة "${room.roomName}" موجودة بالفعل. لن تتم الإضافة.`);
+        console.warn(`⚠️ الغرفة "${room.roomName}" موجودة مسبقاً للمستخدم "${room.username}".`);
         return;
     }
 
     rooms.push(room);
-    saveRooms(rooms);
-    console.log(`✅ تم إضافة الغرفة "${room.roomName}" بنجاح.`);
+    saveSilentRooms(rooms);
+    console.log(`✅ تم إضافة الغرفة "${room.roomName}" للمستخدم "${room.username}".`);
 }
 
-// ✅ التحقق من وجود غرفة
-function roomExists(roomName) {
-    console.log(`🔍 التحقق مما إذا كانت الغرفة "${roomName}" موجودة...`);
 
-    const rooms = loadRooms();
 
-    if (!Array.isArray(rooms)) {
-        console.error('❌ خطأ: rooms ليست مصفوفة عند التحقق من وجود الغرفة.');
-        return false;
-    }
+// ✅ حذف غرفة من الغرف الصامتة
+function removeSilentRoom(username, roomName, master) {
+    const rooms = loadSilentRooms();
+    const updatedRooms = rooms.filter(
+        r => !(r.roomName === roomName && r.username === username && r.master === master)
+    );
 
-    const exists = rooms.some(room => room.roomName === roomName);
+    const deletedCount = rooms.length - updatedRooms.length;
 
-    if (exists) {
-        console.log(`✅ الغرفة "${roomName}" موجودة.`);
+    if (deletedCount > 0) {
+        saveSilentRooms(updatedRooms);
+        console.log(`✅ تم حذف الغرفة "${roomName}" للمستخدم "${username}" بواسطة "${master}".`);
     } else {
-        console.log(`❌ الغرفة "${roomName}" غير موجودة.`);
+        console.warn(`⚠️ لا توجد غرفة "${roomName}" للمستخدم "${username}" محفوظة بواسطة "${master}".`);
     }
+
+    return deletedCount;
+}
+function removeAllSilentRooms(username, master) {
+    const rooms = loadSilentRooms();
+    const updatedRooms = rooms.filter(
+        r => !(r.username === username && r.master === master)
+    );
+
+    const deletedCount = rooms.length - updatedRooms.length;
+
+    if (deletedCount > 0) {
+        saveSilentRooms(updatedRooms);
+        console.log(`✅ تم حذف ${deletedCount} غرفة/غرف للمستخدم "${username}" بواسطة "${master}".`);
+    } else {
+        console.warn(`⚠️ لا توجد غرف محفوظة للمستخدم "${username}" بواسطة "${master}".`);
+    }
+
+    return deletedCount;
+}
+
+
+// ✅ التحقق هل الغرفة صامتة
+function isSilentRoom(username, roomName) {
+    const rooms = loadSilentRooms();
+    const exists = rooms.some(
+        r => r.roomName === roomName && r.username === username
+    );
+
+    console.log(exists
+        ? `🔇 الغرفة "${roomName}" للمستخدم "${username}" صامتة ✅.`
+        : `🔊 الغرفة "${roomName}" للمستخدم "${username}" ليست صامتة.`);
 
     return exists;
 }
 
 
+
+// ✅ تحميل الغرف
+function loadRooms() {
+    if (fs.existsSync(roomsFilePath)) {
+        try {
+            const data = fs.readFileSync(roomsFilePath, 'utf-8');
+            const parsed = JSON.parse(data);
+
+            if (Array.isArray(parsed)) {
+                return parsed;
+            } else {
+                return [];
+            }
+        } catch (error) {
+            return [];
+        }
+    } else {
+        return [];
+    }
+}
+
+// ✅ حفظ الغرف
+function saveRooms() {
+    try {
+        fs.writeFileSync(roomsFilePath, JSON.stringify(roomsCache, null, 2), 'utf-8');
+    } catch (error) {
+    }
+}
+
+function addRoom(room) {
+    if (!room.roomName || !room.username) {
+        console.warn('❌ يجب إدخال اسم الغرفة واسم المستخدم.');
+        return;
+    }
+
+    const silentRooms = loadSilentRooms();
+    const usernameExistsInSilentRooms = silentRooms.some(r => r.username === room.username);
+
+    if (usernameExistsInSilentRooms) {
+        console.warn(`❌ لا يمكن إضافة الغرفة "${room.roomName}" للمستخدم "${room.username}" لأنه موجود في silentRooms.json.`);
+        return;
+    }
+
+    const exists = roomsCache.some(r => r.roomName === room.roomName && r.username === room.username);
+
+    if (exists) {
+        console.warn(`⚠️ الغرفة "${room.roomName}" موجودة بالفعل للمستخدم "${room.username}".`);
+        return;
+    }
+
+    const newRoom = {
+        ...room,
+        messageCount: 0,
+        users: [],
+        bannedNameWords: [],
+        bannedMessageWords: [],
+        bannedNameEnabled: true,
+        bannedMessageEnabled: true
+    };
+
+    roomsCache.push(newRoom);
+    saveRooms();
+    console.log(`✅ تم إضافة الغرفة "${room.roomName}" للمستخدم "${room.username}".`);
+}
+
+// ✅ إضافة غرفة جديدة
+// function addRoom(room) {
+//     if (!room.roomName) {
+//         return;
+//     }
+
+//     const exists = roomsCache.some(r => r.roomName === room.roomName);
+
+//     if (exists) {
+//         console.warn(`⚠️ الغرفة "${room.roomName}" موجودة بالفعل. لن تتم الإضافة.`);
+//         return;
+//     }
+
+//     const newRoom = {
+//         ...room,
+//         messageCount: 0,
+//         users: [],
+//         bannedNameWords: [],
+//         bannedMessageWords: [],
+//         bannedNameEnabled: true,
+//         bannedMessageEnabled: true
+//     };
+
+//     roomsCache.push(newRoom);
+//     saveRooms();
+// }
+
+// ✅ التحقق من وجود غرفة
+function roomExists(roomName) {
+    const exists = roomsCache.some(room => room.roomName === roomName);
+
+    if (exists) {
+    } else {
+    }
+
+    return exists;
+}
+
+// ✅ دالة لجلب جميع الغرف
+function getRooms() {
+    return roomsCache;
+}
+
+// ✅ دالة لحذف غرفة
+function deleteRoom(roomName) {
+    const index = roomsCache.findIndex(room => room.roomName === roomName);
+
+    if (index !== -1) {
+        roomsCache.splice(index, 1);
+        saveRooms();
+        console.log(`✅ تم حذف الغرفة "${roomName}" بنجاح.`);
+    } else {
+        console.warn(`⚠️ الغرفة "${roomName}" غير موجودة. لا يمكن حذفها.`);
+    }
+}
 
 
 
@@ -128,7 +251,7 @@ function roomExists(roomName) {
 
 
 function deleteRoom(roomName) {
-    
+
     const rooms = loadRooms(); // تحميل الغرف من الملف
 
     // البحث عن الغرفة التي تحمل نفس الاسم
@@ -192,7 +315,7 @@ function saveMasterList(masterList) {
     fs.writeFileSync(masterListPath, JSON.stringify(masterList, null, 2));
 }
 function formatNumber(num) {
-    const units = ['', 'K', 'M', 'B', 'T', 'Q', 'Qi', 'Sx', 'Sp', 'Oc', 'No', 'Dc']; 
+    const units = ['', 'K', 'M', 'B', 'T', 'Q', 'Qi', 'Sx', 'Sp', 'Oc', 'No', 'Dc'];
     let unitIndex = 0;
 
     while (Math.abs(num) >= 1000 && unitIndex < units.length - 1) {
@@ -219,7 +342,7 @@ function saveAdminList(adminList) {
 
 
 function updateUserPoints(username, addedPoints) {
-    
+
     if (!fs.existsSync(USERS_FILE)) {
         return;
     }
@@ -320,7 +443,7 @@ function isRoomBlocked(roomName) {
 }
 function isUserMasterOrInMasterList(username, roomName) {
     const rooms = loadRooms();
-    
+
     // التحقق مما إذا كان المستخدم ماستر في الغرفة
     const room = rooms.find(r => r.roomName === roomName);
     if (room) {
@@ -329,7 +452,7 @@ function isUserMasterOrInMasterList(username, roomName) {
             return true; // المستخدم ماستر في الغرفة أو في قائمة الماستر
         }
     }
-    
+
     // إذا لم يكن في الغرفة، تحقق من قائمة الماستر العامة
     const masterList = loadMasterList();
     if (masterList.includes(username)) {
@@ -355,12 +478,12 @@ function getUserProfileUrl(username) {
     const users = loadUsers();
     const user = users.find(u => u.username === username);
     if (user && user.profileUrl) {
-      return user.profileUrl;
+        return user.profileUrl;
     } else {
-      // إرجاع رابط افتراضي إذا لم يوجد المستخدم أو لم تكن له صورة
-      return `https://api.multiavatar.com/${encodeURIComponent(username)}.png`;
+        // إرجاع رابط افتراضي إذا لم يوجد المستخدم أو لم تكن له صورة
+        return `https://api.multiavatar.com/${encodeURIComponent(username)}.png`;
     }
-  }
+}
 function incrementUserGiftCount(username, type) {
     const users = loadUsers();
 
@@ -378,7 +501,7 @@ function incrementUserGiftCount(username, type) {
 }
 // زيادة النقاط للمستخدم
 function addPoints(username, amount = 1000) {
-    
+
     const users = loadUsers();
     const user = users.find(u => u.username === username);
     if (user) {
@@ -392,18 +515,18 @@ function addPoints(username, amount = 1000) {
 function getUserRooms(username) {
     const rooms = loadRooms();
     if (!Array.isArray(rooms)) return [];
-  
-    return rooms.flatMap(room => {
-      const foundUser = room.users?.find(u => u.username === username);
-      if (foundUser) {
-        return [{ roomName: room.roomName, role: foundUser.role }];
-      }
-      return [];
-    });
-  }
-  
 
- 
+    return rooms.flatMap(room => {
+        const foundUser = room.users?.find(u => u.username === username);
+        if (foundUser) {
+            return [{ roomName: room.roomName, role: foundUser.role }];
+        }
+        return [];
+    });
+}
+
+
+
 // زيادة عداد قتل البيكاتشو
 function incrementPikachuKills(username) {
     const users = loadUsers();
@@ -557,7 +680,7 @@ function loadGiftsAnimation() {
 function showAvailableGifts(socket, room) {
     const gifts = loadGifts();
     let message = '🎁 Available Gifts:\n';
-    
+
     gifts.forEach(gift => {
         message += `${gift.id}. ${gift.name}\n`;
     });
@@ -567,99 +690,104 @@ function showAvailableGifts(socket, room) {
 }
 // جلب مستخدمي غرفة معينة مع أدوارهم
 function getUsersInRoom(roomName) {
-  const rooms = loadRooms();
-  const room = rooms.find(r => r.roomName === roomName);
-  if (!room) {
-    return null; // الغرفة غير موجودة
-  }
-  return room.users || [];
+    const rooms = loadRooms();
+    const room = rooms.find(r => r.roomName === roomName);
+    if (!room) {
+        return null; // الغرفة غير موجودة
+    }
+    return room.users || [];
 }
 
 
 // دالة لتحديث عدد الرسائل في الغرفة عند إرسال رسالة
 function incrementRoomMessageCount(roomName) {
-  if (!roomName) return;
+    if (!roomName) return;
 
-  const rooms = loadRooms();
-  const roomIndex = rooms.findIndex(room => room.roomName === roomName);
+    const rooms = loadRooms();
+    const roomIndex = rooms.findIndex(room => room.roomName === roomName);
 
-  if (roomIndex === -1) return; // الغرفة غير موجودة
+    if (roomIndex === -1) return; // الغرفة غير موجودة
 
-  // إضافة الخاصية إذا لم تكن موجودة فعلاً
-  if (!rooms[roomIndex].hasOwnProperty("messageCount")) {
-    rooms[roomIndex].messageCount = 0;
-  }
+    // إضافة الخاصية إذا لم تكن موجودة فعلاً
+    if (!rooms[roomIndex].hasOwnProperty("messageCount")) {
+        rooms[roomIndex].messageCount = 0;
+    }
 
-  // زيادة عدد الرسائل بمقدار 1
-  rooms[roomIndex].messageCount += 1;
+    // زيادة عدد الرسائل بمقدار 1
+    rooms[roomIndex].messageCount += 1;
 
-  // حفظ التعديلات
-  saveRooms(rooms);
+    // حفظ التعديلات
+    saveRooms(rooms);
 }
 function getTop10RoomsByMessages() {
-  const rooms = loadRooms();
+    const rooms = loadRooms();
 
-  // ترتيب الغرف تنازليًا حسب messageCount، وإذا لم تكن موجودة نعتبرها 0
-  const sortedRooms = rooms
-    .map(room => ({
-      ...room,
-      messageCount: room.hasOwnProperty("messageCount") ? room.messageCount : 0
-    }))
-    .sort((a, b) => b.messageCount - a.messageCount);
+    // ترتيب الغرف تنازليًا حسب messageCount، وإذا لم تكن موجودة نعتبرها 0
+    const sortedRooms = rooms
+        .map(room => ({
+            ...room,
+            messageCount: room.hasOwnProperty("messageCount") ? room.messageCount : 0
+        }))
+        .sort((a, b) => b.messageCount - a.messageCount);
 
-  // جلب أول 10 فقط
-  const top10Rooms = sortedRooms.slice(0, 10);
+    // جلب أول 10 فقط
+    const top10Rooms = sortedRooms.slice(0, 10);
 
-  return top10Rooms;
+    return top10Rooms;
 }
 function formatNumberShort(n) {
-  if (n < 1000) return n.toString();
+    if (n < 1000) return n.toString();
 
-  const units = [
-    "", "k", "M", "B", "T",  // ألف - مليون - مليار - تريليون
-    "Q",   // Quadrillion
-    "Qi",  // Quintillion
-    "Sx",  // Sextillion
-    "Sp",  // Septillion
-    "Oc",  // Octillion
-    "No"   // Nonillion
-  ];
+    const units = [
+        "", "k", "M", "B", "T",  // ألف - مليون - مليار - تريليون
+        "Q",   // Quadrillion
+        "Qi",  // Quintillion
+        "Sx",  // Sextillion
+        "Sp",  // Septillion
+        "Oc",  // Octillion
+        "No"   // Nonillion
+    ];
 
-  const order = Math.floor(Math.log10(n) / 3);
-  const unit = units[order] || `e${order * 3}`;
-  const num = n / Math.pow(1000, order);
+    const order = Math.floor(Math.log10(n) / 3);
+    const unit = units[order] || `e${order * 3}`;
+    const num = n / Math.pow(1000, order);
 
-  return num % 1 === 0 ? `${num}${unit}` : `${num.toFixed(1)}${unit}`;
+    return num % 1 === 0 ? `${num}${unit}` : `${num.toFixed(1)}${unit}`;
 }
 
 function setNotifyOnSearch(username, value) {
     const users = loadUsers();
-  
+
     const user = users.find(u => u.username === username);
     if (!user) return false;
-  
+
     user.notifyOnSearch = (value === 'true'); // التأكد من التحويل إلى Boolean
-  
+
     saveUsers(users);
     return true;
-  }
-  
+}
+
 
 module.exports = {
-    loadRooms,getUsersInRoom,getTop10RoomsByMessages, formatNumberShort,saveRooms,showAvailableGifts,loadGifts, roomExists, addRoom, saveUserLanguage, loadUserLanguage, getUserLanguage,
-    loadMasterList, saveMasterList,incrementRoomMessageCount, isUserInMasterList,getUserPoints,
+    loadRooms, getUsersInRoom, getTop10RoomsByMessages, formatNumberShort, saveRooms, showAvailableGifts, loadGifts, roomExists, addRoom, saveUserLanguage, loadUserLanguage, getUserLanguage,
+    loadMasterList, saveMasterList, incrementRoomMessageCount, isUserInMasterList, getUserPoints,
     loadAdminList, saveAdminList, isUserInAdminList,
     loadUserVerifyList, saveUserVerifyList, isUserVerified,
     loadBlockedUsers, saveBlockedUsers, isUserBlocked,
-    loadBlockedRooms, saveBlockedRooms, isRoomBlocked,isUserMasterOrInMasterList,deleteRoom,  loadUsers,
-    saveUsers,incrementUserGiftCount,updateUserPoints,
-    addPoints,loadGiftsAnimation,
-    incrementPikachuKills,checkUserExistsOrNotify,
+    loadBlockedRooms, saveBlockedRooms, isRoomBlocked, isUserMasterOrInMasterList, deleteRoom, loadUsers,
+    saveUsers, incrementUserGiftCount, updateUserPoints,
+    addPoints, loadGiftsAnimation,
+    incrementPikachuKills, checkUserExistsOrNotify,
     updateTradeHistory,   // ✅ هنا
-    getTradeStats  ,
-    getUserRooms   ,
+    getTradeStats,
+    getUserRooms,
     formatNumber,
     getUserProfileUrl,
-    setNotifyOnSearch    // ✅ وهنا
+    setNotifyOnSearch,
+    loadSilentRooms,
+    saveSilentRooms,
+    addSilentRoom,
+    removeSilentRoom,
+    isSilentRoom   // ✅ وهنا
 };
 
