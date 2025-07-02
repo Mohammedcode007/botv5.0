@@ -4,7 +4,7 @@
     "master": "ا◙☬ځُــۥـ☼ـڈ◄أڵـــســمـــٱ۽►ـۉد☼ــۥــۓ☬◙ا",
     "username": "tebot",
     "password": "mohamed--ka12",
-    "messageCount": 136,
+    "messageCount": 137,
     "users": [
       {
         "username": ".sokkar.",
@@ -33,7 +33,7 @@
     "master": "ا◙☬ځُــۥـ☼ـڈ◄أڵـــســمـــٱ۽►ـۉد☼ــۥــۓ☬◙ا",
     "username": "tebot",
     "password": "mohamed--ka12",
-    "messageCount": 0,
+    "messageCount": 1,
     "users": [
       {
         "username": "tebot",
@@ -42,10 +42,1949 @@
       {
         "username": "vebot",
         "role": "none"
+      }
+    ],
+    "bannedNameWords": [],
+    "bannedMessageWords": [],
+    "bannedNameEnabled": true,
+    "bannedMessageEnabled": true
+  },
+  {
+    "roomName": "لحالي_احلى_لي-pvt",
+    "master": "خ،ہـٌٍـٌٍـ♥ــٌٍـٌٍآنـٍــوگہ",
+    "username": "ro7y.._..t7bk",
+    "password": "717298160",
+    "messageCount": 1,
+    "users": [
+      {
+        "username": "<٠٠٠>",
+        "role": "owner"
+      },
+      {
+        "username": "cgames",
+        "role": "owner"
+      },
+      {
+        "username": "ro7y.._..t7bk",
+        "role": "owner"
+      },
+      {
+        "username": "selga",
+        "role": "owner"
+      },
+      {
+        "username": "خ،ہـٌٍـٌٍـ♥ــٌٍـٌٍآنـٍــوگہ",
+        "role": "creator"
+      },
+      {
+        "username": "឵឵឵឵឵឵឵឵឵឵឵឵឵឵",
+        "role": "owner"
+      },
+      {
+        "username": "឵឵🦂",
+        "role": "owner"
+      },
+      {
+        "username": "⎀",
+        "role": "owner"
+      },
+      {
+        "username": "🦉ّ",
+        "role": "owner"
+      }
+    ],
+    "bannedNameWords": [],
+    "bannedMessageWords": [],
+    "bannedNameEnabled": true,
+    "bannedMessageEnabled": true
+  },
+  {
+    "roomName": "قلوبنا♥️تجمعنا-pvt",
+    "master": "ا◙☬ځُــۥـ☼ـڈ◄أڵـــســمـــٱ۽►ـۉد☼ــۥــۓ☬◙ا",
+    "username": "tebot",
+    "password": "mohamed--ka12",
+    "messageCount": 1,
+    "users": [
+      {
+        "username": ".portugaleh.",
+        "role": "owner"
+      },
+      {
+        "username": "0radio_bot0",
+        "role": "admin"
+      },
+      {
+        "username": "<٠٠٠>",
+        "role": "admin"
+      },
+      {
+        "username": "cgames",
+        "role": "admin"
+      },
+      {
+        "username": "tebot",
+        "role": "admin"
+      },
+      {
+        "username": "نڟرﮬ̲̌ﮧ♪من♪اڷزيےن♪تكفيےنيے",
+        "role": "creator"
+      },
+      {
+        "username": "឵឵឵឵឵឵឵឵឵឵឵឵឵឵",
+        "role": "admin"
+      },
+      {
+        "username": "⎀",
+        "role": "owner"
+      }
+    ],
+    "bannedNameWords": [],
+    "bannedMessageWords": [],
+    "bannedNameEnabled": true,
+    "bannedMessageEnabled": true
+  },
+  {
+    "roomName": "قهوهـ_🇸🇦_السعـوديـه",
+    "master": "ا◙☬ځُــۥـ☼ـڈ◄أڵـــســمـــٱ۽►ـۉد☼ــۥــۓ☬◙ا",
+    "username": "coco.nut",
+    "password": "2985081",
+    "messageCount": 1,
+    "users": [
+      {
+        "username": "marboha",
+        "role": "admin"
+      },
+      {
+        "username": ".pretty.girl.",
+        "role": "admin"
+      },
+      {
+        "username": "strange..world",
+        "role": "admin"
+      },
+      {
+        "username": "عُيــۦـ୭̯نهاꜜتــۦهـۦـزمꜜالقصيـۦـد˼🇸🇦˹᭕ᬁ",
+        "role": "owner"
+      },
+      {
+        "username": "..macaron.-",
+        "role": "admin"
+      },
+      {
+        "username": "layes",
+        "role": "admin"
+      },
+      {
+        "username": "♔°𝕝𝕠𝕣𝕕•𝕠𝕗•𝕥𝕙𝕖•𝕣𝕚𝕟𝕘𝕤°♔",
+        "role": "admin"
+      },
+      {
+        "username": "__7zn..",
+        "role": "owner"
+      },
+      {
+        "username": "cat..woman",
+        "role": "admin"
+      },
+      {
+        "username": "pinocchio..",
+        "role": "admin"
+      },
+      {
+        "username": "឵឵឵឵឵឵឵឵឵឵឵឵.🇸🇦.",
+        "role": "admin"
+      },
+      {
+        "username": "stitch..",
+        "role": "admin"
+      },
+      {
+        "username": "˹𑁍₎ִֶָ°𝐒𝐮𝐠𝐚𝐫˼𔘓",
+        "role": "owner"
+      },
+      {
+        "username": ".rapunzel.",
+        "role": "admin"
+      },
+      {
+        "username": "<٠٠٠>",
+        "role": "admin"
+      },
+      {
+        "username": "coco.nut",
+        "role": "admin"
+      },
+      {
+        "username": "kstna",
+        "role": "admin"
+      },
+      {
+        "username": "t0mato",
+        "role": "admin"
+      },
+      {
+        "username": "-shrouq",
+        "role": "admin"
+      },
+      {
+        "username": "cgames",
+        "role": "admin"
+      },
+      {
+        "username": "yooooh",
+        "role": "admin"
+      },
+      {
+        "username": "-jomanah-",
+        "role": "admin"
+      },
+      {
+        "username": "karaz..",
+        "role": "admin"
+      },
+      {
+        "username": "mr..t",
+        "role": "admin"
+      },
+      {
+        "username": ".dumbo.",
+        "role": "admin"
+      },
+      {
+        "username": ".n.o.r.h.a.n",
+        "role": "admin"
+      },
+      {
+        "username": "selga",
+        "role": "admin"
+      },
+      {
+        "username": "march.",
+        "role": "admin"
+      },
+      {
+        "username": "𐭦ߺ𐢋ߺ𐬠ܭ❥וࡅ࠭ߺܦ࠭͢ߺוܚࡅ⃔ߺﻲ",
+        "role": "owner"
+      },
+      {
+        "username": "fly.dubai",
+        "role": "admin"
+      },
+      {
+        "username": "vintage..",
+        "role": "admin"
+      },
+      {
+        "username": "الــمــ∫●∫•°رآآكــ♛ــان°•∫●∫ـ♂ـلــك",
+        "role": "member"
+      },
+      {
+        "username": ".april",
+        "role": "admin"
+      },
+      {
+        "username": "سعود",
+        "role": "owner"
+      },
+      {
+        "username": "🅘🅨🅐🅓🅞ᵘʷᵏ",
+        "role": "owner"
+      },
+      {
+        "username": "msaary-5",
+        "role": "none"
+      }
+    ],
+    "bannedNameWords": [],
+    "bannedMessageWords": [],
+    "bannedNameEnabled": true,
+    "bannedMessageEnabled": true
+  },
+  {
+    "roomName": "مصر",
+    "master": "ا◙☬ځُــۥـ☼ـڈ◄أڵـــســمـــٱ۽►ـۉد☼ــۥــۓ☬◙ا",
+    "username": "tebot",
+    "password": "mohamed--ka12",
+    "messageCount": 2,
+    "users": [
+      {
+        "username": ".vmod.1",
+        "role": "owner"
+      },
+      {
+        "username": "05.40",
+        "role": "owner"
+      },
+      {
+        "username": "0radio_bot0",
+        "role": "admin"
+      },
+      {
+        "username": "<٠٠٠>",
+        "role": "admin"
+      },
+      {
+        "username": "cgames",
+        "role": "admin"
+      },
+      {
+        "username": "dwaelnsyan",
+        "role": "owner"
+      },
+      {
+        "username": "kilerlook",
+        "role": "none"
+      },
+      {
+        "username": "l0lee",
+        "role": "owner"
+      },
+      {
+        "username": "selga",
+        "role": "admin"
+      },
+      {
+        "username": "tebot",
+        "role": "admin"
+      },
+      {
+        "username": "آلُـِـِِـِِِـِِـِـڛـ,ـمـْـْْـْرآءآلُـِـِِـِِِـِِـِـفُـ,ـآتـٌـٌٌـنـِِـِـة",
+        "role": "owner"
+      },
+      {
+        "username": "أميرٍ•°•بَلُِآ•°•إمآرٍة",
+        "role": "owner"
+      },
+      {
+        "username": "أڪسجٍين•°•آلُِقٌلُِبَ",
+        "role": "owner"
       },
       {
         "username": "ا◙☬ځُــۥـ☼ـڈ◄أڵـــســمـــٱ۽►ـۉد☼ــۥــۓ☬◙ا",
+        "role": "owner"
+      },
+      {
+        "username": "بَسڪوُيتッ🍪",
+        "role": "owner"
+      },
+      {
+        "username": "بگآء.بلُآ.دِمۆعٍ",
+        "role": "owner"
+      },
+      {
+        "username": "جيفارا",
+        "role": "member"
+      },
+      {
+        "username": "فارس-بلا-جواد",
+        "role": "owner"
+      },
+      {
+        "username": "قمر&&الزمان",
+        "role": "owner"
+      },
+      {
+        "username": "ᅠ♥",
+        "role": "owner"
+      },
+      {
+        "username": "឵឵឵឵឵឵឵឵឵឵឵឵឵឵",
+        "role": "admin"
+      },
+      {
+        "username": "￵🏌🏻",
+        "role": "owner"
+      },
+      {
+        "username": "𐇵፝༢𝐒𝐞᩺𝐦ͣ𝐛ͬ𝐚ͣ•˖𓂃",
+        "role": "owner"
+      },
+      {
+        "username": "𐦖𝆔.",
+        "role": "owner"
+      },
+      {
+        "username": "𝃚🇪🇬",
+        "role": "owner"
+      },
+      {
+        "username": "𝐉𝛖ٓ𝐬𝐭ۦ❥ۦꮆ፝֟ؖ۬𝛊́ٓʀ𝐥𝂅𝆕",
+        "role": "owner"
+      },
+      {
+        "username": "𝑪𝒓𝒖֟𝒆𝒍𝒍𝒂˼",
+        "role": "owner"
+      },
+      {
+        "username": "🦉ّ",
+        "role": "admin"
+      },
+      {
+        "username": "🅘🅨🅐🅓🅞ᵘʷᵏ",
+        "role": "owner"
+      },
+      {
+        "username": "dark_knight",
+        "role": "owner"
+      }
+    ],
+    "bannedNameWords": [],
+    "bannedMessageWords": [],
+    "bannedNameEnabled": true,
+    "bannedMessageEnabled": true
+  },
+  {
+    "roomName": "هواجيس🖤تجمعنا",
+    "master": "ا◙☬ځُــۥـ☼ـڈ◄أڵـــســمـــٱ۽►ـۉد☼ــۥــۓ☬◙ا",
+    "username": "tebot",
+    "password": "mohamed--ka12",
+    "messageCount": 7,
+    "users": [
+      {
+        "username": "-mrjojh",
+        "role": "member"
+      },
+      {
+        "username": "no_relationship",
+        "role": "member"
+      },
+      {
+        "username": "خالدالنهدي811",
+        "role": "owner"
+      },
+      {
+        "username": "ا✿جـــــــ❤ــــــودي✿ا",
+        "role": "owner"
+      },
+      {
+        "username": "طز",
+        "role": "member"
+      },
+      {
+        "username": "9xri10",
+        "role": "member"
+      },
+      {
+        "username": ".5.j.o.l.h..",
+        "role": "member"
+      },
+      {
+        "username": "ۦ♪مشٌـــ♪♪ــاري⦕♔♪ۦ",
+        "role": "owner"
+      },
+      {
+        "username": "🕷⃝hคcͥkeͣrͫ",
+        "role": "owner"
+      },
+      {
+        "username": "m.r.m.r",
+        "role": "member"
+      },
+      {
+        "username": ".q_m_r_h_m.",
+        "role": "member"
+      },
+      {
+        "username": "رٍۆيَـ✵ۣۘـدأ",
+        "role": "owner"
+      },
+      {
+        "username": "عـ☜ـدۄۃْ✗اڵــڕچـ✄ـل",
+        "role": "owner"
+      },
+      {
+        "username": "tebot",
+        "role": "admin"
+      },
+      {
+        "username": "𓄼ۦࢦـبنٓـــانـيٰ˼🇱🇧˹ﺂصـــيٰــࢦۦ𓄹",
+        "role": "owner"
+      },
+      {
+        "username": "<٠٠٠>",
+        "role": "admin"
+      },
+      {
+        "username": "3b8_.",
+        "role": "member"
+      },
+      {
+        "username": "fo0ofo0o-q.8",
+        "role": "member"
+      },
+      {
+        "username": "نڟرﮬ̲̌ﮧ♪من♪اڷزيےن♪تكفيےنيے",
+        "role": "owner"
+      },
+      {
+        "username": "kilerlook",
+        "role": "admin"
+      },
+      {
+        "username": ".5ah8h.",
+        "role": "member"
+      },
+      {
+        "username": "•𝓡𝓪𝓦𝓪𝓷ོ𓂃",
+        "role": "owner"
+      },
+      {
+        "username": "giiipy1",
+        "role": "member"
+      },
+      {
+        "username": "m.alk.ro7y.",
+        "role": "member"
+      },
+      {
+        "username": "cgames",
+        "role": "member"
+      },
+      {
+        "username": "3.b.8-",
+        "role": "member"
+      },
+      {
+        "username": ".alnahdi.811",
+        "role": "member"
+      },
+      {
+        "username": "↲رآقُـ✵ۣۘ͡ـيَ˚⸙͎۪۫⋆بًآخِـۦٰـلَآقُـ✵ۣۘ͡ـيَ↳",
+        "role": "owner"
+      },
+      {
+        "username": ".l--l.",
+        "role": "admin"
+      },
+      {
+        "username": "_3.r.b.j.y.h_",
+        "role": "admin"
+      },
+      {
+        "username": "mrjojh1",
+        "role": "member"
+      },
+      {
+        "username": "so0okrh.",
+        "role": "member"
+      },
+      {
+        "username": "ˆ",
+        "role": "admin"
+      },
+      {
+        "username": "noonyy.2",
+        "role": "member"
+      },
+      {
+        "username": "saffo.99.",
+        "role": "member"
+      },
+      {
+        "username": "឵឵឵឵឵឵឵឵឵឵឵឵឵឵",
+        "role": "member"
+      },
+      {
+        "username": "صـ͓🚀ـآرٍوٚخ⇙💃⇘نـ͓̽ــ🔥ـوٌوٚي",
+        "role": "admin"
+      },
+      {
+        "username": "﹅𝚳•²⁰²⁵",
+        "role": "owner"
+      },
+      {
+        "username": "fa9lh",
+        "role": "member"
+      },
+      {
+        "username": "aahat...3ashq",
+        "role": "member"
+      },
+      {
+        "username": "نٌٌـعَـ⋆ـلَـوُأِ°وُلَأِ↫يّعَـ♔ـلَىٰٓ↬°عَـلَـ♕ـيّّـنٌـأِ",
+        "role": "owner"
+      },
+      {
+        "username": "kalled",
+        "role": "member"
+      },
+      {
+        "username": "⊰•͢♡͢ℳ͢༉•͢⊱",
+        "role": "member"
+      }
+    ],
+    "bannedNameWords": [],
+    "bannedMessageWords": [],
+    "bannedNameEnabled": true,
+    "bannedMessageEnabled": true
+  },
+  {
+    "roomName": "ٍكوكب♥المجانين",
+    "master": "ۦمُــتـٰ,ـمــ«ـِྀ☬ـِྀ»ـــ❥ــ,ـٓـرנۦ",
+    "username": "_ali_ali_ali_",
+    "password": "aaa01141439021",
+    "messageCount": 6,
+    "users": [
+      {
+        "username": "🤍឵",
+        "role": "member"
+      },
+      {
+        "username": "ّ🦋",
+        "role": "member"
+      },
+      {
+        "username": "the-mayor",
+        "role": "member"
+      },
+      {
+        "username": "semsema01234",
+        "role": "admin"
+      },
+      {
+        "username": "qanaas",
+        "role": "owner"
+      },
+      {
+        "username": "the.swan",
+        "role": "member"
+      },
+      {
+        "username": "tamer_ashour",
+        "role": "member"
+      },
+      {
+        "username": ".lone.wolf.",
+        "role": "member"
+      },
+      {
+        "username": "falcon-eye",
+        "role": "owner"
+      },
+      {
+        "username": "..zaaloul..",
+        "role": "member"
+      },
+      {
+        "username": "qamar_alnahar",
+        "role": "member"
+      },
+      {
+        "username": "<٠٠٠>",
+        "role": "admin"
+      },
+      {
+        "username": "rabuna_walak_alhamd",
+        "role": "member"
+      },
+      {
+        "username": "lish3",
+        "role": "member"
+      },
+      {
+        "username": "7aawa..",
+        "role": "owner"
+      },
+      {
+        "username": "-fatoma..",
+        "role": "member"
+      },
+      {
+        "username": "..rachel..",
+        "role": "member"
+      },
+      {
+        "username": "crazy..moon",
+        "role": "member"
+      },
+      {
+        "username": "ۦمُــتـٰ,ـمــ«ـِྀ☬ـِྀ»ـــ❥ــ,ـٓـرנۦ",
         "role": "creator"
+      },
+      {
+        "username": "_._angel_._",
+        "role": "member"
+      },
+      {
+        "username": "cgames",
+        "role": "admin"
+      },
+      {
+        "username": "ashri-al-baya3",
+        "role": "member"
+      },
+      {
+        "username": "ahmad-1298",
+        "role": "member"
+      },
+      {
+        "username": "bortkana",
+        "role": "member"
+      },
+      {
+        "username": "_ali_ali_ali_",
+        "role": "owner"
+      },
+      {
+        "username": "_....sara...",
+        "role": "member"
+      },
+      {
+        "username": "sweet_poison",
+        "role": "member"
+      },
+      {
+        "username": "ٍكوكب♥المجانين",
+        "role": "owner"
+      },
+      {
+        "username": "឵឵឵឵឵឵឵឵឵឵឵឵឵឵",
+        "role": "admin"
+      },
+      {
+        "username": "selga",
+        "role": "member"
+      },
+      {
+        "username": "boo_boo_boo",
+        "role": "member"
+      },
+      {
+        "username": "_boma_",
+        "role": "member"
+      },
+      {
+        "username": "صـ͓🚀ـآرٍوٚخ⇙💃⇘نـ͓̽ــ🔥ـوٌوٚي",
+        "role": "owner"
+      },
+      {
+        "username": "beauty_and_the_beast",
+        "role": "member"
+      },
+      {
+        "username": "my_boot",
+        "role": "owner"
+      },
+      {
+        "username": "mr_salt3",
+        "role": "member"
+      },
+      {
+        "username": "..cohen..",
+        "role": "member"
+      },
+      {
+        "username": "mnkm_llh",
+        "role": "member"
+      },
+      {
+        "username": "⎀",
+        "role": "admin"
+      },
+      {
+        "username": "💙឵",
+        "role": "owner"
+      }
+    ],
+    "bannedNameWords": [],
+    "bannedMessageWords": [],
+    "bannedNameEnabled": true,
+    "bannedMessageEnabled": true
+  },
+  {
+    "roomName": "𝕋𝕙𝕖_𝕆𝕣𝕚𝕘𝕚𝕟𝕒𝕝𝕤_✨",
+    "master": "˹𔘓°ℓуℓу𝆟˼",
+    "username": "هيبہَ‘َ_ٍّـهہ",
+    "password": "lelo_124",
+    "messageCount": 2,
+    "users": [
+      {
+        "username": "0radio_bot0",
+        "role": "member"
+      },
+      {
+        "username": "<٠٠٠>",
+        "role": "member"
+      },
+      {
+        "username": "cgames",
+        "role": "admin"
+      },
+      {
+        "username": "selga",
+        "role": "member"
+      },
+      {
+        "username": "the_originals",
+        "role": "admin"
+      },
+      {
+        "username": "vampire_lovers",
+        "role": "member"
+      },
+      {
+        "username": "صـ͓🚀ـآرٍوٚخ⇙💃⇘نـ͓̽ــ🔥ـوٌوٚي",
+        "role": "owner"
+      },
+      {
+        "username": "مُستـ͢ـبدهٖہۦ",
+        "role": "owner"
+      },
+      {
+        "username": "هيبہَ‘َ_ٍّـهہ",
+        "role": "owner"
+      },
+      {
+        "username": "឵឵឵឵឵឵឵឵឵឵឵឵឵឵",
+        "role": "admin"
+      },
+      {
+        "username": "⎀",
+        "role": "admin"
+      },
+      {
+        "username": "𒀭𐏓꯭ْ𝑴𝒆𝒅𝒖֟𝒔𝒂֟፝",
+        "role": "owner"
+      },
+      {
+        "username": "𝁜๎𝆯ᏰᎾᏬᏁᎿᎽ𝇄𝆺𝅥⃝🥥",
+        "role": "admin"
+      },
+      {
+        "username": "🍃َ",
+        "role": "owner"
+      },
+      {
+        "username": "🕷⃝hคcͥkeͣrͫ",
+        "role": "owner"
+      },
+      {
+        "username": "🦅𝔸𝕙𝕝𝕪𝟙𝟡𝟘𝟟",
+        "role": "owner"
+      },
+      {
+        "username": "🦉ّ",
+        "role": "member"
+      },
+      {
+        "username": "🫧𓂃⃪ֶᮀᮀحُـۆتيَہ",
+        "role": "owner"
+      },
+      {
+        "username": "dark_knight",
+        "role": "admin"
+      }
+    ],
+    "bannedNameWords": [],
+    "bannedMessageWords": [],
+    "bannedNameEnabled": true,
+    "bannedMessageEnabled": true
+  },
+  {
+    "roomName": "كوكاكولآ",
+    "master": "حــَ‘ًـآ‘زم🦅",
+    "username": "tebot",
+    "password": "mohamed--ka12",
+    "messageCount": 2,
+    "users": [
+      {
+        "username": "ڪُ𝔠𝔬𝔩𝔞ـﯣڪٵ̍𓀔ڪُِ𝔠𝔬𝔠𝔞ـﯣڷآ🌊",
+        "role": "admin"
+      },
+      {
+        "username": "ɬɧɛ𝐒𝐩𝐨𝐨𝐧𝐬",
+        "role": "owner"
+      },
+      {
+        "username": "⚜ا̍ڶـفَـتۑْۧ☻ا̍ڵـذَهبېْۧ⚜",
+        "role": "owner"
+      },
+      {
+        "username": "឵឵឵឵឵឵឵឵឵឵឵឵឵឵☣",
+        "role": "admin"
+      },
+      {
+        "username": "឵឵឵឵឵឵឵឵឵឵឵឵឵឵𓆗",
+        "role": "member"
+      },
+      {
+        "username": "⭒وٚࢪطؕـــٓـۿہٴؕۿ⭒𝆔𓆂.",
+        "role": "admin"
+      },
+      {
+        "username": "فيےْْضحكتهآ𝄞⃝تجتـٰمـ؏ٰ‹𝆕تفآصيٰل🦋الجمّآٰل",
+        "role": "owner"
+      },
+      {
+        "username": "Đ͢ΔŇ͢ǤĘṜ܌➲",
+        "role": "owner"
+      },
+      {
+        "username": "l0lee",
+        "role": "owner"
+      },
+      {
+        "username": "pikachuo",
+        "role": "owner"
+      },
+      {
+        "username": "crossland",
+        "role": "member"
+      },
+      {
+        "username": "🂱اﻟﺯﺍﻫﺩ🂡",
+        "role": "owner"
+      },
+      {
+        "username": "green.arrow",
+        "role": "member"
+      },
+      {
+        "username": "🕷⃝hคcͥkeͣrͫ",
+        "role": "owner"
+      },
+      {
+        "username": "ۦ❞♦عـمـﮫ°♚ـم♦❝ۦ",
+        "role": "member"
+      },
+      {
+        "username": "☚⍢⃝☚",
+        "role": "owner"
+      },
+      {
+        "username": "🍭𝐇𝐚͓𝐫͓ⷢ𝐥𝐞𝐲🃏ꋠ𝐮̪̣𝐢𝐧ຖ🍭",
+        "role": "owner"
+      },
+      {
+        "username": "Šɪ𝕝𝕖𝕟🅃•🅚𝐢𝐥l̑̈ĕ̈R̆̈⁰²X̸",
+        "role": "owner"
+      },
+      {
+        "username": "fayrouzz",
+        "role": "member"
+      },
+      {
+        "username": "ا◙☬ځُــۥـ☼ـڈ◄أڵـــســمـــٱ۽►ـۉد☼ــۥــۓ☬◙ا",
+        "role": "owner"
+      },
+      {
+        "username": "الفـنَـان.عـَادّل.آ'دهـَم",
+        "role": "member"
+      },
+      {
+        "username": "卂ْْْْْ",
+        "role": "owner"
+      },
+      {
+        "username": "سُـٰڪٰٖࢪ♡نـَبـٰاﺈتَ",
+        "role": "admin"
+      },
+      {
+        "username": "█▬Ͳ͘ΗͪΟͦṞͬᤩᯤᯭ",
+        "role": "owner"
+      },
+      {
+        "username": "uncle.hercules",
+        "role": "member"
+      },
+      {
+        "username": "playstation5",
+        "role": "member"
+      },
+      {
+        "username": "឵឵឵឵឵឵឵឵឵឵឵឵឵឵🕷",
+        "role": "member"
+      },
+      {
+        "username": "pepsicoo",
+        "role": "member"
+      },
+      {
+        "username": "ahmed..conan",
+        "role": "admin"
+      },
+      {
+        "username": "•آلَٰـُڪَٰـُ•᮪͢𝑴๋𝒂ᤨ𝒋𝒆͜͡𝒅•ــﯛ̲୭بَٰـُـرآ⁞♩⁽⚔️₎⇣",
+        "role": "owner"
+      },
+      {
+        "username": "tebot",
+        "role": "owner"
+      },
+      {
+        "username": "ۦْٰ𓆪☕آلـۦـَٰـَٰۦـَٰـ🚬ـَٰـۦۦـرايـق☕𓆩ۦْٰ",
+        "role": "owner"
+      },
+      {
+        "username": "卐",
+        "role": "member"
+      },
+      {
+        "username": "iphoness",
+        "role": "member"
+      },
+      {
+        "username": "𝚃𝙷ʊ͛𝙽𝙳𝙴̥𝚁⚡︎",
+        "role": "owner"
+      },
+      {
+        "username": "Ɠҽʀѕєуᰬএ𓃠",
+        "role": "owner"
+      },
+      {
+        "username": "_-_alfa.romeo-_-",
+        "role": "member"
+      },
+      {
+        "username": "឵឵🥂",
+        "role": "admin"
+      },
+      {
+        "username": "<٠٠٠>",
+        "role": "admin"
+      },
+      {
+        "username": "𓇡ۦَٰ𝆺𝅥⃝🦩ριηку𝆯࣪",
+        "role": "member"
+      },
+      {
+        "username": "سـ🕸️ــباެيـدࢪ",
+        "role": "admin"
+      },
+      {
+        "username": "_-sportage-_",
+        "role": "member"
+      },
+      {
+        "username": "✘_✘",
+        "role": "owner"
+      },
+      {
+        "username": "➵﴿RσႦιɳ➻Hσσԃ❟❛❟",
+        "role": "owner"
+      },
+      {
+        "username": "حــَ‘ًـآ‘زم🦅",
+        "role": "owner"
+      },
+      {
+        "username": "redbulloo",
+        "role": "member"
+      },
+      {
+        "username": "-_mirinda_-",
+        "role": "member"
+      },
+      {
+        "username": "فـۦٰ۫ﹷو໑َق∘ིི•:𝆺𝅥⃝🤍أآلـغًيّــّـــمہ",
+        "role": "owner"
+      },
+      {
+        "username": "charizardoo",
+        "role": "member"
+      },
+      {
+        "username": "0radio_bot0",
+        "role": "admin"
+      },
+      {
+        "username": "koshkcoca-cola",
+        "role": "admin"
+      },
+      {
+        "username": "឵឵឵឵឵឵឵឵឵឵឵឵឵឵🔱",
+        "role": "admin"
+      },
+      {
+        "username": ".fanta.",
+        "role": "member"
+      },
+      {
+        "username": "𖤇𝕋𒆳ℝ𝔼𝕏𒆬𝁫🦖",
+        "role": "member"
+      },
+      {
+        "username": "⭒آࢪستقـَ‘َـࢪاطّيهہٌ⭒🂱𝆔",
+        "role": "admin"
+      },
+      {
+        "username": "_-motamred-_",
+        "role": "member"
+      },
+      {
+        "username": "sands..",
+        "role": "member"
+      },
+      {
+        "username": "cgames",
+        "role": "admin"
+      },
+      {
+        "username": "🧚‍♂",
+        "role": "member"
+      },
+      {
+        "username": ".-.polo.-.",
+        "role": "member"
+      },
+      {
+        "username": "fiat.bravo",
+        "role": "admin"
+      },
+      {
+        "username": "♠♪الـٓ͢ـُذ𝕨๏𝙻𝙵ئـُ͢ـٓبُ☬◌͜͡🐺",
+        "role": "admin"
+      },
+      {
+        "username": "bmw.118i",
+        "role": "member"
+      },
+      {
+        "username": "zamaleek",
+        "role": "member"
+      },
+      {
+        "username": "اﻟﺠلادۡ",
+        "role": "owner"
+      },
+      {
+        "username": ".-_.-.xbox.-_.-.",
+        "role": "member"
+      },
+      {
+        "username": "🦉ّ",
+        "role": "admin"
+      },
+      {
+        "username": "7up.seven",
+        "role": "member"
+      },
+      {
+        "username": "_-abo.treka-_",
+        "role": "member"
+      },
+      {
+        "username": "឵឵឵឵឵឵឵឵឵឵឵឵឵឵🪼",
+        "role": "admin"
+      },
+      {
+        "username": "ʚ֍ɞ..بۄنبـﯣناٻۃ‹𝆕",
+        "role": "owner"
+      },
+      {
+        "username": "god..of..war",
+        "role": "admin"
+      },
+      {
+        "username": "ˆ",
+        "role": "member"
+      },
+      {
+        "username": "˛឵឵឵឵឵឵឵឵឵឵឵឵឵឵឵឵✿͢𝗺𝙤۪᪲𝗸𝗮‹𝆕..",
+        "role": "admin"
+      },
+      {
+        "username": "◕الأَمـِـيـ𐎘ـرة›ʚଓ",
+        "role": "owner"
+      },
+      {
+        "username": "--sonata--",
+        "role": "admin"
+      },
+      {
+        "username": "ﺷٰﺄﻳﻧᜳﺸﺘﺍﮂﻦۨ✍",
+        "role": "member"
+      },
+      {
+        "username": "☜وزيـ←͜͡ـر♛الشـطـ͜͡→ـرنج☞",
+        "role": "member"
+      },
+      {
+        "username": "✞︎⚈Aꪀׁׅꪀׁׅɑׁׅ֮ϐׁׅ֒ꫀׁׅܻᥣׁׅ֪ᥣׁׅ֪ꫀׁׅܻ♰𝆺𝅥⃝𓄚",
+        "role": "admin"
+      },
+      {
+        "username": "឵឵឵឵឵឵឵឵឵឵឵឵឵឵",
+        "role": "admin"
+      },
+      {
+        "username": "chris.redfield",
+        "role": "admin"
+      },
+      {
+        "username": "selga",
+        "role": "admin"
+      },
+      {
+        "username": "◕سٌـِنـدبـ𑰔ـݴدٜ༮༚",
+        "role": "owner"
+      },
+      {
+        "username": "_-phoneix-_",
+        "role": "member"
+      },
+      {
+        "username": "ꞈمۘـٖډࢪي٘ـديـۿۃ❼𓂃⃪ֶ𓏲",
+        "role": "owner"
+      },
+      {
+        "username": "macbookpro",
+        "role": "member"
+      },
+      {
+        "username": "minicooper",
+        "role": "member"
+      },
+      {
+        "username": "android20",
+        "role": "member"
+      },
+      {
+        "username": "⚡",
+        "role": "owner"
+      },
+      {
+        "username": "×͜×𝚃𝚊𝚛֓𝚣𝚊𝚗𓀄𒊺",
+        "role": "admin"
+      },
+      {
+        "username": "wickie",
+        "role": "member"
+      },
+      {
+        "username": "رجـِٰ۪ـِٰٰـِٰٰولتي✫اســِـِٰٰطــِۆره♪هــِٰ۪ـِٰٰزت✫كـيـانــِٰٰـهــِم",
+        "role": "owner"
+      },
+      {
+        "username": "pokemon.",
+        "role": "admin"
+      },
+      {
+        "username": "-_kratos_-",
+        "role": "admin"
+      },
+      {
+        "username": "_-_-_connan_-_-_",
+        "role": "member"
+      },
+      {
+        "username": "بَـ❿ـࢪشڶـوٰ٘نيّـۿِ𑁤",
+        "role": "owner"
+      },
+      {
+        "username": ":̗̀⁍𖦏آرٍهَـآبـِيـہٰৎ",
+        "role": "owner"
+      },
+      {
+        "username": "ꮥᨗᴜɢᮤᴇʀ⏧ↁᨗаↁᨗЎᮡ",
+        "role": "admin"
+      },
+      {
+        "username": "Ƭ͟ʜ͟ᴇ͟🕷͟🔙",
+        "role": "member"
+      },
+      {
+        "username": "سيـدهۃ⚘ڪـل﮼النسـۧـآء",
+        "role": "member"
+      },
+      {
+        "username": "..shikabala..",
+        "role": "member"
+      },
+      {
+        "username": "⎀",
+        "role": "member"
+      },
+      {
+        "username": "ℎǎʑҽϻ♣ḱǎj",
+        "role": "owner"
+      },
+      {
+        "username": "قًًًـآتل◇ًًبـِـِِلآً◇أجًًًـِـِِر",
+        "role": "owner"
+      },
+      {
+        "username": ".metnrfz.",
+        "role": "owner"
+      },
+      {
+        "username": "dark_knight",
+        "role": "owner"
+      }
+    ],
+    "bannedNameWords": [],
+    "bannedMessageWords": [],
+    "bannedNameEnabled": true,
+    "bannedMessageEnabled": true
+  },
+  {
+    "roomName": "𝐀_𝖖𝖚𝖎𝖙𝖊_𝖕𝖑𝖆𝖈𝖊_🎧",
+    "master": "ℎǎʑҽϻ♣ḱǎj",
+    "username": "tebot",
+    "password": "mohamed--ka12",
+    "messageCount": 1,
+    "users": [
+      {
+        "username": "..musa..",
+        "role": "owner"
+      },
+      {
+        "username": "0radio_bot0",
+        "role": "owner"
+      },
+      {
+        "username": "_.mila._",
+        "role": "owner"
+      },
+      {
+        "username": "cgames",
+        "role": "admin"
+      },
+      {
+        "username": "despicable..me",
+        "role": "admin"
+      },
+      {
+        "username": "firm.",
+        "role": "owner"
+      },
+      {
+        "username": "jam...",
+        "role": "owner"
+      },
+      {
+        "username": "kenda99",
+        "role": "owner"
+      },
+      {
+        "username": "selga",
+        "role": "owner"
+      },
+      {
+        "username": "tebot",
+        "role": "owner"
+      },
+      {
+        "username": "឵឵឵឵឵឵឵឵឵឵឵឵឵឵",
+        "role": "member"
+      },
+      {
+        "username": "𝕮𝖎𝖓𝖓𝖆𝖇𝖔𝖓",
+        "role": "owner"
+      },
+      {
+        "username": "𝖖𝖚𝖎𝖙𝖊🎵",
+        "role": "owner"
+      },
+      {
+        "username": "🦉ّ",
+        "role": "admin"
+      },
+      {
+        "username": "ℎǎʑҽϻ♣ḱǎj",
+        "role": "creator"
+      }
+    ],
+    "bannedNameWords": [],
+    "bannedMessageWords": [],
+    "bannedNameEnabled": true,
+    "bannedMessageEnabled": true
+  },
+  {
+    "roomName": "لـِِـيبيـِِـا𝆔⇣💚⇡𝆔الـِِـعـِِـز",
+    "master": "ا◙☬ځُــۥـ☼ـڈ◄أڵـــســمـــٱ۽►ـۉد☼ــۥــۓ☬◙ا",
+    "username": "tebot",
+    "password": "mohamed--ka12",
+    "messageCount": 1,
+    "users": [
+      {
+        "username": "..njma.",
+        "role": "member"
+      },
+      {
+        "username": "3aliat..alm8am",
+        "role": "member"
+      },
+      {
+        "username": "remm01",
+        "role": "member"
+      },
+      {
+        "username": "..dody..",
+        "role": "member"
+      },
+      {
+        "username": "تـٌـٌٌـكُـُ»يحــرقٌـِِِـِِـِـ«كُـُلُـِِِـِِـِـ•°شُـُـُُـُي",
+        "role": "member"
+      },
+      {
+        "username": "rahalista",
+        "role": "member"
+      },
+      {
+        "username": "remm02",
+        "role": "member"
+      },
+      {
+        "username": "remm03",
+        "role": "member"
+      },
+      {
+        "username": "tebot",
+        "role": "owner"
+      },
+      {
+        "username": "ضـۥۘـِحڪِآتيـﮱ♪🤍♪قِصۘص𝆯࣪❟۠ﯙحِـۥِۘـڪٱِيآت",
+        "role": "member"
+      },
+      {
+        "username": "<٠٠٠>",
+        "role": "admin"
+      },
+      {
+        "username": "jo0dy.",
+        "role": "member"
+      },
+      {
+        "username": "al_fat7..abda",
+        "role": "admin"
+      },
+      {
+        "username": "0radio_bot0",
+        "role": "admin"
+      },
+      {
+        "username": "fakhamat_rajul",
+        "role": "member"
+      },
+      {
+        "username": "mz3ta",
+        "role": "member"
+      },
+      {
+        "username": "cgames",
+        "role": "admin"
+      },
+      {
+        "username": "1_9_1969.",
+        "role": "admin"
+      },
+      {
+        "username": "🦉ّ",
+        "role": "owner"
+      },
+      {
+        "username": "eva.a.a",
+        "role": "member"
+      },
+      {
+        "username": "norasaaa",
+        "role": "member"
+      },
+      {
+        "username": "remrem.",
+        "role": "admin"
+      },
+      {
+        "username": "jmila.k7ila",
+        "role": "member"
+      },
+      {
+        "username": "t8ila.",
+        "role": "member"
+      },
+      {
+        "username": "rrreem3",
+        "role": "member"
+      },
+      {
+        "username": "឵឵឵឵឵឵឵឵឵឵឵឵឵឵",
+        "role": "admin"
+      },
+      {
+        "username": "remm05",
+        "role": "member"
+      },
+      {
+        "username": "dlo03aaa",
+        "role": "member"
+      },
+      {
+        "username": "remm07",
+        "role": "member"
+      },
+      {
+        "username": "remm06",
+        "role": "member"
+      },
+      {
+        "username": ".mjno0na..",
+        "role": "member"
+      },
+      {
+        "username": "remm04",
+        "role": "member"
+      },
+      {
+        "username": "algeloshy",
+        "role": "member"
+      },
+      {
+        "username": "mo3mr..gdafi",
+        "role": "owner"
+      },
+      {
+        "username": "⎀",
+        "role": "member"
+      },
+      {
+        "username": "nobody-knows-me-1969",
+        "role": "owner"
+      }
+    ],
+    "bannedNameWords": [],
+    "bannedMessageWords": [],
+    "bannedNameEnabled": true,
+    "bannedMessageEnabled": true
+  },
+  {
+    "roomName": "رفقه♡عمر",
+    "master": "ا◙☬ځُــۥـ☼ـڈ◄أڵـــســمـــٱ۽►ـۉد☼ــۥــۓ☬◙ا",
+    "username": "tebot",
+    "password": "mohamed--ka12",
+    "messageCount": 0,
+    "users": [],
+    "bannedNameWords": [],
+    "bannedMessageWords": [],
+    "bannedNameEnabled": true,
+    "bannedMessageEnabled": true
+  },
+  {
+    "roomName": "مشاعر",
+    "master": "ا◙☬ځُــۥـ☼ـڈ◄أڵـــســمـــٱ۽►ـۉد☼ــۥــۓ☬◙ا",
+    "username": "tebot",
+    "password": "mohamed--ka12",
+    "messageCount": 1,
+    "users": [
+      {
+        "username": "طز",
+        "role": "owner"
+      },
+      {
+        "username": "7ob_omri",
+        "role": "member"
+      },
+      {
+        "username": "remas-777",
+        "role": "member"
+      },
+      {
+        "username": "3ber_alwrd",
+        "role": "member"
+      },
+      {
+        "username": "fatkat-hanem2",
+        "role": "member"
+      },
+      {
+        "username": "loz._",
+        "role": "member"
+      },
+      {
+        "username": "pizaa_",
+        "role": "member"
+      },
+      {
+        "username": "حـ⃪دٱ𝂅𐇵⃪ꥇᜒִֶָ𝂅ࢪٱيـۍٔ𝇄𝄒𝅊🍻.",
+        "role": "admin"
+      },
+      {
+        "username": "l3na.",
+        "role": "member"
+      },
+      {
+        "username": "3neda.w.al5ayn.ma.areda",
+        "role": "member"
+      },
+      {
+        "username": "naughty..girl",
+        "role": "member"
+      },
+      {
+        "username": "_.king._.of._.silence._",
+        "role": "none"
+      },
+      {
+        "username": "liiiiiiiiiiiiiiiiiiiiiiiiil",
+        "role": "member"
+      },
+      {
+        "username": "taj___",
+        "role": "member"
+      },
+      {
+        "username": "♪🍊",
+        "role": "admin"
+      },
+      {
+        "username": "l0ove-y0ou",
+        "role": "member"
+      },
+      {
+        "username": "ටි𝑛ᷱ𝑜ⷩ𝑤ͥ𝁬ͭ𝁬ͤ❄",
+        "role": "owner"
+      },
+      {
+        "username": "dede.-898",
+        "role": "member"
+      },
+      {
+        "username": "cic--",
+        "role": "member"
+      },
+      {
+        "username": "mzagy_off",
+        "role": "member"
+      },
+      {
+        "username": "alby-off",
+        "role": "member"
+      },
+      {
+        "username": "pyarr",
+        "role": "member"
+      },
+      {
+        "username": "r7eeg",
+        "role": "member"
+      },
+      {
+        "username": "_latifa_",
+        "role": "member"
+      },
+      {
+        "username": "_dl3..",
+        "role": "member"
+      },
+      {
+        "username": "_flly",
+        "role": "member"
+      },
+      {
+        "username": "i_.-a_malka.-.s.-.alrom_a-._i",
+        "role": "member"
+      },
+      {
+        "username": "•آلَٰـُڪَٰـُ•᮪͢𝑴๋𝒂ᤨ𝒋𝒆͜͡𝒅•ــﯛ̲୭بَٰـُـرآ⁞♩⁽⚔️₎⇣",
+        "role": "owner"
+      },
+      {
+        "username": "tebot",
+        "role": "admin"
+      },
+      {
+        "username": "ۦْٰ𓆪☕آلـۦـَٰـَٰۦـَٰـ🚬ـَٰـۦۦـرايـق☕𓆩ۦْٰ",
+        "role": "owner"
+      },
+      {
+        "username": "roro_1890",
+        "role": "member"
+      },
+      {
+        "username": "❥𝄒м𝒆𝐥𝛊́ٓ𝐬۪𝐒a̾𝂅𝆕,",
+        "role": "member"
+      },
+      {
+        "username": "<٠٠٠>",
+        "role": "admin"
+      },
+      {
+        "username": "ᚲ﮼𝐉𝐮⃪̈𝐒𝐭ꓹ𔘓𝄒𝐌𝗲⃪꯭́🍻.឵.឵",
+        "role": "admin"
+      },
+      {
+        "username": "tota_toty",
+        "role": "member"
+      },
+      {
+        "username": "ۦ˺مــشـــٱعࢪ⃪𓂃⃪ֶ𓏲",
+        "role": "owner"
+      },
+      {
+        "username": "مص⃪ــࢪي⃪ــٖۃ𓈒𔘓𝄒",
+        "role": "owner"
+      },
+      {
+        "username": "dam3y_",
+        "role": "member"
+      },
+      {
+        "username": "♥هـــشـــ♥ــــــام♥",
+        "role": "admin"
+      },
+      {
+        "username": "𔘓឵",
+        "role": "admin"
+      },
+      {
+        "username": "toto55330",
+        "role": "member"
+      },
+      {
+        "username": "•𖣘ـيار𓄹ִֶָ𓏲ִֶָּبـ𖣘•",
+        "role": "owner"
+      },
+      {
+        "username": "._-....the_stronger....-_.",
+        "role": "owner"
+      },
+      {
+        "username": "..basb0sa-",
+        "role": "member"
+      },
+      {
+        "username": "mzajjjiiiah",
+        "role": "member"
+      },
+      {
+        "username": "вяαѕιℓу•𝆺𝅥⃝🇧🇷",
+        "role": "owner"
+      },
+      {
+        "username": "0radio_bot0",
+        "role": "admin"
+      },
+      {
+        "username": "7aawa..",
+        "role": "owner"
+      },
+      {
+        "username": "♕خــــــــــــطيئة♕الكــبـــــــرياء♕",
+        "role": "admin"
+      },
+      {
+        "username": ".s-_-s.",
+        "role": "member"
+      },
+      {
+        "username": "-roohy.t7bak-",
+        "role": "member"
+      },
+      {
+        "username": "_c-0-f-f-e_",
+        "role": "member"
+      },
+      {
+        "username": "arojaa",
+        "role": "member"
+      },
+      {
+        "username": "3aly....",
+        "role": "member"
+      },
+      {
+        "username": "الفْـرعـ𓅃ـون.المصـ🇪🇬ـري",
+        "role": "owner"
+      },
+      {
+        "username": "cgames",
+        "role": "owner"
+      },
+      {
+        "username": "༄❥͜͡кυσвє∂ℓσνє",
+        "role": "owner"
+      },
+      {
+        "username": "s0oft",
+        "role": "member"
+      },
+      {
+        "username": "b7bk_wmat_alklam",
+        "role": "member"
+      },
+      {
+        "username": "no0oren",
+        "role": "member"
+      },
+      {
+        "username": "canim.",
+        "role": "member"
+      },
+      {
+        "username": "al7alazona",
+        "role": "member"
+      },
+      {
+        "username": "i_.-a_malka.-alrom_a-._i",
+        "role": "member"
+      },
+      {
+        "username": "🦉ّ",
+        "role": "admin"
+      },
+      {
+        "username": "mlksh.feh",
+        "role": "member"
+      },
+      {
+        "username": "↲رآقُـ✵ۣۘ͡ـيَ˚⸙͎۪۫⋆بًآخِـۦٰـلَآقُـ✵ۣۘ͡ـيَ↳",
+        "role": "owner"
+      },
+      {
+        "username": "r2nda",
+        "role": "member"
+      },
+      {
+        "username": "soommaaa89",
+        "role": "member"
+      },
+      {
+        "username": "gogo6722",
+        "role": "member"
+      },
+      {
+        "username": "asma.i.io",
+        "role": "member"
+      },
+      {
+        "username": "seet_el.bnat",
+        "role": "member"
+      },
+      {
+        "username": "0m_8mazat",
+        "role": "member"
+      },
+      {
+        "username": "_.angle._",
+        "role": "member"
+      },
+      {
+        "username": "zeina2030",
+        "role": "member"
+      },
+      {
+        "username": "hoda2012121",
+        "role": "member"
+      },
+      {
+        "username": "-_dlly_-",
+        "role": "member"
+      },
+      {
+        "username": "rovvan",
+        "role": "member"
+      },
+      {
+        "username": ".rooooooooooooma.",
+        "role": "member"
+      },
+      {
+        "username": "norhan_1990",
+        "role": "member"
+      },
+      {
+        "username": "--cute_angel--",
+        "role": "member"
+      },
+      {
+        "username": ".forget.",
+        "role": "member"
+      },
+      {
+        "username": "skr._",
+        "role": "member"
+      },
+      {
+        "username": "឵឵឵឵឵឵឵឵឵឵឵឵឵឵",
+        "role": "member"
+      },
+      {
+        "username": "shosho443322",
+        "role": "member"
+      },
+      {
+        "username": "selga",
+        "role": "admin"
+      },
+      {
+        "username": "آلجمـيلهہ'ة",
+        "role": "owner"
+      },
+      {
+        "username": "𓂃ִֶ𝑆ᮥ𝑜𝑢◞❁",
+        "role": "owner"
+      },
+      {
+        "username": "m.w.j",
+        "role": "member"
+      },
+      {
+        "username": "ops..",
+        "role": "owner"
+      },
+      {
+        "username": "anty.-.habiba.rohy",
+        "role": "member"
+      },
+      {
+        "username": "-bnota-asoola-moot-",
+        "role": "member"
+      },
+      {
+        "username": "صـ͓🚀ـآرٍوٚخ⇙💃⇘نـ͓̽ــ🔥ـوٌوٚي",
+        "role": "owner"
+      },
+      {
+        "username": "dl0o3a._",
+        "role": "member"
+      },
+      {
+        "username": "snu-weeet900",
+        "role": "member"
+      },
+      {
+        "username": "قشـٰطـۿـۃۦَٰ",
+        "role": "owner"
+      },
+      {
+        "username": "al.amo0ora",
+        "role": "member"
+      },
+      {
+        "username": "bes0o.",
+        "role": "member"
+      },
+      {
+        "username": "rai8ah",
+        "role": "member"
+      },
+      {
+        "username": "i0x0x0i",
+        "role": "member"
+      },
+      {
+        "username": "bnotaaaseeeeel",
+        "role": "member"
+      },
+      {
+        "username": "roowan",
+        "role": "member"
+      },
+      {
+        "username": "--0k--",
+        "role": "member"
+      },
+      {
+        "username": "-j-x-j-",
+        "role": "member"
+      },
+      {
+        "username": "bnota-asoola-mot",
+        "role": "member"
+      },
+      {
+        "username": "⎀",
+        "role": "admin"
       }
     ],
     "bannedNameWords": [],

@@ -31,7 +31,6 @@ function loadRooms() {
                 return parsed;
             }
         } catch (error) {
-            console.error('❌ Error reading rooms.json:', error);
         }
     }
     return [];
@@ -42,9 +41,7 @@ function loadRooms() {
 function saveRooms(rooms = roomsCache) {
     try {
         fs.writeFileSync(roomsFilePath, JSON.stringify(rooms, null, 2), 'utf-8');
-        console.log('💾 Rooms saved successfully');
     } catch (error) {
-        console.error('❌ Error saving rooms.json:', error);
     }
 }
 
@@ -72,7 +69,6 @@ function addUserToRoom(roomName, username, role = 'member') {
     const targetRoom = rooms.find(r => normalizeName(r.roomName) === normalizeName(roomName));
 
     if (!targetRoom) {
-        console.warn(`❌ Room "${roomName}" not found.`);
         return false;
     }
 
@@ -81,7 +77,6 @@ function addUserToRoom(roomName, username, role = 'member') {
     );
 
     if (userExists) {
-        console.log(`⚠️ User "${username}" already exists in room "${roomName}".`);
         return false;
     }
 
@@ -89,7 +84,6 @@ function addUserToRoom(roomName, username, role = 'member') {
     targetRoom.users = [...(targetRoom.users || []), newUser];
 
     updateRooms(rooms);
-    console.log(`✅ Added user "${username}" to room "${roomName}".`);
     return true;
 }
 
