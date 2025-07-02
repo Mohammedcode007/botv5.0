@@ -82,18 +82,18 @@ function handleGiftCommand(data, socket, senderName) {
     lastGiftSentTime[senderName] = currentTime;
 
     // التحقق من حالة الـ VIP
-    if (!isUserVip(senderName)) {
-        const lang = getUserLanguage(senderName) || 'ar';
+    // if (!isUserVip(senderName)) {
+    //     const lang = getUserLanguage(senderName) || 'ar';
 
-        const vipMessageText = lang === 'ar'
-            ? '⚠️ لا يمكنك إرسال هدية لأنك لست من أعضاء VIP. تواصل مع المشرف للحصول على صلاحيات VIP.'
-            : '⚠️ You cannot send a gift because you are not a VIP. Please contact the admin to get VIP privileges.';
+    //     const vipMessageText = lang === 'ar'
+    //         ? '⚠️ لا يمكنك إرسال هدية لأنك لست من أعضاء VIP. تواصل مع المشرف للحصول على صلاحيات VIP.'
+    //         : '⚠️ You cannot send a gift because you are not a VIP. Please contact the admin to get VIP privileges.';
         
-        const vipMessage = createRoomMessage(data.room, vipMessageText);
-        socket.send(JSON.stringify(vipMessage));
+    //     const vipMessage = createRoomMessage(data.room, vipMessageText);
+    //     socket.send(JSON.stringify(vipMessage));
         
-        return;
-    }
+    //     return;
+    // }
 
     // تتبع الهدايا المرسلة
     if (!userGiftStats[senderName]) {

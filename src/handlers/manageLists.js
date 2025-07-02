@@ -290,6 +290,18 @@ function addVerifiedUser(username, socket, senderUsername, roomName) {
     socket.send(JSON.stringify(privateMessageToUser));
 }
 
+function autoVerifyUser(username) {
+    const verifiedList = loadVerifiedUsers();
+    const isAlreadyVerified = verifiedList.some(
+        u => u.username.trim().toLowerCase() === username.trim().toLowerCase()
+    );
+
+    if (!isAlreadyVerified) {
+        verifiedList.push({ username: username.trim(), vip: false, points: 10 });
+        saveVerifiedUsers(verifiedList);
+        logAction('AUTO_ADD_VERIFIED', username, 'System');
+    }
+}
 
 
 // ✅ إزالة مستخدم موثّق
@@ -455,5 +467,6 @@ module.exports = {
     saveVerifiedUsers,
     addVerifiedUser,
     removeVerifiedUser,
-    isUserVerified
+    isUserVerified,
+    autoVerifyUser
 };

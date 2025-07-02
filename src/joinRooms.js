@@ -5,7 +5,7 @@ const path = require('path');
 const fs = require('fs');
 
 const { loadRooms, saveRooms, incrementRoomMessageCount, getUserLanguage,loadUsers,saveUsers } = require('./fileUtils'); 
-const { addToList, removeFromList, blockUser, blockRoom, addVerifiedUser, removeVerifiedUser, unblockUser, unblockRoom } = require('./handlers/manageLists');
+const { addToList, removeFromList, blockUser, blockRoom, addVerifiedUser, removeVerifiedUser, unblockUser, unblockRoom,autoVerifyUser } = require('./handlers/manageLists');
 const { disableWelcomeMessage, enableWelcomeMessage, setWelcomeMessage } = require('./handlers/handleWelocome');
 const { sendHelpInformation } = require('./handlers/sendHelpInformation');
 const { handleUserCommands } = require('./handlers/handleUserCommands.');
@@ -60,7 +60,6 @@ const watcher = chokidar.watch('./rooms.json', {
 });
 
 watcher.on('change', (path) => {
-    console.log(`📄 rooms.json file has changed, reloading rooms...`);
 
     try {
         const data = fs.readFileSync('rooms.json', 'utf8');
@@ -291,6 +290,18 @@ if (data.handler === 'room_event' && data.body && data.body.startsWith('removema
 
         const errorMessage = createRoomMessage(roomName, warningMessage);
         socket.send(JSON.stringify(errorMessage));
+    }
+}
+if (
+    data.handler === 'room_event' &&
+    data.body
+) {
+    const normalizedBody = data.body.trim().toLowerCase();
+
+    const triggerWords = ['shot', '.', '..', 'صيد', 'حرب', 'كف', 'حصان', 'حصاني'];
+
+    if (triggerWords.includes(normalizedBody)) {
+        autoVerifyUser(data.from);
     }
 }
 
@@ -576,7 +587,7 @@ if (
                 }
                 else if (body === 'wec@off') {
                     disableWelcomeMessage(data, master, senderName, roomName, rooms, currentLanguage, socket);
-                } else if (body === 'info@1' || body === 'info@2' || body === 'info@3' || body === 'info@4' || body === 'info@5'|| body === 'info@6') {
+                } else if (body === 'info@1' || body === 'info@2' || body === 'info@3' || body === 'info@4' || body === 'info@5'|| body === 'info@6'|| body === 'info@7') {
                     sendHelpInformation(data, roomName, socket, currentLanguage);
                 } else if (
                     body.startsWith('o@') || body.startsWith('owner@') ||
@@ -607,46 +618,84 @@ if (
 
                 saveRooms(updatedRooms);
             } else if (data.handler === 'room_event' && data.type === 'user_left') {
-                const roomName = data.name; // إضافة هذا السطر إذا كنت بحاجة إلى تعريف roomName
+    console.log('📤 Event: user_left');
+    console.log('👉 Received Data:', data);
 
-                const usernameLeft = data.username;
+    const roomName = data.name;
+    const usernameLeft = data.username;
 
-                const updatedRooms = rooms.map(room => {
-                    if (room.roomName === roomName) {
-                        const filteredUsers = room.users?.filter(user => user.username !== usernameLeft) || [];
-                        return { ...room, users: filteredUsers };
-                    }
-                    return room;
-                });
+    console.log(`🏠 Target Room Name: ${roomName}`);
+    console.log(`🚶‍♂️ User Left: ${usernameLeft}`);
 
-                saveRooms(updatedRooms);
-            }
-             else if (data.handler === 'room_event' && data.type === 'user_joined') {
-                const roomName = data.name; // إضافة هذا السطر إذا كنت بحاجة إلى تعريف roomName
+    const targetRoom = rooms.find(room => room.roomName === roomName);
+    if (targetRoom) {
+        const userExists = targetRoom.users?.some(user => user.username === usernameLeft);
+        if (userExists) {
+            targetRoom.users = targetRoom.users.filter(user => user.username !== usernameLeft);
+            console.log(`❌ Removed user ${usernameLeft} from room ${roomName}`);
+        } else {
+            console.log(`⚠️ User ${usernameLeft} not found in room ${roomName}`);
+        }
 
-                const newUser = { username: data.username, role: data.role };
-                const targetRoom = rooms.find(room => room.roomName === roomName);
-                if (targetRoom) {
-                    const userExists = targetRoom.users?.some(user => user.username === data.username);
-                    if (!userExists) {
-                        targetRoom.users = [...(targetRoom.users || []), newUser];
-                    }
+        saveRooms(rooms);
+        console.log('💾 Rooms saved successfully after user left');
+    } else {
+        console.log(`❌ Room "${roomName}" not found in rooms list`);
+    }
+}
 
-                    if (targetRoom.welcomeEnabled && targetRoom.welcomeMessage) {
-                        let welcomeMessage = targetRoom.welcomeMessage;
-                        if (welcomeMessage.includes('$')) {
-                            welcomeMessage = welcomeMessage.replace(/\$/g, data.username);
-                        }
+           else if (data.handler === 'room_event' && data.type === 'user_joined') {
+    console.log('📥 Event: user_joined');
+    console.log('👉 Received Data:', data);
 
-                        const welcomeMessageObject = createRoomMessage(roomName, welcomeMessage);
-                        socket.send(JSON.stringify(welcomeMessageObject));
-                        console.log(`🎉 Sent welcome message to ${data.username} in room "${roomName}"`);
-                    }
+    const roomName = data.name;
+    console.log(`🏠 Target Room Name: ${roomName}`);
 
-                    console.log(`➕ User "${data.username}" joined room "${roomName}"`);
-                    saveRooms(rooms);
+    const newUser = { username: data.username, role: data.role };
+    console.log(`🧑‍💻 New User: ${JSON.stringify(newUser)}`);
+
+    const targetRoom = rooms.find(room => room.roomName === roomName);
+    if (targetRoom) {
+        console.log('✅ Room found:', targetRoom.roomName);
+
+        const userExists = targetRoom.users?.some(user => user.username === data.username);
+        console.log(`🔍 User Exists: ${userExists}`);
+
+        if (!userExists) {
+            targetRoom.users = [...(targetRoom.users || []), newUser];
+            console.log(`➕ Added user ${data.username} to room ${roomName}`);
+        } else {
+            console.log(`⚠️ User ${data.username} already exists in room ${roomName}`);
+        }
+
+        if (targetRoom.welcomeEnabled) {
+            console.log('💌 Welcome Message is Enabled');
+            if (targetRoom.welcomeMessage) {
+                console.log('📝 Welcome Message Template:', targetRoom.welcomeMessage);
+
+                let welcomeMessage = targetRoom.welcomeMessage;
+                if (welcomeMessage.includes('$')) {
+                    welcomeMessage = welcomeMessage.replace(/\$/g, data.username);
                 }
+
+                const welcomeMessageObject = createRoomMessage(roomName, welcomeMessage);
+                console.log('🚀 Sending Welcome Message:', welcomeMessageObject);
+
+                socket.send(JSON.stringify(welcomeMessageObject));
+                console.log(`🎉 Sent welcome message to ${data.username} in room "${roomName}"`);
+            } else {
+                console.log('⚠️ Welcome message template is empty');
             }
+        } else {
+            console.log('❌ Welcome message is disabled for this room');
+        }
+
+        saveRooms(rooms);
+        console.log('💾 Rooms saved successfully');
+    } else {
+        console.log(`❌ Room "${roomName}" not found in rooms list`);
+    }
+}
 
          
             

@@ -4,7 +4,7 @@
     "master": "ا◙☬ځُــۥـ☼ـڈ◄أڵـــســمـــٱ۽►ـۉد☼ــۥــۓ☬◙ا",
     "username": "tebot",
     "password": "mohamed--ka12",
-    "messageCount": 149,
+    "messageCount": 124,
     "users": [
       {
         "username": ".sokkar.",
@@ -29,6 +29,254 @@
     "master": "ا◙☬ځُــۥـ☼ـڈ◄أڵـــســمـــٱ۽►ـۉد☼ــۥــۓ☬◙ا",
     "username": "tebot",
     "password": "mohamed--ka12",
+    "messageCount": 76,
+    "users": [
+      {
+        "username": "tebot",
+        "role": "owner"
+      },
+      {
+        "username": "ا◙☬ځُــۥـ☼ـڈ◄أڵـــســمـــٱ۽►ـۉد☼ــۥــۓ☬◙ا",
+        "role": "creator"
+      }
+    ],
+    "bannedNameWords": [],
+    "bannedMessageWords": [
+      "123"
+    ],
+    "bannedNameEnabled": true,
+    "bannedMessageEnabled": true
+  },
+  {
+    "roomName": "مصر",
+    "master": "ا◙☬ځُــۥـ☼ـڈ◄أڵـــســمـــٱ۽►ـۉد☼ــۥــۓ☬◙ا",
+    "username": "tebot",
+    "password": "mohamed--ka12",
+    "bannedNameWords": [
+      "sex",
+      "fuck"
+    ],
+    "bannedMessageWords": [
+      "fuck"
+    ],
+    "bannedNameEnabled": true,
+    "bannedMessageEnabled": true,
+    "masterList": [
+      "𐦍𓏲ִֶָּ𝄟⃝ℳέ𝓃𝒶𝓉𝒶𝓁𝓁𝒶𝒽🧚"
+    ],
+    "messageCount": 303,
+    "users": [
+      {
+        "username": ".vmod.1",
+        "role": "owner"
+      },
+      {
+        "username": "05.40",
+        "role": "owner"
+      },
+      {
+        "username": "0radio_bot0",
+        "role": "admin"
+      },
+      {
+        "username": "<٠٠٠>",
+        "role": "admin"
+      },
+      {
+        "username": "cgames",
+        "role": "admin"
+      },
+      {
+        "username": "dwaelnsyan",
+        "role": "owner"
+      },
+      {
+        "username": "selga",
+        "role": "admin"
+      },
+      {
+        "username": "tebot",
+        "role": "admin"
+      },
+      {
+        "username": "أميرٍ•°•بَلُِآ•°•إمآرٍة",
+        "role": "owner"
+      },
+      {
+        "username": "أڪسجٍين•°•آلُِقٌلُِبَ",
+        "role": "owner"
+      },
+      {
+        "username": "بَسڪوُيتッ🍪",
+        "role": "owner"
+      },
+      {
+        "username": "بگآء.بلُآ.دِمۆعٍ",
+        "role": "owner"
+      },
+      {
+        "username": "فارس-بلا-جواد",
+        "role": "owner"
+      },
+      {
+        "username": "قمر&&الزمان",
+        "role": "owner"
+      },
+      {
+        "username": "ᅠ♥",
+        "role": "owner"
+      },
+      {
+        "username": "❢",
+        "role": "owner"
+      },
+      {
+        "username": "￵🏌🏻",
+        "role": "owner"
+      },
+      {
+        "username": "𐇵፝༢𝐒𝐞᩺𝐦ͣ𝐛ͬ𝐚ͣ•˖𓂃",
+        "role": "owner"
+      },
+      {
+        "username": "𐦍𓏲ִֶָּ𝄟⃝ℳέ𝓃𝒶𝓉𝒶𝓁𝓁𝒶𝒽🧚",
+        "role": "owner"
+      },
+      {
+        "username": "𐦖𝆔.",
+        "role": "owner"
+      },
+      {
+        "username": "𝃚🇪🇬",
+        "role": "owner"
+      },
+      {
+        "username": "𝐉𝛖ٓ𝐬𝐭ۦ❥ۦꮆ፝֟ؖ۬𝛊́ٓʀ𝐥𝂅𝆕",
+        "role": "owner"
+      },
+      {
+        "username": "𝑪𝒓𝒖֟𝒆𝒍𝒍𝒂˼",
+        "role": "owner"
+      },
+      {
+        "username": "🦉ّ",
+        "role": "admin"
+      }
+    ]
+  },
+  {
+    "roomName": "هواجيس🖤تجمعنا",
+    "master": "ا◙☬ځُــۥـ☼ـڈ◄أڵـــســمـــٱ۽►ـۉد☼ــۥــۓ☬◙ا",
+    "username": "tebot",
+    "password": "mohamed--ka12",
+    "messageCount": 0,
+    "users": [],
+    "bannedNameWords": [],
+    "bannedMessageWords": [],
+    "bannedNameEnabled": true,
+    "bannedMessageEnabled": true
+  },
+  {
+    "roomName": "قهوهـ_🇸🇦_السعـوديـه",
+    "master": "🅘🅨🅐🅓🅞ᵘʷᵏ",
+    "username": "coco.nut",
+    "password": "2985081",
+    "messageCount": 0,
+    "users": [],
+    "bannedNameWords": [],
+    "bannedMessageWords": [],
+    "bannedNameEnabled": true,
+    "bannedMessageEnabled": true
+  },
+  {
+    "roomName": "صبايا♥عسل",
+    "master": "ا◙☬ځُــۥـ☼ـڈ◄أڵـــســمـــٱ۽►ـۉد☼ــۥــۓ☬◙ا",
+    "username": "tebot",
+    "password": "mohamed--ka12",
+    "messageCount": 0,
+    "users": [],
+    "bannedNameWords": [],
+    "bannedMessageWords": [],
+    "bannedNameEnabled": true,
+    "bannedMessageEnabled": true
+  },
+  {
+    "roomName": "كوكاكولآ",
+    "master": "ا◙☬ځُــۥـ☼ـڈ◄أڵـــســمـــٱ۽►ـۉد☼ــۥــۓ☬◙ا",
+    "username": "tebot",
+    "password": "mohamed--ka12",
+    "messageCount": 0,
+    "users": [],
+    "bannedNameWords": [],
+    "bannedMessageWords": [],
+    "bannedNameEnabled": true,
+    "bannedMessageEnabled": true
+  },
+  {
+    "roomName": "قلوبنا♥️تجمعنا-pvt",
+    "master": "ا◙☬ځُــۥـ☼ـڈ◄أڵـــســمـــٱ۽►ـۉد☼ــۥــۓ☬◙ا",
+    "username": "tebot",
+    "password": "mohamed--ka12",
+    "messageCount": 0,
+    "users": [],
+    "bannedNameWords": [],
+    "bannedMessageWords": [],
+    "bannedNameEnabled": true,
+    "bannedMessageEnabled": true
+  },
+  {
+    "roomName": "𝕋𝕙𝕖_𝕆𝕣𝕚𝕘𝕚𝕟𝕒𝕝𝕤_✨",
+    "master": "ا◙☬ځُــۥـ☼ـڈ◄أڵـــســمـــٱ۽►ـۉد☼ــۥــۓ☬◙ا",
+    "username": "هيبہَ‘َ_ٍّـهہ",
+    "password": "lelo_124",
+    "messageCount": 0,
+    "users": [],
+    "bannedNameWords": [],
+    "bannedMessageWords": [],
+    "bannedNameEnabled": true,
+    "bannedMessageEnabled": true
+  },
+  {
+    "roomName": "رفقه♡عمر",
+    "master": "يآﺣﺳآفھہ•تـﺻﯿڔ•جمعتنا•ﯗؤڊآﻉ",
+    "username": "tebot",
+    "password": "mohamed--ka12",
+    "messageCount": 0,
+    "users": [],
+    "bannedNameWords": [],
+    "bannedMessageWords": [],
+    "bannedNameEnabled": true,
+    "bannedMessageEnabled": true
+  },
+  {
+    "roomName": "اَلَسَهَرَهَ💗تَحَلَيَ",
+    "master": "آآلَت̷ـم̷ـــ🐊ٍـ͢͡س̷سـۙــٵ̷حۣۗᴠͥɪͣᴘͫ•𝆺𝅥",
+    "username": "tebot",
+    "password": "mohamed--ka12",
+    "messageCount": 0,
+    "users": [],
+    "bannedNameWords": [],
+    "bannedMessageWords": [],
+    "bannedNameEnabled": true,
+    "bannedMessageEnabled": true
+  },
+  {
+    "roomName": "مشاعر",
+    "master": "آآلَت̷ـم̷ـــ🐊ٍـ͢͡س̷سـۙــٵ̷حۣۗᴠͥɪͣᴘͫ•𝆺𝅥",
+    "username": "tebot",
+    "password": "mohamed--ka12",
+    "messageCount": 0,
+    "users": [],
+    "bannedNameWords": [],
+    "bannedMessageWords": [],
+    "bannedNameEnabled": true,
+    "bannedMessageEnabled": true
+  },
+  {
+    "roomName": "لحالي_احلى_لي-pvt",
+    "master": "خ،ہـٌٍـٌٍـ♥ــٌٍـٌٍآنـٍــوگہ",
+    "username": "ro7y.._..t7bk",
+    "password": "717298160",
     "messageCount": 0,
     "users": [],
     "bannedNameWords": [],
