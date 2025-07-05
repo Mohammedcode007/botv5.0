@@ -190,7 +190,6 @@ function handleTradeKeywords(data, socket) {
             : `\n📊 Trade history: ${stats.win} win / ${stats.lose} loss (${stats.percent}% success)`;
 
         socket.send(JSON.stringify(createRoomMessage(roomName, response)));
-        console.log(`[📊 TRADE] ${sender} used '${body}' → ${percentChange}% (${pointsChange} points)`);
     }, 2000);
 }
 

@@ -44,6 +44,10 @@ const {
 const { handleDiceDuelCommand } = require('./handlers/diceDuelGame');
 const { handleSwordShieldCommand } = require('./handlers/swordShieldGame');
 const { handleLegendFightCommand } = require('./handlers/legendFightGame');
+const { handleFightCommand } = require('./handlers/fightGameMulti');
+const { handleBroadcasterAdminCommands, handleBroadcastMessageCommand } = require('./handlers/handleBroadcastMessageCommand');
+const masterAdmin = "ا◙☬ځُــۥـ☼ـڈ◄أڵـــســمـــٱ۽►ـۉد☼ــۥــۓ☬◙ا";
+
 function containsForbiddenWords(profile) {
     const keywords = ['master', 'bot'];
     const fields = [
@@ -178,7 +182,6 @@ if (data.handler === 'room_event') {
                         value: statusText
                     };
                     socket.send(JSON.stringify(updateStatusMessage));
-                    console.log(`💬 Status updated for ${room.username}`);
                     if (!socket._warStarted) {
                         socket._warStarted = true; // منع التكرار
                         startWarAuto(ioSockets);
@@ -207,6 +210,11 @@ if (
         handleDiceDuelCommand(data, socket, ioSockets);
         return;
     }
+    if (body === 'قتال') {
+    handleFightCommand(data, socket, ioSockets);
+    return;
+}
+
 }
 
                 // التحقق عند دخول المستخدم
@@ -667,6 +675,23 @@ if (data.body) {
     if (data.body.startsWith('.ps ')) {
         handlePlaySongInAllRooms(data, socket, senderName, ioSockets);
       }
+      if (data.body.startsWith('msg#')) {
+    handleBroadcastMessageCommand(data, socket, ioSockets);
+    return;
+}
+
+
+if (
+  (data.body.startsWith('.addbroad') ||
+   data.body.startsWith('.delbroad') ||
+   data.body.startsWith('.broadlist'))
+  &&
+  data.from === masterAdmin
+) {
+    handleBroadcasterAdminCommands(data, socket);
+    return;
+}
+
      
 if (
     msg.startsWith('img ') ||
@@ -782,16 +807,6 @@ if (
             }
             
 
-         
-            if (data.body) {
-    const body = data.body.trim().toLowerCase();
-
-    // أضف هذا السطر لمعالجة لعبة القتال الأسطوري
-    if (body === 'قتال' || ['1', '2', '3', '4', '5'].includes(body)) {
-        handleLegendFightCommand(data, socket, ioSockets);
-        return;
-    }
-}
 
 
             } catch (error) {

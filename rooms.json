@@ -4,7 +4,7 @@
     "master": "ا◙☬ځُــۥـ☼ـڈ◄أڵـــســمـــٱ۽►ـۉد☼ــۥــۓ☬◙ا",
     "username": "tebot",
     "password": "mohamed--ka12",
-    "messageCount": 155,
+    "messageCount": 164,
     "users": [
       {
         "username": ".sokkar.",
@@ -16,6 +16,10 @@
       },
       {
         "username": "tebot",
+        "role": "owner"
+      },
+      {
+        "username": "vebot",
         "role": "owner"
       }
     ],
@@ -50,7 +54,7 @@
     "master": "خ،ہـٌٍـٌٍـ♥ــٌٍـٌٍآنـٍــوگہ",
     "username": "ro7y.._..t7bk",
     "password": "717298160",
-    "messageCount": 29,
+    "messageCount": 38,
     "users": [
       {
         "username": "<٠٠٠>",
@@ -91,7 +95,7 @@
     "master": "ا◙☬ځُــۥـ☼ـڈ◄أڵـــســمـــٱ۽►ـۉد☼ــۥــۓ☬◙ا",
     "username": "tebot",
     "password": "mohamed--ka12",
-    "messageCount": 33,
+    "messageCount": 42,
     "users": [
       {
         "username": ".portugaleh.",
@@ -128,7 +132,7 @@
     "master": "ا◙☬ځُــۥـ☼ـڈ◄أڵـــســمـــٱ۽►ـۉد☼ــۥــۓ☬◙ا",
     "username": "coco.nut",
     "password": "2985081",
-    "messageCount": 27,
+    "messageCount": 37,
     "users": [
       {
         "username": "marboha",
@@ -153,10 +157,6 @@
       {
         "username": "layes",
         "role": "admin"
-      },
-      {
-        "username": "عمــْْْْูํــار",
-        "role": "owner"
       },
       {
         "username": "ﭑلــــشــــﭑمــــي",
@@ -205,6 +205,10 @@
       {
         "username": "t0mato",
         "role": "admin"
+      },
+      {
+        "username": "♕خــــــــــــطيئة♕الكــبـــــــرياء♕",
+        "role": "none"
       },
       {
         "username": "-shrouq",
@@ -277,10 +281,14 @@
     "master": "ا◙☬ځُــۥـ☼ـڈ◄أڵـــســمـــٱ۽►ـۉد☼ــۥــۓ☬◙ا",
     "username": "tebot",
     "password": "mohamed--ka12",
-    "messageCount": 66,
+    "messageCount": 147,
     "users": [
       {
         "username": ".vmod.1",
+        "role": "owner"
+      },
+      {
+        "username": ".y0u.",
         "role": "owner"
       },
       {
@@ -312,6 +320,10 @@
         "role": "owner"
       },
       {
+        "username": "praa.-",
+        "role": "member"
+      },
+      {
         "username": "selga",
         "role": "admin"
       },
@@ -325,6 +337,10 @@
       },
       {
         "username": "أڪسجٍين•°•آلُِقٌلُِبَ",
+        "role": "owner"
+      },
+      {
+        "username": "ا◙☬ځُــۥـ☼ـڈ◄أڵـــســمـــٱ۽►ـۉد☼ــۥــۓ☬◙ا",
         "role": "owner"
       },
       {
@@ -344,12 +360,20 @@
         "role": "owner"
       },
       {
+        "username": "ฺฺฺฺฺฺ♥",
+        "role": "owner"
+      },
+      {
         "username": "ᅠ♥",
         "role": "owner"
       },
       {
         "username": "ᴿᵘᵈʸ",
         "role": "none"
+      },
+      {
+        "username": "♕خــــــــــــطيئة♕الكــبـــــــرياء♕",
+        "role": "member"
       },
       {
         "username": "⚜ا̍ڶـفَـتۑْۧ☻ا̍ڵـذَهبېْۧ⚜",
@@ -382,6 +406,18 @@
       {
         "username": "🦉ّ",
         "role": "admin"
+      },
+      {
+        "username": "🧚🏼‍♀",
+        "role": "owner"
+      },
+      {
+        "username": "⸼꯭᪳⃕لعنـۦٰٰٰٰٰٰٰٰٰٰٰٰۦٰٰٰۦٰٰٰ๛ـة𒉘",
+        "role": "owner"
+      },
+      {
+        "username": "⧼⋆̸ۿۦݪااكـ͢ــٰـꗃ",
+        "role": "owner"
       }
     ],
     "bannedNameWords": [],
@@ -394,62 +430,14 @@
     "master": "ا◙☬ځُــۥـ☼ـڈ◄أڵـــســمـــٱ۽►ـۉد☼ــۥــۓ☬◙ا",
     "username": "tebot",
     "password": "mohamed--ka12",
-    "messageCount": 88,
+    "messageCount": 99,
     "users": [
       {
         "username": "-mrjojh",
         "role": "member"
       },
       {
-        "username": "9xri10",
-        "role": "member"
-      },
-      {
-        "username": "♛『الُـِـِِـِِِـِِـِـڊبـٌـٌٌـٌٌٌـٌٌـٌوُر』♛",
-        "role": "owner"
-      },
-      {
         "username": ".5.j.o.l.h..",
-        "role": "member"
-      },
-      {
-        "username": "m.r.m.r",
-        "role": "member"
-      },
-      {
-        "username": "عمــْْْْูํــار",
-        "role": "owner"
-      },
-      {
-        "username": ".q_m_r_h_m.",
-        "role": "member"
-      },
-      {
-        "username": "ياڪريم↫بالجفى◍ليتڪ↬بخيل",
-        "role": "admin"
-      },
-      {
-        "username": "يآﺣﺳآفھہ•تـﺻﯿڔ•جمعتنا•ﯗؤڊآﻉ",
-        "role": "owner"
-      },
-      {
-        "username": "عـ☜ـدۄۃْ✗اڵــڕچـ✄ـل",
-        "role": "owner"
-      },
-      {
-        "username": "tebot",
-        "role": "owner"
-      },
-      {
-        "username": "<٠٠٠>",
-        "role": "admin"
-      },
-      {
-        "username": "3b8_.",
-        "role": "member"
-      },
-      {
-        "username": "fo0ofo0o-q.8",
         "role": "member"
       },
       {
@@ -457,23 +445,15 @@
         "role": "member"
       },
       {
-        "username": "brt0_",
+        "username": ".alnahdi.811",
         "role": "member"
       },
       {
-        "username": "ᴿᵘᵈʸ",
-        "role": "admin"
-      },
-      {
-        "username": "giiipy1",
+        "username": ".q_m_r_h_m.",
         "role": "member"
       },
       {
-        "username": "m.alk.ro7y.",
-        "role": "member"
-      },
-      {
-        "username": "cgames",
+        "username": ".rafeef.",
         "role": "member"
       },
       {
@@ -481,19 +461,59 @@
         "role": "member"
       },
       {
-        "username": ".alnahdi.811",
+        "username": "3b8_.",
         "role": "member"
+      },
+      {
+        "username": "9xri10",
+        "role": "member"
+      },
+      {
+        "username": "<٠٠٠>",
+        "role": "admin"
       },
       {
         "username": "_3.r.b.j.y.h_",
         "role": "admin"
       },
       {
-        "username": "mrjojh1",
+        "username": "aahat...3ashq",
         "role": "member"
       },
       {
-        "username": "so0okrh.",
+        "username": "alisiria",
+        "role": "member"
+      },
+      {
+        "username": "cgames",
+        "role": "member"
+      },
+      {
+        "username": "fa9lh",
+        "role": "member"
+      },
+      {
+        "username": "fo0ofo0o-q.8",
+        "role": "member"
+      },
+      {
+        "username": "giiipy1",
+        "role": "member"
+      },
+      {
+        "username": "kalled",
+        "role": "member"
+      },
+      {
+        "username": "m.alk.ro7y.",
+        "role": "member"
+      },
+      {
+        "username": "m.r.m.r",
+        "role": "member"
+      },
+      {
+        "username": "mrjojh1",
         "role": "member"
       },
       {
@@ -505,15 +525,11 @@
         "role": "member"
       },
       {
-        "username": "kalled",
+        "username": "so0okrh.",
         "role": "member"
       },
       {
-        "username": "صـ͓🚀ـآرٍوٚخ⇙💃⇘نـ͓̽ــ🔥ـوٌوٚي",
-        "role": "admin"
-      },
-      {
-        "username": "dl3-.-",
+        "username": "tebot",
         "role": "owner"
       },
       {
@@ -521,32 +537,24 @@
         "role": "member"
       },
       {
-        "username": "fa9lh",
-        "role": "member"
-      },
-      {
-        "username": "aahat...3ashq",
-        "role": "member"
-      },
-      {
-        "username": "ﺣــۧـورآء•❥𝆕",
-        "role": "owner"
-      },
-      {
-        "username": "نحـ۬͜ــٴטּ⌯𝄒اެلــ᭥⃪͜ـملـــ፝֯֟ـꪆڪ⌯𝄒بـ۬͜ـھيـبـ۬͜ـتنآﺂ",
-        "role": "owner"
-      },
-      {
-        "username": "yasser_magdy",
-        "role": "member"
-      },
-      {
-        "username": "praa.-",
+        "username": "صـ͓🚀ـآرٍوٚخ⇙💃⇘نـ͓̽ــ🔥ـوٌوٚي",
         "role": "admin"
       },
       {
-        "username": "•⊰☬نـۦٰـادر⚡اࢦـۦٰـפجـۦٰـפد☬⊱•",
+        "username": "عـ☜ـدۄۃْ✗اڵــڕچـ✄ـل",
+        "role": "owner"
+      },
+      {
+        "username": "مزاجيه",
+        "role": "owner"
+      },
+      {
+        "username": "ᴿᵘᵈʸ",
         "role": "admin"
+      },
+      {
+        "username": "♕خــــــــــــطيئة♕الكــبـــــــرياء♕",
+        "role": "owner"
       }
     ],
     "bannedNameWords": [],
@@ -559,7 +567,7 @@
     "master": "ۦمُــتـٰ,ـمــ«ـِྀ☬ـِྀ»ـــ❥ــ,ـٓـرנۦ",
     "username": "_ali_ali_ali_",
     "password": "aaa01141439021",
-    "messageCount": 43,
+    "messageCount": 54,
     "users": [
       {
         "username": "🤍឵",
@@ -572,6 +580,10 @@
       {
         "username": "the-mayor",
         "role": "member"
+      },
+      {
+        "username": "semsema01234",
+        "role": "admin"
       },
       {
         "username": "qanaas",
@@ -592,6 +604,10 @@
       {
         "username": "..zaaloul..",
         "role": "member"
+      },
+      {
+        "username": "ll-.__taher__.-ll",
+        "role": "owner"
       },
       {
         "username": "qamar_alnahar",
@@ -616,6 +632,10 @@
       {
         "username": "..rachel..",
         "role": "member"
+      },
+      {
+        "username": "♕خــــــــــــطيئة♕الكــبـــــــرياء♕",
+        "role": "none"
       },
       {
         "username": "crazy..moon",
@@ -712,7 +732,7 @@
     "master": "˹𔘓°ℓуℓу𝆟˼",
     "username": "هيبہَ‘َ_ٍّـهہ",
     "password": "Simba's",
-    "messageCount": 51,
+    "messageCount": 60,
     "users": [
       {
         "username": "0radio_bot0",
@@ -721,6 +741,10 @@
       {
         "username": "<٠٠٠>",
         "role": "member"
+      },
+      {
+        "username": "adam1994",
+        "role": "owner"
       },
       {
         "username": "cgames",
@@ -755,6 +779,10 @@
         "role": "owner"
       },
       {
+        "username": "឵឵឵឵឵឵឵឵឵឵឵឵឵឵",
+        "role": "admin"
+      },
+      {
         "username": "⎀",
         "role": "admin"
       },
@@ -765,6 +793,10 @@
       {
         "username": "𝁜๎𝆯ᏰᎾᏬᏁᎿᎽ𝇄𝆺𝅥⃝🥥",
         "role": "admin"
+      },
+      {
+        "username": "𝕮𝖎𝖓𝖓𝖆𝖇𝖔𝖓",
+        "role": "owner"
       },
       {
         "username": "🍃َ",
@@ -793,7 +825,7 @@
     "master": "حــَ‘ًـآ‘زم🦅",
     "username": "tebot",
     "password": "mohamed--ka12",
-    "messageCount": 114,
+    "messageCount": 136,
     "users": [
       {
         "username": "ڪُ𝔠𝔬𝔩𝔞ـﯣڪٵ̍𓀔ڪُِ𝔠𝔬𝔠𝔞ـﯣڷآ🌊",
@@ -801,6 +833,10 @@
       },
       {
         "username": "ɬɧɛ𝐒𝐩𝐨𝐨𝐧𝐬",
+        "role": "owner"
+      },
+      {
+        "username": "⚜ا̍ڶـفَـتۑْۧ☻ا̍ڵـذَهبېْۧ⚜",
         "role": "owner"
       },
       {
@@ -816,8 +852,16 @@
         "role": "admin"
       },
       {
+        "username": "فيےْْضحكتهآ𝄞⃝تجتـٰمـ؏ٰ‹𝆕تفآصيٰل🦋الجمّآٰل",
+        "role": "owner"
+      },
+      {
         "username": "Đ͢ΔŇ͢ǤĘṜ܌➲",
         "role": "owner"
+      },
+      {
+        "username": "forgotten2",
+        "role": "admin"
       },
       {
         "username": "pikachuo",
@@ -834,6 +878,10 @@
       {
         "username": "green.arrow",
         "role": "member"
+      },
+      {
+        "username": "🕷⃝hคcͥkeͣrͫ",
+        "role": "owner"
       },
       {
         "username": "ۦ❞♦عـمـﮫ°♚ـم♦❝ۦ",
@@ -912,6 +960,10 @@
         "role": "admin"
       },
       {
+        "username": "ﭑݪــسـيـۦْٰ𓆪ﺂݪمصـرآتـي𓆩ۦْٰـطـرهۂٴ",
+        "role": "owner"
+      },
+      {
         "username": "𓇡ۦَٰ𝆺𝅥⃝🦩ριηку𝆯࣪",
         "role": "member"
       },
@@ -968,6 +1020,10 @@
         "role": "member"
       },
       {
+        "username": "♕خــــــــــــطيئة♕الكــبـــــــرياء♕",
+        "role": "member"
+      },
+      {
         "username": "⭒آࢪستقـَ‘َـࢪاطّيهہٌ⭒🂱𝆔",
         "role": "admin"
       },
@@ -980,6 +1036,10 @@
         "role": "member"
       },
       {
+        "username": "ᴿᵘᵈʸ",
+        "role": "owner"
+      },
+      {
         "username": "cgames",
         "role": "admin"
       },
@@ -990,10 +1050,6 @@
       {
         "username": ".-.polo.-.",
         "role": "member"
-      },
-      {
-        "username": "fiat.bravo",
-        "role": "admin"
       },
       {
         "username": "♠♪الـٓ͢ـُذ𝕨๏𝙻𝙵ئـُ͢ـٓبُ☬◌͜͡🐺",
@@ -1040,8 +1096,16 @@
         "role": "admin"
       },
       {
+        "username": "قًًًـآتل◇ًًبـِـِِلآً◇أجًًًـِـِِر",
+        "role": "owner"
+      },
+      {
         "username": "˛឵឵឵឵឵឵឵឵឵឵឵឵឵឵឵឵✿͢𝗺𝙤۪᪲𝗸𝗮‹𝆕..",
         "role": "admin"
+      },
+      {
+        "username": "◕الأَمـِـيـ𐎘ـرة›ʚଓ",
+        "role": "owner"
       },
       {
         "username": "--sonata--",
@@ -1057,6 +1121,10 @@
       },
       {
         "username": "✞︎⚈Aꪀׁׅꪀׁׅɑׁׅ֮ϐׁׅ֒ꫀׁׅܻᥣׁׅ֪ᥣׁׅ֪ꫀׁׅܻ♰𝆺𝅥⃝𓄚",
+        "role": "admin"
+      },
+      {
+        "username": "឵឵឵឵឵឵឵឵឵឵឵឵឵឵",
         "role": "admin"
       },
       {
@@ -1144,31 +1212,7 @@
         "role": "member"
       },
       {
-        "username": "ᴿᵘᵈʸ",
-        "role": "owner"
-      },
-      {
-        "username": "ahmed.mustafa",
-        "role": "owner"
-      },
-      {
-        "username": "⚜ا̍ڶـفَـتۑْۧ☻ا̍ڵـذَهبېْۧ⚜",
-        "role": "owner"
-      },
-      {
-        "username": "🕷⃝hคcͥkeͣrͫ",
-        "role": "owner"
-      },
-      {
-        "username": ".metnrfz.",
-        "role": "owner"
-      },
-      {
-        "username": "قًًًـآتل◇ًًبـِـِِلآً◇أجًًًـِـِِر",
-        "role": "owner"
-      },
-      {
-        "username": "zf---t",
+        "username": "fiat.bravo",
         "role": "admin"
       }
     ],
@@ -1182,7 +1226,7 @@
     "master": "ℎǎʑҽϻ♣ḱǎj",
     "username": "tebot",
     "password": "mohamed--ka12",
-    "messageCount": 29,
+    "messageCount": 36,
     "users": [
       {
         "username": "..musa..",
@@ -1225,6 +1269,10 @@
         "role": "owner"
       },
       {
+        "username": "𝕮𝖎𝖓𝖓𝖆𝖇𝖔𝖓",
+        "role": "owner"
+      },
+      {
         "username": "𝖐𝖆𝖏⇝",
         "role": "owner"
       },
@@ -1247,7 +1295,7 @@
     "master": "ا◙☬ځُــۥـ☼ـڈ◄أڵـــســمـــٱ۽►ـۉد☼ــۥــۓ☬◙ا",
     "username": "tebot",
     "password": "mohamed--ka12",
-    "messageCount": 58,
+    "messageCount": 68,
     "users": [
       {
         "username": "..njma.",
@@ -1354,6 +1402,10 @@
         "role": "member"
       },
       {
+        "username": "឵឵឵឵឵឵឵឵឵឵឵឵឵឵",
+        "role": "admin"
+      },
+      {
         "username": "remm05",
         "role": "member"
       },
@@ -1374,6 +1426,10 @@
         "role": "member"
       },
       {
+        "username": "nobody-knows-me-1969",
+        "role": "owner"
+      },
+      {
         "username": "remm04",
         "role": "member"
       },
@@ -1388,10 +1444,6 @@
       {
         "username": "⎀",
         "role": "member"
-      },
-      {
-        "username": "نحـ۬͜ــٴטּ⌯𝄒اެلــ᭥⃪͜ـملـــ፝֯֟ـꪆڪ⌯𝄒بـ۬͜ـھيـبـ۬͜ـتنآﺂ",
-        "role": "admin"
       }
     ],
     "bannedNameWords": [],
@@ -1416,8 +1468,12 @@
     "master": "ا◙☬ځُــۥـ☼ـڈ◄أڵـــســمـــٱ۽►ـۉد☼ــۥــۓ☬◙ا",
     "username": "tebot",
     "password": "mohamed--ka12",
-    "messageCount": 117,
+    "messageCount": 136,
     "users": [
+      {
+        "username": "ادم",
+        "role": "owner"
+      },
       {
         "username": "7ob_omri",
         "role": "member"
@@ -1456,6 +1512,10 @@
       },
       {
         "username": "naughty..girl",
+        "role": "member"
+      },
+      {
+        "username": "nezar.le",
         "role": "member"
       },
       {
@@ -1587,6 +1647,10 @@
         "role": "admin"
       },
       {
+        "username": "♕خــــــــــــطيئة♕الكــبـــــــرياء♕",
+        "role": "admin"
+      },
+      {
         "username": ".s-_-s.",
         "role": "member"
       },
@@ -1613,10 +1677,6 @@
       {
         "username": "cgames",
         "role": "owner"
-      },
-      {
-        "username": "%",
-        "role": "member"
       },
       {
         "username": "s0oft",
@@ -1731,6 +1791,10 @@
         "role": "owner"
       },
       {
+        "username": "sezar...",
+        "role": "member"
+      },
+      {
         "username": "𓂃ִֶ𝑆ᮥ𝑜𝑢◞❁",
         "role": "owner"
       },
@@ -1801,14 +1865,6 @@
       {
         "username": "⎀",
         "role": "admin"
-      },
-      {
-        "username": "الفْـرعـ𓅃ـون.المصـ🇪🇬ـري",
-        "role": "owner"
-      },
-      {
-        "username": "قًًًـآتل◇ًًبـِـِِلآً◇أجًًًـِـِِر",
-        "role": "owner"
       }
     ],
     "bannedNameWords": [],
@@ -1920,7 +1976,7 @@
     "master": "✦➤𝐩𝐑𝕆ƒє🅢ˢ𝐈𝕆η𝐀𝐋•𝆺𝅥⃝🐉",
     "username": "tebot",
     "password": "mohamed--ka12",
-    "messageCount": 14,
+    "messageCount": 21,
     "users": [
       {
         "username": "...basbosa...",
@@ -2029,7 +2085,7 @@
     "master": "✦➤𝐩𝐑𝕆ƒє🅢ˢ𝐈𝕆η𝐀𝐋•𝆺𝅥⃝🐉",
     "username": "tebot",
     "password": "mohamed--ka12",
-    "messageCount": 48,
+    "messageCount": 61,
     "users": [
       {
         "username": "q_l_ll.j_l.q_l.j_l",
@@ -2212,6 +2268,10 @@
         "role": "member"
       },
       {
+        "username": "឵឵឵឵឵឵឵឵឵឵឵឵឵឵",
+        "role": "admin"
+      },
+      {
         "username": "mlak-93b_alamtlak",
         "role": "member"
       },
@@ -2274,11 +2334,19 @@
     "master": "حًکْمً🍂أّلَهّـوٌى",
     "username": "tebot",
     "password": "mohamed--ka12",
-    "messageCount": 60,
+    "messageCount": 71,
     "users": [
       {
         "username": "0radio_bot0",
         "role": "admin"
+      },
+      {
+        "username": "<٠٠٠>",
+        "role": "admin"
+      },
+      {
+        "username": "samar..azzaz",
+        "role": "owner"
       },
       {
         "username": "tebot",
@@ -2297,11 +2365,11 @@
         "role": "admin"
       },
       {
-        "username": "🦉ّ",
-        "role": "admin"
+        "username": "♕خــــــــــــطيئة♕الكــبـــــــرياء♕",
+        "role": "none"
       },
       {
-        "username": "<٠٠٠>",
+        "username": "🦉ّ",
         "role": "admin"
       }
     ],
@@ -2540,12 +2608,8 @@
     "master": "حًکْمً🍂أّلَهّـوٌى",
     "username": "tebot",
     "password": "mohamed--ka12",
-    "messageCount": 51,
+    "messageCount": 60,
     "users": [
-      {
-        "username": "%",
-        "role": "member"
-      },
       {
         "username": "<٠٠٠>",
         "role": "admin"
@@ -2564,6 +2628,10 @@
       },
       {
         "username": "ko0xo",
+        "role": "owner"
+      },
+      {
+        "username": "samar..azzaz",
         "role": "owner"
       },
       {
@@ -2587,16 +2655,16 @@
         "role": "admin"
       },
       {
-        "username": "مزاجيـے.فؤضويـے.لآأحب.أن.يقترب.منيـے.أحد",
-        "role": "member"
-      },
-      {
         "username": "ًَ",
         "role": "member"
       },
       {
         "username": "឵ليبيا",
         "role": "owner"
+      },
+      {
+        "username": "឵឵឵឵឵឵឵឵឵឵឵឵឵឵",
+        "role": "member"
       },
       {
         "username": "ᴿᵘᵈʸ",
@@ -2613,6 +2681,10 @@
       {
         "username": "⎀",
         "role": "admin"
+      },
+      {
+        "username": "♕خــــــــــــطيئة♕الكــبـــــــرياء♕",
+        "role": "member"
       },
       {
         "username": "✗",
@@ -2786,7 +2858,7 @@
     "master": "آآلَت̷ـم̷ـــ🐊ٍـ͢͡س̷سـۙــٵ̷حۣۗᴠͥɪͣᴘͫ•𝆺𝅥",
     "username": "tebot",
     "password": "mohamed--ka12",
-    "messageCount": 11,
+    "messageCount": 18,
     "users": [
       {
         "username": "0radio_bot0",
@@ -2827,7 +2899,7 @@
     "master": "ا◙☬ځُــۥـ☼ـڈ◄أڵـــســمـــٱ۽►ـۉد☼ــۥــۓ☬◙ا",
     "username": "tebot",
     "password": "mohamed--ka12",
-    "messageCount": 5,
+    "messageCount": 12,
     "users": [
       {
         "username": "cgames",
@@ -2836,6 +2908,10 @@
       {
         "username": "tebot",
         "role": "owner"
+      },
+      {
+        "username": "ا◙☬ځُــۥـ☼ـڈ◄أڵـــســمـــٱ۽►ـۉد☼ــۥــۓ☬◙ا",
+        "role": "creator"
       }
     ],
     "bannedNameWords": [],
@@ -2848,7 +2924,7 @@
     "master": "ܤߺࡅ࡙ߺࡅٜߺܘ߳🇾🇪ࡅ࡙ߺܩߺוࡅ࠭ߺي",
     "username": "_-helmi-_",
     "password": "helmi73313**++",
-    "messageCount": 9,
+    "messageCount": 18,
     "users": [
       {
         "username": "<٠٠٠>",
@@ -2860,6 +2936,10 @@
       },
       {
         "username": "cgames",
+        "role": "admin"
+      },
+      {
+        "username": "឵឵឵឵឵឵឵឵឵឵឵឵឵឵",
         "role": "admin"
       },
       {
@@ -2877,14 +2957,10 @@
     "master": "⤸ٱرڪـِـِِ✌︎ـِِـِِـِِد∫ˢᵒˡᵗᵃⁿ∫فـِِديـِِـِِ✌︎ـِِتـِِۧڪ⤹",
     "username": "tebot",
     "password": "mohamed--ka12",
-    "messageCount": 11,
+    "messageCount": 30,
     "users": [
       {
         "username": "--3ash8--",
-        "role": "owner"
-      },
-      {
-        "username": ".r0ro.",
         "role": "owner"
       },
       {
@@ -2926,7 +3002,7 @@
     "master": "غرو♡انثي♡ور",
     "username": "tebot",
     "password": "mohamed--ka12",
-    "messageCount": 19,
+    "messageCount": 41,
     "users": [
       {
         "username": "<٠٠٠>",
@@ -2945,6 +3021,10 @@
         "role": "owner"
       },
       {
+        "username": "praa.-",
+        "role": "owner"
+      },
+      {
         "username": "selga",
         "role": "admin"
       },
@@ -2957,15 +3037,7 @@
         "role": "member"
       },
       {
-        "username": "👸🏼ᤂ᎗ـگـ᎗⅃᎗ᓄ⅃l👸🏼",
-        "role": "owner"
-      },
-      {
-        "username": "🦉ّ",
-        "role": "admin"
-      },
-      {
-        "username": "⎀",
+        "username": "឵឵឵឵឵឵឵឵឵឵឵឵឵឵",
         "role": "admin"
       },
       {
@@ -2973,12 +3045,16 @@
         "role": "owner"
       },
       {
-        "username": "•⊰☬نـۦٰـادر⚡اࢦـۦٰـפجـۦٰـפد☬⊱•",
+        "username": "⎀",
+        "role": "admin"
+      },
+      {
+        "username": "👸🏼ᤂ᎗ـگـ᎗⅃᎗ᓄ⅃l👸🏼",
         "role": "owner"
       },
       {
-        "username": "praa.-",
-        "role": "owner"
+        "username": "🦉ّ",
+        "role": "admin"
       }
     ],
     "bannedNameWords": [],
@@ -2991,7 +3067,7 @@
     "master": "༄❥͜͡кυσвє∂ℓσνє",
     "username": "tebot",
     "password": "mohamed--ka12",
-    "messageCount": 11,
+    "messageCount": 20,
     "users": [
       {
         "username": "0radio_bot0",
@@ -3032,7 +3108,7 @@
     "master": "ا◙☬ځُــۥـ☼ـڈ◄أڵـــســمـــٱ۽►ـۉد☼ــۥــۓ☬◙ا",
     "username": "tebot",
     "password": "mohamed--ka12",
-    "messageCount": 9,
+    "messageCount": 24,
     "users": [
       {
         "username": "mama",
@@ -3083,6 +3159,10 @@
         "role": "admin"
       },
       {
+        "username": "marawan_sayed_36",
+        "role": "none"
+      },
+      {
         "username": "ledo",
         "role": "member"
       },
@@ -3123,10 +3203,6 @@
         "role": "member"
       },
       {
-        "username": "dragon_x",
-        "role": "none"
-      },
-      {
         "username": "ᡃ⃯🎀ᚲ﮼𝐏𝐢⃪͢𝐧ᜲ𝐤﮼ꓹ𔘓𝄒𓂃",
         "role": "admin"
       },
@@ -3157,6 +3233,10 @@
       {
         "username": "℟",
         "role": "owner"
+      },
+      {
+        "username": "♕خــــــــــــطيئة♕الكــبـــــــرياء♕",
+        "role": "member"
       },
       {
         "username": "●●в͠lɑ͠c͠к͠●●",
@@ -3239,6 +3319,10 @@
         "role": "admin"
       },
       {
+        "username": "aaa",
+        "role": "owner"
+      },
+      {
         "username": "root",
         "role": "member"
       },
@@ -3257,14 +3341,6 @@
       {
         "username": "❥м͠⍸α̈̈к̯❀",
         "role": "admin"
-      },
-      {
-        "username": "yasser_magdy",
-        "role": "none"
-      },
-      {
-        "username": "آ▒ٱلـشـيـ▒°•♢دۆت.☠گـۆم♢•°▒ــطـان▒آ",
-        "role": "owner"
       }
     ],
     "bannedNameWords": [],
@@ -3277,7 +3353,7 @@
     "master": "✧؏ـﹻۦ۬ـقـﹻۦ۬ـيڷ✧",
     "username": "tebot",
     "password": "mohamed--ka12",
-    "messageCount": 2,
+    "messageCount": 11,
     "users": [
       {
         "username": "0radio_bot0",
@@ -3318,7 +3394,7 @@
     "master": "✧؏ـﹻۦ۬ـقـﹻۦ۬ـيڷ✧",
     "username": "tebot",
     "password": "mohamed--ka12",
-    "messageCount": 2,
+    "messageCount": 11,
     "users": [
       {
         "username": "<٠٠٠>",
@@ -3339,6 +3415,10 @@
       {
         "username": "🦉ّ",
         "role": "owner"
+      },
+      {
+        "username": "឵឵឵឵឵឵឵឵឵឵឵឵឵឵",
+        "role": "member"
       }
     ],
     "bannedNameWords": [],
@@ -3351,7 +3431,7 @@
     "master": "✧؏ـﹻۦ۬ـقـﹻۦ۬ـيڷ✧",
     "username": "tebot",
     "password": "mohamed--ka12",
-    "messageCount": 2,
+    "messageCount": 9,
     "users": [
       {
         "username": "3keel.",
@@ -3376,7 +3456,7 @@
     "master": "⤸ٰ⇣𝐆ί𐏓꯭ْ𓄹ִֶָ'𝐀𝐋ℓ󠄊󠄊󠄊𝐎⤸ٰ𓅇꙰᭄𓆰",
     "username": "tebot",
     "password": "mohamed--ka12",
-    "messageCount": 8,
+    "messageCount": 17,
     "users": [
       {
         "username": "<٠٠٠>",
@@ -3409,7 +3489,7 @@
     "master": "⤸ٰ⇣𝐆ί𐏓꯭ْ𓄹ִֶָ'𝐀𝐋ℓ󠄊󠄊󠄊𝐎⤸ٰ𓅇꙰᭄𓆰",
     "username": "tebot",
     "password": "mohamed--ka12",
-    "messageCount": 0,
+    "messageCount": 32,
     "users": [
       {
         "username": "mad00n.a",
@@ -3446,6 +3526,10 @@
       {
         "username": "lxxxxxl",
         "role": "owner"
+      },
+      {
+        "username": "nezar.le",
+        "role": "none"
       },
       {
         "username": "مــا↜لكہ.شــبيهہ𝓜",
@@ -3512,12 +3596,20 @@
         "role": "owner"
       },
       {
+        "username": "samar..azzaz",
+        "role": "owner"
+      },
+      {
         "username": "khald3030",
         "role": "member"
       },
       {
         "username": "0radio_bot0",
         "role": "admin"
+      },
+      {
+        "username": "♕خــــــــــــطيئة♕الكــبـــــــرياء♕",
+        "role": "member"
       },
       {
         "username": "ᴿᵘᵈʸ",
@@ -3616,28 +3708,20 @@
         "role": "member"
       },
       {
+        "username": "toughhulk",
+        "role": "none"
+      },
+      {
+        "username": "capone_",
+        "role": "owner"
+      },
+      {
         "username": "bsk0t.a",
         "role": "member"
       },
       {
         "username": "⎀",
         "role": "member"
-      },
-      {
-        "username": "yasser_magdy",
-        "role": "none"
-      },
-      {
-        "username": "🚬",
-        "role": "creator"
-      },
-      {
-        "username": "zf---t",
-        "role": "admin"
-      },
-      {
-        "username": "toughhulk",
-        "role": "none"
       }
     ],
     "bannedNameWords": [],
@@ -3650,7 +3734,7 @@
     "master": "زاھِيّھہᶻᵃʰⁱᵃـ◌͜͡❥🧚",
     "username": "tebot",
     "password": "mohamed--ka12",
-    "messageCount": 4,
+    "messageCount": 13,
     "users": [
       {
         "username": "<٠٠٠>",
@@ -3683,7 +3767,7 @@
     "master": "s.h.o.o.q",
     "username": "tebot",
     "password": "mohamed--ka12",
-    "messageCount": 0,
+    "messageCount": 9,
     "users": [
       {
         "username": "0radio_bot0",
@@ -3724,7 +3808,7 @@
     "master": "_l7n-",
     "username": "tebot",
     "password": "mohamed--ka12",
-    "messageCount": 0,
+    "messageCount": 9,
     "users": [
       {
         "username": "<٠٠٠>",
@@ -3757,7 +3841,7 @@
     "master": "ahmad.60",
     "username": "tebot",
     "password": "mohamed--ka12",
-    "messageCount": 0,
+    "messageCount": 15,
     "users": [
       {
         "username": "...noha...",
@@ -3812,8 +3896,16 @@
         "role": "admin"
       },
       {
+        "username": "ا∫حسـ▪♥☻↕الآدلبـي↕☻♥▪ـين∫ا",
+        "role": "owner"
+      },
+      {
         "username": "...zena...",
         "role": "member"
+      },
+      {
+        "username": "♕خــــــــــــطيئة♕الكــبـــــــرياء♕",
+        "role": "admin"
       },
       {
         "username": "ᴿᵘᵈʸ",
@@ -3876,6 +3968,10 @@
         "role": "member"
       },
       {
+        "username": "yasoo.",
+        "role": "owner"
+      },
+      {
         "username": "...zmrd...",
         "role": "member"
       },
@@ -3886,18 +3982,6 @@
       {
         "username": "⎀",
         "role": "admin"
-      },
-      {
-        "username": "ﺣــۧـورآء•❥𝆕",
-        "role": "owner"
-      },
-      {
-        "username": "ا∫حسـ▪♥☻↕الآدلبـي↕☻♥▪ـين∫ا",
-        "role": "owner"
-      },
-      {
-        "username": "آ▒ٱلـشـيـ▒°•♢دۆت.☠گـۆم♢•°▒ــطـان▒آ",
-        "role": "owner"
       }
     ],
     "bannedNameWords": [],

@@ -7,6 +7,7 @@ const { exec } = require('child_process');
 const path = require('path');
 const puppeteer = require('puppeteer');
 
+const ytdl = require('@distube/ytdl-core');
 const ytSearch = require('yt-search');
 const cookiesPath = path.join(__dirname, '..', '..', 'cookies.txt'); // مسار ملف الكوكيز
 
@@ -46,12 +47,13 @@ async function searchSongMp3(songName) {
     const video = result.videos.length > 0 ? result.videos[0] : null;
     if (!video) return null;
 
-    const audioUrl = await getAudioUrl(video.url);
+    const info = await ytdl.getInfo(video.url);
+    const format = ytdl.chooseFormat(info.formats, { quality: 'highestaudio' });
 
     return {
       title: video.title,
       ytUrl: video.url,
-      mp3Url: audioUrl,
+      mp3Url: format.url,
       thumb: video.thumbnail || video.image,
     };
   } catch (err) {
@@ -61,44 +63,6 @@ async function searchSongMp3(songName) {
 }
 
 
-
-
-// async function handleImageSearchCommand(data, socket, senderName) {
-//   const body = data.body.trim().toLowerCase();
-
-//   // التحقق من كون الرسالة تبدأ بـ .img أو img أو صوره أو صورة
-//   if (
-//     !body.startsWith('.img ') &&
-//     !body.startsWith('img ') &&
-//     !body.startsWith('صوره ') &&
-//     !body.startsWith('صورة ')
-//   ) return;
-
-//   // استخراج الكلمة المفتاحية
-//   const keyword = body.split(' ').slice(1).join(' ').trim();
-//   if (!keyword) return;
-
-//   try {
-//     const response = await axios.get('https://api.unsplash.com/search/photos', {
-//       params: { query: keyword, per_page: 1 },
-//       headers: {
-//         Authorization: 'Client-ID aq-u8R0fgFn-me82Trf1GgwyTP2vdtJmIsB8VBDXIzc'
-//       }
-//     });
-
-//     const images = response.data.results;
-//     if (!images || images.length === 0) return;
-
-//     const imageUrl = images[0].urls.regular;
-//     const imageMessage = createMainImageMessage(data.room, imageUrl);
-
-//     // إرسال الصورة فقط دون أي وصف أو تأكيد
-//     socket.send(JSON.stringify(imageMessage));
-    
-//   } catch (error) {
-//     console.error('Unsplash search error:', error.message);
-//   }
-// }
 
 
 const activeImages = {}; // تخزين الصور حسب معرف فريد مشابه للأغاني
@@ -112,29 +76,32 @@ function generateShortId(length = 6) {
   return id;
 }
 
-async function searchGoogleImagesPuppeteer(keyword) {
-  const browser = await puppeteer.launch({ headless: true });
-  const page = await browser.newPage();
-
-  // افتح صفحة بحث صور جوجل مع الكلمة المفتاحية
+async function searchBingImage(keyword) {
   const query = encodeURIComponent(keyword);
-  const url = `https://www.google.com/search?tbm=isch&q=${query}`;
+  const url = `https://www.bing.com/images/search?q=${query}`;
 
-  await page.goto(url, { waitUntil: 'networkidle2' });
+  try {
+    const { data } = await axios.get(url, {
+      headers: {
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64)'
+      }
+    });
 
-  // جلب رابط أول صورة
-  const imageUrl = await page.evaluate(() => {
-    const img = document.querySelector('img.rg_i');
-    if (img) {
-      // الصورة قد تكون بيانات src مباشرة أو تحتاج للضغط لتحميل الصورة الأصلية
-      return img.src || img.getAttribute('data-src') || null;
+    const $ = cheerio.load(data);
+    const firstImage = $('a.iusc').first().attr('m');
+
+    if (firstImage) {
+      const json = JSON.parse(firstImage);
+      return json.murl;
     }
-    return null;
-  });
 
-  await browser.close();
-  return imageUrl;
+    return null;
+  } catch (error) {
+    console.error('Error fetching image from Bing:', error.message);
+    return null;
+  }
 }
+
 
 async function handleImageSearchCommand(data, socket, senderName) {
   const body = data.body.trim().toLowerCase();
@@ -151,7 +118,7 @@ async function handleImageSearchCommand(data, socket, senderName) {
 
   try {
     // استخدام Puppeteer لجلب رابط صورة من بحث جوجل
-    const imageUrl = await searchGoogleImagesPuppeteer(keyword);
+    const imageUrl = await searchBingImage(keyword);
     if (!imageUrl) {
       console.error('No image found on Google Images for:', keyword);
       return;
@@ -331,20 +298,17 @@ async function handlePlayCommand(data, socket, senderName) {
     socket.send(JSON.stringify(createAudioRoomMessage(data.room, song.mp3Url)));
 
     const text = lang === 'ar'
-    ? `🎵 "${song.title}" (طلب: ${senderName})\nID: ${songId}
-  
-  ❤️ like@${songId}
-  👎 dislike@${songId}
-  💬 com@${songId}@username@تعليق
-  🎁 gift@${songId}@username
-  📤 sh@${songId}@username`
-    : `🎵 "${song.title}" (by ${senderName})\nID: ${songId}
-  
-  ❤️ like@${songId}
-  👎 dislike@${songId}
-  💬 com@${songId}@comment
-  🎁 gift@${songId}@username
-  📤 share@${songId}@username`;
+    ? `
+🎵 "${song.title}" (طلب: ${senderName})\nID: ${songId}
+❤️ like@${songId}
+👎 dislike@${songId}
+`
+    : `
+🎵 "${song.title}" (by ${senderName})\nID: ${songId}
+❤️ like@${songId}
+👎 dislike@${songId}
+  `
+  ;
   
 
     socket.send(JSON.stringify(createRoomMessage(data.room, text)));
@@ -552,21 +516,21 @@ async function handlePlaySongInAllRooms(data, socket, senderName, ioSockets) {
 
     // تحضير الرسائل
     const audioMsg = createAudioRoomMessage('', song.mp3Url);
+const textMsg = createRoomMessage(
+  '',
+  `
+【🎙️𝐑𝐚𝐝𝐢𝐨 𝐁𝐫𝐨𝐚𝐝𝐜𝐚𝐬𝐭 】
 
-    const textMsg = createRoomMessage(
-      '',
-      `📻 Live Radio Broadcast 🎙️
-    
-    🎵 Now Playing: "${song.title}"
-    👤 Requested by: ${senderName}
-    🆔 Track ID: ${songId}
-    
-    💬 Interact:
-    ❤️ like@${songId}
-    ❤️ dislike@${songId}
+𝐑𝐨𝐨𝐦: 『 ${data.room} 』
+𝐍𝐨𝐰 𝐏𝐥𝐚𝐲𝐢𝐧𝐠: ❝ ${song.title} ❞
+𝐑𝐞𝐪𝐮𝐞𝐬𝐭𝐞𝐝 𝐁𝐲: ⟪ ${senderName} ⟫
 
-    💬 com@${songId}@your comment`
-    );
+𝐋𝐢𝐤𝐞 ➤ like@${songId}
+𝐃𝐢𝐬𝐥𝐢𝐤𝐞 ➤ dislike@${songId}
+𝐂𝐨𝐦𝐦𝐞𝐧𝐭 ➤ com@${songId}@your message
+`
+);
+
     
 
     const allRooms = loadRooms();
