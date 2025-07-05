@@ -41,6 +41,27 @@ const {
   checkMessageContent,
   isUserMasterOrInMasterList
 } = require('./handlers/bannedWordsManager');
+const { handleDiceDuelCommand } = require('./handlers/diceDuelGame');
+const { handleSwordShieldCommand } = require('./handlers/swordShieldGame');
+const { handleLegendFightCommand } = require('./handlers/legendFightGame');
+function containsForbiddenWords(profile) {
+    const keywords = ['master', 'bot'];
+    const fields = [
+        profile.type,
+        profile.status,
+        profile.country,
+        profile.gender,
+        profile.user_id,
+        profile.reg_date
+    ];
+
+    return fields.some(field => {
+        if (!field) return false;
+        const lower = String(field).toLowerCase();
+        return keywords.some(kw => lower.includes(kw));
+    });
+}
+
 const keywords = [
     'بورصة', 'تداول', 'شراء', 'بيع', 'تحليل', 'مضاربة', 'هبوط', 'صعود',
     'اشاعة', 'توصية', 'استثمار', 'حظ', 'سوق', 'مخاطرة', 'أرباح',
@@ -164,9 +185,30 @@ if (data.handler === 'room_event') {
                     }
                     return;
                 }
-                if (data.handler === 'room_event' && data.body && ['دفاع', 'هجوم', 'تحالف'].includes(data.body.trim())) {
-                    handleWarGameCommand(data, socket, ioSockets);
-                }
+              if (data.handler === 'room_event' && data.body) {
+    const body = data.body.trim();
+
+    // لعبة الحرب
+    if (['دفاع', 'هجوم', 'تحالف'].includes(body)) {
+        handleWarGameCommand(data, socket, ioSockets);
+        return;
+    }
+if (
+    data.handler === 'room_event' &&
+    data.body &&
+    ['سيف', 'درع'].includes(data.body.trim())
+) {
+    handleSwordShieldCommand(data, socket, ioSockets);
+}
+
+
+    // لعبة مبارزة النرد
+    if (body === 'نرد') {
+        handleDiceDuelCommand(data, socket, ioSockets);
+        return;
+    }
+}
+
                 // التحقق عند دخول المستخدم
 if (data.handler === 'room_event' && data.type === 'user_joined') {
     checkNameOnJoin(data, socket, roomName, rooms, currentLanguage);
@@ -454,6 +496,93 @@ if (targetUser && targetUser.notifyOnSearch === true) {
             }
             
             
+else if (data.body && ['طليقي', 'طليقى', 'طليقتي'].includes(data.body.trim())) {
+    const sender = data.from;
+    const roomName = data.room;
+    const body = data.body.trim();
+
+    const expectedGender = (body === 'طليقتي') ? '2' : '1'; // 1: ذكر - 2: أنثى
+    const label = (body === 'طليقتي') ? 'طليقك هو' : 'طليقتك هي';
+    const pronoun = (body === 'طليقتي') ? '💔 سبب الطلاق معه:' : '💔 سبب الطلاق معها:';
+
+    const room = rooms.find(r => r.roomName === roomName);
+    if (!room || !room.users || room.users.length === 0) {
+        const msg = createRoomMessage(roomName, '❌ لا يوجد مستخدمين في الغرفة.');
+        socket.send(JSON.stringify(msg));
+        return;
+    }
+
+    const otherUsers = room.users.filter(u => u.username !== sender);
+    if (otherUsers.length === 0) {
+        const msg = createRoomMessage(roomName, '❌ لا يوجد أعضاء آخرون في الغرفة.');
+        socket.send(JSON.stringify(msg));
+        return;
+    }
+
+    const shuffledUsers = otherUsers.sort(() => 0.5 - Math.random());
+
+    const tryNext = async (index = 0) => {
+        if (index >= shuffledUsers.length) {
+            const msg = createRoomMessage(roomName, '⚠️ لم يتم العثور على طليق/طليقة مناسب(ة).');
+            socket.send(JSON.stringify(msg));
+            return;
+        }
+
+        const user = shuffledUsers[index];
+
+        try {
+            const profile = await fetchUserProfile({
+                username: 'tebot',
+                password: 'mohamed--ka12',
+                targetId: user.user_id,
+                targetType: user.username
+            });
+
+            if (
+                profile &&
+                profile.gender === expectedGender &&
+                !containsForbiddenWords(profile)
+            ) {
+                const image = profile.photo_url || 'https://cdn.chatp.net/default_profile.png';
+
+                const divorceReasons = [
+                    'كان بيكلم بنات في الخاص 😒',
+                    'ماكانش بيشيل الزبالة 😤',
+                    'بينسى عيد جوازنا كل سنة 💔',
+                    'مهووس بالألعاب وماكنش بيرد 😠',
+                    'ماكانش بيغار عليا 😢',
+                    'كان بيكتب شعر لغيري 😒',
+                    'رفض يسميني "روحي" 🥲',
+                    'كان بيحذف صوره معايا 💔',
+                    'بيتكلم مع الـ ex بتاعته 😱',
+                    'كان بيطنشني في الشات 😡',
+                    'ماحبش أمي 🧨'
+                ];
+                const reason = divorceReasons[Math.floor(Math.random() * divorceReasons.length)];
+
+                const imgMsg = createMainImageMessage(roomName, image);
+                socket.send(JSON.stringify(imgMsg));
+
+                const txtMsg = createRoomMessage(roomName, `
+👀 ${label}: ${profile.type}
+${pronoun} ${reason}
+                `);
+                socket.send(JSON.stringify(txtMsg));
+                return;
+            } else {
+                tryNext(index + 1);
+            }
+        } catch (error) {
+            tryNext(index + 1);
+        }
+    };
+
+    tryNext();
+}
+
+
+
+// ✅ دالة لفحص الكلمات المحظورة في البروفايل
 
 
             // if (data.handler === 'room_event' && data.body && data.body.startsWith('ver@')) {
@@ -621,7 +750,6 @@ if (
                 targetRoom.users = updatedUsers;
             
                 saveRooms();
-                console.log(`🔄 Updated users list for room "${roomName}".`);
             }
             
             else if (data.handler === 'room_event' && data.type === 'user_joined') {
@@ -629,12 +757,10 @@ if (
                 const username = data.username.trim();
                 const role = data.role || 'member';
             
-                console.log(`📥 User Joined: ${username} -> ${roomName}`);
             
                 const success = addUserToRoom(roomName, username, role);
             
                 if (success) {
-                    console.log(`✅ Added user ${username} to room ${roomName}`);
                 } else {
                     console.log(`⚠️ Failed to add user ${username} to room ${roomName}`);
                 }
@@ -646,12 +772,10 @@ if (
                 const roomName = data.name.trim();
                 const username = data.username.trim();
             
-                console.log(`📤 User Left: ${username} -> ${roomName}`);
             
                 const success = removeUserFromRoom(roomName, username);
             
                 if (success) {
-                    console.log(`❌ Removed user ${username} from room ${roomName}`);
                 } else {
                     console.log(`⚠️ Failed to remove user ${username} from room ${roomName}`);
                 }
@@ -659,7 +783,16 @@ if (
             
 
          
-            
+            if (data.body) {
+    const body = data.body.trim().toLowerCase();
+
+    // أضف هذا السطر لمعالجة لعبة القتال الأسطوري
+    if (body === 'قتال' || ['1', '2', '3', '4', '5'].includes(body)) {
+        handleLegendFightCommand(data, socket, ioSockets);
+        return;
+    }
+}
+
 
             } catch (error) {
                 console.error('⚠️ Error parsing message:', error);

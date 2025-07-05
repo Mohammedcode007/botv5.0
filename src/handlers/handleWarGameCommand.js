@@ -310,34 +310,15 @@
 //     startWarAuto
 // };
 
+// /war/warEngine.js
+// /war/warEngine.js
+// /war/warEngine.js
+
 const { createRoomMessage, createMainImageMessage } = require('../messageUtils');
 const { getUserLanguage, loadRooms, loadUserVerifyList, addPoints } = require('../fileUtils');
-const gameData = require('../data/gameData.json');
-
-let verifiedUsers = loadUserVerifyList();
-
-const players = {};
-let warInProgress = false;
-let isWarOpen = false;
-let warRunning = false;
-
-// إعدادات اللعبة الزمنية
-const WAR_DURATION = 15000;      // مدة الحرب: 15 ثانية
-const WAR_COOLDOWN = 900000;     // وقت الانتظار بين الجولات: 15 دقيقة
-const WAR_JOIN_TIME = 60000;     // مدة الانضمام قبل بدء الحرب: 60 ثانية
-
-const playerImages = [
-    'https://i.pinimg.com/736x/94/34/5a/94345ad561d6526741a1681eee0b1bc5.jpg',
-    'https://i.pinimg.com/736x/2b/83/e1/2b83e19877633511de58547818131cef.jpg',
-    'https://i.pinimg.com/736x/09/11/a5/0911a5fd28446d0937da7bcc826f8155.jpg',
-    'https://i.pinimg.com/736x/5e/a1/b8/5ea1b8711a56889cc33aaf3ee8639fdd.jpg',
-    'https://i.pinimg.com/736x/32/99/36/3299369e00b51cf58bdea4fc53248070.jpg',
-    'https://i.pinimg.com/736x/dc/5d/ed/dc5ded7dc139af23cada904347f62450.jpg',
-    'https://i.pinimg.com/736x/aa/a9/50/aaa950f94a8e05d9ca23385a574a9913.jpg',
-    'https://i.pinimg.com/736x/50/cc/1e/50cc1e89b34df0fadc4cb711b35be521.jpg',
-    'https://i.pinimg.com/736x/b4/cf/60/b4cf60ff44110be1f376f1cc275cb388.jpg',
-    'https://i.pinimg.com/736x/12/79/e7/1279e7d27873b68288710b4fcb7639ab.jpg'
-];
+const warState = require('./warState');
+const { createRandomPlayer } = require('./playerUtils');
+const { saveWinnersToFile } = require('./warLogger');
 
 const warStartImages = [
     'https://i.pinimg.com/736x/a3/bb/0b/a3bb0b2b6874a5675284e827f19286dd.jpg',
@@ -348,213 +329,204 @@ const winImages = [
     'https://i.pinimg.com/736x/76/3a/60/763a60fe29eead4c8e36b03e84d906b6.jpg'
 ];
 
-function announceWar(ioSockets) {
-    isWarOpen = true;
-
-    const startImage = warStartImages[Math.floor(Math.random() * warStartImages.length)];
-    broadcastImage(ioSockets, startImage);
-
-    broadcastAll(ioSockets, `
-🌍🔥 الحرب العالمية الثالثة بدأت 🔥🌍
-🪖 اكتب (هجوم) أو (دفاع) أو (تحالف) للانضمام.
-⏳ الجولة تبدأ خلال 60 ثانية...
-🏆 كن القائد الأعظم!
-    `);
-
-    let countdown = 60;
-    const countdownInterval = setInterval(() => {
-        countdown -= 5;
-        if (countdown % 15 === 0 || countdown <= 10) {
-            broadcastAll(ioSockets, `⏳ تبقى ${countdown} ثانية للانضمام...`);
-        }
-        if (countdown <= 0) {
-            clearInterval(countdownInterval);
-        }
-    }, 5000);
-}
-
-function startWarAuto(ioSockets) {
-    if (warRunning) return;
-    warRunning = true;
-
-    const startRound = () => {
-        announceWar(ioSockets);
-
-        setTimeout(() => {
-            const playerCount = Object.keys(players).length;
-
-            if (playerCount === 0) {
-                broadcastAll(ioSockets, `⚠️ لا يوجد مشاركين. ❌ انتهت الجولة.`);
-                isWarOpen = false;
-                resetWar();
-                setTimeout(() => startRound(), WAR_COOLDOWN);
-            } else if (playerCount === 1) {
-                const winnerName = Object.keys(players)[0];
-                const winner = players[winnerName];
-                const winImage = winImages[Math.floor(Math.random() * winImages.length)];
-
-                broadcastImage(ioSockets, winImage);
-
-                try {
-                    const finalPoints = addPoints(winnerName, 1000000);
-                    console.log(`✅ تم إضافة 1000000 نقطة إلى ${winnerName}.`);
-                } catch (error) {
-                    console.log('❌ خطأ أثناء إضافة النقاط:', error.message);
-                }
-
-                broadcastAll(ioSockets, `
-🥇 الفائز تلقائياً: ${winnerName}
-${winner.flag} ${winner.country} | ${winner.title}
-🪖 السلاح: ${winner.weapon.name}
-💥 النقاط: 1000000
-
-✅ لعدم وجود منافسين.
-                `);
-
-                isWarOpen = false;
-                resetWar();
-                setTimeout(() => startRound(), WAR_COOLDOWN);
-            } else {
-                startWar(ioSockets, startRound);
-            }
-        }, WAR_JOIN_TIME);
-    };
-
-    startRound();
-}
+let verifiedUsers = loadUserVerifyList();
 
 function handleWarGameCommand(data, socket, ioSockets) {
     const sender = data.from;
     const room = data.room;
+    if (!data.body) return;
     const body = data.body.trim().toLowerCase();
     const lang = getUserLanguage(sender) || 'ar';
     const isVerified = verifiedUsers.some(u => u.username === sender);
 
     if (!isVerified) {
-        socket.send(JSON.stringify(createRoomMessage(room, `❌ You are not verified to join the World War.`)));
+        socket.send(JSON.stringify(createRoomMessage(room, `❌ غير مصرح لك بالانضمام للحرب.`)));
         return;
     }
 
-    const validCommands = ['دفاع', 'هجوم', 'تحالف'];
-    if (!validCommands.includes(body)) return;
-
-    if (!isWarOpen) {
-        const msg = lang === 'ar'
-            ? `❌ لا يوجد حرب حالياً. انتظر الجولة القادمة.`
-            : `❌ No war is currently running. Please wait for the next round.`;
-        socket.send(JSON.stringify(createRoomMessage(room, msg)));
+    if (!warState.isWarOpen) {
+        socket.send(JSON.stringify(createRoomMessage(room, lang === 'ar' ? '❌ لا يوجد حرب حالياً.' : 'No war running now.')));
         return;
     }
 
-    if (players[sender]) {
-        const msg = lang === 'ar'
-            ? `⚠️ أنت بالفعل مشارك في الحرب.`
-            : `⚠️ You are already participating.`;
-        socket.send(JSON.stringify(createRoomMessage(room, msg)));
+    if (warState.players[sender]) {
+        socket.send(JSON.stringify(createRoomMessage(room, lang === 'ar' ? '⚠️ أنت بالفعل مشارك.' : 'Already joined.')));
         return;
     }
 
-    const country = gameData.countries[Math.floor(Math.random() * gameData.countries.length)];
-    const title = gameData.titles[Math.floor(Math.random() * gameData.titles.length)];
-    const weapon = gameData.weapons[Math.floor(Math.random() * gameData.weapons.length)];
-    const image = playerImages[Math.floor(Math.random() * playerImages.length)];
+    // صيغة الانضمام: "هجوم تدريب=health تحالف=red"
+    const parts = body.split(' ');
+    const status = parts[0]; // هجوم، دفاع، تحالف
+    let training = null;
+    let allianceName = null;
+    parts.forEach(part => {
+        if (part.startsWith('تدريب=')) training = part.split('=')[1];
+        if (part.startsWith('تحالف=')) allianceName = part.split('=')[1];
+    });
 
-    players[sender] = {
-        country: country.name,
-        flag: country.flag,
-        title,
-        weapon,
-        status: body,
-        points: 1000
-    };
+    const validStatus = ['هجوم', 'دفاع', 'تحالف'];
+    if (!validStatus.includes(status)) return;
+
+    const playerData = createRandomPlayer(status, training);
+    warState.players[sender] = playerData;
+
+    if (allianceName) {
+        if (!warState.alliances[allianceName]) warState.alliances[allianceName] = [];
+        warState.alliances[allianceName].push(sender);
+    }
 
     const joinMsg = lang === 'ar'
-        ? `🎖️ انضممت كـ "${title}" من ${country.flag} ${country.name}، بسلاح ${weapon.name}.\n🕹️ وضعك: ${body.toUpperCase()}.`
-        : `🎖️ You joined as "${title}" from ${country.flag} ${country.name} with ${weapon.name}.\n🕹️ Status: ${body.toUpperCase()}.`;
+        ? `🎖️ انضممت كـ "${playerData.title}" من ${playerData.flag} ${playerData.country} بسلاح ${playerData.weapon.name}.\n🕹️ وضعك: ${status.toUpperCase()}.\n🎯 تدريب: ${training || 'لا يوجد'}\n🤝 تحالف: ${allianceName || 'بدون'}`
+        : `🎖️ You joined as "${playerData.title}" from ${playerData.flag} ${playerData.country} with ${playerData.weapon.name}.\n🕹️ Status: ${status.toUpperCase()}.\n🎯 Training: ${training || 'None'}\n🤝 Alliance: ${allianceName || 'None'}`;
 
     socket.send(JSON.stringify(createRoomMessage(room, joinMsg)));
-    socket.send(JSON.stringify(createMainImageMessage(room, image)));
+    socket.send(JSON.stringify(createMainImageMessage(room, playerData.image)));
+}
+
+function startWarAuto(ioSockets) {
+    if (warState.warRunning) return;
+    warState.warRunning = true;
+
+    const startRound = () => {
+        announceWar(ioSockets);
+
+        setTimeout(() => {
+            const playerCount = Object.keys(warState.players).length;
+            if (playerCount === 0) {
+                broadcastAll(ioSockets, `⚠️ لا يوجد مشاركين. انتهت الجولة.`);
+                warState.isWarOpen = false;
+                warState.resetWar();
+                setTimeout(() => startRound(), 1800000); // 30 دقيقة
+                return;
+            }
+            if (playerCount === 1) {
+                const winnerName = Object.keys(warState.players)[0];
+                try { addPoints(winnerName, 1000000); } catch {}
+                broadcastAll(ioSockets, `🥇 الفائز تلقائياً: ${winnerName} لعدم وجود منافسين.`);
+                warState.isWarOpen = false;
+                warState.resetWar();
+                setTimeout(() => startRound(), 1800000);
+                return;
+            }
+
+            startWar(ioSockets, () => {
+                setTimeout(() => startRound(), 1800000);
+            });
+
+        }, 60000); // 60 ثانية باب الانضمام
+    };
+
+    startRound();
+}
+
+function announceWar(ioSockets) {
+    warState.isWarOpen = true;
+    broadcastAll(ioSockets,
+        `🌍🔥 الحرب العالمية الثالثة بدأت 🔥🌍
+🪖 اكتب (هجوم) أو (دفاع) أو (تحالف) مع تدريب وتحالف (مثلاً: هجوم تدريب=power تحالف=red)
+⏳ لديك 60 ثانية للانضمام.`);
 }
 
 function startWar(ioSockets, callback) {
-    if (warInProgress) return;
-    warInProgress = true;
+    if (warState.warInProgress) return;
+    if (Object.keys(warState.players).length === 0) {
+        broadcastAll(ioSockets, `⚠️ لا يمكن بدء الحرب، لا يوجد مشاركين.`);
+        warState.isWarOpen = false;
+        warState.resetWar();
+        callback();
+        return;
+    }
+    warState.warInProgress = true;
+    broadcastAll(ioSockets, `🚀 بدأت الحرب! تستمر 15 ثانية...`);
 
-    broadcastAll(ioSockets, `🚀 بدأت الحرب! تستمر لمدة 15 ثانية...`);
-
-    setTimeout(() => {
-        try {
-            executeWar(ioSockets, callback);
-        } catch (e) {
-            console.error('❌ خطأ في executeWar:', e);
-            resetWar();
-            callback();
-        }
-    }, WAR_DURATION);
+    setTimeout(() => executeWar(ioSockets, callback), 15000);
 }
 
 function executeWar(ioSockets, callback) {
-    const attackers = Object.entries(players).filter(([_, p]) => p.status === 'هجوم');
-    const defenders = Object.entries(players).filter(([_, p]) => p.status === 'دفاع');
-    const alliances = Object.entries(players).filter(([_, p]) => p.status === 'تحالف');
-
-    const results = {};
-
-    attackers.forEach(([username, player]) => {
-        const targets = defenders.length ? defenders : (alliances.length ? alliances : attackers.filter(([u]) => u !== username));
-        if (!targets.length) return;
-
-        const [targetName] = targets[Math.floor(Math.random() * targets.length)];
-        const damage = player.weapon.power + Math.floor(Math.random() * 50);
-        results[targetName] = (results[targetName] || 0) - damage;
+    // دعم التحالفات: زيادة صحة ونقاط لكل عضو في تحالف
+    Object.entries(warState.alliances).forEach(([allianceName, members]) => {
+        members.forEach(member => {
+            const player = warState.players[member];
+            if (!player) return;
+            player.health = Math.min(player.health + 15, 100);
+            player.points += 50;
+        });
     });
 
-    alliances.forEach(([_, p]) => p.points += 100);
-    defenders.forEach(([_, p]) => p.points += 150);
+    // تنفيذ هجوم كل لاعب على عدو عشوائي خارج تحالفه
+    Object.entries(warState.players).forEach(([username, player]) => {
+        let enemies = [];
 
-    Object.entries(results).forEach(([u, dmg]) => {
-        if (players[u]) {
-            players[u].points += dmg;
-            if (players[u].points < 0) players[u].points = 0;
-        }
+        const playerAlliance = Object.entries(warState.alliances).find(([_, members]) => members.includes(username));
+        const playerAllianceName = playerAlliance ? playerAlliance[0] : null;
+
+        enemies = Object.entries(warState.players).filter(([enemyName]) => {
+            if (enemyName === username) return false;
+            if (playerAllianceName) {
+                const enemyAlliance = Object.entries(warState.alliances).find(([_, members]) => members.includes(enemyName));
+                return !enemyAlliance || enemyAlliance[0] !== playerAllianceName;
+            }
+            return true;
+        });
+
+        if (enemies.length === 0) return;
+
+        const [targetName, target] = enemies[Math.floor(Math.random() * enemies.length)];
+
+        const damageBase = player.weapon.power;
+        const luckFactor = Math.floor(player.luck * 0.3);
+        const damage = damageBase + Math.floor(Math.random() * luckFactor);
+
+        target.health = Math.max(target.health - damage, 0);
+
+        player.points += 50;
     });
 
-    const sorted = Object.entries(players).sort((a, b) => b[1].points - a[1].points);
-    if (!sorted.length) {
-        broadcastAll(ioSockets, `⚠️ لا يوجد فائز.`);
-        isWarOpen = false;
-        resetWar();
+    // تصفية الأحياء
+    const alivePlayers = Object.entries(warState.players).filter(([_, p]) => p.health > 0);
+
+    if (alivePlayers.length === 0) {
+        broadcastAll(ioSockets, `⚠️ انتهت الحرب ولا يوجد فائز.`);
+        warState.isWarOpen = false;
+        warState.resetWar();
         callback();
         return;
     }
 
-    const [winnerName, winner] = sorted[0];
+    // تقييم اللاعبين
+    const scoredPlayers = alivePlayers.map(([username, p]) => ({
+        username,
+        ...p,
+        finalScore: (p.health * 2) + p.points + Math.floor(p.luck * 1.5)
+    }));
+
+    scoredPlayers.sort((a, b) => b.finalScore - a.finalScore);
+
+    const winner = scoredPlayers[0];
+
     try {
-        const finalPoints = addPoints(winnerName, 1000000);
-        console.log('✅ تم إضافة 1000000 نقطة إلى', winnerName);
-    } catch (e) {
-        console.log('❌ خطأ إضافة النقاط:', e.message);
+        addPoints(winner.username, 1000000);
+    } catch (err) {
+        console.log('❌ خطأ في إضافة النقاط:', err.message);
     }
 
-    verifiedUsers = loadUserVerifyList();
+    const leaderboardMsg = scoredPlayers.slice(0, 10).map((p, i) =>
+        `#${i + 1} - ${p.username} | ${p.country} ${p.flag} | ${p.title} | 🪖 ${p.weapon.name} | 💥 ${p.finalScore}`
+    ).join('\n');
+
+    broadcastAll(ioSockets, `📢 🏆 أفضل 10 لاعبين في الجولة:\n${leaderboardMsg}`);
+
+    saveWinnersToFile(scoredPlayers.slice(0, 10));
 
     const winImage = winImages[Math.floor(Math.random() * winImages.length)];
     broadcastImage(ioSockets, winImage);
 
-    broadcastAll(ioSockets, `
-🎖️ انتهت الحرب!
+    broadcastAll(ioSockets,
+        `🎖️ انتهت الحرب!\n🥇 الفائز: ${winner.username} ${winner.flag} ${winner.country} | ${winner.title} 🪖 ${winner.weapon.name}\n💰 تمت إضافة 1000000 نقطة إلى رصيد الفائز.`);
 
-🥇 الفائز: ${winnerName}
-${winner.flag} ${winner.country} | ${winner.title}
-🪖 السلاح: ${winner.weapon.name}
-💥 نقاط الحرب: ${winner.points}
-💰 تمت إضافة 1000000 نقطة لرصيدك 🎉
+    warState.isWarOpen = false;
+    warState.resetWar();
 
-📢 شكرًا لمشاركتكم!
-    `);
-
-    isWarOpen = false;
-    resetWar();
     callback();
 }
 
@@ -568,19 +540,14 @@ function broadcastAll(ioSockets, message) {
     });
 }
 
-function broadcastImage(ioSockets, imageURL) {
+function broadcastImage(ioSockets, url) {
     const rooms = loadRooms();
     rooms.forEach(r => {
         const socket = ioSockets[r.roomName];
         if (socket && socket.readyState === 1) {
-            socket.send(JSON.stringify(createMainImageMessage(r.roomName, imageURL)));
+            socket.send(JSON.stringify(createMainImageMessage(r.roomName, url)));
         }
     });
-}
-
-function resetWar() {
-    Object.keys(players).forEach(u => delete players[u]);
-    warInProgress = false;
 }
 
 module.exports = {

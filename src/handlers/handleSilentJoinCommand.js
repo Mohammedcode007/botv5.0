@@ -210,6 +210,7 @@ module.exports = function handleSilentJoinCommand(body, senderUsername, mainSock
     const currentLanguage = getUserLanguage(senderUsername) || 'en';
     const lowerBody = body.toLowerCase();
     const silentRooms = loadSilentRooms();
+console.log('77777777777777777777777');
 
     // ✅ أمر حذف جميع الغرف لهذا اليوزر
     if (lowerBody.startsWith('rsb#') && body.split('#').length === 2) {

@@ -111,7 +111,6 @@ function removeUserFromRoom(roomName, username) {
     }
 
     updateRooms(rooms);
-    console.log(`❌ Removed user "${username}" from room "${roomName}".`);
     return true;
 }
 

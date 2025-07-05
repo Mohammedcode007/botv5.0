@@ -3,7 +3,14 @@ const axios = require('axios');
 const cheerio = require('cheerio');
 const { loadRooms, incrementUserGiftCount, loadUsers, getUserLanguage, loadGifts } = require('../fileUtils');
 const { createRoomMessage, createAudioRoomMessage, createChatMessage,createMainImageMessage,createGiftMessage } = require('../messageUtils');
+const { exec } = require('child_process');
+const path = require('path');
+const puppeteer = require('puppeteer');
+
 const ytSearch = require('yt-search');
+const cookiesPath = path.join(__dirname, '..', '..', 'cookies.txt'); // مسار ملف الكوكيز
+
+const ytDlpPath = path.join(__dirname, '..', '..', 'yt-dlp.exe');
 // تخزين الأغاني النشطة: معرف صغير => بيانات الأغنية
 const activeSongs = {};
 
@@ -22,36 +29,33 @@ function generateShortId(length = 6) {
 
 
 
+
+function getAudioUrl(videoUrl) {
+  return new Promise((resolve, reject) => {
+    const cmd = `"${ytDlpPath}" -f bestaudio -g --cookies "${cookiesPath}" "${videoUrl}"`;
+    exec(cmd, (error, stdout, stderr) => {
+      if (error) return reject(error);
+      resolve(stdout.trim());
+    });
+  });
+}
+
 async function searchSongMp3(songName) {
   try {
     const result = await ytSearch(songName);
     const video = result.videos.length > 0 ? result.videos[0] : null;
-
     if (!video) return null;
 
-    const options = {
-      method: 'GET',
-      url: 'https://youtube-mp36.p.rapidapi.com/dl',
-      params: { id: video.videoId },
-      headers: {
-        'X-RapidAPI-Key': '9d77c1692dmshb2fe1e825ee4aaap11d28cjsn87a78b77c8ac', // 🔐 استبدل بمفتاحك الحقيقي
-        'X-RapidAPI-Host': 'youtube-mp36.p.rapidapi.com',
-      },
-    };
-
-    const response = await axios.request(options);
-
-    if (!response.data.link) return null;
+    const audioUrl = await getAudioUrl(video.url);
 
     return {
       title: video.title,
       ytUrl: video.url,
-      mp3Url: response.data.link,
-      thumb: video.thumbnail || video.image // ✅ الصورة المصغرة
-
+      mp3Url: audioUrl,
+      thumb: video.thumbnail || video.image,
     };
   } catch (err) {
-    console.error('YT Search or Download Error:', err.message);
+    console.error('Search or Download Error:', err.message);
     return null;
   }
 }
@@ -108,6 +112,30 @@ function generateShortId(length = 6) {
   return id;
 }
 
+async function searchGoogleImagesPuppeteer(keyword) {
+  const browser = await puppeteer.launch({ headless: true });
+  const page = await browser.newPage();
+
+  // افتح صفحة بحث صور جوجل مع الكلمة المفتاحية
+  const query = encodeURIComponent(keyword);
+  const url = `https://www.google.com/search?tbm=isch&q=${query}`;
+
+  await page.goto(url, { waitUntil: 'networkidle2' });
+
+  // جلب رابط أول صورة
+  const imageUrl = await page.evaluate(() => {
+    const img = document.querySelector('img.rg_i');
+    if (img) {
+      // الصورة قد تكون بيانات src مباشرة أو تحتاج للضغط لتحميل الصورة الأصلية
+      return img.src || img.getAttribute('data-src') || null;
+    }
+    return null;
+  });
+
+  await browser.close();
+  return imageUrl;
+}
+
 async function handleImageSearchCommand(data, socket, senderName) {
   const body = data.body.trim().toLowerCase();
 
@@ -122,17 +150,13 @@ async function handleImageSearchCommand(data, socket, senderName) {
   if (!keyword) return;
 
   try {
-    const response = await axios.get('https://api.unsplash.com/search/photos', {
-      params: { query: keyword, per_page: 1 },
-      headers: {
-        Authorization: 'Client-ID aq-u8R0fgFn-me82Trf1GgwyTP2vdtJmIsB8VBDXIzc'
-      }
-    });
+    // استخدام Puppeteer لجلب رابط صورة من بحث جوجل
+    const imageUrl = await searchGoogleImagesPuppeteer(keyword);
+    if (!imageUrl) {
+      console.error('No image found on Google Images for:', keyword);
+      return;
+    }
 
-    const images = response.data.results;
-    if (!images || images.length === 0) return;
-
-    const imageUrl = images[0].urls.regular;
     const imageId = generateShortId();
 
     // تخزين بيانات الصورة
@@ -153,9 +177,59 @@ async function handleImageSearchCommand(data, socket, senderName) {
     socket.send(JSON.stringify(createRoomMessage(data.room, note)));
 
   } catch (error) {
-    console.error('Unsplash search error:', error.message);
+    console.error('Google Image search error:', error.message);
   }
 }
+
+
+// async function handleImageSearchCommand(data, socket, senderName) {
+//   const body = data.body.trim().toLowerCase();
+
+//   if (
+//     !body.startsWith('.img ') &&
+//     !body.startsWith('img ') &&
+//     !body.startsWith('صوره ') &&
+//     !body.startsWith('صورة ')
+//   ) return;
+
+//   const keyword = body.split(' ').slice(1).join(' ').trim();
+//   if (!keyword) return;
+
+//   try {
+//     const response = await axios.get('https://api.unsplash.com/search/photos', {
+//       params: { query: keyword, per_page: 1 },
+//       headers: {
+//         Authorization: 'Client-ID aq-u8R0fgFn-me82Trf1GgwyTP2vdtJmIsB8VBDXIzc'
+//       }
+//     });
+
+//     const images = response.data.results;
+//     if (!images || images.length === 0) return;
+
+//     const imageUrl = images[0].urls.regular;
+//     const imageId = generateShortId();
+
+//     // تخزين بيانات الصورة
+//     activeImages[imageId] = {
+//       id: imageId,
+//       url: imageUrl,
+//       sender: senderName,
+//       room: data.room,
+//       keyword,
+//     };
+
+//     // إرسال الصورة فقط دون وصف
+//     const imageMessage = createMainImageMessage(data.room, imageUrl);
+//     socket.send(JSON.stringify(imageMessage));
+
+//     // إرسال رسالة اختيارية تحفز على الإهداء
+//     const note = `🎁 To gift this image, type: gft@${imageId}@username`;
+//     socket.send(JSON.stringify(createRoomMessage(data.room, note)));
+
+//   } catch (error) {
+//     console.error('Unsplash search error:', error.message);
+//   }
+// }
 
 function handleImageGiftsearch(data, socket, senderName, ioSockets) {
   const body = data.body.trim();

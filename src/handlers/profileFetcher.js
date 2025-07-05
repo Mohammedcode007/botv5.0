@@ -71,7 +71,6 @@ function fetchUserProfile({ username, password, targetId, targetType = 'ƒåȟå
         const socket = new WebSocket(WEBSOCKET_URL);
 
         socket.onopen = () => {
-            console.log('✅ Connected to WebSocket for fetching profile');
 
             // 🛰️ طباعة معلومات الاتصال بالكامل
             printSocketInfo(socket);
@@ -86,12 +85,10 @@ function fetchUserProfile({ username, password, targetId, targetType = 'ƒåȟå
                 id: DEFAULT_ID
             };
 
-            console.log('📤 Sending login message:', loginMessage);
             socket.send(JSON.stringify(loginMessage));
         };
 
         socket.onmessage = (event) => {
-            console.log('📩 Received Message:', event.data);
 
             let data;
             try {
@@ -102,7 +99,6 @@ function fetchUserProfile({ username, password, targetId, targetType = 'ƒåȟå
             }
 
             // التحقق من نجاح تسجيل الدخول
-                console.log('🔐 Logged in successfully, fetching profile...');
 
                 const profileRequest = {
                     handler: 'profile_other',
