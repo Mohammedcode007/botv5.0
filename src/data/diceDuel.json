@@ -1,8 +1,8 @@
 {
-  "isActive": true,
+  "isActive": false,
   "player1": {
-    "username": "مزاجيـے.فؤضويـے.لآأحب.أن.يقترب.منيـے.أحد",
-    "userId": "مزاجيـے.فؤضويـے.لآأحب.أن.يقترب.منيـے.أحد",
+    "username": null,
+    "userId": null,
     "roll": null,
     "wins": 0
   },
@@ -12,13 +12,11 @@
     "roll": null,
     "wins": 0
   },
-  "startedAt": 1752178683096,
-  "rooms": [
-    "🚬اسبرٍيَسۆ☕️"
-  ],
+  "startedAt": null,
+  "rooms": [],
   "result": {
     "winner": null,
     "status": "waiting"
   },
-  "lastPlayed": 1752178683096
+  "lastPlayed": 1752178743126
 }

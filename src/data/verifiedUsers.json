@@ -496,7 +496,7 @@
     "points": 19006553,
     "profileUrl": "https://cdn.chatp.net/p/666623266018/t108014802617263.png",
     "pikachuKills": 17,
-    "sentGifts": 33,
+    "sentGifts": 34,
     "receivedGifts": 2,
     "trades": {
       "win": 2,
@@ -809,7 +809,7 @@
     "points": 3422733,
     "profileUrl": "https://cdn.chatp.net/p/925798612342/t584150757824397.png",
     "sentGifts": 0,
-    "receivedGifts": 3,
+    "receivedGifts": 4,
     "trades": {
       "win": 10,
       "lose": 3
@@ -1385,7 +1385,8 @@
     "trades": {
       "win": 5,
       "lose": 0
-    }
+    },
+    "notifyOnSearch": true
   },
   {
     "username": "هہ‏‏وآجيـﮯسـ.بدويـﮯهہ‏‏",
@@ -1885,7 +1886,7 @@
   {
     "username": "مزاجيـے.فؤضويـے.لآأحب.أن.يقترب.منيـے.أحد",
     "vip": false,
-    "points": 14054824,
+    "points": 15054824,
     "profileUrl": "https://cdn.chatp.net/p/223557060665/t811281779062138.png",
     "pikachuKills": 12,
     "trades": {
@@ -2775,10 +2776,10 @@
   {
     "username": "kreza.-",
     "vip": false,
-    "points": 50212117,
+    "points": 45241117,
     "trades": {
-      "win": 216,
-      "lose": 86
+      "win": 217,
+      "lose": 87
     },
     "profileUrl": "https://cdn.chatp.net/p/714381270688/t526401910727105.png",
     "pikachuKills": 5
@@ -3932,7 +3933,7 @@
   {
     "username": "نـسـۦۦــۦۦـريـۦـن",
     "vip": false,
-    "points": 318156,
+    "points": 818156,
     "profileUrl": "https://cdn.chatp.net/p/724518495965/t065357101388330.png",
     "trades": {
       "win": 1,
@@ -5521,5 +5522,10 @@
     "vip": false,
     "points": 10,
     "profileUrl": "https://cdn.chatp.net/p/635271549636/t834043742517832.png"
+  },
+  {
+    "username": "ۘ",
+    "vip": false,
+    "points": 10
   }
 ]

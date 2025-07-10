@@ -17,10 +17,6 @@
       {
         "username": "𐦖𝆔.",
         "role": "admin"
-      },
-      {
-        "username": "vebot",
-        "role": "owner"
       }
     ],
     "bannedNameWords": [],
@@ -142,8 +138,8 @@
   {
     "roomName": "قهوهـ_🇸🇦_السعـوديـه",
     "master": "ا◙☬ځُــۥـ☼ـڈ◄أڵـــســمـــٱ۽►ـۉد☼ــۥــۓ☬◙ا",
-    "username": "coco.nut",
-    "password": "2985081",
+   "username": "𐦖𝆔.",
+    "password": "sembaa",
     "messageCount": 37,
     "users": [
       {
@@ -396,15 +392,7 @@
         "role": "admin"
       },
       {
-        "username": "⸼꯭᪳⃕لعنـۦٰٰٰٰٰٰٰٰٰٰٰٰۦٰٰٰۦٰٰٰ๛ـة𒉘",
-        "role": "owner"
-      },
-      {
-        "username": "⧼⋆̸ۿۦݪااكـ͢ــٰـꗃ",
-        "role": "owner"
-      },
-      {
-        "username": "🧚🏼‍♀",
+        "username": "ฺฺฺฺฺฺ♥",
         "role": "owner"
       }
     ],
@@ -708,6 +696,10 @@
       {
         "username": "⎀",
         "role": "admin"
+      },
+      {
+        "username": "m_zayed",
+        "role": "owner"
       }
     ],
     "bannedNameWords": [],
@@ -1092,10 +1084,6 @@
         "role": "admin"
       },
       {
-        "username": "قًًًـآتل◇ًًبـِـِِلآً◇أجًًًـِـِِر",
-        "role": "owner"
-      },
-      {
         "username": "˛឵឵឵឵឵឵឵឵឵឵឵឵឵឵឵឵✿͢𝗺𝙤۪᪲𝗸𝗮‹𝆕..",
         "role": "admin"
       },
@@ -1206,6 +1194,10 @@
       {
         "username": "⎀",
         "role": "member"
+      },
+      {
+        "username": "m_zayed",
+        "role": "owner"
       }
     ],
     "bannedNameWords": [],
@@ -1452,7 +1444,7 @@
     "master": "ا◙☬ځُــۥـ☼ـڈ◄أڵـــســمـــٱ۽►ـۉد☼ــۥــۓ☬◙ا",
     "username": "𐦖𝆔.",
     "password": "sembaa",
-    "messageCount": 136,
+    "messageCount": 140,
     "users": [
       {
         "username": "𐦖𝆔.",
@@ -1860,6 +1852,14 @@
       },
       {
         "username": "»꧁مـ░ـجـ░ـآزٍف꧂«",
+        "role": "member"
+      },
+      {
+        "username": ".taha.",
+        "role": "owner"
+      },
+      {
+        "username": "༄❥͜͡кυσвє∂ℓσνє",
         "role": "member"
       }
     ],
@@ -2344,16 +2344,16 @@
         "role": "member"
       },
       {
-        "username": "جـبـ↑رجـ♚ــل↑ـرـوت",
-        "role": "none"
-      },
-      {
         "username": "علمنـﺂﺂهٓــم∫※∫آﺂݪحـپ❥وٓحـپوٓآﺂ∫※∫ﻏﯧــࢪنــآﺂ",
         "role": "member"
       },
       {
         "username": "⎀",
         "role": "admin"
+      },
+      {
+        "username": "جـبـ↑رجـ♚ــل↑ـرـوت",
+        "role": "none"
       }
     ],
     "bannedNameWords": [],
@@ -2366,7 +2366,7 @@
     "master": "حًکْمً🍂أّلَهّـوٌى",
     "username": "𐦖𝆔.",
     "password": "sembaa",
-    "messageCount": 71,
+    "messageCount": 72,
     "users": [
       {
         "username": "0radio_bot0",
@@ -2749,6 +2749,10 @@
       {
         "username": "🦉ّ",
         "role": "admin"
+      },
+      {
+        "username": "moo0oon1",
+        "role": "owner"
       }
     ],
     "bannedNameWords": [],
@@ -3549,7 +3553,7 @@
     "master": "⤸ٰ⇣𝐆ί𐏓꯭ْ𓄹ִֶָ'𝐀𝐋ℓ󠄊󠄊󠄊𝐎⤸ٰ𓅇꙰᭄𓆰",
     "username": "𐦖𝆔.",
     "password": "sembaa",
-    "messageCount": 34,
+    "messageCount": 32,
     "users": [
       {
         "username": "𐦖𝆔.",
@@ -3664,10 +3668,6 @@
         "role": "admin"
       },
       {
-        "username": "mary-23",
-        "role": "none"
-      },
-      {
         "username": "m5tlfaa",
         "role": "member"
       },
@@ -3780,11 +3780,11 @@
         "role": "member"
       },
       {
-        "username": "مزاجيـے.فؤضويـے.لآأحب.أن.يقترب.منيـے.أحد",
-        "role": "member"
+        "username": "veer121",
+        "role": "none"
       },
       {
-        "username": "veer121",
+        "username": "0hana",
         "role": "none"
       }
     ],
@@ -4042,6 +4042,35 @@
       {
         "username": "⎀",
         "role": "admin"
+      }
+    ],
+    "bannedNameWords": [],
+    "bannedMessageWords": [],
+    "bannedNameEnabled": true,
+    "bannedMessageEnabled": true
+  },
+  {
+    "roomName": "Private-pvt",
+    "master": "ا◙☬ځُــۥـ☼ـڈ◄أڵـــســمـــٱ۽►ـۉد☼ــۥــۓ☬◙ا",
+    "username": "𐦖𝆔.",
+    "password": "sembaa",
+    "messageCount": 1,
+    "users": [
+      {
+        "username": "ا◙☬ځُــۥـ☼ـڈ◄أڵـــســمـــٱ۽►ـۉد☼ــۥــۓ☬◙ا",
+        "role": "creator"
+      },
+      {
+        "username": "جوليا",
+        "role": "owner"
+      },
+      {
+        "username": "឵឵឵឵឵឵឵឵឵឵឵឵឵឵",
+        "role": "owner"
+      },
+      {
+        "username": "𐦖𝆔.",
+        "role": "owner"
       }
     ],
     "bannedNameWords": [],
