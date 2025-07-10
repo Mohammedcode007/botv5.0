@@ -67,7 +67,12 @@ function resetDuel() {
 
 // إرسال رسالة لغرف محددة
 function broadcastToRooms(ioSockets, roomNames, message) {
+
+
+const rooms = loadRooms();
     roomNames.forEach(roomName => {
+          const roomData = rooms.find(r => r.roomName === roomName);
+        if (roomData?.gamesEnabled === false) return; // تجاهل الغرف المعطّلة للألعاب
         const socket = ioSockets[roomName];
         if (socket && socket.readyState === 1) {
             socket.send(JSON.stringify(createRoomMessage(roomName, message)));
@@ -80,6 +85,8 @@ function broadcastToAllRooms(ioSockets, message) {
     const rooms = loadRooms();
     rooms.forEach(room => {
         const roomName = room.roomName || room;
+                        if (room.gamesEnabled === false) return; // تجاهل الغرف المعطّلة للألعاب
+
         const socket = ioSockets[roomName];
         if (socket && socket.readyState === 1) {
             socket.send(JSON.stringify(createRoomMessage(roomName, message)));

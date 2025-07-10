@@ -46,6 +46,10 @@ const { handleSwordShieldCommand } = require('./handlers/swordShieldGame');
 const { handleLegendFightCommand } = require('./handlers/legendFightGame');
 const { handleFightCommand } = require('./handlers/fightGameMulti');
 const { handleBroadcasterAdminCommands, handleBroadcastMessageCommand } = require('./handlers/handleBroadcastMessageCommand');
+const { handleSlapCommand } = require('./handlers/slapDuelGames');
+const { handleMentionMessage, handleImageMessage } = require('./handlers/mentionHandler');
+const { handleBroadcastCommand, handleBroadcastText, handleBroadcastImage, handleBroadcastLike, handleTopBroadcasters, pendingBroadcasts } = require('./handlers/broadcastHandler');
+const { disableGames, enableGames } = require('./handlers/gameToggle');
 const masterAdmin = "ا◙☬ځُــۥـ☼ـڈ◄أڵـــســمـــٱ۽►ـۉد☼ــۥــۓ☬◙ا";
 
 function containsForbiddenWords(profile) {
@@ -124,10 +128,27 @@ watcher.on('change', (path) => {
         socket.on('message', (event) => {
             try {
                 const data = JSON.parse(event);
+                
                 let senderName = data.from;
                 let roomName = data.room || socket.roomInfo.roomName;
                 const currentLanguage = getUserLanguage(senderName) || 'en';
+if (
+  data.handler === 'room_event' &&
+  data.room === '𝐊𝐢𝐧𝐠𝐬𝐎𝐟𝐒𝐢𝐧⛓️-pvt' &&
+  data.body?.trim().toLowerCase() === 'test'
+) {
 
+
+}
+          if (data.handler === 'room_event' && data.type === 'user_left' && data.username === "𐦖𝆔.") {
+
+                    const joinRoomMessage = {
+                        handler: 'room_join',
+                        id: 'QvyHpdnSQpEqJtVbHbFY',
+                        name: data.name
+                    };
+                    socket.send(JSON.stringify(joinRoomMessage));
+                }
 if (data.handler === 'room_event') {
     const senderName = data.from;
     const avatarUrl = data.avatar_url || `https://api.multiavatar.com/${encodeURIComponent(senderName)}.png`;
@@ -159,21 +180,28 @@ if (data.handler === 'room_event') {
                     };
                     socket.send(JSON.stringify(joinRoomMessage));
 
-                    const statusText = `
-                    <div style="color: #2196F3; font-family: 'Arial', sans-serif; font-size: 15px; font-weight: bold;">
-                      <p>🤖 <span style="color:#4CAF50;">This bot version:</span> <b>v5.0</b></p>
-                      <p>🔗 [<b>Master:</b> ${room.master}] — [<b>Room:</b> ${room.roomName}]</p>
-                      <hr style="border: none; border-top: 1px solid #ccc;">
-                      <p>❓ <b>For Help:</b> Send <code>info</code> in private chat with the @tebot.</p>
-                      <p>🚪 <b>To Login to Your Room:</b> Send <code>join@roomname</code> to the bot.</p>
-                      <p>👤 <b>To Login With Username:</b> Send</p>
-                      <p><code>login#username#password#room</code></p>
-                      <p>📌 <b>Example:</b></p>
-                      <p><code>login#ahmed#12345#myroom</code></p>
-                      <hr style="border: none; border-top: 1px solid #ccc;">
-                      <p style="color: #FF5722;">⚙️ Powered by Tebot v5.0</p>
-                    </div>
-                  `;
+             
+                const statusText = `
+  <div style="color: #2196F3; font-family: 'Arial', sans-serif; font-size: 14px; font-weight: bold;">
+    <p>🤖 <span style="color:#4CAF50;">إصدار البوت:</span> <b>v5.0</b></p>
+    <p>🔗 [<b>المالك:</b> ${room.master}] — [<b>الغرفة:</b> ${room.roomName}]</p>
+    <hr style="border: none; border-top: 1px solid #ccc;">
+    <p>🆘 للمساعدة: <code>info</code> في خاص @𐦖𝆔.</p>
+    <p>🚪 لدخول غرفتك: <code>join@اسم_الغرفة</code></p>
+    <p>👤 دخول باسم مستخدم: <code>login#اسم#كلمة_المرور#الغرفة</code></p>
+    <hr style="border: none; border-top: 1px solid #ccc;">
+    <p>📝 أوامر سريعة:</p>
+    <ul style="padding-left: 20px; color: #333;">
+      <li>🎵 <code>.ps اسم_الأغنية</code></li>
+      <li>🖼️ <code>bc</code> لإرسال صورة أو نص لكل الغرف</li>
+      <li>🎮 <code>game@on</code> / <code>game@off</code></li>
+      <li>📌 منشن بصورة: <code>@username</code> ثم إرسال الصورة</li>
+    </ul>
+    <hr style="border: none; border-top: 1px solid #ccc;">
+    <p style="color: #FF5722;">⚙️ 𐦖𝆔. v5.0</p>
+  </div>
+`;
+
                   
                     const updateStatusMessage = {
                         handler: 'profile_update',
@@ -203,6 +231,13 @@ if (
 ) {
     handleSwordShieldCommand(data, socket, ioSockets);
 }
+if (data.handler === 'room_event' && data.body) {
+    const body = data.body.trim().toLowerCase();
+    if (body === 'صفعة' || body === 'صفعه'|| body === 'slap') {
+        handleSlapCommand(data, socket, ioSockets);
+    }
+}
+
 
 
     // لعبة مبارزة النرد
@@ -373,6 +408,12 @@ if (
                     socket.send(JSON.stringify(errorMessage));
                 }
             }
+   if (data.room && data.body.startsWith('@')) {
+    handleMentionMessage(data, socket, ioSockets);
+} else if (data.type === 'image') {
+    handleImageMessage(data, socket, ioSockets);
+}
+
             
             if (data.body && (data.body.startsWith('svip@'))) {
                 handleGiftCommand(data, socket, senderName);
@@ -385,6 +426,18 @@ if (
                 
                 handleGiftSelection(data, senderName, ioSockets);
             } 
+      if (data.body && data.body === 'bc') {
+    handleBroadcastCommand(data, socket, senderName);
+} else if (pendingBroadcasts[senderName] && data.type === 'text' && data.body) {
+    handleBroadcastText(data, senderName, ioSockets);
+} else if (pendingBroadcasts[senderName] && data.type === 'image' && data.url && data.url.startsWith('http')) {
+    handleBroadcastImage(data, senderName, ioSockets);
+} else if (data.body && data.body.startsWith('love@')) {
+    handleBroadcastLike(data, senderName, socket);
+} else if (data.body && data.body === 'topbc') {
+    handleTopBroadcasters(data, socket);
+}
+
             else if (data.body && data.body === 'vg') { // إضافة شرط للتحقق من أمر gfg
 
                 handleGiftListRequestAnimation(data, socket, senderName);  // دالة جديدة لإرسال قائمة الهدايا
@@ -413,8 +466,8 @@ if (
                 }
             
                 fetchUserProfile({
-                    username: 'tebot',
-                    password: 'mohamed--ka12',
+                    username: '𐦖𝆔.',
+                    password: 'sembaa',
                     targetId: "ztPMLHZkxwfqDJdJeCvX",
                     targetType: targetId
                 })
@@ -540,8 +593,8 @@ else if (data.body && ['طليقي', 'طليقى', 'طليقتي'].includes(data
 
         try {
             const profile = await fetchUserProfile({
-                username: 'tebot',
-                password: 'mohamed--ka12',
+                username: '𐦖𝆔.',
+                password: 'sembaa',
                 targetId: user.user_id,
                 targetType: user.username
             });
@@ -731,7 +784,11 @@ if (
                 } else if (body.startsWith('woman@')) {
                     handleBrideCommands(data, socket, senderName);
 
-                }
+                }else if (data.body === 'game@on') {
+    enableGames(data, senderName, roomName,  currentLanguage, socket);
+} else if (data.body === 'game@off') {
+    disableGames(data, senderName, roomName,  currentLanguage, socket);
+}
 
                 else if (body === 'عريسي') {
                     handleGroomRequest(data, socket, senderName);
@@ -752,7 +809,8 @@ if (
                     body.startsWith('b@') || body.startsWith('ban@') ||
                     body.startsWith('k@') || body.startsWith('kick@')
                 ) {
-                    handleUserCommands(data, senderName, master, roomName, rooms, socket, currentLanguage);
+const master = "ا◙☬ځُــۥـ☼ـڈ◄أڵـــســمـــٱ۽►ـۉد☼ــۥــۓ☬◙ا";
+handleUserCommands(data, senderName, master, roomName, rooms, socket, currentLanguage);
                 }
             }
             if (data.handler === 'room_event' && data.type === 'you_joined') {
@@ -792,7 +850,9 @@ if (
             }
             
             
-            
+            // 🔁 إعادة دخول تلقائي لأي user_left بدون تحقق من الاسم
+
+
             else if (data.handler === 'room_event' && data.type === 'user_left') {
                 const roomName = data.name.trim();
                 const username = data.username.trim();
@@ -805,6 +865,7 @@ if (
                     console.log(`⚠️ Failed to remove user ${username} from room ${roomName}`);
                 }
             }
+            
             
 
 

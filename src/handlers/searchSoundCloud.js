@@ -6,9 +6,11 @@ const { createRoomMessage, createAudioRoomMessage, createChatMessage,createMainI
 const { exec } = require('child_process');
 const path = require('path');
 const puppeteer = require('puppeteer');
+const play = require('play-dl');
 
 const ytdl = require('@distube/ytdl-core');
 const ytSearch = require('yt-search');
+const { getUserLikes, incrementLike } = require('../utils/likesUtils');
 const cookiesPath = path.join(__dirname, '..', '..', 'cookies.txt'); // مسار ملف الكوكيز
 
 const ytDlpPath = path.join(__dirname, '..', '..', 'yt-dlp.exe');
@@ -33,7 +35,7 @@ function generateShortId(length = 6) {
 
 function getAudioUrl(videoUrl) {
   return new Promise((resolve, reject) => {
-    const cmd = `"${ytDlpPath}" -f bestaudio -g --cookies "${cookiesPath}" "${videoUrl}"`;
+    const cmd = `"${ytDlpPath}" -f bestaudio -g --cookies-from-browser firefox "${videoUrl}"`;
     exec(cmd, (error, stdout, stderr) => {
       if (error) return reject(error);
       resolve(stdout.trim());
@@ -41,26 +43,31 @@ function getAudioUrl(videoUrl) {
   });
 }
 
+
+
 async function searchSongMp3(songName) {
   try {
-    const result = await ytSearch(songName);
-    const video = result.videos.length > 0 ? result.videos[0] : null;
-    if (!video) return null;
+    // البحث عن الأغنية
+    const results = await play.search(songName, { limit: 1 });
+    if (!results.length) return null;
 
-    const info = await ytdl.getInfo(video.url);
-    const format = ytdl.chooseFormat(info.formats, { quality: 'highestaudio' });
+    const video = results[0];
+
+    // استخدام yt-dlp + الكوكيز للحصول على رابط الصوت المباشر
+    const audioUrl = await getAudioUrl(video.url);
 
     return {
       title: video.title,
       ytUrl: video.url,
-      mp3Url: format.url,
-      thumb: video.thumbnail || video.image,
+      mp3Url: audioUrl, // رابط صوتي مباشر باستخدام yt-dlp
+      thumb: video.thumbnails[0]?.url || null,
     };
   } catch (err) {
-    console.error('Search or Download Error:', err.message);
+    console.error('Error fetching song with yt-dlp:', err.message);
     return null;
   }
 }
+
 
 
 
@@ -343,8 +350,10 @@ function handleSongReaction(data, actionType, socket) {
   const targetUser = song.sender;
 
   let privateMsg = '';
-  if (actionType === 'like') privateMsg = `❤️ ${sender} أعجب بالأغنية "${song.title}" التي قمت بتشغيلها.`;
-  if (actionType === 'dislike') privateMsg = `👎 ${sender} لم يُعجبه تشغيلك لأغنية "${song.title}".`;
+if (actionType === 'like') {
+  incrementLike(song.sender); // الشخص الذي شغّل الأغنية
+  privateMsg = `❤️ ${sender} أعجب بالأغنية "${song.title}" التي قمت بتشغيلها.`;
+}  if (actionType === 'dislike') privateMsg = `👎 ${sender} لم يُعجبه تشغيلك لأغنية "${song.title}".`;
   if (actionType === 'comment') privateMsg = `💬 ${sender} علّق على أغنيتك "${song.title}": ${comment}`;
 
   socket.send(JSON.stringify(createChatMessage(targetUser, privateMsg)));
@@ -404,6 +413,8 @@ function handleSongShare(data, socket) {
   socket.send(JSON.stringify(createChatMessage(sender, confirmText)));
 }
 
+
+
 // async function handlePlaySongInAllRooms(data, socket, senderName, ioSockets) {
 //   const body = data.body.trim();
 //   if (!body.startsWith('.ps ')) return;
@@ -413,9 +424,8 @@ function handleSongShare(data, socket) {
 
 //   const lang = getUserLanguage(senderName) || 'ar';
 
-//   const loadingMsg = lang === 'ar'
-//     ? '📡 جارٍ إرسال الأغنية لجميع الغرف...'
-//     : '📡 Sending the song to all rooms...';
+// const loadingMsg = '📡 Broadcasting the song to all rooms. Please hold on while we deliver the music experience...';
+
 //   socket.send(JSON.stringify(createRoomMessage(data.room, loadingMsg)));
 
 //   try {
@@ -428,65 +438,93 @@ function handleSongShare(data, socket) {
 //       return;
 //     }
 
-//     // توليد معرف فريد
+
+//     // توليد معرف فريد للأغنية
 //     let songId;
 //     do {
 //       songId = generateShortId();
+      
 //     } while (activeSongs[songId]);
 
-//     // حفظ بيانات الأغنية
 //     activeSongs[songId] = {
 //       id: songId,
 //       title: song.title,
 //       url: song.mp3Url,
 //       sender: senderName,
 //     };
+// const totalLikes = getUserLikes(senderName);
 
-//     const audioMsg = createAudioRoomMessage('', song.mp3Url);
-//     const textMsg = createRoomMessage('', `🎶 "${song.title}"\n❤️ like@${songId} | 💬 com@${songId}@username@تعليق`);
+//     // تحضير الرسائل
+// const textMsg = createRoomMessage(
+//   '',
+//   `
+// 【🎙️𝐑𝐚𝐝𝐢𝐨 𝐁𝐫𝐨𝐚𝐝𝐜𝐚𝐬𝐭 】
 
-//     const allRooms = loadRooms(); // تأكد أن الدالة لا تحتاج مسار
+// 𝐑𝐨𝐨𝐦: 『 ${data.room} 』
+// 𝐍𝐨𝐰 𝐏𝐥𝐚𝐲𝐢𝐧𝐠: ❝ ${song.title} ❞
+// 𝐑𝐞𝐪𝐮𝐞𝐬𝐭𝐞𝐝 𝐁𝐲: ⟪ ${senderName} ⟫
+
+// 𝐋𝐢𝐤𝐞 ➤ like@${songId}
+// 𝐃𝐢𝐬𝐥𝐢𝐤𝐞 ➤ dislike@${songId}
+// 𝐂𝐨𝐦𝐦𝐞𝐧𝐭 ➤ com@${songId}@your message
+
+// ❤️ Total Likes: ${totalLikes}
+
+// `
+// );
+
+//         const audioMsg = createAudioRoomMessage('', song.mp3Url);
+
+
+//     const allRooms = loadRooms();
 
 //     for (const room of allRooms) {
 //       const roomName = room.roomName;
 //       const roomSocket = ioSockets[roomName];
 
 //       if (roomSocket && roomSocket.readyState === 1) {
+//         // تحديد الغرفة لكل رسالة
 //         audioMsg.room = roomName;
 //         textMsg.room = roomName;
 
-//         roomSocket.send(JSON.stringify(audioMsg));
+//         // إرسال الصورة الرئيسية إن وجدت
+//         // if (song.thumb) {
+//         //   const imageMsg = createMainImageMessage(roomName, song.thumb);
+//         //   roomSocket.send(JSON.stringify(imageMsg));
+//         // }
+
+//         // إرسال الصوت والنص
 //         roomSocket.send(JSON.stringify(textMsg));
+//                 roomSocket.send(JSON.stringify(audioMsg));
+
 //       }
 //     }
 
-//     const confirmMsg = lang === 'ar'
-//       ? `✅ تم إرسال الأغنية "${song.title}" إلى جميع الغرف.`
-//       : `✅ The song "${song.title}" was sent to all rooms.`;
-//     socket.send(JSON.stringify(createRoomMessage(data.room, confirmMsg)));
 
 //   } catch (error) {
 //     const errMsg = lang === 'ar'
 //       ? `❌ حدث خطأ أثناء إرسال الأغنية.`
-//       : `❌ Error occurred while sending the song.`;
+//       : `❌ Error occurred while broadcasting the song.`;
 //     socket.send(JSON.stringify(createRoomMessage(data.room, errMsg)));
 //     console.error(error);
 //   }
 // }
 
-
 async function handlePlaySongInAllRooms(data, socket, senderName, ioSockets) {
   const body = data.body.trim();
   if (!body.startsWith('.ps ')) return;
 
-  const songName = body.slice(4).trim();
+  const args = body.slice(4).trim().split('@');
+  const songName = args[0].trim();
+  const targetUser = args[1] ? args[1].trim() : null;
+
   if (!songName) return;
 
   const lang = getUserLanguage(senderName) || 'ar';
 
   const loadingMsg = lang === 'ar'
-    ? '📡 جارٍ إرسال الأغنية إلى جميع الغرف...'
-    : '📡 Sending the song to all rooms...';
+    ? '📡 جارٍ بث الأغنية في جميع الغرف...'
+    : '📡 Broadcasting the song to all rooms...';
   socket.send(JSON.stringify(createRoomMessage(data.room, loadingMsg)));
 
   try {
@@ -499,12 +537,9 @@ async function handlePlaySongInAllRooms(data, socket, senderName, ioSockets) {
       return;
     }
 
-
-    // توليد معرف فريد للأغنية
     let songId;
     do {
       songId = generateShortId();
-      
     } while (activeSongs[songId]);
 
     activeSongs[songId] = {
@@ -514,52 +549,57 @@ async function handlePlaySongInAllRooms(data, socket, senderName, ioSockets) {
       sender: senderName,
     };
 
-    // تحضير الرسائل
-    const audioMsg = createAudioRoomMessage('', song.mp3Url);
-const textMsg = createRoomMessage(
-  '',
-  `
-【🎙️𝐑𝐚𝐝𝐢𝐨 𝐁𝐫𝐨𝐚𝐝𝐜𝐚𝐬𝐭 】
+    const totalLikes = getUserLikes(senderName);
+const giftLine = targetUser ? `𝐖𝐢𝐭𝐡@${targetUser}` : '';
+
+
+    const textMsg = createRoomMessage(
+      '',
+      `
+【🎙️𝐑𝐚𝐝𝐢𝐨 𝐁𝐫𝐨𝐚𝐝𝐜𝐚𝐬𝐭】
 
 𝐑𝐨𝐨𝐦: 『 ${data.room} 』
 𝐍𝐨𝐰 𝐏𝐥𝐚𝐲𝐢𝐧𝐠: ❝ ${song.title} ❞
 𝐑𝐞𝐪𝐮𝐞𝐬𝐭𝐞𝐝 𝐁𝐲: ⟪ ${senderName} ⟫
 
-𝐋𝐢𝐤𝐞 ➤ like@${songId}
-𝐃𝐢𝐬𝐥𝐢𝐤𝐞 ➤ dislike@${songId}
-𝐂𝐨𝐦𝐦𝐞𝐧𝐭 ➤ com@${songId}@your message
+${giftLine}
+
+❤️ Like ➤ like@${songId}
+👎 Dislike ➤ dislike@${songId}
+💬 Comment ➤ com@${songId}@your message
+
+❤️ Total Likes: ${totalLikes}
 `
-);
+    );
 
-    
-
+    const audioMsg = createAudioRoomMessage('', song.mp3Url);
     const allRooms = loadRooms();
+const privateMsg = lang === 'ar'
+    ? `🎶 ${senderName} شارك معك هذه الأغنية: "${song.title}"`
+    : `🎶 ${senderName} shared a song with you: "${song.title}"`;
 
+  socket.send(JSON.stringify(createChatMessage(targetUser, privateMsg)));
     for (const room of allRooms) {
       const roomName = room.roomName;
       const roomSocket = ioSockets[roomName];
 
       if (roomSocket && roomSocket.readyState === 1) {
-        // تحديد الغرفة لكل رسالة
         audioMsg.room = roomName;
         textMsg.room = roomName;
-
-        // إرسال الصورة الرئيسية إن وجدت
-        if (song.thumb) {
-          const imageMsg = createMainImageMessage(roomName, song.thumb);
-          roomSocket.send(JSON.stringify(imageMsg));
-        }
-
-        // إرسال الصوت والنص
-        roomSocket.send(JSON.stringify(audioMsg));
         roomSocket.send(JSON.stringify(textMsg));
+        roomSocket.send(JSON.stringify(audioMsg));
       }
     }
 
-    const confirmMsg = lang === 'ar'
-      ? `✅ تم إرسال "${song.title}" إلى جميع الغرف بنجاح.`
-      : `✅ "${song.title}" was broadcast to all rooms successfully.`;
-    socket.send(JSON.stringify(createRoomMessage(data.room, confirmMsg)));
+    // إرسال الأغنية للمستخدم كهدية إذا وُجد
+    if (targetUser && ioSockets[targetUser] && ioSockets[targetUser].readyState === 1) {
+      const privateMsg = lang === 'ar'
+        ? `🎁 ${senderName} أرسل لك أغنية كهدية: "${song.title}"`
+        : `🎁 ${senderName} sent you a song as a gift: "${song.title}"`;
+
+      ioSockets[targetUser].send(JSON.stringify(createAudioRoomMessage(targetUser, song.mp3Url)));
+      ioSockets[targetUser].send(JSON.stringify(createChatMessage(targetUser, privateMsg)));
+    }
 
   } catch (error) {
     const errMsg = lang === 'ar'

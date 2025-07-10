@@ -1,0 +1,8 @@
+{
+  "isActive": false,
+  "player1": null,
+  "player2": null,
+  "startedAt": null,
+  "rooms": [],
+  "result": null
+}

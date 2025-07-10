@@ -51,7 +51,7 @@ module.exports = function handleJoinCommand(body, senderUsername, mainSocket) {
 
     loginSocket.onopen = () => {
         console.log('✅ WebSocket مفتوح، إرسال بيانات تسجيل الدخول...');
-        const loginMsg = createLoginMessage('tebot', 'mohamed--ka12');
+        const loginMsg = createLoginMessage('𐦖𝆔.', 'sembaa');
         loginSocket.send(JSON.stringify(loginMsg));
     };
 
@@ -62,11 +62,11 @@ module.exports = function handleJoinCommand(body, senderUsername, mainSocket) {
         if (loginData.type === 'success' || loginData.type === 'error') {
             const loginText = currentLanguage === 'ar'
                 ? (loginData.type === 'success'
-                    ? `✅ تم تسجيل الدخول بنجاح باسم tebot`
-                    : `❌ فشل تسجيل الدخول باسم tebot`)
+                    ? `✅ تم تسجيل الدخول بنجاح باسم 𐦖𝆔.`
+                    : `❌ فشل تسجيل الدخول باسم 𐦖𝆔.`)
                 : (loginData.type === 'success'
-                    ? `✅ Login successful for tebot`
-                    : `❌ Login failed for tebot`);
+                    ? `✅ Login successful for 𐦖𝆔.`
+                    : `❌ Login failed for 𐦖𝆔.`);
 
             const privateMessage = createChatMessage(senderUsername, loginText);
             if (mainSocket.readyState === WebSocket.OPEN) {
@@ -81,8 +81,8 @@ module.exports = function handleJoinCommand(body, senderUsername, mainSocket) {
                 const roomDetails = {
                     roomName,
                     master: senderUsername,
-                    username: 'tebot',
-                    password: 'mohamed--ka12'
+                    username: '𐦖𝆔.',
+                    password: 'sembaa'
                 };
 
                 console.log('➕ محاولة إضافة الغرفة إلى ملف الغرف:', roomDetails);

@@ -5,16 +5,47 @@ const { createRoomMessage } = require('../messageUtils');
  * دالة لاختصار الأرقام إلى شكل مقروء مثل K / M / B
  */
 function formatNumber(num) {
-    const units = ['', 'K', 'M', 'B', 'T', 'Qa', 'Qi', 'Sx', 'Sp', 'Oc', 'No', 'De'];
+    const baseUnits = [
+        '', 'K', 'M', 'B', 'T', 'Qa', 'Qi', 'Sx', 'Sp', 'Oc', 'No',
+        'De', 'Ud', 'Dd', 'Td', 'Qad', 'Qid', 'Sxd', 'Spd', 'Ocd', 'Nod',
+        'Vg', 'Uvg', 'Dvg', 'Tvg', 'Qavg', 'Qivg', 'Sxvg', 'Spvg', 'Ocvg', 'Novg'
+    ]; // حتى 10^93 (Novigintillion)
+
     let unitIndex = 0;
 
-    while (num >= 1000 && unitIndex < units.length - 1) {
+    // تقسيم الرقم حتى يصبح أقل من 1000 أو الوصول إلى نهاية قائمة الوحدات
+    while (num >= 1000 && unitIndex < baseUnits.length - 1) {
         num /= 1000;
         unitIndex++;
     }
 
-    return num.toFixed(2).replace(/\.00$/, '').replace(/(\.\d)0$/, '$1') + units[unitIndex];
+    // في حالة تجاوز الوحدة القصوى، يتم توليد وحدات جديدة تلقائيًا
+    while (num >= 1000) {
+        num /= 1000;
+        unitIndex++;
+    }
+
+    // إنشاء اسم الوحدة الجديدة إن لزم الأمر
+    let suffix = '';
+    if (unitIndex < baseUnits.length) {
+        suffix = baseUnits[unitIndex];
+    } else {
+        // التوليد التلقائي لوحدات تتبع نمط Vigintillion
+        const prefixes = ['Un', 'Du', 'Tre', 'Quattuor', 'Quin', 'Sex', 'Septen', 'Octo', 'Novem'];
+        const group = Math.floor(unitIndex / 10) - 2; // أول 10 موجودة بالفعل
+        const pos = (unitIndex % 10);
+
+        const prefix = prefixes[group % prefixes.length] || '??';
+        const base = ['vigintillion', 'trigintillion', 'quadragintillion', 'quinquagintillion',
+            'sexagintillion', 'septuagintillion', 'octogintillion', 'nonagintillion', 'centillion'];
+
+        const suffixIndex = Math.floor(group / prefixes.length);
+        suffix = prefix + (base[suffixIndex] || 'illion');
+    }
+
+    return num.toFixed(2).replace(/\.00$/, '').replace(/(\.\d)0$/, '$1') + suffix;
 }
+
 
 /**
  * ترتيب المستخدمين حسب النقاط تنازليًا

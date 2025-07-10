@@ -36,6 +36,32 @@ function loadRooms() {
     return [];
 }
 
+// function loadRooms() {
+//     if (fs.existsSync(roomsFilePath)) {
+//         try {
+//             const data = fs.readFileSync(roomsFilePath, 'utf-8');
+//             const parsed = JSON.parse(data);
+//             if (Array.isArray(parsed)) {
+//                 // ✅ أضف المفتاح gamesEnabled إذا لم يكن موجودًا
+//                 const updatedRooms = parsed.map(room => {
+//                     if (!('gamesEnabled' in room)) {
+//                         room.gamesEnabled = false; // ← أو true حسب المطلوب
+//                     }
+//                     return room;
+//                 });
+
+//                 // حفظ التحديث في الملف (مرة واحدة)
+//                 saveRooms(updatedRooms);
+
+//                 return updatedRooms;
+//             }
+//         } catch (error) {
+//             console.error('❌ خطأ في قراءة ملف الغرف:', error);
+//         }
+//     }
+//     return [];
+// }
+
 
 // ✅ حفظ الغرف
 function saveRooms(rooms = roomsCache) {

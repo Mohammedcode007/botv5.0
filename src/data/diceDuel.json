@@ -1,8 +1,8 @@
 {
-  "isActive": true,
+  "isActive": false,
   "player1": {
-    "username": "⚜ا̍ڶـفَـتۑْۧ☻ا̍ڵـذَهبېْۧ⚜",
-    "userId": "⚜ا̍ڶـفَـتۑْۧ☻ا̍ڵـذَهبېْۧ⚜",
+    "username": null,
+    "userId": null,
     "roll": null,
     "wins": 0
   },
@@ -12,13 +12,11 @@
     "roll": null,
     "wins": 0
   },
-  "startedAt": 1751698824303,
-  "rooms": [
-    "مصر"
-  ],
+  "startedAt": null,
+  "rooms": [],
   "result": {
     "winner": null,
     "status": "waiting"
   },
-  "lastPlayed": 1751698824303
+  "lastPlayed": 1752177503218
 }

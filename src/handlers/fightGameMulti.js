@@ -22,7 +22,7 @@ function saveJsonFile(filePath, data) {
 function getInitialFightData() {
     return {
         isActive: false,
-        players: [], // [{ username, userId, power }]
+        players: [],
         startedAt: null,
         rooms: [],
         result: { winner: null, status: "waiting" },
@@ -60,7 +60,10 @@ function saveLeaderboard(data) {
 }
 
 function broadcastToRooms(ioSockets, roomNames, message) {
+   const rooms = loadRooms();
     roomNames.forEach(roomName => {
+          const roomData = rooms.find(r => r.roomName === roomName);
+        if (roomData?.gamesEnabled === false) return; // تجاهل الغرف المعطّلة للألعاب
         const socket = ioSockets[roomName];
         if (socket && socket.readyState === 1) {
             socket.send(JSON.stringify(createRoomMessage(roomName, message)));
@@ -72,6 +75,8 @@ function broadcastToAllRooms(ioSockets, message) {
     const rooms = loadRooms();
     rooms.forEach(room => {
         const roomName = room.roomName || room;
+                        if (room.gamesEnabled === false) return; // تجاهل الغرف المعطّلة للألعاب
+
         const socket = ioSockets[roomName];
         if (socket && socket.readyState === 1) {
             socket.send(JSON.stringify(createRoomMessage(roomName, message)));
@@ -109,52 +114,61 @@ function handleFightCommand(data, socket, ioSockets) {
         broadcastToAllRooms(ioSockets, `⚔️ ${sender} بدأ معركة! اكتب "قتال" للانضمام خلال 60 ثانية.`);
 
         setTimeout(() => {
-            const updatedFight = loadFightData();
-            if (!updatedFight.isActive || updatedFight.players.length < 2) {
-                broadcastToRooms(ioSockets, updatedFight.rooms, `❌ لم ينضم عدد كافٍ من اللاعبين. تم إلغاء القتال.`);
+            try {
+                const updatedFight = loadFightData();
+
+                if (!updatedFight.isActive || updatedFight.players.length < 2) {
+                    broadcastToRooms(ioSockets, updatedFight.rooms, `❌ لم ينضم عدد كافٍ من اللاعبين. تم إلغاء القتال.`);
+                    return;
+                }
+
+                // توليد القوة
+                updatedFight.players = updatedFight.players.map(p => ({
+                    ...p,
+                    power: Math.floor(Math.random() * 100) + 1
+                }));
+
+                // الترتيب
+                const sorted = [...updatedFight.players].sort((a, b) => b.power - a.power);
+                const winner = sorted[0];
+                const prizePoints = 1500000;
+
+                let resultMsg = `🥊 نتائج المعركة:\n`;
+                sorted.forEach(p => {
+                    resultMsg += `- ${p.username} ⚡ القوة: ${p.power}\n`;
+                });
+
+                resultMsg += `\n🏆 الفائز: ${winner.username} (+${prizePoints.toLocaleString()} نقطة)`;
+
+                try {
+                    addPoints(winner.username, prizePoints);
+                } catch (e) {
+                    console.error('فشل في إضافة النقاط:', e.message);
+                }
+
+                updatedFight.result = { winner: winner.username, status: "completed" };
+                updatedFight.isActive = false;
+                saveFightData(updatedFight);
+
+                // الترتيب العام
+                const leaderboard = loadLeaderboard();
+                leaderboard[winner.username] = (leaderboard[winner.username] || 0) + 1;
+                saveLeaderboard(leaderboard);
+
+                const sortedLeaders = Object.entries(leaderboard)
+                    .sort((a, b) => b[1] - a[1])
+                    .slice(0, 10)
+                    .map(([username, wins], i) => `#${i + 1} - ${username} | 🏅 الانتصارات: ${wins}`)
+                    .join('\n');
+
+broadcastToAllRooms(ioSockets, resultMsg);
+                broadcastToRooms(ioSockets, updatedFight.rooms, `📊 أفضل 10 مقاتلين:\n${sortedLeaders}`);
+            } catch (err) {
+                console.error('حدث خطأ أثناء تنفيذ المعركة:', err.message);
+                broadcastToRooms(ioSockets, fightData.rooms || [], `⚠️ حدث خطأ أثناء تنفيذ المعركة، تم الإلغاء.`);
+            } finally {
                 resetFight();
-                return;
             }
-
-            // توليد القوة لكل لاعب
-            updatedFight.players = updatedFight.players.map(p => ({
-                ...p,
-                power: Math.floor(Math.random() * 100) + 1
-            }));
-
-            // ترتيب اللاعبين حسب القوة
-            const sorted = [...updatedFight.players].sort((a, b) => b.power - a.power);
-            const winner = sorted[0];
-            const prizePoints = 1500000;
-
-            let resultMsg = `🥊 نتائج المعركة:\n`;
-            sorted.forEach(p => {
-                resultMsg += `- ${p.username} ⚡ القوة: ${p.power}\n`;
-            });
-
-            resultMsg += `\n🏆 الفائز: ${winner.username} (+${prizePoints.toLocaleString()} نقطة)`;
-
-            try { addPoints(winner.username, prizePoints); } catch {}
-
-            updatedFight.result = { winner: winner.username, status: "completed" };
-            updatedFight.isActive = false;
-            saveFightData(updatedFight);
-
-            // تحديث الترتيب
-            const leaderboard = loadLeaderboard();
-            leaderboard[winner.username] = (leaderboard[winner.username] || 0) + 1;
-            saveLeaderboard(leaderboard);
-
-            const sortedLeaders = Object.entries(leaderboard)
-                .sort((a, b) => b[1] - a[1])
-                .slice(0, 10)
-                .map(([username, wins], i) => `#${i + 1} - ${username} | 🏅 الانتصارات: ${wins}`)
-                .join('\n');
-
-            broadcastToRooms(ioSockets, updatedFight.rooms, resultMsg);
-            broadcastToRooms(ioSockets, updatedFight.rooms, `📊 أفضل 10 مقاتلين:\n${sortedLeaders}`);
-
-            resetFight();
         }, 60000);
 
         return;

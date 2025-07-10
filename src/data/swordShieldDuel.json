@@ -1,22 +1,24 @@
 {
-  "isActive": false,
+  "isActive": true,
   "player1": {
-    "username": null,
-    "userId": null,
-    "choice": null,
+    "username": "زاھِيّھہᶻᵃʰⁱᵃـ◌͜͡❥🧚",
+    "userId": "زاھِيّھہᶻᵃʰⁱᵃـ◌͜͡❥🧚",
+    "choice": "sword",
     "wins": 0
   },
   "player2": {
-    "username": null,
-    "userId": null,
-    "choice": null,
-    "wins": 0
+    "username": "نـَۦـ♪ــَۦـوتـہ",
+    "userId": "نـَۦـ♪ــَۦـوتـہ",
+    "choice": "shield",
+    "wins": 1
   },
-  "startedAt": null,
-  "rooms": [],
+  "startedAt": 1751906715954,
+  "rooms": [
+    "الأصدقاء🩷الطيبون"
+  ],
   "result": {
     "winner": null,
     "status": "waiting"
   },
-  "lastPlayed": 1751697017364
+  "lastPlayed": 1751906715954
 }

@@ -178,18 +178,18 @@ Please replace \`username\` with the targeted username.
 
 🔹 إدخال بوت صامت إلى غرفة:
 - SB@username@password@room
-➡️ مثال: SB@tebot@pass123@myroom
+➡️ مثال: SB@𐦖𝆔.@pass123@myroom
 ▪️ يقوم بإدخال البوت باسم (username) إلى الغرفة (room) بكلمة المرور (password).
 ▪️ يتم حفظ الغرفة باسمك كمالك للغرفة الصامتة، ولا يمكن لأي شخص إخراجها إلا أنت.
 
 🔹 حذف غرفة معينة من الغرف الصامتة:
 - RSB@username@room
-➡️ مثال: RSB@tebot@myroom
+➡️ مثال: RSB@𐦖𝆔.@myroom
 ▪️ يقوم بحذف البوت (username) من الغرفة (room) إذا كنت أنت من أدخلته.
 
 🔹 حذف جميع الغرف المسجلة لهذا البوت:
 - RSB@username
-➡️ مثال: RSB@tebot
+➡️ مثال: RSB@𐦖𝆔.
 ▪️ يحذف كل الغرف التي أدخلها هذا البوت بشرط أن تكون أنت من أضافها.
 
 ⚠️ ملاحظات هامة:
@@ -202,18 +202,18 @@ Please replace \`username\` with the targeted username.
 
 🔹 Add a silent bot to a room:
 - SB@username@password@room
-➡️ Example: SB@tebot@pass123@myroom
+➡️ Example: SB@𐦖𝆔.@pass123@myroom
 ▪️ Adds the bot (username) to the room (room) with the given password.
 ▪️ The room is saved under your account as the master, and only you can remove it.
 
 🔹 Remove a specific room for this bot:
 - RSB@username@room
-➡️ Example: RSB@tebot@myroom
+➡️ Example: RSB@𐦖𝆔.@myroom
 ▪️ Removes the bot (username) from the room (room) if you were the one who added it.
 
 🔹 Remove all rooms for this bot:
 - RSB@username
-➡️ Example: RSB@tebot
+➡️ Example: RSB@𐦖𝆔.
 ▪️ Removes all rooms that this bot is in under your account.
 
 ⚠️ Important notes:

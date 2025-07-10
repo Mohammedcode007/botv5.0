@@ -7,8 +7,8 @@ const { fetchUserProfile } = require('./src/handlers/profileFetcher');
 const { joinSilentRooms } = require('./src/joinSilentRooms');
 
 loginToSocket({
-    username: 'tebot',
-    password: 'mohamed--ka12'
+    username: '𐦖𝆔.',
+    password: 'sembaa'
 });
 
 // تشغيل joinRooms مباشرة بعد تسجيل الدخول أو عند الحاجة
