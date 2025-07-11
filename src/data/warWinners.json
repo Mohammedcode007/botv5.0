@@ -1,5 +1,1403 @@
 [
   {
+    "time": "2025-07-11T18:15:06.071Z",
+    "winners": [
+      {
+        "username": "「ᯓ⎽֟፝֯⎽⁽𝐇𝔸𝐃ҿ͞ҿ͞𝐋🔥」",
+        "country": "مصر",
+        "flag": "🇪🇬",
+        "title": "⚔️ المبارز",
+        "weapon": {
+          "name": "🛡️ الدرع الباليستي",
+          "power": 0,
+          "durability": 300,
+          "description": "درع مضاد للرصاص يقلل 50% من الضرر."
+        },
+        "status": "هجوم",
+        "points": 1050,
+        "health": 83,
+        "luck": 97,
+        "training": null,
+        "image": "https://i.pinimg.com/736x/94/34/5a/94345ad561d6526741a1681eee0b1bc5.jpg",
+        "finalScore": 1361
+      },
+      {
+        "username": "القيصر",
+        "country": "الصين",
+        "flag": "🇨🇳",
+        "title": "🦅 الصقر الجارح",
+        "weapon": {
+          "name": "🚀 صاروخ جافلين FGM-148",
+          "power": 120,
+          "durability": 2,
+          "description": "صاروخ موجه ضد الأهداف الثقيلة."
+        },
+        "status": "هجوم",
+        "points": 1050,
+        "health": 99,
+        "luck": 39,
+        "training": null,
+        "image": "https://i.pinimg.com/736x/94/34/5a/94345ad561d6526741a1681eee0b1bc5.jpg",
+        "finalScore": 1306
+      },
+      {
+        "username": "مَــ❦ــيــاࢪ",
+        "country": "فرنسا",
+        "flag": "🇫🇷",
+        "title": "🚀 الغزاة",
+        "weapon": {
+          "name": "🔫 جلوك 17",
+          "power": 15,
+          "durability": 120,
+          "description": "مسدس نصف آلي خفيف وسريع."
+        },
+        "status": "تحالف",
+        "points": 1050,
+        "health": 100,
+        "luck": 11,
+        "training": null,
+        "image": "https://i.pinimg.com/736x/09/11/a5/0911a5fd28446d0937da7bcc826f8155.jpg",
+        "finalScore": 1266
+      },
+      {
+        "username": "⊰•͢♡͢ℳ͢༉•͢⊱",
+        "country": "روسيا",
+        "flag": "🇷🇺",
+        "title": "🤑 التاجر",
+        "weapon": {
+          "name": "🚀 صاروخ جافلين FGM-148",
+          "power": 120,
+          "durability": 2,
+          "description": "صاروخ موجه ضد الأهداف الثقيلة."
+        },
+        "status": "هجوم",
+        "points": 1050,
+        "health": 2,
+        "luck": 27,
+        "training": null,
+        "image": "https://i.pinimg.com/736x/2b/83/e1/2b83e19877633511de58547818131cef.jpg",
+        "finalScore": 1094
+      }
+    ]
+  },
+  {
+    "time": "2025-07-11T17:43:50.947Z",
+    "winners": [
+      {
+        "username": ".l--l.",
+        "country": "الولايات المتحدة",
+        "flag": "🇺🇸",
+        "title": "⚔️ المبارز",
+        "weapon": {
+          "name": "🎯 قناصة AWM",
+          "power": 90,
+          "durability": 50,
+          "description": "بندقية قنص بعيدة المدى وضرر قاتل."
+        },
+        "status": "هجوم",
+        "points": 1050,
+        "health": 85,
+        "luck": 66,
+        "training": null,
+        "image": "https://i.pinimg.com/736x/2b/83/e1/2b83e19877633511de58547818131cef.jpg",
+        "finalScore": 1319
+      },
+      {
+        "username": "⊰•͢♡͢ℳ͢༉•͢⊱",
+        "country": "روسيا",
+        "flag": "🇷🇺",
+        "title": "👑 الملك",
+        "weapon": {
+          "name": "💣 قنبلة M67",
+          "power": 60,
+          "durability": 5,
+          "description": "قنبلة يدوية تقضي على مجموعات صغيرة."
+        },
+        "status": "هجوم",
+        "points": 1050,
+        "health": 100,
+        "luck": 35,
+        "training": null,
+        "image": "https://i.pinimg.com/736x/09/11/a5/0911a5fd28446d0937da7bcc826f8155.jpg",
+        "finalScore": 1302
+      }
+    ]
+  },
+  {
+    "time": "2025-07-11T17:12:35.813Z",
+    "winners": [
+      {
+        "username": "𓆩⃖𓈒›᯽̸᜔᮫𝗡𝗲̤͠𝘀𝗰̷𝗮̷𝗙𝗲♩̸᤻͢𓆪𓈒𓈒",
+        "country": "الصين",
+        "flag": "🇨🇳",
+        "title": "🎯 القناص",
+        "weapon": {
+          "name": "💣 قنبلة M67",
+          "power": 60,
+          "durability": 5,
+          "description": "قنبلة يدوية تقضي على مجموعات صغيرة."
+        },
+        "status": "هجوم",
+        "points": 1050,
+        "health": 65,
+        "luck": 51,
+        "training": null,
+        "image": "https://i.pinimg.com/736x/2b/83/e1/2b83e19877633511de58547818131cef.jpg",
+        "finalScore": 1256
+      },
+      {
+        "username": "ops..",
+        "country": "الصين",
+        "flag": "🇨🇳",
+        "title": "🚀 الغزاة",
+        "weapon": {
+          "name": "🪖 كلاشينكوف AK-47",
+          "power": 35,
+          "durability": 150,
+          "description": "بندقية هجومية شهيرة بقوة عالية."
+        },
+        "status": "هجوم",
+        "points": 1050,
+        "health": 29,
+        "luck": 1,
+        "training": null,
+        "image": "https://i.pinimg.com/736x/94/34/5a/94345ad561d6526741a1681eee0b1bc5.jpg",
+        "finalScore": 1109
+      }
+    ]
+  },
+  {
+    "time": "2025-07-11T16:41:20.711Z",
+    "winners": [
+      {
+        "username": "جيفارا",
+        "country": "فرنسا",
+        "flag": "🇫🇷",
+        "title": "🛡️ المدافع",
+        "weapon": {
+          "name": "🛡️ الدرع الباليستي",
+          "power": 0,
+          "durability": 300,
+          "description": "درع مضاد للرصاص يقلل 50% من الضرر."
+        },
+        "status": "هجوم",
+        "points": 1050,
+        "health": 95,
+        "luck": 61,
+        "training": null,
+        "image": "https://i.pinimg.com/736x/94/34/5a/94345ad561d6526741a1681eee0b1bc5.jpg",
+        "finalScore": 1331
+      },
+      {
+        "username": "مزاجيـے.فؤضويـے.لآأحب.أن.يقترب.منيـے.أحد",
+        "country": "الصين",
+        "flag": "🇨🇳",
+        "title": "🎯 القناص",
+        "weapon": {
+          "name": "💣 قنبلة M67",
+          "power": 60,
+          "durability": 5,
+          "description": "قنبلة يدوية تقضي على مجموعات صغيرة."
+        },
+        "status": "هجوم",
+        "points": 1050,
+        "health": 100,
+        "luck": 44,
+        "training": null,
+        "image": "https://i.pinimg.com/736x/94/34/5a/94345ad561d6526741a1681eee0b1bc5.jpg",
+        "finalScore": 1316
+      },
+      {
+        "username": "「ᯓ⎽֟፝֯⎽⁽𝐇𝔸𝐃ҿ͞ҿ͞𝐋🔥」",
+        "country": "مصر",
+        "flag": "🇪🇬",
+        "title": "🦾 الجنرال الحديدي",
+        "weapon": {
+          "name": "🔫 رشاش M249",
+          "power": 50,
+          "durability": 200,
+          "description": "مدفع رشاش خفيف مع قوة نارية عالية."
+        },
+        "status": "هجوم",
+        "points": 1050,
+        "health": 33,
+        "luck": 93,
+        "training": null,
+        "image": "https://i.pinimg.com/736x/09/11/a5/0911a5fd28446d0937da7bcc826f8155.jpg",
+        "finalScore": 1255
+      },
+      {
+        "username": "ڵيَۦاެٓلُُهالُہ↠୭لـٖڪُمۦلُـﭚ𐎓اެٓلإندِهّـآشُ",
+        "country": "فرنسا",
+        "flag": "🇫🇷",
+        "title": "🏴‍☠️ القرصان",
+        "weapon": {
+          "name": "☢️ قنبلة نووية تكتيكية",
+          "power": 500,
+          "durability": 1,
+          "description": "سلاح دمار شامل، يدمر جميع الأعداء في جولة واحدة."
+        },
+        "status": "هجوم",
+        "points": 1050,
+        "health": 30,
+        "luck": 73,
+        "training": null,
+        "image": "https://i.pinimg.com/736x/09/11/a5/0911a5fd28446d0937da7bcc826f8155.jpg",
+        "finalScore": 1219
+      }
+    ]
+  },
+  {
+    "time": "2025-07-11T16:10:05.599Z",
+    "winners": [
+      {
+        "username": "ۦڤــ͢ـــِٰۋقۦالسحۦـــ͢ـــآپۦ𐏓♚",
+        "country": "الولايات المتحدة",
+        "flag": "🇺🇸",
+        "title": "🛡️ المدافع",
+        "weapon": {
+          "name": "🔫 جلوك 17",
+          "power": 15,
+          "durability": 120,
+          "description": "مسدس نصف آلي خفيف وسريع."
+        },
+        "status": "هجوم",
+        "points": 1050,
+        "health": 67,
+        "luck": 66,
+        "training": null,
+        "image": "https://i.pinimg.com/736x/09/11/a5/0911a5fd28446d0937da7bcc826f8155.jpg",
+        "finalScore": 1283
+      },
+      {
+        "username": "capone_",
+        "country": "اليابان",
+        "flag": "🇯🇵",
+        "title": "🎯 القناص",
+        "weapon": {
+          "name": "🪖 إم 4 إيه 1 M4A1",
+          "power": 32,
+          "durability": 170,
+          "description": "بندقية هجومية دقيقة وسريعة."
+        },
+        "status": "هجوم",
+        "points": 1050,
+        "health": 100,
+        "luck": 17,
+        "training": null,
+        "image": "https://i.pinimg.com/736x/2b/83/e1/2b83e19877633511de58547818131cef.jpg",
+        "finalScore": 1275
+      },
+      {
+        "username": "⊰•͢♡͢ℳ͢༉•͢⊱",
+        "country": "السعودية",
+        "flag": "🇸🇦",
+        "title": "🦅 الصقر الجارح",
+        "weapon": {
+          "name": "🔫 ديزرت إيجل",
+          "power": 30,
+          "durability": 80,
+          "description": "مسدس قوي بضرر عالي لكن بطيء نسبياً."
+        },
+        "status": "هجوم",
+        "points": 1050,
+        "health": 62,
+        "luck": 66,
+        "training": null,
+        "image": "https://i.pinimg.com/736x/2b/83/e1/2b83e19877633511de58547818131cef.jpg",
+        "finalScore": 1273
+      },
+      {
+        "username": "praa.-",
+        "country": "اليابان",
+        "flag": "🇯🇵",
+        "title": "🦅 الصقر الجارح",
+        "weapon": {
+          "name": "🔫 جلوك 17",
+          "power": 15,
+          "durability": 120,
+          "description": "مسدس نصف آلي خفيف وسريع."
+        },
+        "status": "هجوم",
+        "points": 1050,
+        "health": 65,
+        "luck": 58,
+        "training": null,
+        "image": "https://i.pinimg.com/736x/2b/83/e1/2b83e19877633511de58547818131cef.jpg",
+        "finalScore": 1267
+      },
+      {
+        "username": "القيصر",
+        "country": "اليابان",
+        "flag": "🇯🇵",
+        "title": "👑 الملك",
+        "weapon": {
+          "name": "🚀 صاروخ جافلين FGM-148",
+          "power": 120,
+          "durability": 2,
+          "description": "صاروخ موجه ضد الأهداف الثقيلة."
+        },
+        "status": "هجوم",
+        "points": 1050,
+        "health": 64,
+        "luck": 29,
+        "training": null,
+        "image": "https://i.pinimg.com/736x/2b/83/e1/2b83e19877633511de58547818131cef.jpg",
+        "finalScore": 1221
+      }
+    ]
+  },
+  {
+    "time": "2025-07-11T15:21:14.716Z",
+    "winners": [
+      {
+        "username": "praa.-",
+        "country": "المملكة المتحدة",
+        "flag": "🇬🇧",
+        "title": "💣 المحارب",
+        "weapon": {
+          "name": "🔫 ديزرت إيجل",
+          "power": 30,
+          "durability": 80,
+          "description": "مسدس قوي بضرر عالي لكن بطيء نسبياً."
+        },
+        "status": "دفاع",
+        "points": 1050,
+        "health": 61,
+        "luck": 98,
+        "training": null,
+        "image": "https://i.pinimg.com/736x/94/34/5a/94345ad561d6526741a1681eee0b1bc5.jpg",
+        "finalScore": 1319
+      },
+      {
+        "username": "ܤߺࡅ࡙ߺࡅٜߺܘ߳🇾🇪ࡅ࡙ߺܩߺוࡅ࠭ߺي",
+        "country": "مصر",
+        "flag": "🇪🇬",
+        "title": "🪖 القائد",
+        "weapon": {
+          "name": "☢️ قنبلة نووية تكتيكية",
+          "power": 500,
+          "durability": 1,
+          "description": "سلاح دمار شامل، يدمر جميع الأعداء في جولة واحدة."
+        },
+        "status": "تحالف",
+        "points": 1050,
+        "health": 58,
+        "luck": 25,
+        "training": null,
+        "image": "https://i.pinimg.com/736x/09/11/a5/0911a5fd28446d0937da7bcc826f8155.jpg",
+        "finalScore": 1203
+      },
+      {
+        "username": "ۦمُــتـٰ,ـمــ«ـِྀ☬ـِྀ»ـــ❥ــ,ـٓـرנۦ",
+        "country": "السعودية",
+        "flag": "🇸🇦",
+        "title": "🧠 الاستراتيجي",
+        "weapon": {
+          "name": "🪖 إم 4 إيه 1 M4A1",
+          "power": 32,
+          "durability": 170,
+          "description": "بندقية هجومية دقيقة وسريعة."
+        },
+        "status": "هجوم",
+        "points": 1050,
+        "health": 29,
+        "luck": 34,
+        "training": null,
+        "image": "https://i.pinimg.com/736x/09/11/a5/0911a5fd28446d0937da7bcc826f8155.jpg",
+        "finalScore": 1159
+      }
+    ]
+  },
+  {
+    "time": "2025-07-11T14:49:59.215Z",
+    "winners": [
+      {
+        "username": "「ᯓ⎽֟፝֯⎽⁽𝐇𝔸𝐃ҿ͞ҿ͞𝐋🔥」",
+        "country": "ألمانيا",
+        "flag": "🇩🇪",
+        "title": "🏴‍☠️ القرصان",
+        "weapon": {
+          "name": "☢️ صاروخ نووي عابر للقارات",
+          "power": 800,
+          "durability": 1,
+          "description": "أقوى سلاح نووي في اللعبة، يدمر مدينة بأكملها."
+        },
+        "status": "هجوم",
+        "points": 1050,
+        "health": 50,
+        "luck": 75,
+        "training": null,
+        "image": "https://i.pinimg.com/736x/94/34/5a/94345ad561d6526741a1681eee0b1bc5.jpg",
+        "finalScore": 1262
+      },
+      {
+        "username": "𝄠°𝆔الجـ✨ـوهـــره𝆔°𝄠",
+        "country": "الصين",
+        "flag": "🇨🇳",
+        "title": "🦅 الصقر الجارح",
+        "weapon": {
+          "name": "🔫 رشاش M249",
+          "power": 50,
+          "durability": 200,
+          "description": "مدفع رشاش خفيف مع قوة نارية عالية."
+        },
+        "status": "هجوم",
+        "points": 1050,
+        "health": 1,
+        "luck": 14,
+        "training": null,
+        "image": "https://i.pinimg.com/736x/94/34/5a/94345ad561d6526741a1681eee0b1bc5.jpg",
+        "finalScore": 1073
+      }
+    ]
+  },
+  {
+    "time": "2025-07-11T14:18:44.100Z",
+    "winners": [
+      {
+        "username": "mo.ali",
+        "country": "المملكة المتحدة",
+        "flag": "🇬🇧",
+        "title": "🦾 الجنرال الحديدي",
+        "weapon": {
+          "name": "💣 قنبلة M67",
+          "power": 60,
+          "durability": 5,
+          "description": "قنبلة يدوية تقضي على مجموعات صغيرة."
+        },
+        "status": "هجوم",
+        "points": 1050,
+        "health": 8,
+        "luck": 75,
+        "training": null,
+        "image": "https://i.pinimg.com/736x/2b/83/e1/2b83e19877633511de58547818131cef.jpg",
+        "finalScore": 1178
+      },
+      {
+        "username": "hazem--",
+        "country": "فرنسا",
+        "flag": "🇫🇷",
+        "title": "🦾 الجنرال الحديدي",
+        "weapon": {
+          "name": "☢️ صاروخ نووي عابر للقارات",
+          "power": 800,
+          "durability": 1,
+          "description": "أقوى سلاح نووي في اللعبة، يدمر مدينة بأكملها."
+        },
+        "status": "هجوم",
+        "points": 1050,
+        "health": 23,
+        "luck": 44,
+        "training": null,
+        "image": "https://i.pinimg.com/736x/2b/83/e1/2b83e19877633511de58547818131cef.jpg",
+        "finalScore": 1162
+      }
+    ]
+  },
+  {
+    "time": "2025-07-11T13:47:29.007Z",
+    "winners": [
+      {
+        "username": "ꪜ͇̿𝓲͇̿ρ͇̿شَـطٓــْـبنَاٰ",
+        "country": "البرازيل",
+        "flag": "🇧🇷",
+        "title": "🛡️ المدافع",
+        "weapon": {
+          "name": "🛡️ الدرع الباليستي",
+          "power": 0,
+          "durability": 300,
+          "description": "درع مضاد للرصاص يقلل 50% من الضرر."
+        },
+        "status": "هجوم",
+        "points": 1050,
+        "health": 100,
+        "luck": 60,
+        "training": null,
+        "image": "https://i.pinimg.com/736x/2b/83/e1/2b83e19877633511de58547818131cef.jpg",
+        "finalScore": 1340
+      },
+      {
+        "username": "مواطن_صالح",
+        "country": "المملكة المتحدة",
+        "flag": "🇬🇧",
+        "title": "💣 المحارب",
+        "weapon": {
+          "name": "💣 قنبلة M67",
+          "power": 60,
+          "durability": 5,
+          "description": "قنبلة يدوية تقضي على مجموعات صغيرة."
+        },
+        "status": "هجوم",
+        "points": 1050,
+        "health": 84,
+        "luck": 40,
+        "training": null,
+        "image": "https://i.pinimg.com/736x/09/11/a5/0911a5fd28446d0937da7bcc826f8155.jpg",
+        "finalScore": 1278
+      },
+      {
+        "username": "「ᯓ⎽֟፝֯⎽⁽𝐇𝔸𝐃ҿ͞ҿ͞𝐋🔥」",
+        "country": "الولايات المتحدة",
+        "flag": "🇺🇸",
+        "title": "🎯 القناص",
+        "weapon": {
+          "name": "🔫 جلوك 17",
+          "power": 15,
+          "durability": 120,
+          "description": "مسدس نصف آلي خفيف وسريع."
+        },
+        "status": "دفاع",
+        "points": 1050,
+        "health": 84,
+        "luck": 8,
+        "training": null,
+        "image": "https://i.pinimg.com/736x/94/34/5a/94345ad561d6526741a1681eee0b1bc5.jpg",
+        "finalScore": 1230
+      },
+      {
+        "username": "ʂმlἶძմო🔵⚫მբբεʂէմʂ",
+        "country": "البرازيل",
+        "flag": "🇧🇷",
+        "title": "🎯 القناص",
+        "weapon": {
+          "name": "💣 قنبلة M67",
+          "power": 60,
+          "durability": 5,
+          "description": "قنبلة يدوية تقضي على مجموعات صغيرة."
+        },
+        "status": "هجوم",
+        "points": 1050,
+        "health": 40,
+        "luck": 47,
+        "training": null,
+        "image": "https://i.pinimg.com/736x/94/34/5a/94345ad561d6526741a1681eee0b1bc5.jpg",
+        "finalScore": 1200
+      },
+      {
+        "username": "praa.-",
+        "country": "فرنسا",
+        "flag": "🇫🇷",
+        "title": "🦾 الجنرال الحديدي",
+        "weapon": {
+          "name": "🎯 قناصة AWM",
+          "power": 90,
+          "durability": 50,
+          "description": "بندقية قنص بعيدة المدى وضرر قاتل."
+        },
+        "status": "دفاع",
+        "points": 1050,
+        "health": 39,
+        "luck": 6,
+        "training": null,
+        "image": "https://i.pinimg.com/736x/2b/83/e1/2b83e19877633511de58547818131cef.jpg",
+        "finalScore": 1137
+      }
+    ]
+  },
+  {
+    "time": "2025-07-11T13:16:13.912Z",
+    "winners": [
+      {
+        "username": "praa.-",
+        "country": "الصين",
+        "flag": "🇨🇳",
+        "title": "🚀 الغزاة",
+        "weapon": {
+          "name": "☢️ قنبلة نووية تكتيكية",
+          "power": 500,
+          "durability": 1,
+          "description": "سلاح دمار شامل، يدمر جميع الأعداء في جولة واحدة."
+        },
+        "status": "هجوم",
+        "points": 1050,
+        "health": 100,
+        "luck": 54,
+        "training": null,
+        "image": "https://i.pinimg.com/736x/94/34/5a/94345ad561d6526741a1681eee0b1bc5.jpg",
+        "finalScore": 1331
+      },
+      {
+        "username": "مواطن_صالح",
+        "country": "اليابان",
+        "flag": "🇯🇵",
+        "title": "🪖 القائد",
+        "weapon": {
+          "name": "🎯 قناصة AWM",
+          "power": 90,
+          "durability": 50,
+          "description": "بندقية قنص بعيدة المدى وضرر قاتل."
+        },
+        "status": "هجوم",
+        "points": 1050,
+        "health": 100,
+        "luck": 37,
+        "training": null,
+        "image": "https://i.pinimg.com/736x/2b/83/e1/2b83e19877633511de58547818131cef.jpg",
+        "finalScore": 1305
+      },
+      {
+        "username": "moo0oon1",
+        "country": "فرنسا",
+        "flag": "🇫🇷",
+        "title": "👑 الملك",
+        "weapon": {
+          "name": "🪖 كلاشينكوف AK-47",
+          "power": 35,
+          "durability": 150,
+          "description": "بندقية هجومية شهيرة بقوة عالية."
+        },
+        "status": "هجوم",
+        "points": 1050,
+        "health": 9,
+        "luck": 61,
+        "training": null,
+        "image": "https://i.pinimg.com/736x/09/11/a5/0911a5fd28446d0937da7bcc826f8155.jpg",
+        "finalScore": 1159
+      }
+    ]
+  },
+  {
+    "time": "2025-07-11T12:44:58.808Z",
+    "winners": [
+      {
+        "username": "ʂმlἶძմო🔵⚫მբբεʂէմʂ",
+        "country": "مصر",
+        "flag": "🇪🇬",
+        "title": "🛡️ المدافع",
+        "weapon": {
+          "name": "🛡️ الدرع الباليستي",
+          "power": 0,
+          "durability": 300,
+          "description": "درع مضاد للرصاص يقلل 50% من الضرر."
+        },
+        "status": "هجوم",
+        "points": 1050,
+        "health": 100,
+        "luck": 68,
+        "training": null,
+        "image": "https://i.pinimg.com/736x/09/11/a5/0911a5fd28446d0937da7bcc826f8155.jpg",
+        "finalScore": 1352
+      },
+      {
+        "username": "مزاجيـے.فؤضويـے.لآأحب.أن.يقترب.منيـے.أحد",
+        "country": "مصر",
+        "flag": "🇪🇬",
+        "title": "🪖 القائد",
+        "weapon": {
+          "name": "☢️ صاروخ نووي عابر للقارات",
+          "power": 800,
+          "durability": 1,
+          "description": "أقوى سلاح نووي في اللعبة، يدمر مدينة بأكملها."
+        },
+        "status": "هجوم",
+        "points": 1050,
+        "health": 63,
+        "luck": 59,
+        "training": null,
+        "image": "https://i.pinimg.com/736x/2b/83/e1/2b83e19877633511de58547818131cef.jpg",
+        "finalScore": 1264
+      }
+    ]
+  },
+  {
+    "time": "2025-07-11T12:13:43.728Z",
+    "winners": [
+      {
+        "username": "حًکْمً🍂أّلَهّـوٌى",
+        "country": "السعودية",
+        "flag": "🇸🇦",
+        "title": "🧠 الاستراتيجي",
+        "weapon": {
+          "name": "🛡️ الدرع الباليستي",
+          "power": 0,
+          "durability": 300,
+          "description": "درع مضاد للرصاص يقلل 50% من الضرر."
+        },
+        "status": "دفاع",
+        "points": 1050,
+        "health": 100,
+        "luck": 65,
+        "training": null,
+        "image": "https://i.pinimg.com/736x/09/11/a5/0911a5fd28446d0937da7bcc826f8155.jpg",
+        "finalScore": 1347
+      },
+      {
+        "username": "moo0oon1",
+        "country": "اليابان",
+        "flag": "🇯🇵",
+        "title": "🦾 الجنرال الحديدي",
+        "weapon": {
+          "name": "☢️ قنبلة نووية تكتيكية",
+          "power": 500,
+          "durability": 1,
+          "description": "سلاح دمار شامل، يدمر جميع الأعداء في جولة واحدة."
+        },
+        "status": "هجوم",
+        "points": 1050,
+        "health": 84,
+        "luck": 34,
+        "training": null,
+        "image": "https://i.pinimg.com/736x/2b/83/e1/2b83e19877633511de58547818131cef.jpg",
+        "finalScore": 1269
+      },
+      {
+        "username": "ۦڤــ͢ـــِٰۋقۦالسحۦـــ͢ـــآپۦ𐏓♚",
+        "country": "السعودية",
+        "flag": "🇸🇦",
+        "title": "👑 الملك",
+        "weapon": {
+          "name": "☢️ قنبلة نووية تكتيكية",
+          "power": 500,
+          "durability": 1,
+          "description": "سلاح دمار شامل، يدمر جميع الأعداء في جولة واحدة."
+        },
+        "status": "هجوم",
+        "points": 1050,
+        "health": 3,
+        "luck": 64,
+        "training": null,
+        "image": "https://i.pinimg.com/736x/09/11/a5/0911a5fd28446d0937da7bcc826f8155.jpg",
+        "finalScore": 1152
+      }
+    ]
+  },
+  {
+    "time": "2025-07-11T11:42:28.606Z",
+    "winners": [
+      {
+        "username": "‏̅‏𝐶̵̩͜𝑙𝑎̅𝑠̅𝑠̅𝑖̅𝑐",
+        "country": "الولايات المتحدة",
+        "flag": "🇺🇸",
+        "title": "👑 الملك",
+        "weapon": {
+          "name": "🪖 كلاشينكوف AK-47",
+          "power": 35,
+          "durability": 150,
+          "description": "بندقية هجومية شهيرة بقوة عالية."
+        },
+        "status": "هجوم",
+        "points": 1050,
+        "health": 100,
+        "luck": 63,
+        "training": null,
+        "image": "https://i.pinimg.com/736x/94/34/5a/94345ad561d6526741a1681eee0b1bc5.jpg",
+        "finalScore": 1344
+      },
+      {
+        "username": "˹𔘓°ℓуℓу𝆟˼",
+        "country": "اليابان",
+        "flag": "🇯🇵",
+        "title": "🚀 الغزاة",
+        "weapon": {
+          "name": "🪖 إم 4 إيه 1 M4A1",
+          "power": 32,
+          "durability": 170,
+          "description": "بندقية هجومية دقيقة وسريعة."
+        },
+        "status": "هجوم",
+        "points": 1050,
+        "health": 100,
+        "luck": 12,
+        "training": null,
+        "image": "https://i.pinimg.com/736x/09/11/a5/0911a5fd28446d0937da7bcc826f8155.jpg",
+        "finalScore": 1268
+      },
+      {
+        "username": "「ᯓ⎽֟፝֯⎽⁽𝐇𝔸𝐃ҿ͞ҿ͞𝐋🔥」",
+        "country": "روسيا",
+        "flag": "🇷🇺",
+        "title": "🚀 الغزاة",
+        "weapon": {
+          "name": "☢️ صاروخ نووي عابر للقارات",
+          "power": 800,
+          "durability": 1,
+          "description": "أقوى سلاح نووي في اللعبة، يدمر مدينة بأكملها."
+        },
+        "status": "هجوم",
+        "points": 1050,
+        "health": 2,
+        "luck": 81,
+        "training": null,
+        "image": "https://i.pinimg.com/736x/2b/83/e1/2b83e19877633511de58547818131cef.jpg",
+        "finalScore": 1175
+      }
+    ]
+  },
+  {
+    "time": "2025-07-11T11:11:13.488Z",
+    "winners": [
+      {
+        "username": "praa.-",
+        "country": "الولايات المتحدة",
+        "flag": "🇺🇸",
+        "title": "💣 المحارب",
+        "weapon": {
+          "name": "🛡️ الدرع الباليستي",
+          "power": 0,
+          "durability": 300,
+          "description": "درع مضاد للرصاص يقلل 50% من الضرر."
+        },
+        "status": "دفاع",
+        "points": 1050,
+        "health": 100,
+        "luck": 39,
+        "training": null,
+        "image": "https://i.pinimg.com/736x/94/34/5a/94345ad561d6526741a1681eee0b1bc5.jpg",
+        "finalScore": 1308
+      },
+      {
+        "username": "「ᯓ⎽֟፝֯⎽⁽𝐇𝔸𝐃ҿ͞ҿ͞𝐋🔥」",
+        "country": "ألمانيا",
+        "flag": "🇩🇪",
+        "title": "💣 المحارب",
+        "weapon": {
+          "name": "🪖 كلاشينكوف AK-47",
+          "power": 35,
+          "durability": 150,
+          "description": "بندقية هجومية شهيرة بقوة عالية."
+        },
+        "status": "هجوم",
+        "points": 1050,
+        "health": 81,
+        "luck": 48,
+        "training": null,
+        "image": "https://i.pinimg.com/736x/2b/83/e1/2b83e19877633511de58547818131cef.jpg",
+        "finalScore": 1284
+      },
+      {
+        "username": "capone_",
+        "country": "المملكة المتحدة",
+        "flag": "🇬🇧",
+        "title": "🎯 القناص",
+        "weapon": {
+          "name": "💣 قنبلة M67",
+          "power": 60,
+          "durability": 5,
+          "description": "قنبلة يدوية تقضي على مجموعات صغيرة."
+        },
+        "status": "هجوم",
+        "points": 1050,
+        "health": 52,
+        "luck": 68,
+        "training": null,
+        "image": "https://i.pinimg.com/736x/09/11/a5/0911a5fd28446d0937da7bcc826f8155.jpg",
+        "finalScore": 1256
+      },
+      {
+        "username": "مواطن_صالح",
+        "country": "الصين",
+        "flag": "🇨🇳",
+        "title": "🎯 القناص",
+        "weapon": {
+          "name": "🔫 جلوك 17",
+          "power": 15,
+          "durability": 120,
+          "description": "مسدس نصف آلي خفيف وسريع."
+        },
+        "status": "هجوم",
+        "points": 1050,
+        "health": 26,
+        "luck": 17,
+        "training": null,
+        "image": "https://i.pinimg.com/736x/94/34/5a/94345ad561d6526741a1681eee0b1bc5.jpg",
+        "finalScore": 1127
+      }
+    ]
+  },
+  {
+    "time": "2025-07-11T10:39:58.381Z",
+    "winners": [
+      {
+        "username": "مواطن_صالح",
+        "country": "البرازيل",
+        "flag": "🇧🇷",
+        "title": "🤑 التاجر",
+        "weapon": {
+          "name": "🚀 صاروخ جافلين FGM-148",
+          "power": 120,
+          "durability": 2,
+          "description": "صاروخ موجه ضد الأهداف الثقيلة."
+        },
+        "status": "هجوم",
+        "points": 1050,
+        "health": 59,
+        "luck": 77,
+        "training": null,
+        "image": "https://i.pinimg.com/736x/2b/83/e1/2b83e19877633511de58547818131cef.jpg",
+        "finalScore": 1283
+      }
+    ]
+  },
+  {
+    "time": "2025-07-11T09:37:43.219Z",
+    "winners": [
+      {
+        "username": "praa.-",
+        "country": "المملكة المتحدة",
+        "flag": "🇬🇧",
+        "title": "🏴‍☠️ القرصان",
+        "weapon": {
+          "name": "🎯 قناصة AWM",
+          "power": 90,
+          "durability": 50,
+          "description": "بندقية قنص بعيدة المدى وضرر قاتل."
+        },
+        "status": "هجوم",
+        "points": 1050,
+        "health": 59,
+        "luck": 4,
+        "training": null,
+        "image": "https://i.pinimg.com/736x/94/34/5a/94345ad561d6526741a1681eee0b1bc5.jpg",
+        "finalScore": 1174
+      },
+      {
+        "username": "˹♡𝑁𝑒𝑠𝑜˼🥹",
+        "country": "السعودية",
+        "flag": "🇸🇦",
+        "title": "🦾 الجنرال الحديدي",
+        "weapon": {
+          "name": "🪖 كلاشينكوف AK-47",
+          "power": 35,
+          "durability": 150,
+          "description": "بندقية هجومية شهيرة بقوة عالية."
+        },
+        "status": "هجوم",
+        "points": 1050,
+        "health": 10,
+        "luck": 26,
+        "training": null,
+        "image": "https://i.pinimg.com/736x/94/34/5a/94345ad561d6526741a1681eee0b1bc5.jpg",
+        "finalScore": 1109
+      }
+    ]
+  },
+  {
+    "time": "2025-07-11T08:35:28.054Z",
+    "winners": [
+      {
+        "username": "moo0oon1",
+        "country": "مصر",
+        "flag": "🇪🇬",
+        "title": "💣 المحارب",
+        "weapon": {
+          "name": "🪖 كلاشينكوف AK-47",
+          "power": 35,
+          "durability": 150,
+          "description": "بندقية هجومية شهيرة بقوة عالية."
+        },
+        "status": "هجوم",
+        "points": 1050,
+        "health": 10,
+        "luck": 73,
+        "training": null,
+        "image": "https://i.pinimg.com/736x/09/11/a5/0911a5fd28446d0937da7bcc826f8155.jpg",
+        "finalScore": 1179
+      },
+      {
+        "username": "ʂმlἶძմო🔵⚫მբբεʂէմʂ",
+        "country": "الصين",
+        "flag": "🇨🇳",
+        "title": "🦅 الصقر الجارح",
+        "weapon": {
+          "name": "🎯 قناصة AWM",
+          "power": 90,
+          "durability": 50,
+          "description": "بندقية قنص بعيدة المدى وضرر قاتل."
+        },
+        "status": "هجوم",
+        "points": 1050,
+        "health": 48,
+        "luck": 3,
+        "training": null,
+        "image": "https://i.pinimg.com/736x/2b/83/e1/2b83e19877633511de58547818131cef.jpg",
+        "finalScore": 1150
+      }
+    ]
+  },
+  {
+    "time": "2025-07-11T07:21:13.339Z",
+    "winners": [
+      {
+        "username": "مواطن_صالح",
+        "country": "المملكة المتحدة",
+        "flag": "🇬🇧",
+        "title": "💣 المحارب",
+        "weapon": {
+          "name": "💣 قنبلة M67",
+          "power": 60,
+          "durability": 5,
+          "description": "قنبلة يدوية تقضي على مجموعات صغيرة."
+        },
+        "status": "هجوم",
+        "points": 1050,
+        "health": 90,
+        "luck": 55,
+        "training": null,
+        "image": "https://i.pinimg.com/736x/09/11/a5/0911a5fd28446d0937da7bcc826f8155.jpg",
+        "finalScore": 1312
+      },
+      {
+        "username": "‏̅‏𝐶̵̩͜𝑙𝑎̅𝑠̅𝑠̅𝑖̅𝑐",
+        "country": "الولايات المتحدة",
+        "flag": "🇺🇸",
+        "title": "🛡️ المدافع",
+        "weapon": {
+          "name": "🪖 كلاشينكوف AK-47",
+          "power": 35,
+          "durability": 150,
+          "description": "بندقية هجومية شهيرة بقوة عالية."
+        },
+        "status": "هجوم",
+        "points": 1050,
+        "health": 80,
+        "luck": 64,
+        "training": null,
+        "image": "https://i.pinimg.com/736x/2b/83/e1/2b83e19877633511de58547818131cef.jpg",
+        "finalScore": 1306
+      },
+      {
+        "username": "◕الأَمـِـيـ𐎘ـرة›ʚଓ",
+        "country": "الصين",
+        "flag": "🇨🇳",
+        "title": "🦅 الصقر الجارح",
+        "weapon": {
+          "name": "🛡️ الدرع الباليستي",
+          "power": 0,
+          "durability": 300,
+          "description": "درع مضاد للرصاص يقلل 50% من الضرر."
+        },
+        "status": "هجوم",
+        "points": 1050,
+        "health": 25,
+        "luck": 78,
+        "training": null,
+        "image": "https://i.pinimg.com/736x/09/11/a5/0911a5fd28446d0937da7bcc826f8155.jpg",
+        "finalScore": 1217
+      },
+      {
+        "username": "نـسـۦۦــۦۦـريـۦـن",
+        "country": "الصين",
+        "flag": "🇨🇳",
+        "title": "🛡️ المدافع",
+        "weapon": {
+          "name": "🔫 جلوك 17",
+          "power": 15,
+          "durability": 120,
+          "description": "مسدس نصف آلي خفيف وسريع."
+        },
+        "status": "هجوم",
+        "points": 1050,
+        "health": 47,
+        "luck": 20,
+        "training": null,
+        "image": "https://i.pinimg.com/736x/94/34/5a/94345ad561d6526741a1681eee0b1bc5.jpg",
+        "finalScore": 1174
+      }
+    ]
+  },
+  {
+    "time": "2025-07-11T06:18:58.183Z",
+    "winners": [
+      {
+        "username": "ƈҽȥα",
+        "country": "مصر",
+        "flag": "🇪🇬",
+        "title": "🪖 القائد",
+        "weapon": {
+          "name": "🔫 ديزرت إيجل",
+          "power": 30,
+          "durability": 80,
+          "description": "مسدس قوي بضرر عالي لكن بطيء نسبياً."
+        },
+        "status": "دفاع",
+        "points": 1050,
+        "health": 79,
+        "luck": 70,
+        "training": null,
+        "image": "https://i.pinimg.com/736x/2b/83/e1/2b83e19877633511de58547818131cef.jpg",
+        "finalScore": 1313
+      },
+      {
+        "username": "القيصر",
+        "country": "البرازيل",
+        "flag": "🇧🇷",
+        "title": "🎯 القناص",
+        "weapon": {
+          "name": "🚀 صاروخ جافلين FGM-148",
+          "power": 120,
+          "durability": 2,
+          "description": "صاروخ موجه ضد الأهداف الثقيلة."
+        },
+        "status": "هجوم",
+        "points": 1050,
+        "health": 70,
+        "luck": 61,
+        "training": null,
+        "image": "https://i.pinimg.com/736x/2b/83/e1/2b83e19877633511de58547818131cef.jpg",
+        "finalScore": 1281
+      }
+    ]
+  },
+  {
+    "time": "2025-07-11T05:47:43.055Z",
+    "winners": [
+      {
+        "username": "بـويـكـا",
+        "country": "الصين",
+        "flag": "🇨🇳",
+        "title": "🦾 الجنرال الحديدي",
+        "weapon": {
+          "name": "🎯 قناصة AWM",
+          "power": 90,
+          "durability": 50,
+          "description": "بندقية قنص بعيدة المدى وضرر قاتل."
+        },
+        "status": "هجوم",
+        "points": 1050,
+        "health": 83,
+        "luck": 42,
+        "training": null,
+        "image": "https://i.pinimg.com/736x/09/11/a5/0911a5fd28446d0937da7bcc826f8155.jpg",
+        "finalScore": 1279
+      },
+      {
+        "username": "ƈҽȥα",
+        "country": "المملكة المتحدة",
+        "flag": "🇬🇧",
+        "title": "🪖 القائد",
+        "weapon": {
+          "name": "🔫 جلوك 17",
+          "power": 15,
+          "durability": 120,
+          "description": "مسدس نصف آلي خفيف وسريع."
+        },
+        "status": "هجوم",
+        "points": 1050,
+        "health": 3,
+        "luck": 15,
+        "training": null,
+        "image": "https://i.pinimg.com/736x/09/11/a5/0911a5fd28446d0937da7bcc826f8155.jpg",
+        "finalScore": 1078
+      }
+    ]
+  },
+  {
+    "time": "2025-07-11T04:45:27.855Z",
+    "winners": [
+      {
+        "username": "mohamed.s.",
+        "country": "السعودية",
+        "flag": "🇸🇦",
+        "title": "🦅 الصقر الجارح",
+        "weapon": {
+          "name": "🪖 كلاشينكوف AK-47",
+          "power": 35,
+          "durability": 150,
+          "description": "بندقية هجومية شهيرة بقوة عالية."
+        },
+        "status": "هجوم",
+        "points": 1050,
+        "health": 63,
+        "luck": 90,
+        "training": null,
+        "image": "https://i.pinimg.com/736x/94/34/5a/94345ad561d6526741a1681eee0b1bc5.jpg",
+        "finalScore": 1311
+      },
+      {
+        "username": "ˬمبسـٰـمـٰڴ𓄹آخـتصرٍ𓈒کْلَ𓈒هّـيَئآت𓄹أّلَجّمًأّلَ𓏲◡❥",
+        "country": "ألمانيا",
+        "flag": "🇩🇪",
+        "title": "🧠 الاستراتيجي",
+        "weapon": {
+          "name": "☢️ قنبلة نووية تكتيكية",
+          "power": 500,
+          "durability": 1,
+          "description": "سلاح دمار شامل، يدمر جميع الأعداء في جولة واحدة."
+        },
+        "status": "دفاع",
+        "points": 1050,
+        "health": 100,
+        "luck": 40,
+        "training": null,
+        "image": "https://i.pinimg.com/736x/09/11/a5/0911a5fd28446d0937da7bcc826f8155.jpg",
+        "finalScore": 1310
+      }
+    ]
+  },
+  {
+    "time": "2025-07-11T04:14:12.730Z",
+    "winners": [
+      {
+        "username": "مَـهـآ",
+        "country": "الولايات المتحدة",
+        "flag": "🇺🇸",
+        "title": "🏴‍☠️ القرصان",
+        "weapon": {
+          "name": "☢️ صاروخ نووي عابر للقارات",
+          "power": 800,
+          "durability": 1,
+          "description": "أقوى سلاح نووي في اللعبة، يدمر مدينة بأكملها."
+        },
+        "status": "هجوم",
+        "points": 1050,
+        "health": 100,
+        "luck": 34,
+        "training": null,
+        "image": "https://i.pinimg.com/736x/2b/83/e1/2b83e19877633511de58547818131cef.jpg",
+        "finalScore": 1301
+      },
+      {
+        "username": "_ret0o",
+        "country": "الصين",
+        "flag": "🇨🇳",
+        "title": "🤑 التاجر",
+        "weapon": {
+          "name": "☢️ صاروخ نووي عابر للقارات",
+          "power": 800,
+          "durability": 1,
+          "description": "أقوى سلاح نووي في اللعبة، يدمر مدينة بأكملها."
+        },
+        "status": "هجوم",
+        "points": 1050,
+        "health": 65,
+        "luck": 72,
+        "training": null,
+        "image": "https://i.pinimg.com/736x/2b/83/e1/2b83e19877633511de58547818131cef.jpg",
+        "finalScore": 1288
+      },
+      {
+        "username": "ƈҽȥα",
+        "country": "الصين",
+        "flag": "🇨🇳",
+        "title": "🛡️ المدافع",
+        "weapon": {
+          "name": "🪖 إم 4 إيه 1 M4A1",
+          "power": 32,
+          "durability": 170,
+          "description": "بندقية هجومية دقيقة وسريعة."
+        },
+        "status": "دفاع",
+        "points": 1050,
+        "health": 100,
+        "luck": 12,
+        "training": null,
+        "image": "https://i.pinimg.com/736x/09/11/a5/0911a5fd28446d0937da7bcc826f8155.jpg",
+        "finalScore": 1268
+      }
+    ]
+  },
+  {
+    "time": "2025-07-11T03:42:57.571Z",
+    "winners": [
+      {
+        "username": "مَـهـآ",
+        "country": "السعودية",
+        "flag": "🇸🇦",
+        "title": "💣 المحارب",
+        "weapon": {
+          "name": "🪖 كلاشينكوف AK-47",
+          "power": 35,
+          "durability": 150,
+          "description": "بندقية هجومية شهيرة بقوة عالية."
+        },
+        "status": "هجوم",
+        "points": 1050,
+        "health": 100,
+        "luck": 43,
+        "training": null,
+        "image": "https://i.pinimg.com/736x/09/11/a5/0911a5fd28446d0937da7bcc826f8155.jpg",
+        "finalScore": 1314
+      }
+    ]
+  },
+  {
+    "time": "2025-07-11T02:09:42.235Z",
+    "winners": [
+      {
+        "username": "capone_",
+        "country": "البرازيل",
+        "flag": "🇧🇷",
+        "title": "🛡️ المدافع",
+        "weapon": {
+          "name": "🚀 صاروخ جافلين FGM-148",
+          "power": 120,
+          "durability": 2,
+          "description": "صاروخ موجه ضد الأهداف الثقيلة."
+        },
+        "status": "هجوم",
+        "points": 1050,
+        "health": 100,
+        "luck": 95,
+        "training": null,
+        "image": "https://i.pinimg.com/736x/09/11/a5/0911a5fd28446d0937da7bcc826f8155.jpg",
+        "finalScore": 1392
+      },
+      {
+        "username": "حًکْمً🍂أّلَهّـوٌى",
+        "country": "مصر",
+        "flag": "🇪🇬",
+        "title": "⚔️ المبارز",
+        "weapon": {
+          "name": "🛡️ الدرع الباليستي",
+          "power": 0,
+          "durability": 300,
+          "description": "درع مضاد للرصاص يقلل 50% من الضرر."
+        },
+        "status": "هجوم",
+        "points": 1050,
+        "health": 66,
+        "luck": 90,
+        "training": null,
+        "image": "https://i.pinimg.com/736x/94/34/5a/94345ad561d6526741a1681eee0b1bc5.jpg",
+        "finalScore": 1317
+      }
+    ]
+  },
+  {
+    "time": "2025-07-11T01:07:26.889Z",
+    "winners": [
+      {
+        "username": "ʂმlἶძմო🔵⚫მբբεʂէմʂ",
+        "country": "مصر",
+        "flag": "🇪🇬",
+        "title": "🧠 الاستراتيجي",
+        "weapon": {
+          "name": "☢️ قنبلة نووية تكتيكية",
+          "power": 500,
+          "durability": 1,
+          "description": "سلاح دمار شامل، يدمر جميع الأعداء في جولة واحدة."
+        },
+        "status": "هجوم",
+        "points": 1050,
+        "health": 84,
+        "luck": 69,
+        "training": null,
+        "image": "https://i.pinimg.com/736x/94/34/5a/94345ad561d6526741a1681eee0b1bc5.jpg",
+        "finalScore": 1321
+      },
+      {
+        "username": "ڵيَۦاެٓلُُهالُہ↠୭لـٖڪُمۦلُـﭚ𐎓اެٓلإندِهّـآشُ",
+        "country": "الولايات المتحدة",
+        "flag": "🇺🇸",
+        "title": "🏴‍☠️ القرصان",
+        "weapon": {
+          "name": "🔫 جلوك 17",
+          "power": 15,
+          "durability": 120,
+          "description": "مسدس نصف آلي خفيف وسريع."
+        },
+        "status": "هجوم",
+        "points": 1050,
+        "health": 59,
+        "luck": 13,
+        "training": null,
+        "image": "https://i.pinimg.com/736x/94/34/5a/94345ad561d6526741a1681eee0b1bc5.jpg",
+        "finalScore": 1187
+      }
+    ]
+  },
+  {
     "time": "2025-07-11T00:03:23.790Z",
     "winners": [
       {

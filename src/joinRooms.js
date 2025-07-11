@@ -50,6 +50,8 @@ const { handleSlapCommand } = require('./handlers/slapDuelGames');
 const { handleMentionMessage, handleImageMessage } = require('./handlers/mentionHandler');
 const { handleBroadcastCommand, handleBroadcastText, handleBroadcastImage, handleBroadcastLike, handleTopBroadcasters, pendingBroadcasts } = require('./handlers/broadcastHandler');
 const { disableGames, enableGames } = require('./handlers/gameToggle');
+const { handleCoinDuelCommand } = require('./handlers/coinDuel');
+const { handleImageGiftCommand } = require('./handlers/handleImageGiftCommand');
 const masterAdmin = "ا◙☬ځُــۥـ☼ـڈ◄أڵـــســمـــٱ۽►ـۉد☼ــۥــۓ☬◙ا";
 
 function containsForbiddenWords(profile) {
@@ -239,7 +241,14 @@ if (data.handler === 'room_event' && data.body) {
 }
 
 
-
+if (body === '.coin' || body === 'ملك' || body === 'كتابة') {
+    handleCoinDuelCommand(data, socket, ioSockets);
+    return;
+}
+if (body?.startsWith('link@')) {
+    handleImageGiftCommand(data, socket, ioSockets);
+    return;
+}
     // لعبة مبارزة النرد
     if (body === 'نرد') {
         handleDiceDuelCommand(data, socket, ioSockets);
