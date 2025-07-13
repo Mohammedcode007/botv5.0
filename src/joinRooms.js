@@ -387,18 +387,18 @@ if (data.handler === 'room_event' && data.body && data.body.startsWith('removema
         socket.send(JSON.stringify(errorMessage));
     }
 }
-if (
-    data.handler === 'room_event' &&
-    data.body
-) {
-    const normalizedBody = data.body.trim().toLowerCase();
+// if (
+//     data.handler === 'room_event' &&
+//     data.body
+// ) {
+//     const normalizedBody = data.body.trim().toLowerCase();
 
-    const triggerWords = ['shot', '.', '..', 'صيد', 'حرب', 'كف', 'حصان', 'حصاني'];
+//     const triggerWords = ['shot', '.', '..', 'صيد', 'حرب', 'كف', 'حصان', 'حصاني'];
 
-    if (triggerWords.includes(normalizedBody)) {
-        autoVerifyUser(data.from);
-    }
-}
+//     if (triggerWords.includes(normalizedBody)) {
+//         autoVerifyUser(data.from);
+//     }
+// }
 
 
             if (
