@@ -5916,5 +5916,82 @@
     "user": "القيصر",
     "actor": "˹𔘓°ℓуℓу𝆟˼",
     "list": null
+  },
+  {
+    "timestamp": "2025-07-13T06:31:20.569Z",
+    "action": "BLOCK_USER",
+    "user": "555",
+    "actor": "ا◙☬ځُــۥـ☼ـڈ◄أڵـــســمـــٱ۽►ـۉد☼ــۥــۓ☬◙ا",
+    "list": null
+  },
+  {
+    "timestamp": "2025-07-13T06:32:37.742Z",
+    "action": "ADD_TO_LIST",
+    "user": "6666",
+    "actor": "ا◙☬ځُــۥـ☼ـڈ◄أڵـــســمـــٱ۽►ـۉد☼ــۥــۓ☬◙ا",
+    "list": "master"
+  },
+  {
+    "timestamp": "2025-07-13T07:28:52.542Z",
+    "action": "BLOCK_USER",
+    "user": "ا◙☬ځُــۥـ☼ـڈ◄أڵـــســمـــٱ۽►ـۉد☼ــۥــۓ☬◙ا",
+    "actor": "ا◙☬ځُــۥـ☼ـڈ◄أڵـــســمـــٱ۽►ـۉد☼ــۥــۓ☬◙ا",
+    "list": null
+  },
+  {
+    "timestamp": "2025-07-13T20:01:46.003Z",
+    "action": "ADD_VERIFIED",
+    "user": "ۦ•❥ٱلـأمــــيــــړﮬﮧ｡❀｡ڼــــــــۈړٱ❥•ۦ",
+    "actor": "🅘🅨🅐🅓🅞ᵘʷᵏ",
+    "list": null
+  },
+  {
+    "timestamp": "2025-07-13T20:04:24.259Z",
+    "action": "ADD_VERIFIED",
+    "user": "ڪخطيئھہ█♠ݳࢦـشيـطـان♠█ݪـاانــســى",
+    "actor": "🅘🅨🅐🅓🅞ᵘʷᵏ",
+    "list": null
+  },
+  {
+    "timestamp": "2025-07-13T21:04:45.900Z",
+    "action": "ADD_VERIFIED",
+    "user": "ايلول.الزبيري",
+    "actor": "ܤߺࡅ࡙ߺࡅٜߺܘ߳🇾🇪ࡅ࡙ߺܩߺוࡅ࠭ߺي",
+    "list": null
+  },
+  {
+    "timestamp": "2025-07-13T21:56:32.817Z",
+    "action": "ADD_VERIFIED",
+    "user": "♪❦گبـريـاء❁فــــــتاه‍❦♪",
+    "actor": "˹𔘓°ℓуℓу𝆟˼",
+    "list": null
+  },
+  {
+    "timestamp": "2025-07-14T00:55:32.165Z",
+    "action": "ADD_VERIFIED",
+    "user": "ɖαʀƙ",
+    "actor": "˹𔘓°ℓуℓу𝆟˼",
+    "list": null
+  },
+  {
+    "timestamp": "2025-07-14T00:55:48.159Z",
+    "action": "ADD_VERIFIED",
+    "user": "឵💫✨🌒",
+    "actor": "˹𔘓°ℓуℓу𝆟˼",
+    "list": null
+  },
+  {
+    "timestamp": "2025-07-14T12:15:58.995Z",
+    "action": "ADD_VERIFIED",
+    "user": "ۦ←♪أّلَذّهِبِ♪→ۦ",
+    "actor": "˹𔘓°ℓуℓу𝆟˼",
+    "list": null
+  },
+  {
+    "timestamp": "2025-07-14T13:31:35.886Z",
+    "action": "ADD_VERIFIED",
+    "user": "^_^",
+    "actor": "🅘🅨🅐🅓🅞ᵘʷᵏ",
+    "list": null
   }
 ]

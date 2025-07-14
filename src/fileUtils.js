@@ -10,6 +10,7 @@ const USERS_FILE = path.join(__dirname, './data/verifiedUsers.json');
 const { createRoomMessage } = require('./messageUtils');
 const silentRoomsFilePath = path.join(__dirname, 'silentRooms.json');
 
+const bannedUsersPath = path.join(__dirname, './bannedUsers.json');
 
 
 
@@ -472,7 +473,7 @@ function isUserInAdminList(username) {
 
 function isUserVerified(username) {
     const userVerifyList = loadUserVerifyList();
-    return userVerifyList.includes(username);
+    return userVerifyList.some(user => user.username === username);
 }
 
 function isUserBlocked(username) {
@@ -582,6 +583,8 @@ function incrementPikachuKills(username) {
     return null;
 }
 
+
+
 function checkUserExistsOrNotify(username, roomName, socket) {
     const users = loadUsers();
     const userExists = users.some(u => u.username === username);
@@ -601,6 +604,36 @@ function checkUserExistsOrNotify(username, roomName, socket) {
     }
 
     return true;
+}
+
+function loadBannedUsers() {
+    try {
+        const data = fs.readFileSync(bannedUsersPath, 'utf-8');
+        return JSON.parse(data); // ["677", "ahmed", "123"]
+    } catch (err) {
+        console.error('⚠️ خطأ أثناء تحميل ملف المحظورين:', err);
+        return [];
+    }
+}
+
+function isUserBanned(username) {
+    const bannedUsers = loadBannedUsers();
+    return bannedUsers.includes(username);
+}
+
+function checkBanAndNotify(username, roomName, socket) {
+    if (isUserBanned(username)) {
+        const msgText = `🚫 عذرًا ${username}، لقد تم حظرك من استخدام النظام.`;
+        const msg = createRoomMessage(roomName, msgText);
+
+        if (socket && socket.readyState === 1) {
+            socket.send(JSON.stringify(msg));
+        }
+
+        return true; // محظور
+    }
+
+    return false; // غير محظور
 }
 // جلب عدد نقاط المستخدم
 function getUserPoints(username) {

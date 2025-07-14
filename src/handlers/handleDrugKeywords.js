@@ -4,7 +4,8 @@ const {
     getUserPoints,
     addPoints,
     updateTradeHistory,
-    getTradeStats
+    getTradeStats,
+    isUserBlocked
 } = require('../fileUtils');
 
 const { createRoomMessage } = require('../messageUtils');
@@ -29,7 +30,15 @@ function handleDrugKeywords(data, socket) {
     const roomName = data.room;
     const body = data.body.trim().toLowerCase();
     const lang = getUserLanguage(sender) || 'ar';
+    if (isUserBlocked(sender)) {
+      const msg = lang === 'ar'
+    ? `🚫 تم حظرك.`
+    : `🚫 You are blocked.`;
 
+
+        socket.send(JSON.stringify(createRoomMessage(roomName, msg)));
+        return;
+    }
     if (!isUserVerified(sender)) {
         const msg = lang === 'ar'
             ? '⚠️ عذرًا، هذا الإجراء مخصص للمستخدمين الموثّقين فقط. يرجى التواصل مع الإدارة لمزيد من المعلومات.'

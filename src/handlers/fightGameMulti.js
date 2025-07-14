@@ -1,7 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 const { createRoomMessage } = require('../messageUtils');
-const { addPoints, loadRooms } = require('../fileUtils');
+const { addPoints, loadRooms, isUserBlocked, isUserVerified } = require('../fileUtils');
 
 const fightFilePath = path.join(__dirname, '../data/fightGameMulti.json');
 const cooldownFilePath = path.join(__dirname, '../data/fightCooldowns.json');
@@ -88,6 +88,17 @@ function handleFightCommand(data, socket, ioSockets) {
     const sender = data.from;
     const room = data.room;
     const userId = data.userId || sender;
+    if (isUserBlocked(data.from)) {
+    const msg = `🚫 You are blocked.`;
+    socket.send(JSON.stringify(createRoomMessage(data.room, msg)));
+    return;
+}
+
+if (!isUserVerified(data.from)) {
+    const msg = `⚠️ Sorry, this action is restricted to verified users only. Please contact the administration for further assistance.`;
+    socket.send(JSON.stringify(createRoomMessage(data.room, msg)));
+    return;
+}
     const now = Date.now();
 
     const cooldowns = loadCooldowns();

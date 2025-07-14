@@ -1,7 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 const { createRoomMessage } = require('../messageUtils');
-const { addPoints, loadRooms } = require('../fileUtils');
+const { addPoints, loadRooms, isUserBlocked, isUserVerified } = require('../fileUtils');
 
 // ملفات البيانات
 const duelFilePath = path.join(__dirname, '../data/swordShieldDuel.json');
@@ -97,6 +97,19 @@ function broadcastToAllRooms(ioSockets, message) {
 // تنفيذ أمر سيف ودرع
 function handleSwordShieldCommand(data, socket, ioSockets) {
     const sender = data.from;
+    if (isUserBlocked(data.from)) {
+    const msg = `🚫 You are blocked.`;
+    socket.send(JSON.stringify(createRoomMessage(data.room, msg)));
+    return;
+}
+
+if (!isUserVerified(data.from)) {
+    const msg = `⚠️ Sorry, this action is restricted to verified users only. Please contact the administration for further assistance.`;
+    socket.send(JSON.stringify(createRoomMessage(data.room, msg)));
+    return;
+}
+        console.log('66777');
+
     const room = data.room;
     const userId = data.userId || sender;
     const body = data.body.trim();

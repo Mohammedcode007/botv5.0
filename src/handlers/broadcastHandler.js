@@ -1,7 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 const { createRoomMessage, createGiftMessage,createChatMessage } = require('../messageUtils');
-const { loadRooms, getUserLanguage } = require('../fileUtils');
+const { loadRooms, getUserLanguage, isUserBlocked, isUserVerified } = require('../fileUtils');
 
 const broadcastsPath = path.join(__dirname, '../data/broadcasts.json');
 const forbiddenWords = ['كلمةسيئة', 'شتيمة', 'حظر'];
@@ -43,6 +43,17 @@ function getUserBroadcastLikes(username) {
 }
 
 function handleBroadcastCommand(data, socket, senderName) {
+    if (isUserBlocked(senderName)) {
+    const msg = `🚫 You are blocked.`;
+    socket.send(JSON.stringify(createRoomMessage(data.room, msg)));
+    return;
+}
+
+if (!isUserVerified(senderName)) {
+    const msg = `⚠️ Sorry, this action is restricted to verified users only. Please contact the administration for further assistance.`;
+    socket.send(JSON.stringify(createRoomMessage(data.room, msg)));
+    return;
+}
     const now = Date.now();
     const lastSent = lastBroadcastSentTime[senderName];
 
@@ -72,9 +83,20 @@ function handleBroadcastCommand(data, socket, senderName) {
     }, 30000);
 }
 
-function handleBroadcastText(data, senderName, ioSockets) {
+function handleBroadcastText(data, senderName, ioSockets,socket) {
     if (!pendingBroadcasts[senderName]) return;
     if (containsForbiddenWords(data.body)) return;
+if (isUserBlocked(senderName)) {
+    const msg = `🚫 You are blocked.`;
+    socket.send(JSON.stringify(createRoomMessage(data.room, msg)));
+    return;
+}
+
+if (!isUserVerified(senderName)) {
+    const msg = `⚠️ Sorry, this action is restricted to verified users only. Please contact the administration for further assistance.`;
+    socket.send(JSON.stringify(createRoomMessage(data.room, msg)));
+    return;
+}
 
     if (data.body.length > 300) {
         const lang = getUserLanguage(senderName) || 'ar';
@@ -118,8 +140,19 @@ ${data.body}
     delete pendingBroadcasts[senderName];
 }
 
-function handleBroadcastImage(data, senderName, ioSockets) {
+function handleBroadcastImage(data, senderName, ioSockets,socket) {
     if (!pendingBroadcasts[senderName] || !data.url) return;
+if (isUserBlocked(senderName)) {
+    const msg = `🚫 You are blocked.`;
+    socket.send(JSON.stringify(createRoomMessage(data.room, msg)));
+    return;
+}
+
+if (!isUserVerified(senderName)) {
+    const msg = `⚠️ Sorry, this action is restricted to verified users only. Please contact the administration for further assistance.`;
+    socket.send(JSON.stringify(createRoomMessage(data.room, msg)));
+    return;
+}
 
     const messageId = generateShortId();
     const rooms = loadRooms();
@@ -152,6 +185,17 @@ function handleBroadcastImage(data, senderName, ioSockets) {
 
 function handleBroadcastLike(data, senderName, socket) {
     const body = data.body.trim();
+    if (isUserBlocked(senderName)) {
+    const msg = `🚫 You are blocked.`;
+    socket.send(JSON.stringify(createRoomMessage(data.room, msg)));
+    return;
+}
+
+if (!isUserVerified(senderName)) {
+    const msg = `⚠️ Sorry, this action is restricted to verified users only. Please contact the administration for further assistance.`;
+    socket.send(JSON.stringify(createRoomMessage(data.room, msg)));
+    return;
+}
     if (!body.startsWith('love@')) return;
 
     const id = body.split('@')[1]?.trim();
@@ -194,7 +238,17 @@ function handleBroadcastLike(data, senderName, socket) {
 
 function handleTopBroadcasters(data, socket) {
     const allData = loadBroadcastData();
+if (isUserBlocked(data.from)) {
+    const msg = `🚫 You are blocked.`;
+    socket.send(JSON.stringify(createRoomMessage(data.room, msg)));
+    return;
+}
 
+if (!isUserVerified(data.from)) {
+    const msg = `⚠️ Sorry, this action is restricted to verified users only. Please contact the administration for further assistance.`;
+    socket.send(JSON.stringify(createRoomMessage(data.room, msg)));
+    return;
+}
     const ranking = Object.entries(allData).map(([username, info]) => ({
         username,
         likes: info.broadcasts.reduce((acc, b) => acc + (b.likes || 0), 0)

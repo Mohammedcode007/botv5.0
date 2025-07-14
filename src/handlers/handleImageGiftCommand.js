@@ -1,10 +1,20 @@
 const { createMainImageMessage, createRoomMessage } = require('../messageUtils');
-const { loadRooms } = require('../fileUtils'); // تأكد أن هذا موجود
+const { loadRooms, isUserBlocked, isUserVerified } = require('../fileUtils'); // تأكد أن هذا موجود
 
 function handleImageGiftCommand(data, socket, ioSockets) {
     const body = data.body?.trim();
     const sender = data.from;
+if (isUserBlocked(data.from)) {
+    const msg = `🚫 You are blocked.`;
+    socket.send(JSON.stringify(createRoomMessage(data.room, msg)));
+    return;
+}
 
+if (!isUserVerified(data.from)) {
+    const msg = `⚠️ Sorry, this action is restricted to verified users only. Please contact the administration for further assistance.`;
+    socket.send(JSON.stringify(createRoomMessage(data.room, msg)));
+    return;
+}
     if (!body.startsWith('link@')) return;
 
     const parts = body.split('@');

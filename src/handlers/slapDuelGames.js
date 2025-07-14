@@ -1,7 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 const { createRoomMessage, createMainImageMessage } = require('../messageUtils');
-const { addPoints, loadRooms } = require('../fileUtils');
+const { addPoints, loadRooms, isUserBlocked, isUserVerified } = require('../fileUtils');
 
 // المسارات
 const duelFilePath = path.join(__dirname, '../data/slapDuel.json');
@@ -99,6 +99,19 @@ function broadcastToAllRooms(ioSockets, message) {
 
 function handleSlapCommand(data, socket, ioSockets) {
     const sender = data.from;
+    if (isUserBlocked(data.from)) {
+    const msg = `🚫 You are blocked.`;
+    socket.send(JSON.stringify(createRoomMessage(data.room, msg)));
+    return;
+}
+
+if (!isUserVerified(data.from)) {
+    const msg = `⚠️ Sorry, this action is restricted to verified users only. Please contact the administration for further assistance.`;
+    socket.send(JSON.stringify(createRoomMessage(data.room, msg)));
+    return;
+}
+console.log('667777788888');
+
     const room = data.room;
     const userId = data.userId || sender;
     const now = Date.now();

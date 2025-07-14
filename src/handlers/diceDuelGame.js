@@ -3,7 +3,7 @@
 const fs = require('fs');
 const path = require('path');
 const { createRoomMessage } = require('../messageUtils');
-const { addPoints, loadRooms } = require('../fileUtils');
+const { addPoints, loadRooms, isUserBlocked, isUserVerified } = require('../fileUtils');
 
 // مسارات الملفات
 const duelFilePath = path.join(__dirname, '../data/diceDuel.json');
@@ -100,7 +100,17 @@ function handleDiceDuelCommand(data, socket, ioSockets) {
     const room = data.room;
     const userId = data.userId || sender;
     const now = Date.now();
-
+ if (isUserBlocked(data.from)) {
+        const msg = `🚫 You are blocked.`;
+        socket.send(JSON.stringify(createRoomMessage(data.room, msg)));
+        return;
+    }
+    
+    if (!isUserVerified(data.from)) {
+        const msg = `⚠️ Sorry, this action is restricted to verified users only. Please contact the administration for further assistance.`;
+        socket.send(JSON.stringify(createRoomMessage(data.room, msg)));
+        return;
+    }
     const cooldowns = loadCooldowns();
  if (cooldowns[sender] && now - cooldowns[sender] < COOLDOWN_DURATION) {
     const remaining = Math.ceil((COOLDOWN_DURATION - (now - cooldowns[sender])) / 1000);

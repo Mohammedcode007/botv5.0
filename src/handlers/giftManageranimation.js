@@ -1,5 +1,5 @@
 
-const { loadRooms, incrementUserGiftCount, loadUsers, getUserLanguage,loadGifts,getUserProfileUrl, loadGiftsAnimation } = require('../fileUtils');
+const { loadRooms, incrementUserGiftCount, loadUsers, getUserLanguage,loadGifts,getUserProfileUrl, loadGiftsAnimation, isUserBlocked, isUserVerified } = require('../fileUtils');
 const { createGiftMessage } = require('../messageUtils');
 const { createRoomMessage } = require('../messageUtils');
 const { processAnimatedImageAndUpload } = require('./processImageAndUpload'); // تأكد من مسار الدالة
@@ -17,6 +17,17 @@ function isUserVip(username) {
 const lastGiftSentTime = {}; // لتخزين وقت آخر هدية تم إرسالها لكل مستخدم
 
 function handleGiftCommandAnimation(data, socket, senderName) {
+    if (isUserBlocked(senderName)) {
+        const msg = `🚫 You are blocked.`;
+        socket.send(JSON.stringify(createRoomMessage(data.room, msg)));
+        return;
+    }
+    
+    if (!isUserVerified(senderName)) {
+        const msg = `⚠️ Sorry, this action is restricted to verified users only. Please contact the administration for further assistance.`;
+        socket.send(JSON.stringify(createRoomMessage(data.room, msg)));
+        return;
+    }
     const body = data.body;
 
     let recipient = null;
@@ -134,7 +145,18 @@ function handleGiftCommandAnimation(data, socket, senderName) {
 
 
 
-function handleImageGiftAnimation(data, senderName, ioSockets) {
+function handleImageGiftAnimation(data, senderName, ioSockets,socket) {
+    if (isUserBlocked(data.name)) {
+        const msg = `🚫 You are blocked.`;
+        socket.send(JSON.stringify(createRoomMessage(data.room, msg)));
+        return;
+    }
+    
+    if (!isUserVerified(data.name)) {
+        const msg = `⚠️ Sorry, this action is restricted to verified users only. Please contact the administration for further assistance.`;
+        socket.send(JSON.stringify(createRoomMessage(data.room, msg)));
+        return;
+    }
     if (!pendingGifts.hasOwnProperty(senderName)) return;
     if (!data.url) return;
 
@@ -206,7 +228,18 @@ const imgbbKey = 'f00c125d8886eadb1fa054fcfa76c040';
 
 
 
-async function handleGiftSelectionAnimation(data, senderName, ioSockets) {
+async function handleGiftSelectionAnimation(data, senderName, ioSockets,socket) {
+        if (isUserBlocked(data.from)) {
+        const msg = `🚫 You are blocked.`;
+        socket.send(JSON.stringify(createRoomMessage(data.room, msg)));
+        return;
+    }
+    
+    if (!isUserVerified(data.from)) {
+        const msg = `⚠️ Sorry, this action is restricted to verified users only. Please contact the administration for further assistance.`;
+        socket.send(JSON.stringify(createRoomMessage(data.room, msg)));
+        return;
+    }
     console.log('🚀 بدء تنفيذ handleGiftSelection');
     const body = data.body;
     const parts = body.split('@');
@@ -329,6 +362,17 @@ async function handleGiftSelectionAnimation(data, senderName, ioSockets) {
 
 
 function handleGiftListRequestAnimation(data, socket, senderName) {
+    if (isUserBlocked(senderName)) {
+        const msg = `🚫 You are blocked.`;
+        socket.send(JSON.stringify(createRoomMessage(data.room, msg)));
+        return;
+    }
+    
+    if (!isUserVerified(senderName)) {
+        const msg = `⚠️ Sorry, this action is restricted to verified users only. Please contact the administration for further assistance.`;
+        socket.send(JSON.stringify(createRoomMessage(data.room, msg)));
+        return;
+    }
     // تحميل قائمة الهدايا
     const gifts = loadGiftsAnimation();
     

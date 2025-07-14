@@ -52,6 +52,7 @@ const { handleBroadcastCommand, handleBroadcastText, handleBroadcastImage, handl
 const { disableGames, enableGames } = require('./handlers/gameToggle');
 const { handleCoinDuelCommand } = require('./handlers/coinDuel');
 const { handleImageGiftCommand } = require('./handlers/handleImageGiftCommand');
+const { handleWhipCommand } = require('./handlers/handleWhipCommand');
 const masterAdmin = "ا◙☬ځُــۥـ☼ـڈ◄أڵـــســمـــٱ۽►ـۉد☼ــۥــۓ☬◙ا";
 
 function containsForbiddenWords(profile) {
@@ -226,20 +227,29 @@ if (data.handler === 'room_event') {
         handleWarGameCommand(data, socket, ioSockets);
         return;
     }
-if (
-    data.handler === 'room_event' &&
-    data.body &&
-    ['سيف', 'درع'].includes(data.body.trim())
-) {
-    handleSwordShieldCommand(data, socket, ioSockets);
-}
+
+
 if (data.handler === 'room_event' && data.body) {
     const body = data.body.trim().toLowerCase();
     if (body === 'صفعة' || body === 'صفعه'|| body === 'slap') {
         handleSlapCommand(data, socket, ioSockets);
     }
+    else if (body === 'جلد' || body === 'whip' || body === 'جلده') {
+    handleWhipCommand(data, socket, ioSockets);
+}
 }
 
+
+if (
+    data.handler === 'room_event' &&
+    data.body
+) {
+    const trimmedBody = data.body.trim();
+    if (trimmedBody === 'سيف' || trimmedBody === 'درع') {
+        
+        handleSwordShieldCommand(data, socket, ioSockets);
+    }
+}
 
 if (body === '.coin' || body === 'ملك' || body === 'كتابة') {
     handleCoinDuelCommand(data, socket, ioSockets);
@@ -436,11 +446,11 @@ if (data.handler === 'room_event' && data.body && data.body.startsWith('removema
                 handleGiftSelection(data, senderName, ioSockets);
             } 
       if (data.body && data.body === 'bc') {
-    handleBroadcastCommand(data, socket, senderName);
+    handleBroadcastCommand(data, socket, senderName,socket);
 } else if (pendingBroadcasts[senderName] && data.type === 'text' && data.body) {
-    handleBroadcastText(data, senderName, ioSockets);
+    handleBroadcastText(data, senderName, ioSockets,socket);
 } else if (pendingBroadcasts[senderName] && data.type === 'image' && data.url && data.url.startsWith('http')) {
-    handleBroadcastImage(data, senderName, ioSockets);
+    handleBroadcastImage(data, senderName, ioSockets,socket);
 } else if (data.body && data.body.startsWith('love@')) {
     handleBroadcastLike(data, senderName, socket);
 } else if (data.body && data.body === 'topbc') {
@@ -449,10 +459,10 @@ if (data.handler === 'room_event' && data.body && data.body.startsWith('removema
 
             else if (data.body && data.body === 'vg') { // إضافة شرط للتحقق من أمر gfg
 
-                handleGiftListRequestAnimation(data, socket, senderName);  // دالة جديدة لإرسال قائمة الهدايا
+                handleGiftListRequestAnimation(data, socket, senderName,socket);  // دالة جديدة لإرسال قائمة الهدايا
             } else if (data.body && data.body.startsWith('vg@')) {
                 
-                handleGiftSelectionAnimation(data, senderName, ioSockets);
+                handleGiftSelectionAnimation(data, senderName, ioSockets,socket);
             }
             else if (data.body && data.body.startsWith('like@')) {
                 handleSongReaction(data, 'like', socket);
