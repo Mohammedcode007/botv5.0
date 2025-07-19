@@ -108,7 +108,6 @@ if (!isUserVerified(data.from)) {
     socket.send(JSON.stringify(createRoomMessage(data.room, msg)));
     return;
 }
-        console.log('66777');
 
     const room = data.room;
     const userId = data.userId || sender;

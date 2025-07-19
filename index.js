@@ -29,3 +29,32 @@ socket.on('error', (error) => {
 
 
 
+// const fs = require('fs');
+// const path = require('path');
+
+// // مسار الملف
+// const filePath = path.join(__dirname, './src/data/verifiedUsers.json'); // عدّل المسار حسب موقع الملف
+
+// function resetAllUserPoints() {
+//     if (!fs.existsSync(filePath)) {
+//         console.error('⚠️ الملف غير موجود:', filePath);
+//         return;
+//     }
+
+//     const data = JSON.parse(fs.readFileSync(filePath));
+
+//     if (!Array.isArray(data)) {
+//         console.error('⚠️ محتوى الملف ليس مصفوفة.');
+//         return;
+//     }
+
+//     const updated = data.map(user => ({
+//         ...user,
+//         points: 0
+//     }));
+
+//     fs.writeFileSync(filePath, JSON.stringify(updated, null, 2));
+//     console.log('✅ تم تصفير نقاط جميع المستخدمين.');
+// }
+
+// resetAllUserPoints();

@@ -3,211 +3,147 @@ const path = require('path');
 const { createRoomMessage, createMainImageMessage } = require('../messageUtils');
 const { addPoints, loadRooms, isUserBlocked, isUserVerified } = require('../fileUtils');
 
-// المسارات
-const duelFilePath = path.join(__dirname, '../data/slapDuel.json');
-const leaderboardFilePath = path.join(__dirname, '../data/slapLeaderboard.json');
-const cooldownFilePath = path.join(__dirname, '../data/slapCooldowns.json');
+const sessionPath = path.join(__dirname, '../data/bombGame.json');
+const leaderboardPath = path.join(__dirname, '../data/bombLeaderboard.json');
+const cooldownPath = path.join(__dirname, '../data/bombCooldown.json');
 
-// المدة المسموح بها بين المشاركات (5 دقائق)
 const COOLDOWN_DURATION = 5 * 60 * 1000;
 
-// صور الصفعة
-const slapImages = [
-    'https://i.pinimg.com/736x/a3/43/8e/a3438e4cccc1d98f18d857daf48cc6b9.jpg',
-    'https://i.pinimg.com/736x/54/7e/fd/547efddc4da620c88f02dd4c9cef19f4.jpg',
-    'https://i.pinimg.com/736x/96/80/21/9680219a8fada0ebe3da1d588966c191.jpg',
-    'https://i.pinimg.com/736x/08/ff/7c/08ff7c3cc92460b43fa7f29df40e6049.jpg',
-    'https://i.pinimg.com/736x/c8/fd/8b/c8fd8b743859d95fd43ee17cfe1b8652.jpg'
+const bombImages = [
+    'https://i.pinimg.com/736x/c1/bb/7b/c1bb7b88b30789b93c03a578c77fdb7b.jpg',
+    'https://i.pinimg.com/736x/af/86/6b/af866be47a511f75cb0b9d44c3c03e41.jpg'
 ];
 
-// أدوات ملفات JSON
-function loadJsonFile(filePath, defaultValue = {}) {
-    if (!fs.existsSync(filePath)) {
-        fs.writeFileSync(filePath, JSON.stringify(defaultValue, null, 2));
-    }
-    return JSON.parse(fs.readFileSync(filePath));
+function loadJson(file, def = {}) {
+    if (!fs.existsSync(file)) fs.writeFileSync(file, JSON.stringify(def, null, 2));
+    return JSON.parse(fs.readFileSync(file));
 }
 
-function saveJsonFile(filePath, data) {
-    fs.writeFileSync(filePath, JSON.stringify(data, null, 2));
+function saveJson(file, data) {
+    fs.writeFileSync(file, JSON.stringify(data, null, 2));
 }
 
-function getInitialDuelData() {
+function getInitialData() {
     return {
         isActive: false,
         player1: null,
         player2: null,
-        startedAt: null,
         rooms: [],
         result: null
     };
 }
 
-function loadDuelData() {
-    return loadJsonFile(duelFilePath, getInitialDuelData());
-}
-
-function saveDuelData(data) {
-    saveJsonFile(duelFilePath, data);
-}
-
-function resetDuel() {
-    saveDuelData(getInitialDuelData());
-}
-
-function loadLeaderboard() {
-    return loadJsonFile(leaderboardFilePath, {});
-}
-
-function saveLeaderboard(data) {
-    saveJsonFile(leaderboardFilePath, data);
-}
-
-function loadCooldowns() {
-    return loadJsonFile(cooldownFilePath, {});
-}
-
-function saveCooldowns(data) {
-    saveJsonFile(cooldownFilePath, data);
-}
-
-function broadcastToRooms(ioSockets, roomNames, message) {
-        const rooms = loadRooms();
-
-    roomNames.forEach(roomName => {
-          const roomData = rooms.find(r => r.roomName === roomName);
-        if (roomData?.gamesEnabled === false) return; // تجاهل الغرف المعطّلة للألعاب
+function broadcastToRooms(ioSockets, rooms, msg) {
+    const allRooms = loadRooms();
+    rooms.forEach(roomName => {
+        const room = allRooms.find(r => r.roomName === roomName);
+        if (room?.gamesEnabled === false) return;
         const socket = ioSockets[roomName];
         if (socket && socket.readyState === 1) {
-            socket.send(JSON.stringify(createRoomMessage(roomName, message)));
+            socket.send(JSON.stringify(createRoomMessage(roomName, msg)));
         }
     });
 }
 
-function broadcastToAllRooms(ioSockets, message) {
-    const rooms = loadRooms();
-    rooms.forEach(room => {
-        const roomName = room.roomName || room;
-                if (room.gamesEnabled === false) return; // تجاهل الغرف المعطّلة للألعاب
-
-        const socket = ioSockets[roomName];
-        if (socket && socket.readyState === 1) {
-            socket.send(JSON.stringify(createRoomMessage(roomName, message)));
-        }
-    });
-}
-
-function handleSlapCommand(data, socket, ioSockets) {
+function handleBombCommand(data, socket, ioSockets) {
     const sender = data.from;
-    if (isUserBlocked(data.from)) {
-    const msg = `🚫 You are blocked.`;
-    socket.send(JSON.stringify(createRoomMessage(data.room, msg)));
-    return;
-}
-
-if (!isUserVerified(data.from)) {
-    const msg = `⚠️ Sorry, this action is restricted to verified users only. Please contact the administration for further assistance.`;
-    socket.send(JSON.stringify(createRoomMessage(data.room, msg)));
-    return;
-}
-console.log('667777788888');
-
     const room = data.room;
     const userId = data.userId || sender;
     const now = Date.now();
 
-    const cooldowns = loadCooldowns();
-    if (cooldowns[userId] && now - cooldowns[userId] < COOLDOWN_DURATION) {
-        const remaining = Math.ceil((COOLDOWN_DURATION - (now - cooldowns[userId])) / 1000);
-        socket.send(JSON.stringify(createRoomMessage(room, `⏳ يجب الانتظار ${remaining} ثانية قبل المشاركة مجددًا في تحدي الصفعة.`)));
+    if (isUserBlocked(sender)) {
+        socket.send(JSON.stringify(createRoomMessage(room, `🚫 تم حظرك من المشاركة.`)));
         return;
     }
 
-    let duelData = loadDuelData();
+    if (!isUserVerified(sender)) {
+        socket.send(JSON.stringify(createRoomMessage(room, `⚠️ فقط المستخدمين الموثقين يمكنهم اللعب.`)));
+        return;
+    }
 
-    if (!duelData.isActive) {
-        duelData.isActive = true;
-        duelData.player1 = { username: sender, userId };
-        duelData.startedAt = now;
-        duelData.rooms = [room];
-        saveDuelData(duelData);
+    const cooldowns = loadJson(cooldownPath);
+    if (cooldowns[userId] && now - cooldowns[userId] < COOLDOWN_DURATION) {
+        const remaining = Math.ceil((COOLDOWN_DURATION - (now - cooldowns[userId])) / 1000);
+        socket.send(JSON.stringify(createRoomMessage(room, `⏳ انتظر ${remaining} ثانية قبل المحاولة مرة أخرى.`)));
+        return;
+    }
 
+    let session = loadJson(sessionPath, getInitialData());
+
+    if (!session.isActive) {
+        session.isActive = true;
+        session.player1 = { username: sender, userId };
+        session.rooms = [room];
+        saveJson(sessionPath, session);
         cooldowns[userId] = now;
-        saveCooldowns(cooldowns);
+        saveJson(cooldownPath, cooldowns);
 
-        broadcastToAllRooms(ioSockets, `🖐️ ${sender} بدأ تحدي الصفعة! أول من يكتب "صفعة" خلال 30 ثانية سينضم.`);
+        broadcastToRooms(ioSockets, loadRooms().map(r => r.roomName), `💣 ${sender} أطلق قنبلة!\n✋ للانضمام أرسل "قنبله" أو "قنبلة"!`);
 
+        // مؤقت لإلغاء القنبلة إذا لم ينضم أحد
         setTimeout(() => {
-            const current = loadDuelData();
+            const current = loadJson(sessionPath);
             if (current.isActive && !current.player2) {
-                broadcastToRooms(ioSockets, current.rooms, `⏰ لم ينضم أحد لتحدي الصفعة. انتهت الجولة.`);
-                resetDuel();
+                broadcastToRooms(ioSockets, current.rooms, `⏰ لم ينضم أحد. تم إلغاء القنبلة تلقائيًا.`);
+                saveJson(sessionPath, getInitialData());
             }
         }, 30000);
 
         return;
     }
 
-    if (duelData.player1.username === sender) {
-        socket.send(JSON.stringify(createRoomMessage(room, `❌ لا يمكنك تحدي نفسك.`)));
+    if (session.player1.username === sender) {
+        socket.send(JSON.stringify(createRoomMessage(room, `❌ لا يمكنك اللعب ضد نفسك.`)));
         return;
     }
 
-    if (duelData.player2) {
-        socket.send(JSON.stringify(createRoomMessage(room, `❌ التحدي مكتمل بالفعل.`)));
+    if (session.player2) {
+        socket.send(JSON.stringify(createRoomMessage(room, `❌ القنبلة مفعّلة بالفعل بين لاعبين.`)));
         return;
     }
 
-    duelData.player2 = { username: sender, userId };
-    if (!duelData.rooms.includes(room)) duelData.rooms.push(room);
+    session.player2 = { username: sender, userId };
+    if (!session.rooms.includes(room)) session.rooms.push(room);
 
     cooldowns[userId] = now;
-    saveCooldowns(cooldowns);
+    saveJson(cooldownPath, cooldowns);
 
-    // تحديد الفائز عشوائيًا
-    const players = [duelData.player1.username, duelData.player2.username];
+    const players = [session.player1.username, session.player2.username];
     const winner = players[Math.floor(Math.random() * 2)];
-    const loser = players.find(name => name !== winner);
-    const prizePoints = 500000;
+    const loser = players.find(p => p !== winner);
+    const prizePoints = 50000;
 
     try {
         addPoints(winner, prizePoints);
     } catch {}
 
-    const resultMsg = `💥 ${duelData.player1.username} VS ${duelData.player2.username}\n🏆 الفائز بالصفعة: ${winner} (+${prizePoints.toLocaleString()} نقطة)\n😵 الضحية: ${loser}`;
-
-    duelData.result = { winner };
-    duelData.isActive = false;
+    const msg = `💣 ${session.player1.username} vs ${session.player2.username}\n🏆 الناجي من القنبلة: ${winner} (+${prizePoints.toLocaleString()} نقطة)\n💥 الخاسر: ${loser}`;
+    const image = bombImages[Math.floor(Math.random() * bombImages.length)];
 
     // تحديث الترتيب
-    const leaderboard = loadLeaderboard();
+    const leaderboard = loadJson(leaderboardPath);
     leaderboard[winner] = (leaderboard[winner] || 0) + 1;
-    saveLeaderboard(leaderboard);
+    saveJson(leaderboardPath, leaderboard);
 
-    // ترتيب العشرة الأوائل
-    const sortedLeaders = Object.entries(leaderboard)
+    const top = Object.entries(leaderboard)
         .sort((a, b) => b[1] - a[1])
-        .slice(0, 10)
-        .map(([name, wins], i) => `#${i + 1} - ${name} | 👋 الفوز: ${wins}`)
+        .slice(0, 5)
+        .map(([name, score], i) => `#${i + 1} - ${name}: 💣 ${score} فوز`)
         .join('\n');
 
-    const randomImage = slapImages[Math.floor(Math.random() * slapImages.length)];
-
-    duelData.rooms.forEach(roomName => {
-        const socket = ioSockets[roomName];
-        if (socket && socket.readyState === 1) {
-            const imageMessage = createMainImageMessage(roomName, randomImage);
-            socket.send(JSON.stringify(imageMessage));
-            socket.send(JSON.stringify(createRoomMessage(roomName, resultMsg)));
-            socket.send(JSON.stringify(createRoomMessage(roomName, `📊 أقوى الصفّاعين:\n${sortedLeaders}`)));
+    session.rooms.forEach(r => {
+        const sock = ioSockets[r];
+        if (sock && sock.readyState === 1) {
+            sock.send(JSON.stringify(createMainImageMessage(r, image)));
+            sock.send(JSON.stringify(createRoomMessage(r, msg)));
+            sock.send(JSON.stringify(createRoomMessage(r, `📊 ترتيب الناجين:\n${top}`)));
         }
     });
 
-    saveDuelData(duelData);
-    resetDuel();
+    saveJson(sessionPath, session);
+    saveJson(sessionPath, getInitialData());
 }
 
 module.exports = {
-    handleSlapCommand,
-    resetDuel
+    handleBombCommand
 };

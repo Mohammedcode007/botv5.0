@@ -240,53 +240,39 @@ async function handleGiftSelectionAnimation(data, senderName, ioSockets,socket) 
         socket.send(JSON.stringify(createRoomMessage(data.room, msg)));
         return;
     }
-    console.log('🚀 بدء تنفيذ handleGiftSelection');
     const body = data.body;
     const parts = body.split('@');
-    console.log('🧠 أمر الإدخال:', parts);
 
     if (parts.length < 3 || parts[0] !== 'vg') {
-        console.log('❌ الأمر غير صحيح أو عدد العناصر أقل من 3');
         return;
     }
 
     const giftId = parseInt(parts[1], 10);
     const recipient = parts[2].trim();
 
-    console.log('🎁 giftId:', giftId);
-    console.log('👤 recipient:', recipient);
 
     if (isNaN(giftId)) {
-        console.log('❌ giftId ليس رقمًا صحيحًا');
         return;
     }
 
     const gifts = loadGiftsAnimation();
-    console.log('🎁 قائمة الهدايا:', gifts);
 
     const gift = gifts.find(g => g.id === giftId);
     if (!gift) {
-        console.log(`❌ لم يتم العثور على الهدية برقم id: ${giftId}`);
         return;
     }
-    console.log('✅ تم العثور على الهدية:', gift);
 
     const users = loadUsers();
     const senderData = users.find(u => u.username === senderName);
     const recipientData = users.find(u => u.username === recipient);
-    console.log('👤 بيانات المرسل:', senderData);
-    console.log('👤 بيانات المستلم:', recipientData);
 
     if (!recipientData) {
-        console.log(`❌ لم يتم العثور على المستلم: ${recipient}`);
         return;
     }
 
     const profileUrl = getUserProfileUrl(senderName);
-    console.log('🖼️ رابط بروفايل المرسل:', profileUrl);
 
     if (!profileUrl) {
-        console.log('❌ رابط بروفايل المرسل غير موجود');
         return;
     }
 
@@ -305,8 +291,6 @@ async function handleGiftSelectionAnimation(data, senderName, ioSockets,socket) 
         const sentCount = updatedSender?.sentGifts || 0;
         const receivedCount = updatedRecipient?.receivedGifts || 0;
 
-        console.log('📊 عدادات المرسل:', sentCount);
-        console.log('📊 عدادات المستلم:', receivedCount);
 
         const lang = getUserLanguage(senderName) || 'ar';
         const detailText = `
@@ -322,22 +306,18 @@ async function handleGiftSelectionAnimation(data, senderName, ioSockets,socket) 
 
 
         const rooms = loadRooms();
-        console.log('🏠 الغرف:', rooms);
 
         rooms.forEach(room => {
             const roomName = room.roomName || room;
             const targetSocket = ioSockets[roomName];
 
             if (!targetSocket) {
-                console.log(`⚠️ لا يوجد socket للغرفة: ${roomName}`);
                 return;
             }
             if (targetSocket.readyState !== 1) {
-                console.log(`⚠️ socket مغلق للغرفة: ${roomName}`);
                 return;
             }
 
-            console.log(`📤 إرسال رسالة إلى الغرفة: ${roomName}`);
             const detailMsg = createRoomMessage(roomName, detailText);
             targetSocket.send(JSON.stringify(detailMsg));
 
@@ -352,7 +332,6 @@ async function handleGiftSelectionAnimation(data, senderName, ioSockets,socket) 
             targetSocket.send(JSON.stringify(giftMsg));
         });
 
-        console.log('✅ انتهى إرسال الهدية بنجاح.');
 
     } catch (err) {
         console.error('❌ خطأ أثناء تجهيز صورة الهدية:', err.message);

@@ -128,7 +128,7 @@ function handleCoinDuelCommand(data, socket, ioSockets) {
             ? duelData.player1.username
             : duelData.player2.username;
 
-    const prizePoints = 1000000;
+    const prizePoints = 100000;
     try { addPoints(winner, prizePoints); } catch {}
 
     duelData.result = { coin: coinResult, winner };

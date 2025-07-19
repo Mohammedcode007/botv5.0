@@ -111,8 +111,8 @@ function handleGiftCommand(data, socket, senderName) {
     };
 
     const waitMessage = isSvip
-        ? `🎁 المستخدم ${senderName} يستعد لإرسال هدية ${recipient ? `إلى ${recipient}` : 'خاصة'}. الرجاء الانتظار... لديه 30 ثانية فقط. الهدايا المرسلة: ${userGiftStats[senderName].sent}`
-        : `🎁 من فضلك أرسل الآن صورة الهدية إلى ${recipient}. لديك 30 ثانية فقط. الهدايا المرسلة: ${userGiftStats[senderName].sent}`;
+        ? `🎁 المستخدم ${senderName} يستعد لإرسال هدية ${recipient ? `إلى ${recipient}` : 'خاصة'}. الرجاء الانتظار... لديه 60 ثانية فقط. الهدايا المرسلة: ${userGiftStats[senderName].sent}`
+        : `🎁 من فضلك أرسل الآن صورة الهدية إلى ${recipient}. لديك 60 ثانية فقط. الهدايا المرسلة: ${userGiftStats[senderName].sent}`;
 
     const response = createRoomMessage(data.room, waitMessage);
     socket.send(JSON.stringify(response));
@@ -129,7 +129,7 @@ function handleGiftCommand(data, socket, senderName) {
             const timeoutMsg = createRoomMessage(data.room, timeoutText);
             socket.send(JSON.stringify(timeoutMsg));
         }
-    }, 30000);
+}, 60000);
 }
 
 
@@ -307,7 +307,6 @@ async function handleGiftSelection(data, senderName, ioSockets) {
                 return;
             }
 
-            console.log(`📤 إرسال رسالة إلى الغرفة: ${roomName}`);
             const detailMsg = createRoomMessage(roomName, detailText);
             targetSocket.send(JSON.stringify(detailMsg));
 

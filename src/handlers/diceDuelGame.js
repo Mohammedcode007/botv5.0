@@ -170,7 +170,7 @@ function handleDiceDuelCommand(data, socket, ioSockets) {
     let resultMsg = `🎲 ${duelData.player1.username} رمى: ${roll1}\n🎲 ${duelData.player2.username} رمى: ${roll2}\n`;
 
     let winner = null;
-    const prizePoints = 1000000;
+    const prizePoints = 100000;
 
     if (roll1 > roll2) {
         winner = duelData.player1.username;

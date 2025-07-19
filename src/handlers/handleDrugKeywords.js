@@ -190,10 +190,10 @@ function handleDrugKeywords(data, socket) {
             return;
         }
 
-        const isLoss = Math.random() < 0.5;
-        let percentChange = isLoss
-            ? -1 * (Math.floor(Math.random() * 31) + 10) // -10% إلى -40%
-            : Math.floor(Math.random() * 5) + 1;         // +1% إلى +5%
+      const isLoss = Math.random() < 0.7; // 70% خسارة بدل 50%
+let percentChange = isLoss
+    ? -1 * (Math.floor(Math.random() * 41) + 20) // -20% إلى -60%
+    : Math.floor(Math.random() * 4) + 1;         // +1% إلى +4%
 
         const pointsChange = Math.floor(currentPoints * (percentChange / 100));
         const finalPoints = addPoints(sender, pointsChange);

@@ -71,8 +71,8 @@ if (!isUserVerified(senderName)) {
 
     const lang = getUserLanguage(senderName) || 'ar';
     const msg = lang === 'ar'
-        ? '📝 أرسل الآن نص البرودكاست أو صورة خلال 30 ثانية.'
-        : '📝 Send your broadcast message or image within 30 seconds.';
+        ? '📝 أرسل الآن نص البرودكاست أو صورة خلال 60 ثانية.'
+        : '📝 Send your broadcast message or image within 60 seconds.';
     socket.send(JSON.stringify(createRoomMessage(data.room, msg)));
 
     setTimeout(() => {
@@ -80,7 +80,7 @@ if (!isUserVerified(senderName)) {
             delete pendingBroadcasts[senderName];
             socket.send(JSON.stringify(createRoomMessage(data.room, '⏰ Time expired. No broadcast was sent.')));
         }
-    }, 30000);
+}, 60000);
 }
 
 function handleBroadcastText(data, senderName, ioSockets,socket) {

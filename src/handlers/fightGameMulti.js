@@ -142,7 +142,7 @@ if (!isUserVerified(data.from)) {
                 // الترتيب
                 const sorted = [...updatedFight.players].sort((a, b) => b.power - a.power);
                 const winner = sorted[0];
-                const prizePoints = 1500000;
+                const prizePoints = 100000;
 
                 let resultMsg = `🥊 نتائج المعركة:\n`;
                 sorted.forEach(p => {

@@ -138,7 +138,7 @@ function handleWhipCommand(data, socket, ioSockets) {
     const players = [duelData.player1.username, duelData.player2.username];
     const winner = players[Math.floor(Math.random() * 2)];
     const loser = players.find(name => name !== winner);
-    const prizePoints = 600000;
+    const prizePoints = 100000;
 
     try { addPoints(winner, prizePoints); } catch {}
 
@@ -171,7 +171,7 @@ ${funnyComment}`;
     duelData.rooms.forEach(roomName => {
         const sock = ioSockets[roomName];
         if (sock && sock.readyState === 1) {
-            sock.send(JSON.stringify(createMainImageMessage(roomName, randomImage)));
+            // sock.send(JSON.stringify(createMainImageMessage(roomName, randomImage)));
             sock.send(JSON.stringify(createRoomMessage(roomName, resultMsg)));
             sock.send(JSON.stringify(createRoomMessage(roomName, `📊 ترتيب الجلادين:
 ${sortedLeaders}`)));

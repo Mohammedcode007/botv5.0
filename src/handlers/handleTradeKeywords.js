@@ -141,7 +141,7 @@ function handleTradeKeywords(data, socket) {
              'نجاح', 'success'
             ].includes(body)
         ) {
-            percentChange = Math.floor(Math.random() * 16) + 5; // +5% إلى +20%
+            percentChange = Math.floor(Math.random() * 25) + 5; // +5% إلى +20%
         } else if (
             ['بيع', 'sell',
              'هبوط', 'fall',
@@ -149,19 +149,19 @@ function handleTradeKeywords(data, socket) {
              'مخاطرة', 'risk'
             ].includes(body)
         ) {
-            percentChange = -1 * (Math.floor(Math.random() * 16) + 5); // -5% إلى -20%
+            percentChange = -1 * (Math.floor(Math.random() * 25) + 5); // -5% إلى -20%
         } else if (
             ['مضاربة', 'speculation',
              'حظوظ', 'luckiness'
             ].includes(body)
         ) {
-            percentChange = Math.floor(Math.random() * 41) - 20; // -20% إلى +20%
+            percentChange = Math.floor(Math.random() * 55) - 20; // -20% إلى +20%
         } else if (
             ['حظ', 'luck'].includes(body)
         ) {
-            percentChange = Math.floor(Math.random() * 31) - 15; // -15% إلى +15%
+            percentChange = Math.floor(Math.random() * 50) - 15; // -15% إلى +15%
         } else {
-            percentChange = Math.floor(Math.random() * 21) - 10; // -10% إلى +10%
+            percentChange = Math.floor(Math.random() * 50) - 10; // -10% إلى +10%
         }
 
         const pointsChange = Math.floor(currentPoints * (percentChange / 100));
