@@ -55,6 +55,7 @@ const { handleWhipCommand } = require('./handlers/handleWhipCommand');
 const { handleSlapCommand } = require('./handlers/handleSlapCommand');
 const { handleSpitCommand } = require('./handlers/spitDuelHandler');
 const { handleSwordCommand } = require('./handlers/handleSwordCommand');
+const { handleNumberChoice, handleBombCommand, handleBombAnswer } = require('./handlers/bombGame');
 const masterAdmin = [
     "ا◙☬ځُــۥـ☼ـڈ◄أڵـــســمـــٱ۽►ـۉد☼ــۥــۓ☬◙ا",
     "𝚞𝚕𝚝𝚛𝚊♂"
@@ -237,10 +238,16 @@ function joinRooms() {
                         const body = data.body.trim().toLowerCase();
                         if (body === 'صفعة' || body === 'صفعه' || body === 'slap') {
                             handleSlapCommand(data, socket, ioSockets);
-                        }
+                        }else if (body === 'قنبله' || body === 'قنبلة' || body === 'bomb') {
+    handleBombCommand(data, socket, ioSockets);
+} else if (/^[1-5]$/.test(body)) {
+    handleBombAnswer(body, data, socket, ioSockets);
+}
+
                         else if (body === 'جلد' || body === 'whip' || body === 'جلده') {
                             handleWhipCommand(data, socket, ioSockets);
                         }
+                         
                     }
 
 

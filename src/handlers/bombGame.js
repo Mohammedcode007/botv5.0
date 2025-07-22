@@ -1,16 +1,24 @@
 const fs = require('fs');
 const path = require('path');
-const { createRoomMessage } = require('../messageUtils');
-const { loadRooms } = require('../fileUtils');
+const { createRoomMessage, createMainImageMessage } = require('../messageUtils');
+const { addPoints, loadRooms } = require('../fileUtils');
 
 // المسارات
-const bombSessionPath = path.join(__dirname, '../data/bombSession.json');
-const leaderboardPath = path.join(__dirname, '../data/bombLeaderboard.json');
-const choicesPath = path.join(__dirname, '../data/bombChoices.json');
+const duelFilePath = path.join(__dirname, '../data/bombDuel.json');
+const cooldownFilePath = path.join(__dirname, '../data/bombCooldowns.json');
+const leaderboardFilePath = path.join(__dirname, '../data/bombLeaderboard.json');
 
-// أدوات JSON
-function loadJson(file, defaultValue = {}) {
-    if (!fs.existsSync(file)) fs.writeFileSync(file, JSON.stringify(defaultValue, null, 2));
+const COOLDOWN = 5 * 60 * 1000; // 5 دقائق
+
+const successImages = [
+    'https://i.pinimg.com/736x/e5/78/21/e57821d226319c669e8d3681c5c70d92.jpg'
+];
+const failImages = [
+    'https://i.pinimg.com/736x/36/d0/5a/36d05ae41bb339febf50a8f847f53e61.jpg'
+];
+
+function loadJson(file, def = {}) {
+    if (!fs.existsSync(file)) fs.writeFileSync(file, JSON.stringify(def, null, 2));
     return JSON.parse(fs.readFileSync(file));
 }
 
@@ -18,103 +26,213 @@ function saveJson(file, data) {
     fs.writeFileSync(file, JSON.stringify(data, null, 2));
 }
 
-// ترتيب اللاعبين
-function addWin(username) {
-    const data = loadJson(leaderboardPath);
-    data[username] = (data[username] || 0) + 1;
-    saveJson(leaderboardPath, data);
+function getInitialBombData() {
+    return {
+        isActive: false,
+        player1: null,
+        player2: null,
+        code: null,
+        rooms: [],
+        guesses: {}
+    };
 }
 
-function getLeaderboard() {
-    const data = loadJson(leaderboardPath);
-    return Object.entries(data)
-        .sort((a, b) => b[1] - a[1])
-        .slice(0, 5)
-        .map(([name, wins], i) => `#${i + 1} - ${name}: 💣 ${wins} فوز`)
-        .join('\n');
+function loadBombData() {
+    return loadJson(duelFilePath, getInitialBombData());
 }
 
-function broadcastToRooms(rooms, ioSockets, msg) {
+function saveBombData(data) {
+    saveJson(duelFilePath, data);
+}
+
+function resetBomb() {
+    saveBombData(getInitialBombData());
+}
+
+function loadCooldowns() {
+    return loadJson(cooldownFilePath, {});
+}
+
+function saveCooldowns(data) {
+    saveJson(cooldownFilePath, data);
+}
+
+function loadLeaderboard() {
+    return loadJson(leaderboardFilePath, {});
+}
+
+function saveLeaderboard(data) {
+    saveJson(leaderboardFilePath, data);
+}
+
+function broadcast(ioSockets, rooms, msg) {
     const allRooms = loadRooms();
-    rooms.forEach(roomName => {
-        const room = allRooms.find(r => r.roomName === roomName);
-        if (room?.gamesEnabled === false) return;
-        const socket = ioSockets[roomName];
-        if (socket && socket.readyState === 1) {
-            socket.send(JSON.stringify(createRoomMessage(roomName, msg)));
+    rooms.forEach(r => {
+        const data = allRooms.find(room => room.roomName === r);
+        if (data?.gamesEnabled === false) return;
+        const socket = ioSockets[r];
+        if (socket?.readyState === 1) {
+            socket.send(JSON.stringify(createRoomMessage(r, msg)));
         }
     });
 }
 
-// بدء القنبلة
-function handleBombTrigger(data, socket, ioSockets) {
-    const username = data.from;
+function handleBombCommand(data, socket, ioSockets) {
+    const sender = data.from;
     const room = data.room;
+    const userId = data.userId || sender;
+    const cooldowns = loadCooldowns();
+    const now = Date.now();
 
-    let session = loadJson(bombSessionPath, { isActive: false });
-
-    if (!session.isActive) {
-        session = {
-            isActive: true,
-            player1: username,
-            player2: null,
-            rooms: [room]
-        };
-        saveJson(bombSessionPath, session);
-        broadcastToRooms([room], ioSockets, `💣 ${username} أطلق قنبلة! ننتظر لاعبًا آخر...`);
+    if (cooldowns[userId] && now - cooldowns[userId] < COOLDOWN) {
+        const remain = Math.ceil((COOLDOWN - (now - cooldowns[userId])) / 1000);
+        socket.send(JSON.stringify(createRoomMessage(room, `⏳ انتظر ${remain} ثانية قبل المحاولة مجددًا.`)));
         return;
     }
 
-    if (session.player1 === username || session.player2 === username) {
-        socket.send(JSON.stringify(createRoomMessage(room, `❗ أنت بالفعل مشارك.`)));
+    let game = loadBombData();
+
+    if (!game.isActive) {
+        game.isActive = true;
+        game.player1 = { username: sender, userId };
+
+        // فقط الغرفة التي بدأ منها اللاعب الأول
+        game.rooms = [room];
+
+        saveBombData(game);
+
+        broadcast(ioSockets, game.rooms, `💣 ${sender} بدأ لعبة القنبلة! اكتب "قنبله" للانضمام خلال 30 ثانية!`);
+
+        setTimeout(() => {
+            const updated = loadBombData();
+            if (updated.isActive && !updated.player2) {
+                broadcast(ioSockets, updated.rooms, "⌛ لم ينضم أحد للعبة القنبلة. انتهت الجولة.");
+                resetBomb();
+            }
+        }, 30000);
+
         return;
     }
 
-    if (!session.player2) {
-        session.player2 = username;
-        if (!session.rooms.includes(room)) session.rooms.push(room);
-        saveJson(bombSessionPath, session);
+    if (game.player1.username === sender || game.player2?.username === sender) {
+        socket.send(JSON.stringify(createRoomMessage(room, "❌ أنت مشارك بالفعل في اللعبة.")));
+        return;
+    }
 
-        const msg = `🔌 ${session.player1} و ${session.player2} في مواجهة!\nكل لاعب يرسل رقمًا (1 أو 2 أو 3) لفك القنبلة!`;
+    if (!game.player2) {
+        game.player2 = { username: sender, userId };
 
-        broadcastToRooms(session.rooms, ioSockets, msg);
-        saveJson(choicesPath, {});
+        // الغرفتين: غرفة اللاعب الأول + غرفة اللاعب الثاني
+        game.rooms = [game.rooms[0], room].filter((v, i, a) => a.indexOf(v) === i);
+
+        game.code = Math.floor(1 + Math.random() * 5);
+        saveBombData(game);
+
+        cooldowns[userId] = now;
+        saveCooldowns(cooldowns);
+
+        broadcast(ioSockets, game.rooms, `🔢 ${sender} انضم!`);
+        broadcast(ioSockets, game.rooms, `🧠 ${game.player1.username} و ${game.player2.username}، أرسل رقم (مثلاً: آخر لون لفك السلك) من 1 إلى 5 لمحاولة تفكيك القنبلة!`);
+
+        // مؤقت انتهاء التخمينات 30 ثانية
+        setTimeout(() => {
+            const currentGame = loadBombData();
+            if (currentGame.isActive && Object.keys(currentGame.guesses).length < 2) {
+                broadcast(ioSockets, currentGame.rooms, "⌛ انتهى الوقت ولم يتم إرسال التخمينات. انتهت الجولة.");
+                resetBomb();
+            }
+        }, 30000);
+
+        return;
     }
 }
 
-// استقبال رقم السلك
-function handleBombChoice(data, socket, ioSockets) {
-    const { from: username, room, body } = data;
-    if (!['1', '2', '3'].includes(body)) return;
+function handleBombAnswer(body, data, socket, ioSockets) {
+    const sender = data.from;
+    const userId = data.userId || sender;
+    const room = data.room;
 
-    const session = loadJson(bombSessionPath);
-    if (!session.isActive || !session.player1 || !session.player2) return;
+    let game = loadBombData();
+    if (!game.isActive || !game.player2) return;
 
-    if (![session.player1, session.player2].includes(username)) return;
+    const number = parseInt(body);
+    if (isNaN(number) || number < 1 || number > 5) return;
 
-    const choices = loadJson(choicesPath);
-    if (choices[username]) return;
+    const isPlayer1 = game.player1.username === sender;
+    const isPlayer2 = game.player2.username === sender;
 
-    choices[username] = body;
-    saveJson(choicesPath, choices);
+    if (!isPlayer1 && !isPlayer2) return;
 
-    const players = [session.player1, session.player2];
-    if (players.every(p => choices[p])) {
-        // تم الاختيار من الطرفين
-        const winner = players[Math.floor(Math.random() * 2)];
-        const loser = players.find(p => p !== winner);
-        addWin(winner);
-
-        const msg = `🎉 ${winner} فك القنبلة بنجاح!\n💥 ${loser} انفجرت به القنبلة!\n\n🏆 الترتيب:\n${getLeaderboard()}`;
-        broadcastToRooms(session.rooms, ioSockets, msg);
-
-        // إعادة التهيئة
-        saveJson(bombSessionPath, { isActive: false });
-        saveJson(choicesPath, {});
+    if (game.guesses[sender]) {
+        socket.send(JSON.stringify(createRoomMessage(room, `❗ لقد أرسلت تخمينك بالفعل.`)));
+        return;
     }
+
+    const cooldowns = loadCooldowns();
+    const now = Date.now();
+    if (cooldowns[userId] && now - cooldowns[userId] < COOLDOWN) {
+        const remain = Math.ceil((COOLDOWN - (now - cooldowns[userId])) / 1000);
+        socket.send(JSON.stringify(createRoomMessage(room, `⏳ انتظر ${remain} ثانية قبل إرسال تخمين آخر.`)));
+        return;
+    }
+
+    game.guesses[sender] = number;
+    saveBombData(game);
+
+    cooldowns[userId] = now;
+    saveCooldowns(cooldowns);
+
+    socket.send(JSON.stringify(createRoomMessage(room, `✅ ${sender} اخترت الرقم ${number}.`)));
+
+    if (Object.keys(game.guesses).length < 2) return;
+
+    const { player1, player2, code, rooms } = game;
+    const g1 = game.guesses[player1.username];
+    const g2 = game.guesses[player2.username];
+
+    const success1 = g1 === code;
+    const success2 = g2 === code;
+
+    let resultMsg = '';
+    let leaderboard = loadLeaderboard();
+
+    if (success1 && !success2) {
+        addPoints(player1.username, 100000);
+        leaderboard[player1.username] = (leaderboard[player1.username] || 0) + 1;
+        resultMsg = `🧯 ${player1.username} فك القنبلة بنجاح!\n💥 ${player2.username} فشل في تفكيكها.`;
+    } else if (!success1 && success2) {
+        addPoints(player2.username, 100000);
+        leaderboard[player2.username] = (leaderboard[player2.username] || 0) + 1;
+        resultMsg = `🧯 ${player2.username} فك القنبلة بنجاح!\n💥 ${player1.username} فشل في تفكيكها.`;
+    } else {
+        resultMsg = `🤝 كلا اللاعبين ${success1 ? "نجحا" : "فشلا"} في تفكيك القنبلة. تعادل!`;
+    }
+
+    saveLeaderboard(leaderboard);
+
+    const top10 = Object.entries(leaderboard)
+        .sort((a, b) => b[1] - a[1])
+        .slice(0, 10)
+        .map(([name, wins], i) => `#${i + 1} - ${name} | 💣 الفوز: ${wins}`)
+        .join('\n');
+
+    const image = (success1 && success2) || (!success1 && !success2)
+        ? failImages[0]
+        : successImages[0];
+
+    rooms.forEach(r => {
+        const s = ioSockets[r];
+        if (s?.readyState === 1) {
+            s.send(JSON.stringify(createMainImageMessage(r, image)));
+            s.send(JSON.stringify(createRoomMessage(r, resultMsg)));
+            s.send(JSON.stringify(createRoomMessage(r, `📊 أقوى مفككي القنابل:\n${top10}`)));
+        }
+    });
+
+    resetBomb();
 }
 
 module.exports = {
-    handleBombTrigger,
-    handleBombChoice
+    handleBombCommand,
+    handleBombAnswer
 };

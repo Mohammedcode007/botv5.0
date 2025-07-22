@@ -1,8 +1,8 @@
 {
-  "isActive": true,
+  "isActive": false,
   "player1": {
-    "username": "e3tna8",
-    "userId": "e3tna8",
+    "username": null,
+    "userId": null,
     "roll": null,
     "wins": 0
   },
@@ -12,13 +12,11 @@
     "roll": null,
     "wins": 0
   },
-  "startedAt": 1752909642190,
-  "rooms": [
-    "اليمنء"
-  ],
+  "startedAt": null,
+  "rooms": [],
   "result": {
     "winner": null,
     "status": "waiting"
   },
-  "lastPlayed": 1752909642190
+  "lastPlayed": 1753163489175
 }
