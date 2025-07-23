@@ -1,3 +1,4 @@
+
 const fs = require('fs');
 const path = require('path');
 const { createRoomMessage, createMainImageMessage } = require('../messageUtils');
@@ -94,12 +95,13 @@ function handleBombCommand(data, socket, ioSockets) {
 
     if (!game.isActive) {
         game.isActive = true;
-        game.player1 = { username: sender, userId };
+        game.player1 = { username: sender, userId, room };
 
-        // فقط الغرفة التي بدأ منها اللاعب الأول
-        game.rooms = [room];
+        const allRooms = loadRooms().filter(r => r.gamesEnabled !== false).map(r => r.roomName);
+        game.rooms = allRooms;
 
         saveBombData(game);
+
 
         broadcast(ioSockets, game.rooms, `💣 ${sender} بدأ لعبة القنبلة! اكتب "قنبله" للانضمام خلال 30 ثانية!`);
 
@@ -120,21 +122,23 @@ function handleBombCommand(data, socket, ioSockets) {
     }
 
     if (!game.player2) {
-        game.player2 = { username: sender, userId };
+        game.player2 = { username: sender, userId, room };
+        const room1 = game.player1.room;
+        const room2 = room;
+        game.rooms = [...new Set([room1, room2])];
 
-        // الغرفتين: غرفة اللاعب الأول + غرفة اللاعب الثاني
-        game.rooms = [game.rooms[0], room].filter((v, i, a) => a.indexOf(v) === i);
-
-        game.code = Math.floor(1 + Math.random() * 5);
+game.code = Math.floor(1 + Math.random() * 3);
         saveBombData(game);
 
         cooldowns[userId] = now;
         saveCooldowns(cooldowns);
 
-        broadcast(ioSockets, game.rooms, `🔢 ${sender} انضم!`);
-        broadcast(ioSockets, game.rooms, `🧠 ${game.player1.username} و ${game.player2.username}، أرسل رقم (مثلاً: آخر لون لفك السلك) من 1 إلى 5 لمحاولة تفكيك القنبلة!`);
 
-        // مؤقت انتهاء التخمينات 30 ثانية
+        broadcast(ioSockets, game.rooms, `🔢 ${sender} انضم!`);
+        broadcast(ioSockets, game.rooms, 
+`🧠 ${game.player1.username} و ${game.player2.username}، أرسل رقمًا (مثلاً: آخر لون لفك السلك) من 1️⃣ إلى 3️⃣ لمحاولة تفكيك القنبلة 💣!\n\n🔴 1️⃣\n🟠 2️⃣\n🟢 3️⃣`
+        );
+
         setTimeout(() => {
             const currentGame = loadBombData();
             if (currentGame.isActive && Object.keys(currentGame.guesses).length < 2) {
@@ -156,7 +160,9 @@ function handleBombAnswer(body, data, socket, ioSockets) {
     if (!game.isActive || !game.player2) return;
 
     const number = parseInt(body);
-    if (isNaN(number) || number < 1 || number > 5) return;
+    if (isNaN(number) || number < 1 || number > 3) {
+        return;
+    }
 
     const isPlayer1 = game.player1.username === sender;
     const isPlayer2 = game.player2.username === sender;
@@ -168,19 +174,8 @@ function handleBombAnswer(body, data, socket, ioSockets) {
         return;
     }
 
-    const cooldowns = loadCooldowns();
-    const now = Date.now();
-    if (cooldowns[userId] && now - cooldowns[userId] < COOLDOWN) {
-        const remain = Math.ceil((COOLDOWN - (now - cooldowns[userId])) / 1000);
-        socket.send(JSON.stringify(createRoomMessage(room, `⏳ انتظر ${remain} ثانية قبل إرسال تخمين آخر.`)));
-        return;
-    }
-
     game.guesses[sender] = number;
     saveBombData(game);
-
-    cooldowns[userId] = now;
-    saveCooldowns(cooldowns);
 
     socket.send(JSON.stringify(createRoomMessage(room, `✅ ${sender} اخترت الرقم ${number}.`)));
 
@@ -208,6 +203,8 @@ function handleBombAnswer(body, data, socket, ioSockets) {
         resultMsg = `🤝 كلا اللاعبين ${success1 ? "نجحا" : "فشلا"} في تفكيك القنبلة. تعادل!`;
     }
 
+
+
     saveLeaderboard(leaderboard);
 
     const top10 = Object.entries(leaderboard)
@@ -215,6 +212,7 @@ function handleBombAnswer(body, data, socket, ioSockets) {
         .slice(0, 10)
         .map(([name, wins], i) => `#${i + 1} - ${name} | 💣 الفوز: ${wins}`)
         .join('\n');
+
 
     const image = (success1 && success2) || (!success1 && !success2)
         ? failImages[0]
@@ -231,6 +229,7 @@ function handleBombAnswer(body, data, socket, ioSockets) {
 
     resetBomb();
 }
+
 
 module.exports = {
     handleBombCommand,

@@ -807,9 +807,9 @@ ${pronoun} ${reason}
                     const body = data.body.trim();
 
                     if (body.startsWith('setmsg@')) {
-                        setWelcomeMessage(data, master, senderName, roomName, rooms, currentLanguage, socket);
+                        setWelcomeMessage(data, senderName, roomName, rooms, currentLanguage, socket);
                     } else if (body === 'wec@on') {
-                        enableWelcomeMessage(data, master, senderName, roomName, rooms, currentLanguage, socket);
+                        enableWelcomeMessage(data, senderName, roomName, rooms, currentLanguage, socket);
                     }
                     else if (body === 'عروستي') {
                         handleBrideRequest(data, socket, senderName);
@@ -830,7 +830,7 @@ ${pronoun} ${reason}
 
                     }
                     else if (body === 'wec@off') {
-                        disableWelcomeMessage(data, master, senderName, roomName, rooms, currentLanguage, socket);
+                        disableWelcomeMessage(data, senderName, roomName, rooms, currentLanguage, socket);
                     } else if (body === 'info@1' || body === 'info@2' || body === 'info@3' || body === 'info@4' || body === 'info@5' || body === 'info@6' || body === 'info@7') {
                         sendHelpInformation(data, roomName, socket, currentLanguage);
                     } else if (

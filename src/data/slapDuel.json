@@ -1,8 +1,13 @@
 {
-  "isActive": false,
-  "player1": null,
+  "isActive": true,
+  "player1": {
+    "username": "غرو♡انثي♡ور",
+    "userId": "غرو♡انثي♡ور"
+  },
   "player2": null,
-  "startedAt": null,
-  "rooms": [],
+  "startedAt": 1753281340587,
+  "rooms": [
+    "Ａ_Qᴜɪᴇᴛ🎧ᴘʟᴀᴄᴇ"
+  ],
   "result": null
 }
