@@ -2,7 +2,7 @@
   "isActive": false,
   "player1": null,
   "player2": null,
-  "startedAt": null,
+  "room": null,
   "rooms": [],
-  "result": null
+  "startedAt": null
 }

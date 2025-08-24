@@ -555,6 +555,24 @@ function addPoints(username, amount = 1000) {
     }
     return null;
 }
+function removePoints(username, amount = 1000) {
+    const users = loadUsers();
+    const user = users.find(u => u.username === username);
+
+    if (user) {
+        // التأكد من وجود رصيد كافٍ قبل الخصم
+        const currentPoints = user.points || 0;
+        if (currentPoints >= amount) {
+            user.points = currentPoints - amount;
+            saveUsers(users);
+            return user.points;
+        } else {
+            // في حالة عدم كفاية النقاط
+            return null;
+        }
+    }
+    return null;
+}
 
 function getUserRooms(username) {
     const rooms = loadRooms();
@@ -858,6 +876,7 @@ module.exports = {
     getTradeStats,
     getUserRooms,
     formatNumber,
+    removePoints,
     getUserProfileUrl,
     setNotifyOnSearch,
     loadSilentRooms,

@@ -31,17 +31,18 @@ function generateShortId(length = 6) {
 
 
 
-
-
 function getAudioUrl(videoUrl) {
   return new Promise((resolve, reject) => {
-    const cmd = `"${ytDlpPath}" -f bestaudio -g --cookies-from-browser firefox "${videoUrl}"`;
+    const cmd = `"${ytDlpPath}" -f "bestaudio[ext=m4a]/bestaudio/best" -g --cookies-from-browser firefox "${videoUrl}"`;
     exec(cmd, (error, stdout, stderr) => {
-      if (error) return reject(error);
+      if (error) return reject(stderr || error.message);
       resolve(stdout.trim());
     });
   });
 }
+
+
+
 
 
 
@@ -415,100 +416,7 @@ function handleSongShare(data, socket) {
 
 
 
-// async function handlePlaySongInAllRooms(data, socket, senderName, ioSockets) {
-//   const body = data.body.trim();
-//   if (!body.startsWith('.ps ')) return;
 
-//   const songName = body.slice(4).trim();
-//   if (!songName) return;
-
-//   const lang = getUserLanguage(senderName) || 'ar';
-
-// const loadingMsg = '📡 Broadcasting the song to all rooms. Please hold on while we deliver the music experience...';
-
-//   socket.send(JSON.stringify(createRoomMessage(data.room, loadingMsg)));
-
-//   try {
-//     const song = await searchSongMp3(songName);
-//     if (!song) {
-//       const notFoundMsg = lang === 'ar'
-//         ? `❗ لم يتم العثور على أغنية بعنوان "${songName}"`
-//         : `❗ No song found for "${songName}"`;
-//       socket.send(JSON.stringify(createRoomMessage(data.room, notFoundMsg)));
-//       return;
-//     }
-
-
-//     // توليد معرف فريد للأغنية
-//     let songId;
-//     do {
-//       songId = generateShortId();
-      
-//     } while (activeSongs[songId]);
-
-//     activeSongs[songId] = {
-//       id: songId,
-//       title: song.title,
-//       url: song.mp3Url,
-//       sender: senderName,
-//     };
-// const totalLikes = getUserLikes(senderName);
-
-//     // تحضير الرسائل
-// const textMsg = createRoomMessage(
-//   '',
-//   `
-// 【🎙️𝐑𝐚𝐝𝐢𝐨 𝐁𝐫𝐨𝐚𝐝𝐜𝐚𝐬𝐭 】
-
-// 𝐑𝐨𝐨𝐦: 『 ${data.room} 』
-// 𝐍𝐨𝐰 𝐏𝐥𝐚𝐲𝐢𝐧𝐠: ❝ ${song.title} ❞
-// 𝐑𝐞𝐪𝐮𝐞𝐬𝐭𝐞𝐝 𝐁𝐲: ⟪ ${senderName} ⟫
-
-// 𝐋𝐢𝐤𝐞 ➤ like@${songId}
-// 𝐃𝐢𝐬𝐥𝐢𝐤𝐞 ➤ dislike@${songId}
-// 𝐂𝐨𝐦𝐦𝐞𝐧𝐭 ➤ com@${songId}@your message
-
-// ❤️ Total Likes: ${totalLikes}
-
-// `
-// );
-
-//         const audioMsg = createAudioRoomMessage('', song.mp3Url);
-
-
-//     const allRooms = loadRooms();
-
-//     for (const room of allRooms) {
-//       const roomName = room.roomName;
-//       const roomSocket = ioSockets[roomName];
-
-//       if (roomSocket && roomSocket.readyState === 1) {
-//         // تحديد الغرفة لكل رسالة
-//         audioMsg.room = roomName;
-//         textMsg.room = roomName;
-
-//         // إرسال الصورة الرئيسية إن وجدت
-//         // if (song.thumb) {
-//         //   const imageMsg = createMainImageMessage(roomName, song.thumb);
-//         //   roomSocket.send(JSON.stringify(imageMsg));
-//         // }
-
-//         // إرسال الصوت والنص
-//         roomSocket.send(JSON.stringify(textMsg));
-//                 roomSocket.send(JSON.stringify(audioMsg));
-
-//       }
-//     }
-
-
-//   } catch (error) {
-//     const errMsg = lang === 'ar'
-//       ? `❌ حدث خطأ أثناء إرسال الأغنية.`
-//       : `❌ Error occurred while broadcasting the song.`;
-//     socket.send(JSON.stringify(createRoomMessage(data.room, errMsg)));
-//     console.error(error);
-//   }
-// }
 
 async function handlePlaySongInAllRooms(data, socket, senderName, ioSockets) {
   const body = data.body.trim();
@@ -553,9 +461,9 @@ async function handlePlaySongInAllRooms(data, socket, senderName, ioSockets) {
 const giftLine = targetUser ? `𝐖𝐢𝐭𝐡@${targetUser}` : '';
 
 
-    const textMsg = createRoomMessage(
-      '',
-      `
+const textMsg = createRoomMessage(
+  '',
+  `
 【🎙️𝐑𝐚𝐝𝐢𝐨 𝐁𝐫𝐨𝐚𝐝𝐜𝐚𝐬𝐭】
 
 𝐑𝐨𝐨𝐦: 『 ${data.room} 』
@@ -564,13 +472,20 @@ const giftLine = targetUser ? `𝐖𝐢𝐭𝐡@${targetUser}` : '';
 
 ${giftLine}
 
-❤️ Like ➤ like@${songId}
-👎 Dislike ➤ dislike@${songId}
-💬 Comment ➤ com@${songId}@your message
+❤️ 𝐋𝐢𝐤𝐞 ➤ like@${songId}
+👎 𝐃𝐢𝐬𝐥𝐢𝐤𝐞 ➤ dislike@${songId}
+💬 𝐂𝐨𝐦𝐦𝐞𝐧𝐭 ➤ com@${songId}@your message
 
-❤️ Total Likes: ${totalLikes}
+❤️ 𝐓𝐨𝐭𝐚𝐥 𝐋𝐢𝐤𝐞𝐬: ${totalLikes}
+
+━━━━━━━━━━━━━━━
+📌 𝐓𝐨 𝐏𝐥𝐚𝐲 𝐚 𝐒𝐨𝐧𝐠:
+➡️  𝐔𝐬𝐞:  .ps اسم_الأغنية
+━━━━━━━━━━━━━━━
 `
-    );
+);
+
+
 
     const audioMsg = createAudioRoomMessage('', song.mp3Url);
     const allRooms = loadRooms();

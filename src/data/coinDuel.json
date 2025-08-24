@@ -1,8 +1,8 @@
 {
   "isActive": true,
   "player1": {
-    "username": "hazem--",
-    "userId": "hazem--",
+    "username": "القيصر",
+    "userId": "القيصر",
     "choice": "ملك"
   },
   "player2": {
@@ -11,11 +11,11 @@
     "choice": null
   },
   "rooms": [
-    "ٍكوكب♥المجانين"
+    "الأصدقاء🩷الطيبون"
   ],
   "result": {
     "winner": null,
     "coin": null
   },
-  "lastPlayed": 1753210573964
+  "lastPlayed": 1754826488400
 }

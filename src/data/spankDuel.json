@@ -3,13 +3,13 @@
   "player1": {
     "username": null,
     "userId": null,
-    "roll": null,
+    "force": null,
     "wins": 0
   },
   "player2": {
     "username": null,
     "userId": null,
-    "roll": null,
+    "force": null,
     "wins": 0
   },
   "startedAt": null,
@@ -18,5 +18,5 @@
     "winner": null,
     "status": "waiting"
   },
-  "lastPlayed": 1755980744973
+  "lastPlayed": 1755245407982
 }

@@ -136,7 +136,7 @@ You can interact with the image using the following commands:
 
 📤 Share the image: sh@${imageId}@username`;
 
-    socket.send(JSON.stringify(createRoomMessage(data.room, text)));
+    // socket.send(JSON.stringify(createRoomMessage(data.room, text)));
 
   } catch (error) {
     const msg = lang === 'ar'

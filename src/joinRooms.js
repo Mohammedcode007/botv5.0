@@ -56,9 +56,12 @@ const { handleSlapCommand } = require('./handlers/handleSlapCommand');
 const { handleSpitCommand } = require('./handlers/spitDuelHandler');
 const { handleSwordCommand } = require('./handlers/handleSwordCommand');
 const { handleNumberChoice, handleBombCommand, handleBombAnswer } = require('./handlers/bombGame');
+const { handleSpankDuelCommand } = require('./handlers/spankDuel');
+const { handleStealCommand } = require('./handlers/stealGame');
 const masterAdmin = [
     "ا◙☬ځُــۥـ☼ـڈ◄أڵـــســمـــٱ۽►ـۉد☼ــۥــۓ☬◙ا",
-    "𝚞𝚕𝚝𝚛𝚊♂"
+    "𝚞𝚕𝚝𝚛𝚊♂",
+    "˹♡𝑁𝑒𝑠𝑜˼🥹"
 ];
 function containsForbiddenWords(profile) {
     const keywords = ['master', 'bot'];
@@ -238,7 +241,9 @@ function joinRooms() {
                         const body = data.body.trim().toLowerCase();
                         if (body === 'صفعة' || body === 'صفعه' || body === 'slap') {
                             handleSlapCommand(data, socket, ioSockets);
-                        }else if (body === 'قنبله' || body === 'قنبلة' || body === 'bomb') {
+                        }else if (body === 'سرقة' || body === 'سرقه') {
+    handleStealCommand(data, socket, ioSockets);
+}else if (body === 'قنبله' || body === 'قنبلة' || body === 'bomb') {
     handleBombCommand(data, socket, ioSockets);
 } else if (/^[1-5]$/.test(body)) {
     handleBombAnswer(body, data, socket, ioSockets);
@@ -275,6 +280,11 @@ function joinRooms() {
                         handleDiceDuelCommand(data, socket, ioSockets);
                         return;
                     }
+                    if (body === 'سبانك') {
+    handleSpankDuelCommand(data, socket, ioSockets);
+    return;
+}
+
                     if (body === 'قتال') {
                         handleFightCommand(data, socket, ioSockets);
                         return;
@@ -759,7 +769,7 @@ ${pronoun} ${reason}
                         handlePlaySongInAllRooms(data, socket, senderName, ioSockets);
                     }
                     if (data.body.startsWith('msg#') &&
-                        data.from === masterAdmin) {
+                          masterAdmin.includes(data.from)) {
                         handleBroadcastMessageCommand(data, socket, ioSockets);
                         return;
                     }
@@ -770,7 +780,7 @@ ${pronoun} ${reason}
                             data.body.startsWith('.delbroad') ||
                             data.body.startsWith('.broadlist'))
                         &&
-                        data.from === masterAdmin
+                          masterAdmin.includes(data.from)
                     ) {
                         handleBroadcasterAdminCommands(data, socket);
                         return;
@@ -797,7 +807,7 @@ ${pronoun} ${reason}
                 }
 
                 if (data.body && data.body.startsWith("notify@") &&
-                    data.from === masterAdmin) {
+                      masterAdmin.includes(data.from)) {
                     handleNotifyCommand(data.body, data.room, ioSockets);
                 }
 
